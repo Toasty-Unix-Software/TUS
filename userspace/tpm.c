@@ -242,6 +242,9 @@ static size_t g_search_filename_size;
 static char *g_search_version;
 static size_t g_search_version_size;
 static int g_search_found;
+static int g_search_untested;
+
+static int has_suffix(const char *s, const char *suffix);
 
 static void search_one_source(const char *name, const char *url) {
     if (g_search_found) {
@@ -280,6 +283,7 @@ static void search_one_source(const char *name, const char *url) {
         snprintf(g_search_repo_url, g_search_repo_url_size, "%s", url);
         snprintf(g_search_filename, g_search_filename_size, "%s", pkg_file);
         snprintf(g_search_version, g_search_version_size, "%s", pkg_ver);
+        g_search_untested = has_suffix(url, "/untested");
         g_search_found = 1;
         break;
     }
@@ -292,7 +296,7 @@ static void search_one_source(const char *name, const char *url) {
  * index (run `tpm update` first). */
 static int find_package(const char *pkgname, char *repo_url, size_t repo_url_size,
                          char *filename, size_t filename_size,
-                         char *version, size_t version_size) {
+                         char *version, size_t version_size, int *untested) {
     g_search_pkgname = pkgname;
     g_search_repo_url = repo_url;
     g_search_repo_url_size = repo_url_size;
@@ -301,8 +305,12 @@ static int find_package(const char *pkgname, char *repo_url, size_t repo_url_siz
     g_search_version = version;
     g_search_version_size = version_size;
     g_search_found = 0;
+    g_search_untested = 0;
 
     for_each_source(search_one_source);
+    if (untested) {
+        *untested = g_search_untested;
+    }
     return g_search_found ? 0 : -1;
 }
 
@@ -639,10 +647,22 @@ static int cmd_install(const char *arg) {
     }
 
     char repo_url[512], filename[256], version[32];
+    int untested = 0;
     if (find_package(arg, repo_url, sizeof(repo_url), filename, sizeof(filename),
-                      version, sizeof(version)) < 0) {
+                      version, sizeof(version), &untested) < 0) {
         fprintf(stderr, "tpm: %s: not found (run 'tpm update' first)\n", arg);
         return 1;
+    }
+
+    if (untested) {
+        printf("THIS PACKAGE HAS NOT BEEN TESTED. DO YOU STILL WANT TO INSTALL IT? (y/N) ");
+        fflush(stdout);
+        char answer[16];
+        if (!fgets(answer, sizeof(answer), stdin) ||
+            (answer[0] != 'y' && answer[0] != 'Y')) {
+            printf("tpm: aborted\n");
+            return 1;
+        }
     }
 
     char pkg_url[600];
@@ -812,7 +832,7 @@ static void usage(void) {
 static int cmd_search(const char *pkg) {
     char repo_url[512], filename[256], version[32];
     if (find_package(pkg, repo_url, sizeof(repo_url), filename, sizeof(filename),
-                      version, sizeof(version)) < 0) {
+                      version, sizeof(version), NULL) < 0) {
         printf("tpm: %s: not found (run 'tpm update' first)\n", pkg);
         return 1;
     }
