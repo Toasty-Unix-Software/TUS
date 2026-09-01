@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for CVTSS2SI",
+  "id": "cvtss2si16",
+  "format": "bin",
+  "source": "cvtss2si_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cvtss2si/",
+  "target": [
+   { "output": "cvtss2si.bin16", "match": "cvtss2si.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CVTSS2SI",
+  "id": "cvtss2si32",
+  "format": "bin",
+  "source": "cvtss2si_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cvtss2si/",
+  "target": [
+   { "output": "cvtss2si.bin32", "match": "cvtss2si.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CVTSS2SI",
+  "id": "cvtss2si64",
+  "format": "bin",
+  "source": "cvtss2si.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cvtss2si/",
+  "target": [
+   { "output": "cvtss2si.bin64", "match": "cvtss2si.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CVTSS2SI",
+  "id": "cvtss2si16err",
+  "format": "bin",
+  "source": "cvtss2si_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cvtss2si/",
+  "target": [
+   { "stderr": "cvtss2si.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CVTSS2SI",
+  "id": "cvtss2si32err",
+  "format": "bin",
+  "source": "cvtss2si_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cvtss2si/",
+  "target": [
+   { "stderr": "cvtss2si.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

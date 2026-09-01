@@ -1,0 +1,5 @@
+default rel
+	hreset 0x2d, eax
+	hreset 0x57, eax
+	hreset 0x6b
+	hreset 0x10

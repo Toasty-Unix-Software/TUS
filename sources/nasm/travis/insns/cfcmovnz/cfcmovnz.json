@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CFCMOVNZ",
+  "id": "cfcmovnz64",
+  "format": "bin",
+  "source": "cfcmovnz.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovnz/",
+  "target": [
+   { "output": "cfcmovnz.bin64", "match": "cfcmovnz.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVNZ",
+  "id": "cfcmovnz16err",
+  "format": "bin",
+  "source": "cfcmovnz_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovnz/",
+  "target": [
+   { "stderr": "cfcmovnz.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVNZ",
+  "id": "cfcmovnz32err",
+  "format": "bin",
+  "source": "cfcmovnz_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovnz/",
+  "target": [
+   { "stderr": "cfcmovnz.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

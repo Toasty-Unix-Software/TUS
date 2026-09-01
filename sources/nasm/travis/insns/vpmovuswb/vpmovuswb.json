@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMOVUSWB",
+  "id": "vpmovuswb16",
+  "format": "bin",
+  "source": "vpmovuswb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovuswb/",
+  "target": [
+   { "output": "vpmovuswb.bin16", "match": "vpmovuswb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMOVUSWB",
+  "id": "vpmovuswb32",
+  "format": "bin",
+  "source": "vpmovuswb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovuswb/",
+  "target": [
+   { "output": "vpmovuswb.bin32", "match": "vpmovuswb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMOVUSWB",
+  "id": "vpmovuswb64",
+  "format": "bin",
+  "source": "vpmovuswb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovuswb/",
+  "target": [
+   { "output": "vpmovuswb.bin64", "match": "vpmovuswb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMOVUSWB",
+  "id": "vpmovuswb16err",
+  "format": "bin",
+  "source": "vpmovuswb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovuswb/",
+  "target": [
+   { "stderr": "vpmovuswb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMOVUSWB",
+  "id": "vpmovuswb32err",
+  "format": "bin",
+  "source": "vpmovuswb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovuswb/",
+  "target": [
+   { "stderr": "vpmovuswb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

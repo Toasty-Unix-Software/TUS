@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPNG",
+  "id": "ccmpng64",
+  "format": "bin",
+  "source": "ccmpng.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpng/",
+  "target": [
+   { "output": "ccmpng.bin64", "match": "ccmpng.bin64.t" },
+   { "stderr": "ccmpng.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPNG",
+  "id": "ccmpng16err",
+  "format": "bin",
+  "source": "ccmpng_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpng/",
+  "target": [
+   { "stderr": "ccmpng.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPNG",
+  "id": "ccmpng32err",
+  "format": "bin",
+  "source": "ccmpng_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpng/",
+  "target": [
+   { "stderr": "ccmpng.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

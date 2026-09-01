@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VALIGND",
+  "id": "valignd16",
+  "format": "bin",
+  "source": "valignd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/valignd/",
+  "target": [
+   { "output": "valignd.bin16", "match": "valignd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VALIGND",
+  "id": "valignd32",
+  "format": "bin",
+  "source": "valignd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/valignd/",
+  "target": [
+   { "output": "valignd.bin32", "match": "valignd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VALIGND",
+  "id": "valignd64",
+  "format": "bin",
+  "source": "valignd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/valignd/",
+  "target": [
+   { "output": "valignd.bin64", "match": "valignd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VALIGND",
+  "id": "valignd16err",
+  "format": "bin",
+  "source": "valignd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/valignd/",
+  "target": [
+   { "stderr": "valignd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VALIGND",
+  "id": "valignd32err",
+  "format": "bin",
+  "source": "valignd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/valignd/",
+  "target": [
+   { "stderr": "valignd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

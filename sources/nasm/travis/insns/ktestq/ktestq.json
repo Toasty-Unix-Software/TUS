@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KTESTQ",
+  "id": "ktestq16",
+  "format": "bin",
+  "source": "ktestq.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ktestq/",
+  "target": [
+   { "output": "ktestq.bin16", "match": "ktestq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KTESTQ",
+  "id": "ktestq32",
+  "format": "bin",
+  "source": "ktestq.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ktestq/",
+  "target": [
+   { "output": "ktestq.bin32", "match": "ktestq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KTESTQ",
+  "id": "ktestq64",
+  "format": "bin",
+  "source": "ktestq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ktestq/",
+  "target": [
+   { "output": "ktestq.bin64", "match": "ktestq.bin64.t" }
+  ]
+ }
+]

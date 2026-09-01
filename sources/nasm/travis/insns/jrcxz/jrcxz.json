@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for JRCXZ",
+  "id": "jrcxz64",
+  "format": "bin",
+  "source": "jrcxz.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jrcxz/",
+  "target": [
+   { "output": "jrcxz.bin64", "match": "jrcxz.bin64.t" }
+  ]
+ }
+]

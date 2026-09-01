@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMOVO",
+  "id": "cmovo64",
+  "format": "bin",
+  "source": "cmovo.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovo/",
+  "target": [
+   { "output": "cmovo.bin64", "match": "cmovo.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVO",
+  "id": "cmovo16err",
+  "format": "bin",
+  "source": "cmovo_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovo/",
+  "target": [
+   { "stderr": "cmovo.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVO",
+  "id": "cmovo32err",
+  "format": "bin",
+  "source": "cmovo_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovo/",
+  "target": [
+   { "stderr": "cmovo.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPADDB",
+  "id": "vpaddb16",
+  "format": "bin",
+  "source": "vpaddb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddb/",
+  "target": [
+   { "output": "vpaddb.bin16", "match": "vpaddb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPADDB",
+  "id": "vpaddb32",
+  "format": "bin",
+  "source": "vpaddb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddb/",
+  "target": [
+   { "output": "vpaddb.bin32", "match": "vpaddb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPADDB",
+  "id": "vpaddb64",
+  "format": "bin",
+  "source": "vpaddb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddb/",
+  "target": [
+   { "output": "vpaddb.bin64", "match": "vpaddb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPADDB",
+  "id": "vpaddb16err",
+  "format": "bin",
+  "source": "vpaddb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddb/",
+  "target": [
+   { "stderr": "vpaddb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPADDB",
+  "id": "vpaddb32err",
+  "format": "bin",
+  "source": "vpaddb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddb/",
+  "target": [
+   { "stderr": "vpaddb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

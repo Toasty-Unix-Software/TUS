@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FNENI",
+  "id": "fneni16",
+  "format": "bin",
+  "source": "fneni.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fneni/",
+  "target": [
+   { "output": "fneni.bin16", "match": "fneni.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FNENI",
+  "id": "fneni32",
+  "format": "bin",
+  "source": "fneni.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fneni/",
+  "target": [
+   { "output": "fneni.bin32", "match": "fneni.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FNENI",
+  "id": "fneni64",
+  "format": "bin",
+  "source": "fneni.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fneni/",
+  "target": [
+   { "output": "fneni.bin64", "match": "fneni.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for LGS",
+  "id": "lgs16",
+  "format": "bin",
+  "source": "lgs_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lgs/",
+  "target": [
+   { "output": "lgs.bin16", "match": "lgs.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LGS",
+  "id": "lgs32",
+  "format": "bin",
+  "source": "lgs_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lgs/",
+  "target": [
+   { "output": "lgs.bin32", "match": "lgs.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LGS",
+  "id": "lgs64",
+  "format": "bin",
+  "source": "lgs.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lgs/",
+  "target": [
+   { "output": "lgs.bin64", "match": "lgs.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LGS",
+  "id": "lgs16err",
+  "format": "bin",
+  "source": "lgs_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lgs/",
+  "target": [
+   { "stderr": "lgs.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LGS",
+  "id": "lgs32err",
+  "format": "bin",
+  "source": "lgs_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lgs/",
+  "target": [
+   { "stderr": "lgs.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

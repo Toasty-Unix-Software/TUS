@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFPCLASSSH",
+  "id": "vfpclasssh16",
+  "format": "bin",
+  "source": "vfpclasssh_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfpclasssh/",
+  "target": [
+   { "output": "vfpclasssh.bin16", "match": "vfpclasssh.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFPCLASSSH",
+  "id": "vfpclasssh32",
+  "format": "bin",
+  "source": "vfpclasssh_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfpclasssh/",
+  "target": [
+   { "output": "vfpclasssh.bin32", "match": "vfpclasssh.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFPCLASSSH",
+  "id": "vfpclasssh64",
+  "format": "bin",
+  "source": "vfpclasssh.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfpclasssh/",
+  "target": [
+   { "output": "vfpclasssh.bin64", "match": "vfpclasssh.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFPCLASSSH",
+  "id": "vfpclasssh16err",
+  "format": "bin",
+  "source": "vfpclasssh_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfpclasssh/",
+  "target": [
+   { "stderr": "vfpclasssh.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFPCLASSSH",
+  "id": "vfpclasssh32err",
+  "format": "bin",
+  "source": "vfpclasssh_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfpclasssh/",
+  "target": [
+   { "stderr": "vfpclasssh.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

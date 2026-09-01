@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPTESTMB",
+  "id": "vptestmb16",
+  "format": "bin",
+  "source": "vptestmb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmb/",
+  "target": [
+   { "output": "vptestmb.bin16", "match": "vptestmb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPTESTMB",
+  "id": "vptestmb32",
+  "format": "bin",
+  "source": "vptestmb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmb/",
+  "target": [
+   { "output": "vptestmb.bin32", "match": "vptestmb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPTESTMB",
+  "id": "vptestmb64",
+  "format": "bin",
+  "source": "vptestmb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmb/",
+  "target": [
+   { "output": "vptestmb.bin64", "match": "vptestmb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPTESTMB",
+  "id": "vptestmb16err",
+  "format": "bin",
+  "source": "vptestmb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmb/",
+  "target": [
+   { "stderr": "vptestmb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPTESTMB",
+  "id": "vptestmb32err",
+  "format": "bin",
+  "source": "vptestmb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmb/",
+  "target": [
+   { "stderr": "vptestmb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

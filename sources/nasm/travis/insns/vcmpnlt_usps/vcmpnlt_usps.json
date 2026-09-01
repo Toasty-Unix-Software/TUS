@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPNLT_USPS",
+  "id": "vcmpnlt_usps16",
+  "format": "bin",
+  "source": "vcmpnlt_usps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnlt_usps/",
+  "target": [
+   { "output": "vcmpnlt_usps.bin16", "match": "vcmpnlt_usps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNLT_USPS",
+  "id": "vcmpnlt_usps32",
+  "format": "bin",
+  "source": "vcmpnlt_usps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnlt_usps/",
+  "target": [
+   { "output": "vcmpnlt_usps.bin32", "match": "vcmpnlt_usps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNLT_USPS",
+  "id": "vcmpnlt_usps64",
+  "format": "bin",
+  "source": "vcmpnlt_usps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnlt_usps/",
+  "target": [
+   { "output": "vcmpnlt_usps.bin64", "match": "vcmpnlt_usps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNLT_USPS",
+  "id": "vcmpnlt_usps16err",
+  "format": "bin",
+  "source": "vcmpnlt_usps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnlt_usps/",
+  "target": [
+   { "stderr": "vcmpnlt_usps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNLT_USPS",
+  "id": "vcmpnlt_usps32err",
+  "format": "bin",
+  "source": "vcmpnlt_usps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnlt_usps/",
+  "target": [
+   { "stderr": "vcmpnlt_usps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

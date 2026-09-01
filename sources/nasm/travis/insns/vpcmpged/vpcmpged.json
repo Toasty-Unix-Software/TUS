@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPGED",
+  "id": "vpcmpged16",
+  "format": "bin",
+  "source": "vpcmpged_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpged/",
+  "target": [
+   { "output": "vpcmpged.bin16", "match": "vpcmpged.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPGED",
+  "id": "vpcmpged32",
+  "format": "bin",
+  "source": "vpcmpged_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpged/",
+  "target": [
+   { "output": "vpcmpged.bin32", "match": "vpcmpged.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPGED",
+  "id": "vpcmpged64",
+  "format": "bin",
+  "source": "vpcmpged.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpged/",
+  "target": [
+   { "output": "vpcmpged.bin64", "match": "vpcmpged.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPGED",
+  "id": "vpcmpged16err",
+  "format": "bin",
+  "source": "vpcmpged_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpged/",
+  "target": [
+   { "stderr": "vpcmpged.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPGED",
+  "id": "vpcmpged32err",
+  "format": "bin",
+  "source": "vpcmpged_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpged/",
+  "target": [
+   { "stderr": "vpcmpged.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

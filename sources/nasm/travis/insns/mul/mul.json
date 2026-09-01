@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for MUL",
+  "id": "mul64",
+  "format": "bin",
+  "source": "mul.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mul/",
+  "target": [
+   { "output": "mul.bin64", "match": "mul.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MUL",
+  "id": "mul16err",
+  "format": "bin",
+  "source": "mul_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mul/",
+  "target": [
+   { "stderr": "mul.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MUL",
+  "id": "mul32err",
+  "format": "bin",
+  "source": "mul_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mul/",
+  "target": [
+   { "stderr": "mul.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

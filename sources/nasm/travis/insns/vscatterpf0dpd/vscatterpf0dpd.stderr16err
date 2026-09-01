@@ -1,0 +1,4 @@
+./travis/insns/vscatterpf0dpd/vscatterpf0dpd_narrow.asm:1: error: invalid 16-bit effective address
+./travis/insns/vscatterpf0dpd/vscatterpf0dpd_narrow.asm:2: error: invalid 16-bit effective address
+./travis/insns/vscatterpf0dpd/vscatterpf0dpd_narrow.asm:5: error: invalid 16-bit effective address
+./travis/insns/vscatterpf0dpd/vscatterpf0dpd_narrow.asm:6: error: invalid 16-bit effective address

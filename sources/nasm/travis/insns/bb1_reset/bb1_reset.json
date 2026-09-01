@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for BB1_RESET",
+  "id": "bb1_reset16",
+  "format": "bin",
+  "source": "bb1_reset.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bb1_reset/",
+  "target": [
+   { "output": "bb1_reset.bin16", "match": "bb1_reset.bin16.t" },
+   { "stderr": "bb1_reset.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BB1_RESET",
+  "id": "bb1_reset32",
+  "format": "bin",
+  "source": "bb1_reset.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bb1_reset/",
+  "target": [
+   { "output": "bb1_reset.bin32", "match": "bb1_reset.bin32.t" },
+   { "stderr": "bb1_reset.stderr32" }
+  ]
+ }
+]

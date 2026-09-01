@@ -1,0 +1,5 @@
+./travis/insns/pextrb/pextrb_narrow.asm:7: error: instruction not supported in 32-bit mode
+./travis/insns/pextrb/pextrb_narrow.asm:8: error: instruction not supported in 32-bit mode
+./travis/insns/pextrb/pextrb_narrow.asm:9: error: invalid operands in 32-bit mode
+./travis/insns/pextrb/pextrb_narrow.asm:10: error: invalid operands in 32-bit mode
+./travis/insns/pextrb/pextrb_narrow.asm:11: error: instruction not supported in 32-bit mode

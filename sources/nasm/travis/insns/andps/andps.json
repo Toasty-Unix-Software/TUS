@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ANDPS",
+  "id": "andps16",
+  "format": "bin",
+  "source": "andps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andps/",
+  "target": [
+   { "output": "andps.bin16", "match": "andps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDPS",
+  "id": "andps32",
+  "format": "bin",
+  "source": "andps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andps/",
+  "target": [
+   { "output": "andps.bin32", "match": "andps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDPS",
+  "id": "andps64",
+  "format": "bin",
+  "source": "andps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andps/",
+  "target": [
+   { "output": "andps.bin64", "match": "andps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ANDPS",
+  "id": "andps16err",
+  "format": "bin",
+  "source": "andps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andps/",
+  "target": [
+   { "stderr": "andps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ANDPS",
+  "id": "andps32err",
+  "format": "bin",
+  "source": "andps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andps/",
+  "target": [
+   { "stderr": "andps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

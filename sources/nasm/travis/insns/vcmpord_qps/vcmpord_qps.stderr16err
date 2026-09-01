@@ -1,0 +1,4 @@
+./travis/insns/vcmpord_qps/vcmpord_qps_narrow.asm:13: error: invalid operands in non-64-bit mode
+./travis/insns/vcmpord_qps/vcmpord_qps_narrow.asm:14: error: invalid operands in non-64-bit mode
+./travis/insns/vcmpord_qps/vcmpord_qps_narrow.asm:15: error: invalid operands in non-64-bit mode
+./travis/insns/vcmpord_qps/vcmpord_qps_narrow.asm:16: error: invalid operands in non-64-bit mode

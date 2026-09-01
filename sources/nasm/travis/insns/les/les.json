@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for LES",
+  "id": "les16",
+  "format": "bin",
+  "source": "les.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/les/",
+  "target": [
+   { "output": "les.bin16", "match": "les.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LES",
+  "id": "les32",
+  "format": "bin",
+  "source": "les.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/les/",
+  "target": [
+   { "output": "les.bin32", "match": "les.bin32.t" }
+  ]
+ }
+]

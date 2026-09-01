@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ADDPS",
+  "id": "addps16",
+  "format": "bin",
+  "source": "addps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addps/",
+  "target": [
+   { "output": "addps.bin16", "match": "addps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDPS",
+  "id": "addps32",
+  "format": "bin",
+  "source": "addps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addps/",
+  "target": [
+   { "output": "addps.bin32", "match": "addps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDPS",
+  "id": "addps64",
+  "format": "bin",
+  "source": "addps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addps/",
+  "target": [
+   { "output": "addps.bin64", "match": "addps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADDPS",
+  "id": "addps16err",
+  "format": "bin",
+  "source": "addps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addps/",
+  "target": [
+   { "stderr": "addps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADDPS",
+  "id": "addps32err",
+  "format": "bin",
+  "source": "addps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addps/",
+  "target": [
+   { "stderr": "addps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

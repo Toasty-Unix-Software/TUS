@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for LWPINS",
+  "id": "lwpins16",
+  "format": "bin",
+  "source": "lwpins_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lwpins/",
+  "target": [
+   { "output": "lwpins.bin16", "match": "lwpins.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LWPINS",
+  "id": "lwpins32",
+  "format": "bin",
+  "source": "lwpins_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lwpins/",
+  "target": [
+   { "output": "lwpins.bin32", "match": "lwpins.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LWPINS",
+  "id": "lwpins64",
+  "format": "bin",
+  "source": "lwpins.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lwpins/",
+  "target": [
+   { "output": "lwpins.bin64", "match": "lwpins.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LWPINS",
+  "id": "lwpins16err",
+  "format": "bin",
+  "source": "lwpins_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lwpins/",
+  "target": [
+   { "stderr": "lwpins.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LWPINS",
+  "id": "lwpins32err",
+  "format": "bin",
+  "source": "lwpins_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lwpins/",
+  "target": [
+   { "stderr": "lwpins.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

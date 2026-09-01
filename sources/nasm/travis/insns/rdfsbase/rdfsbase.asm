@@ -1,0 +1,9 @@
+default rel
+	rdfsbase eax
+	rdfsbase ecx
+	rdfsbase rax
+	rdfsbase rcx
+	rdfsbase r11d
+	rdfsbase r8
+	rdfsbase r28d
+	rdfsbase r22

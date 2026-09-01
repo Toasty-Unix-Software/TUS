@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VXORPS",
+  "id": "vxorps16",
+  "format": "bin",
+  "source": "vxorps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vxorps/",
+  "target": [
+   { "output": "vxorps.bin16", "match": "vxorps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VXORPS",
+  "id": "vxorps32",
+  "format": "bin",
+  "source": "vxorps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vxorps/",
+  "target": [
+   { "output": "vxorps.bin32", "match": "vxorps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VXORPS",
+  "id": "vxorps64",
+  "format": "bin",
+  "source": "vxorps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vxorps/",
+  "target": [
+   { "output": "vxorps.bin64", "match": "vxorps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VXORPS",
+  "id": "vxorps16err",
+  "format": "bin",
+  "source": "vxorps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vxorps/",
+  "target": [
+   { "stderr": "vxorps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VXORPS",
+  "id": "vxorps32err",
+  "format": "bin",
+  "source": "vxorps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vxorps/",
+  "target": [
+   { "stderr": "vxorps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

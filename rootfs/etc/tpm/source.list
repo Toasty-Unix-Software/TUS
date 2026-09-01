@@ -1,0 +1,9 @@
+# tpm source list - one "name url" pair per line.
+# '#' starts a comment; blank lines are ignored.
+#
+# Each url is a plain HTTP directory: "<url>/Packages" is the index
+# (one "name version filename" line per package) and "<url>/<filename>"
+# is the .tpkg itself. These addresses are placeholders - point them at
+# a real server to use `tpm update`/`tpm install <name>`.
+main     http://tpm.tus.invalid/main
+extra    http://tpm.tus.invalid/extra

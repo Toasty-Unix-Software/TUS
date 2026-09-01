@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for CMPLTSS",
+  "id": "cmpltss16",
+  "format": "bin",
+  "source": "cmpltss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpltss/",
+  "target": [
+   { "output": "cmpltss.bin16", "match": "cmpltss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPLTSS",
+  "id": "cmpltss32",
+  "format": "bin",
+  "source": "cmpltss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpltss/",
+  "target": [
+   { "output": "cmpltss.bin32", "match": "cmpltss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPLTSS",
+  "id": "cmpltss64",
+  "format": "bin",
+  "source": "cmpltss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpltss/",
+  "target": [
+   { "output": "cmpltss.bin64", "match": "cmpltss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPLTSS",
+  "id": "cmpltss16err",
+  "format": "bin",
+  "source": "cmpltss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpltss/",
+  "target": [
+   { "stderr": "cmpltss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPLTSS",
+  "id": "cmpltss32err",
+  "format": "bin",
+  "source": "cmpltss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpltss/",
+  "target": [
+   { "stderr": "cmpltss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMPNAEXADD",
+  "id": "cmpnaexadd64",
+  "format": "bin",
+  "source": "cmpnaexadd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnaexadd/",
+  "target": [
+   { "output": "cmpnaexadd.bin64", "match": "cmpnaexadd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPNAEXADD",
+  "id": "cmpnaexadd16err",
+  "format": "bin",
+  "source": "cmpnaexadd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnaexadd/",
+  "target": [
+   { "stderr": "cmpnaexadd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPNAEXADD",
+  "id": "cmpnaexadd32err",
+  "format": "bin",
+  "source": "cmpnaexadd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnaexadd/",
+  "target": [
+   { "stderr": "cmpnaexadd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

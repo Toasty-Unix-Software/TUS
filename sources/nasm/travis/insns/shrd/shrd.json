@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for SHRD",
+  "id": "shrd16",
+  "format": "bin",
+  "source": "shrd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shrd/",
+  "target": [
+   { "output": "shrd.bin16", "match": "shrd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHRD",
+  "id": "shrd32",
+  "format": "bin",
+  "source": "shrd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shrd/",
+  "target": [
+   { "output": "shrd.bin32", "match": "shrd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHRD",
+  "id": "shrd64",
+  "format": "bin",
+  "source": "shrd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shrd/",
+  "target": [
+   { "output": "shrd.bin64", "match": "shrd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHRD",
+  "id": "shrd16err",
+  "format": "bin",
+  "source": "shrd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shrd/",
+  "target": [
+   { "stderr": "shrd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHRD",
+  "id": "shrd32err",
+  "format": "bin",
+  "source": "shrd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shrd/",
+  "target": [
+   { "stderr": "shrd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

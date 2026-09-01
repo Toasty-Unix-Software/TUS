@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FWAIT",
+  "id": "fwait16",
+  "format": "bin",
+  "source": "fwait.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fwait/",
+  "target": [
+   { "output": "fwait.bin16", "match": "fwait.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FWAIT",
+  "id": "fwait32",
+  "format": "bin",
+  "source": "fwait.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fwait/",
+  "target": [
+   { "output": "fwait.bin32", "match": "fwait.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FWAIT",
+  "id": "fwait64",
+  "format": "bin",
+  "source": "fwait.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fwait/",
+  "target": [
+   { "output": "fwait.bin64", "match": "fwait.bin64.t" }
+  ]
+ }
+]

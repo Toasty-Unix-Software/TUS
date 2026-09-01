@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for NOP",
+  "id": "nop64",
+  "format": "bin",
+  "source": "nop.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/nop/",
+  "target": [
+   { "output": "nop.bin64", "match": "nop.bin64.t" },
+   { "stderr": "nop.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for NOP",
+  "id": "nop16err",
+  "format": "bin",
+  "source": "nop_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/nop/",
+  "target": [
+   { "stderr": "nop.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for NOP",
+  "id": "nop32err",
+  "format": "bin",
+  "source": "nop_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/nop/",
+  "target": [
+   { "stderr": "nop.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

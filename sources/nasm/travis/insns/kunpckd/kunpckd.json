@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KUNPCKD",
+  "id": "kunpckd16",
+  "format": "bin",
+  "source": "kunpckd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kunpckd/",
+  "target": [
+   { "output": "kunpckd.bin16", "match": "kunpckd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KUNPCKD",
+  "id": "kunpckd32",
+  "format": "bin",
+  "source": "kunpckd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kunpckd/",
+  "target": [
+   { "output": "kunpckd.bin32", "match": "kunpckd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KUNPCKD",
+  "id": "kunpckd64",
+  "format": "bin",
+  "source": "kunpckd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kunpckd/",
+  "target": [
+   { "output": "kunpckd.bin64", "match": "kunpckd.bin64.t" }
+  ]
+ }
+]

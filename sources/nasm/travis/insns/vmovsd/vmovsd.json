@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMOVSD",
+  "id": "vmovsd16",
+  "format": "bin",
+  "source": "vmovsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovsd/",
+  "target": [
+   { "output": "vmovsd.bin16", "match": "vmovsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVSD",
+  "id": "vmovsd32",
+  "format": "bin",
+  "source": "vmovsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovsd/",
+  "target": [
+   { "output": "vmovsd.bin32", "match": "vmovsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVSD",
+  "id": "vmovsd64",
+  "format": "bin",
+  "source": "vmovsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovsd/",
+  "target": [
+   { "output": "vmovsd.bin64", "match": "vmovsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVSD",
+  "id": "vmovsd16err",
+  "format": "bin",
+  "source": "vmovsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovsd/",
+  "target": [
+   { "stderr": "vmovsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVSD",
+  "id": "vmovsd32err",
+  "format": "bin",
+  "source": "vmovsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovsd/",
+  "target": [
+   { "stderr": "vmovsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

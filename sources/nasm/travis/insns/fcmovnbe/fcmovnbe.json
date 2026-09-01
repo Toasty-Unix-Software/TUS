@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FCMOVNBE",
+  "id": "fcmovnbe16",
+  "format": "bin",
+  "source": "fcmovnbe.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcmovnbe/",
+  "target": [
+   { "output": "fcmovnbe.bin16", "match": "fcmovnbe.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FCMOVNBE",
+  "id": "fcmovnbe32",
+  "format": "bin",
+  "source": "fcmovnbe.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcmovnbe/",
+  "target": [
+   { "output": "fcmovnbe.bin32", "match": "fcmovnbe.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FCMOVNBE",
+  "id": "fcmovnbe64",
+  "format": "bin",
+  "source": "fcmovnbe.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcmovnbe/",
+  "target": [
+   { "output": "fcmovnbe.bin64", "match": "fcmovnbe.bin64.t" }
+  ]
+ }
+]

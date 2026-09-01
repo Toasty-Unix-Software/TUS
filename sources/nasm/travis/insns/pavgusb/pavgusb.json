@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for PAVGUSB",
+  "id": "pavgusb16",
+  "format": "bin",
+  "source": "pavgusb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pavgusb/",
+  "target": [
+   { "output": "pavgusb.bin16", "match": "pavgusb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PAVGUSB",
+  "id": "pavgusb32",
+  "format": "bin",
+  "source": "pavgusb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pavgusb/",
+  "target": [
+   { "output": "pavgusb.bin32", "match": "pavgusb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PAVGUSB",
+  "id": "pavgusb64",
+  "format": "bin",
+  "source": "pavgusb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pavgusb/",
+  "target": [
+   { "output": "pavgusb.bin64", "match": "pavgusb.bin64.t" }
+  ]
+ }
+]

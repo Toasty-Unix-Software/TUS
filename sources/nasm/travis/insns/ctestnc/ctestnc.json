@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CTESTNC",
+  "id": "ctestnc64",
+  "format": "bin",
+  "source": "ctestnc.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestnc/",
+  "target": [
+   { "output": "ctestnc.bin64", "match": "ctestnc.bin64.t" },
+   { "stderr": "ctestnc.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTNC",
+  "id": "ctestnc16err",
+  "format": "bin",
+  "source": "ctestnc_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestnc/",
+  "target": [
+   { "stderr": "ctestnc.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTNC",
+  "id": "ctestnc32err",
+  "format": "bin",
+  "source": "ctestnc_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestnc/",
+  "target": [
+   { "stderr": "ctestnc.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for BNDMK",
+  "id": "bndmk16",
+  "format": "bin",
+  "source": "bndmk_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bndmk/",
+  "target": [
+   { "output": "bndmk.bin16", "match": "bndmk.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BNDMK",
+  "id": "bndmk32",
+  "format": "bin",
+  "source": "bndmk_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bndmk/",
+  "target": [
+   { "output": "bndmk.bin32", "match": "bndmk.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BNDMK",
+  "id": "bndmk64",
+  "format": "bin",
+  "source": "bndmk.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bndmk/",
+  "target": [
+   { "output": "bndmk.bin64", "match": "bndmk.bin64.t" }
+  ]
+ }
+]

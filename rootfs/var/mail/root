@@ -1,0 +1,28 @@
+From tus@toasty  Sat Aug 22 00:00:00 2026
+To: root
+Subject: Welcome to TUS
+
+Welcome to TUS - Toasty Unix Software.
+
+This machine boots a kernel of its own: a higher-half x86-64 kernel with
+a round-robin scheduler, a virtual filesystem, a TCP/IP stack, a window
+system in the kernel (highX) and a shell (tsh) the terminal windows are
+views onto.
+
+Some places to start:
+
+  help                 the shell's built-in commands
+  highx --de           the desktop (log in at the greeter)
+  highx --wm           the tiling window manager instead
+  tusinstall           install this system onto a disk
+  clint                the browser
+  kilo /etc/motd       the editor
+
+Accounts live in /etc/passwd and /etc/shadow; `useradd` makes one and
+`passwd` gives it a password. Until it has one, the greeter lets that
+account in with an empty password and says so.
+
+Sound, a writable on-disk filesystem and symmetric multiprocessing are
+not here yet. Everything else in this mail is.
+
+                                                  -- the TUS authors

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPORD_SSS",
+  "id": "vcmpord_sss16",
+  "format": "bin",
+  "source": "vcmpord_sss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpord_sss/",
+  "target": [
+   { "output": "vcmpord_sss.bin16", "match": "vcmpord_sss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPORD_SSS",
+  "id": "vcmpord_sss32",
+  "format": "bin",
+  "source": "vcmpord_sss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpord_sss/",
+  "target": [
+   { "output": "vcmpord_sss.bin32", "match": "vcmpord_sss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPORD_SSS",
+  "id": "vcmpord_sss64",
+  "format": "bin",
+  "source": "vcmpord_sss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpord_sss/",
+  "target": [
+   { "output": "vcmpord_sss.bin64", "match": "vcmpord_sss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPORD_SSS",
+  "id": "vcmpord_sss16err",
+  "format": "bin",
+  "source": "vcmpord_sss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpord_sss/",
+  "target": [
+   { "stderr": "vcmpord_sss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPORD_SSS",
+  "id": "vcmpord_sss32err",
+  "format": "bin",
+  "source": "vcmpord_sss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpord_sss/",
+  "target": [
+   { "stderr": "vcmpord_sss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

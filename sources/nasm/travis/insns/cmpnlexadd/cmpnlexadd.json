@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMPNLEXADD",
+  "id": "cmpnlexadd64",
+  "format": "bin",
+  "source": "cmpnlexadd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlexadd/",
+  "target": [
+   { "output": "cmpnlexadd.bin64", "match": "cmpnlexadd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPNLEXADD",
+  "id": "cmpnlexadd16err",
+  "format": "bin",
+  "source": "cmpnlexadd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlexadd/",
+  "target": [
+   { "stderr": "cmpnlexadd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPNLEXADD",
+  "id": "cmpnlexadd32err",
+  "format": "bin",
+  "source": "cmpnlexadd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlexadd/",
+  "target": [
+   { "stderr": "cmpnlexadd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

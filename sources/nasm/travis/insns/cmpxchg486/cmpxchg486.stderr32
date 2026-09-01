@@ -1,0 +1,6 @@
+./travis/insns/cmpxchg486/cmpxchg486.asm:2: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/cmpxchg486/cmpxchg486.asm:3: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/cmpxchg486/cmpxchg486.asm:4: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/cmpxchg486/cmpxchg486.asm:5: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/cmpxchg486/cmpxchg486.asm:6: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/cmpxchg486/cmpxchg486.asm:7: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]

@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for PCOMMIT",
+  "id": "pcommit16",
+  "format": "bin",
+  "source": "pcommit.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcommit/",
+  "target": [
+   { "output": "pcommit.bin16", "match": "pcommit.bin16.t" },
+   { "stderr": "pcommit.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCOMMIT",
+  "id": "pcommit32",
+  "format": "bin",
+  "source": "pcommit.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcommit/",
+  "target": [
+   { "output": "pcommit.bin32", "match": "pcommit.bin32.t" },
+   { "stderr": "pcommit.stderr32" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCOMMIT",
+  "id": "pcommit64",
+  "format": "bin",
+  "source": "pcommit.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcommit/",
+  "target": [
+   { "output": "pcommit.bin64", "match": "pcommit.bin64.t" },
+   { "stderr": "pcommit.stderr64" }
+  ]
+ }
+]

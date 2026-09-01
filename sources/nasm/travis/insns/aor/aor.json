@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for AOR",
+  "id": "aor64",
+  "format": "bin",
+  "source": "aor.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aor/",
+  "target": [
+   { "output": "aor.bin64", "match": "aor.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AOR",
+  "id": "aor16err",
+  "format": "bin",
+  "source": "aor_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aor/",
+  "target": [
+   { "stderr": "aor.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AOR",
+  "id": "aor32err",
+  "format": "bin",
+  "source": "aor_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aor/",
+  "target": [
+   { "stderr": "aor.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

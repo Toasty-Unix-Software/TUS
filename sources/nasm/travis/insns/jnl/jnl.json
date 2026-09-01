@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for JNL",
+  "id": "jnl16",
+  "format": "bin",
+  "source": "jnl_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jnl/",
+  "target": [
+   { "output": "jnl.bin16", "match": "jnl.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JNL",
+  "id": "jnl32",
+  "format": "bin",
+  "source": "jnl_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jnl/",
+  "target": [
+   { "output": "jnl.bin32", "match": "jnl.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JNL",
+  "id": "jnl64",
+  "format": "bin",
+  "source": "jnl.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jnl/",
+  "target": [
+   { "output": "jnl.bin64", "match": "jnl.bin64.t" }
+  ]
+ }
+]

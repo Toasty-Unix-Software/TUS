@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VTESTPS",
+  "id": "vtestps16",
+  "format": "bin",
+  "source": "vtestps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vtestps/",
+  "target": [
+   { "output": "vtestps.bin16", "match": "vtestps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VTESTPS",
+  "id": "vtestps32",
+  "format": "bin",
+  "source": "vtestps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vtestps/",
+  "target": [
+   { "output": "vtestps.bin32", "match": "vtestps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VTESTPS",
+  "id": "vtestps64",
+  "format": "bin",
+  "source": "vtestps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vtestps/",
+  "target": [
+   { "output": "vtestps.bin64", "match": "vtestps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VTESTPS",
+  "id": "vtestps16err",
+  "format": "bin",
+  "source": "vtestps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vtestps/",
+  "target": [
+   { "stderr": "vtestps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VTESTPS",
+  "id": "vtestps32err",
+  "format": "bin",
+  "source": "vtestps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vtestps/",
+  "target": [
+   { "stderr": "vtestps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

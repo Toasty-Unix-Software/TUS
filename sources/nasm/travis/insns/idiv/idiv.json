@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for IDIV",
+  "id": "idiv64",
+  "format": "bin",
+  "source": "idiv.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/idiv/",
+  "target": [
+   { "output": "idiv.bin64", "match": "idiv.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for IDIV",
+  "id": "idiv16err",
+  "format": "bin",
+  "source": "idiv_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/idiv/",
+  "target": [
+   { "stderr": "idiv.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for IDIV",
+  "id": "idiv32err",
+  "format": "bin",
+  "source": "idiv_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/idiv/",
+  "target": [
+   { "stderr": "idiv.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

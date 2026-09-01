@@ -1,0 +1,2 @@
+	clflush [0x905]
+	clflush [0x92d]

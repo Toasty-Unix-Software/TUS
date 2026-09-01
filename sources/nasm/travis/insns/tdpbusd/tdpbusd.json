@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for TDPBUSD",
+  "id": "tdpbusd64",
+  "format": "bin",
+  "source": "tdpbusd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tdpbusd/",
+  "target": [
+   { "output": "tdpbusd.bin64", "match": "tdpbusd.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PCMPEQD",
+  "id": "pcmpeqd16",
+  "format": "bin",
+  "source": "pcmpeqd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpeqd/",
+  "target": [
+   { "output": "pcmpeqd.bin16", "match": "pcmpeqd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCMPEQD",
+  "id": "pcmpeqd32",
+  "format": "bin",
+  "source": "pcmpeqd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpeqd/",
+  "target": [
+   { "output": "pcmpeqd.bin32", "match": "pcmpeqd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCMPEQD",
+  "id": "pcmpeqd64",
+  "format": "bin",
+  "source": "pcmpeqd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpeqd/",
+  "target": [
+   { "output": "pcmpeqd.bin64", "match": "pcmpeqd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCMPEQD",
+  "id": "pcmpeqd16err",
+  "format": "bin",
+  "source": "pcmpeqd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpeqd/",
+  "target": [
+   { "stderr": "pcmpeqd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCMPEQD",
+  "id": "pcmpeqd32err",
+  "format": "bin",
+  "source": "pcmpeqd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpeqd/",
+  "target": [
+   { "stderr": "pcmpeqd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

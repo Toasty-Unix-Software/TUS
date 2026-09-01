@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KXORQ",
+  "id": "kxorq16",
+  "format": "bin",
+  "source": "kxorq.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kxorq/",
+  "target": [
+   { "output": "kxorq.bin16", "match": "kxorq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KXORQ",
+  "id": "kxorq32",
+  "format": "bin",
+  "source": "kxorq.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kxorq/",
+  "target": [
+   { "output": "kxorq.bin32", "match": "kxorq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KXORQ",
+  "id": "kxorq64",
+  "format": "bin",
+  "source": "kxorq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kxorq/",
+  "target": [
+   { "output": "kxorq.bin64", "match": "kxorq.bin64.t" }
+  ]
+ }
+]

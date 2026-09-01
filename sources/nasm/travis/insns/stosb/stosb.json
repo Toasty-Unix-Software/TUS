@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for STOSB",
+  "id": "stosb16",
+  "format": "bin",
+  "source": "stosb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/stosb/",
+  "target": [
+   { "output": "stosb.bin16", "match": "stosb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for STOSB",
+  "id": "stosb32",
+  "format": "bin",
+  "source": "stosb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/stosb/",
+  "target": [
+   { "output": "stosb.bin32", "match": "stosb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for STOSB",
+  "id": "stosb64",
+  "format": "bin",
+  "source": "stosb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/stosb/",
+  "target": [
+   { "output": "stosb.bin64", "match": "stosb.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for CDQE",
+  "id": "cdqe64",
+  "format": "bin",
+  "source": "cdqe.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cdqe/",
+  "target": [
+   { "output": "cdqe.bin64", "match": "cdqe.bin64.t" }
+  ]
+ }
+]

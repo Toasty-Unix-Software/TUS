@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCVTTPH2IBS",
+  "id": "vcvttph2ibs16",
+  "format": "bin",
+  "source": "vcvttph2ibs_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvttph2ibs/",
+  "target": [
+   { "output": "vcvttph2ibs.bin16", "match": "vcvttph2ibs.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCVTTPH2IBS",
+  "id": "vcvttph2ibs32",
+  "format": "bin",
+  "source": "vcvttph2ibs_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvttph2ibs/",
+  "target": [
+   { "output": "vcvttph2ibs.bin32", "match": "vcvttph2ibs.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCVTTPH2IBS",
+  "id": "vcvttph2ibs64",
+  "format": "bin",
+  "source": "vcvttph2ibs.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvttph2ibs/",
+  "target": [
+   { "output": "vcvttph2ibs.bin64", "match": "vcvttph2ibs.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCVTTPH2IBS",
+  "id": "vcvttph2ibs16err",
+  "format": "bin",
+  "source": "vcvttph2ibs_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvttph2ibs/",
+  "target": [
+   { "stderr": "vcvttph2ibs.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCVTTPH2IBS",
+  "id": "vcvttph2ibs32err",
+  "format": "bin",
+  "source": "vcvttph2ibs_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvttph2ibs/",
+  "target": [
+   { "stderr": "vcvttph2ibs.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

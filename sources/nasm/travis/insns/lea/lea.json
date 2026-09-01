@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for LEA",
+  "id": "lea16",
+  "format": "bin",
+  "source": "lea_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lea/",
+  "target": [
+   { "output": "lea.bin16", "match": "lea.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LEA",
+  "id": "lea32",
+  "format": "bin",
+  "source": "lea_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lea/",
+  "target": [
+   { "output": "lea.bin32", "match": "lea.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LEA",
+  "id": "lea64",
+  "format": "bin",
+  "source": "lea.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lea/",
+  "target": [
+   { "output": "lea.bin64", "match": "lea.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LEA",
+  "id": "lea16err",
+  "format": "bin",
+  "source": "lea_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lea/",
+  "target": [
+   { "stderr": "lea.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LEA",
+  "id": "lea32err",
+  "format": "bin",
+  "source": "lea_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lea/",
+  "target": [
+   { "stderr": "lea.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

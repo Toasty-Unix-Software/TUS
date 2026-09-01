@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for INTO",
+  "id": "into16",
+  "format": "bin",
+  "source": "into.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/into/",
+  "target": [
+   { "output": "into.bin16", "match": "into.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for INTO",
+  "id": "into32",
+  "format": "bin",
+  "source": "into.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/into/",
+  "target": [
+   { "output": "into.bin32", "match": "into.bin32.t" }
+  ]
+ }
+]

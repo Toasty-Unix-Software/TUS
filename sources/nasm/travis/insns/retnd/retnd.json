@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for RETND",
+  "id": "retnd16",
+  "format": "bin",
+  "source": "retnd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retnd/",
+  "target": [
+   { "output": "retnd.bin16", "match": "retnd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RETND",
+  "id": "retnd32",
+  "format": "bin",
+  "source": "retnd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retnd/",
+  "target": [
+   { "output": "retnd.bin32", "match": "retnd.bin32.t" }
+  ]
+ }
+]

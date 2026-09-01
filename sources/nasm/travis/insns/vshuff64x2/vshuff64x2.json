@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VSHUFF64X2",
+  "id": "vshuff64x216",
+  "format": "bin",
+  "source": "vshuff64x2_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vshuff64x2/",
+  "target": [
+   { "output": "vshuff64x2.bin16", "match": "vshuff64x2.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSHUFF64X2",
+  "id": "vshuff64x232",
+  "format": "bin",
+  "source": "vshuff64x2_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vshuff64x2/",
+  "target": [
+   { "output": "vshuff64x2.bin32", "match": "vshuff64x2.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSHUFF64X2",
+  "id": "vshuff64x264",
+  "format": "bin",
+  "source": "vshuff64x2.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vshuff64x2/",
+  "target": [
+   { "output": "vshuff64x2.bin64", "match": "vshuff64x2.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSHUFF64X2",
+  "id": "vshuff64x216err",
+  "format": "bin",
+  "source": "vshuff64x2_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vshuff64x2/",
+  "target": [
+   { "stderr": "vshuff64x2.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSHUFF64X2",
+  "id": "vshuff64x232err",
+  "format": "bin",
+  "source": "vshuff64x2_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vshuff64x2/",
+  "target": [
+   { "stderr": "vshuff64x2.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

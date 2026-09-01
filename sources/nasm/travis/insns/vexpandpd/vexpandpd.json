@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VEXPANDPD",
+  "id": "vexpandpd16",
+  "format": "bin",
+  "source": "vexpandpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vexpandpd/",
+  "target": [
+   { "output": "vexpandpd.bin16", "match": "vexpandpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VEXPANDPD",
+  "id": "vexpandpd32",
+  "format": "bin",
+  "source": "vexpandpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vexpandpd/",
+  "target": [
+   { "output": "vexpandpd.bin32", "match": "vexpandpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VEXPANDPD",
+  "id": "vexpandpd64",
+  "format": "bin",
+  "source": "vexpandpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vexpandpd/",
+  "target": [
+   { "output": "vexpandpd.bin64", "match": "vexpandpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VEXPANDPD",
+  "id": "vexpandpd16err",
+  "format": "bin",
+  "source": "vexpandpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vexpandpd/",
+  "target": [
+   { "stderr": "vexpandpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VEXPANDPD",
+  "id": "vexpandpd32err",
+  "format": "bin",
+  "source": "vexpandpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vexpandpd/",
+  "target": [
+   { "stderr": "vexpandpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for V4FMADDPS",
+  "id": "v4fmaddps16",
+  "format": "bin",
+  "source": "v4fmaddps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/v4fmaddps/",
+  "target": [
+   { "output": "v4fmaddps.bin16", "match": "v4fmaddps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for V4FMADDPS",
+  "id": "v4fmaddps32",
+  "format": "bin",
+  "source": "v4fmaddps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/v4fmaddps/",
+  "target": [
+   { "output": "v4fmaddps.bin32", "match": "v4fmaddps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for V4FMADDPS",
+  "id": "v4fmaddps64",
+  "format": "bin",
+  "source": "v4fmaddps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/v4fmaddps/",
+  "target": [
+   { "output": "v4fmaddps.bin64", "match": "v4fmaddps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for V4FMADDPS",
+  "id": "v4fmaddps16err",
+  "format": "bin",
+  "source": "v4fmaddps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/v4fmaddps/",
+  "target": [
+   { "stderr": "v4fmaddps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for V4FMADDPS",
+  "id": "v4fmaddps32err",
+  "format": "bin",
+  "source": "v4fmaddps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/v4fmaddps/",
+  "target": [
+   { "stderr": "v4fmaddps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

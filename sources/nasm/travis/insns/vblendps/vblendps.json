@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VBLENDPS",
+  "id": "vblendps16",
+  "format": "bin",
+  "source": "vblendps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendps/",
+  "target": [
+   { "output": "vblendps.bin16", "match": "vblendps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBLENDPS",
+  "id": "vblendps32",
+  "format": "bin",
+  "source": "vblendps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendps/",
+  "target": [
+   { "output": "vblendps.bin32", "match": "vblendps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBLENDPS",
+  "id": "vblendps64",
+  "format": "bin",
+  "source": "vblendps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendps/",
+  "target": [
+   { "output": "vblendps.bin64", "match": "vblendps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBLENDPS",
+  "id": "vblendps16err",
+  "format": "bin",
+  "source": "vblendps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendps/",
+  "target": [
+   { "stderr": "vblendps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBLENDPS",
+  "id": "vblendps32err",
+  "format": "bin",
+  "source": "vblendps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendps/",
+  "target": [
+   { "stderr": "vblendps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

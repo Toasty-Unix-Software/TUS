@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMULUDQ",
+  "id": "vpmuludq16",
+  "format": "bin",
+  "source": "vpmuludq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmuludq/",
+  "target": [
+   { "output": "vpmuludq.bin16", "match": "vpmuludq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMULUDQ",
+  "id": "vpmuludq32",
+  "format": "bin",
+  "source": "vpmuludq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmuludq/",
+  "target": [
+   { "output": "vpmuludq.bin32", "match": "vpmuludq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMULUDQ",
+  "id": "vpmuludq64",
+  "format": "bin",
+  "source": "vpmuludq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmuludq/",
+  "target": [
+   { "output": "vpmuludq.bin64", "match": "vpmuludq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMULUDQ",
+  "id": "vpmuludq16err",
+  "format": "bin",
+  "source": "vpmuludq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmuludq/",
+  "target": [
+   { "stderr": "vpmuludq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMULUDQ",
+  "id": "vpmuludq32err",
+  "format": "bin",
+  "source": "vpmuludq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmuludq/",
+  "target": [
+   { "stderr": "vpmuludq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

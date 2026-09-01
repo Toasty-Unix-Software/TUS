@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PCMPESTRI",
+  "id": "pcmpestri16",
+  "format": "bin",
+  "source": "pcmpestri_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpestri/",
+  "target": [
+   { "output": "pcmpestri.bin16", "match": "pcmpestri.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCMPESTRI",
+  "id": "pcmpestri32",
+  "format": "bin",
+  "source": "pcmpestri_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpestri/",
+  "target": [
+   { "output": "pcmpestri.bin32", "match": "pcmpestri.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCMPESTRI",
+  "id": "pcmpestri64",
+  "format": "bin",
+  "source": "pcmpestri.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpestri/",
+  "target": [
+   { "output": "pcmpestri.bin64", "match": "pcmpestri.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCMPESTRI",
+  "id": "pcmpestri16err",
+  "format": "bin",
+  "source": "pcmpestri_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpestri/",
+  "target": [
+   { "stderr": "pcmpestri.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCMPESTRI",
+  "id": "pcmpestri32err",
+  "format": "bin",
+  "source": "pcmpestri_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpestri/",
+  "target": [
+   { "stderr": "pcmpestri.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

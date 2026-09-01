@@ -1,0 +1,3 @@
+default rel
+	hlt
+	hlt

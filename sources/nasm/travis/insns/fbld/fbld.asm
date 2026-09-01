@@ -1,0 +1,9 @@
+default rel
+	fbld [0xc63]
+	fbld [0x87f]
+	fbld [0x7fc]
+	fbld [0x550]
+	fbld [eax+1]
+	fbld [eax+64]
+	fbld [eax+1]
+	fbld [eax+64]

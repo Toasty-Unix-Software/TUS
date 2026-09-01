@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPINSRQ",
+  "id": "vpinsrq16",
+  "format": "bin",
+  "source": "vpinsrq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpinsrq/",
+  "target": [
+   { "output": "vpinsrq.bin16", "match": "vpinsrq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPINSRQ",
+  "id": "vpinsrq32",
+  "format": "bin",
+  "source": "vpinsrq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpinsrq/",
+  "target": [
+   { "output": "vpinsrq.bin32", "match": "vpinsrq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPINSRQ",
+  "id": "vpinsrq64",
+  "format": "bin",
+  "source": "vpinsrq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpinsrq/",
+  "target": [
+   { "output": "vpinsrq.bin64", "match": "vpinsrq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPINSRQ",
+  "id": "vpinsrq16err",
+  "format": "bin",
+  "source": "vpinsrq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpinsrq/",
+  "target": [
+   { "stderr": "vpinsrq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPINSRQ",
+  "id": "vpinsrq32err",
+  "format": "bin",
+  "source": "vpinsrq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpinsrq/",
+  "target": [
+   { "stderr": "vpinsrq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

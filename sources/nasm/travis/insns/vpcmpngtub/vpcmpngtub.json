@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPNGTUB",
+  "id": "vpcmpngtub16",
+  "format": "bin",
+  "source": "vpcmpngtub_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpngtub/",
+  "target": [
+   { "output": "vpcmpngtub.bin16", "match": "vpcmpngtub.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPNGTUB",
+  "id": "vpcmpngtub32",
+  "format": "bin",
+  "source": "vpcmpngtub_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpngtub/",
+  "target": [
+   { "output": "vpcmpngtub.bin32", "match": "vpcmpngtub.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPNGTUB",
+  "id": "vpcmpngtub64",
+  "format": "bin",
+  "source": "vpcmpngtub.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpngtub/",
+  "target": [
+   { "output": "vpcmpngtub.bin64", "match": "vpcmpngtub.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPNGTUB",
+  "id": "vpcmpngtub16err",
+  "format": "bin",
+  "source": "vpcmpngtub_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpngtub/",
+  "target": [
+   { "stderr": "vpcmpngtub.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPNGTUB",
+  "id": "vpcmpngtub32err",
+  "format": "bin",
+  "source": "vpcmpngtub_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpngtub/",
+  "target": [
+   { "stderr": "vpcmpngtub.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

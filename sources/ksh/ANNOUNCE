@@ -1,0 +1,134 @@
+******************************** WARNING *********************************
+* This is the ANNOUNCE file from the development branch. It's not in a   *
+* finished state and some information may be missing, obsolete or wrong. *
+**************************************************************************
+
+The announcement text for ksh 93u+m/1.1 is under development.
+
+### MAIN CHANGES between ksh 93u+m/1.0.x and 93u+m/1.1.0 ###
+
+New command line editor features:
+
+- In the emacs and vi line editors, the PageUp and PageDown keys now perform
+  a reverse search and backwards reverse search based on the current line.
+  The arrow-up and arrow-down keys now act like PageUp and PageDown, unless
+  the new --arrowkeysearch option is turned off (see below).
+
+- In the emacs line editor, pressing ^U (kill) twice no longer causes further
+  ^U presses to start a new line (this was a feature for paper terminals).
+
+- The ^X^E (emacs mode) and v (vi mode) commands will now only execute the
+  command line that was loaded into the editor if the temporary file is
+  saved before exiting the editor. This removes the need to empty the file
+  and save just to cancel execution.
+
+- The emacs mode now accepts a numeric repeat count parameter for:
+  * ordinary character insertion (e.g., ESC 10 x now inserts 'x' 10 times);
+  * the ^Y command (e.g., ESC 10 Ctrl+Y will now "yank" or paste the latest
+    sequence of deletions 10 times).
+
+New shell language features:
+
+- The 'case' compound command now supports the ;;& control operator as on
+  bash 4.0+. The ;;& operator falls through like ;& but executes the next
+  matching list instead of simply executing the next list.
+
+- The appending redirection operator &>>FILE is now available. It is a
+  shorthand for: >>FILE 2>&1
+
+- Ksh now supports the bash-like case modification expansions
+  ${var^pattern}, ${var^^pattern}, ${var,pattern} and ${var,,pattern}.
+  These change alphabetic characters in the variable to upper or lower case.
+  Unlike in bash, the pattern may match any number of characters.
+
+- The 'time' reserved word now outputs timings in a precision of 3 digits
+  after the decimal point if the TIMEFORAMT variable is not set. See also
+  TIMEFORMAT under 'New features in shell variables' below.
+
+- With in 'typeset -T' type declarations, the '_' automatic self-reference
+  variable now always refers to the type variable, even within discipline
+  function (such as .get or .getn) that are set for its subvariables.
+
+New features in built-in commands:
+
+- Self-documentation output from any command's --man, --help, and other
+  options is no longer written to standard error with exit status 2, but
+  now goes to standard output and sets exit status 0. For an overview of
+  self-documentation features, type 'print "--???"'.
+
+- When printing a function definition, 'typeset -f function_name' now
+  regenerates and reformats the code instead of dumping it from a fixed
+  offset in the original source file. The output is no longer corrupted
+  when the source file changes after the function was defined.
+
+- A new 'alarm' built-in command allows executing any commands at regular
+  intervals. TODO: https://github.com/ksh93/ksh/issues/422
+
+- The 'hash' and 'alias -t' commands now issue an error message for each
+  command given that was not found on PATH, and return a non-zero exit
+  status if any of the commands given were not found.
+
+- The 'fc'/'hist' command has a new -E option. If given and a full-screen
+  editor is launched, the command line that was loaded into the editor will
+  only be executed if the temporary file is saved before exiting the editor.
+  This removes the need to empty the file and save just to cancel execution.
+  People who want the new behaviour as a default for the fc/hist command
+  where available (i.e., for ksh 93u+m/1.1 and later) can add the following
+  to their ~/.kshrc or other profile script:
+	case ${KSH_VERSION-} in
+	*93u+m/1.0.*)	;;
+	*93u+m/*)	alias fc='fc -E' hist='fc -E' ;;
+	esac
+
+- grep(1) has been added as a path-bound built-in command. It is now
+  available by default on ksh linked against dynamic libcmd, and may
+  optionally be included in ksh linked against static libcmd. This grep
+  supports eight kinds of regex, including sh and ksh glob patterns.
+
+- The 'builtin' and 'umask' commands now support a -p option that can be
+  used to print reinputtable commands for recreating the built-ins table
+  state and the umask.
+
+- The 'trap' command now supports the -l option for listing signals.
+
+- The 'eval' command has a new -n/--noexec option that causes it to subject
+  the command(s) given to static analysis in the manner of the -n/--noexec
+  shell option, emitting warnings for deprecated usages.
+
+New features in shell options:
+
+- A new --arrowkeysearch option, on by default, causes the up and down arrow
+  keys to act like PgDp and PgDown -- see 'New command line editor features'
+  above. When turned off, the up arrow key now does not perform any search
+  (note that, in the old behaviour, the down arrow key never searched).
+
+- A new --globex shell option allows pathname expansion of extended patterns
+  (those with a syntax involving parentheses) from fields resulting from
+  field splitting (e.g., unquoted variables as command arguments). This
+  remains disabled by default for compatibility with POSIX and ksh88.
+
+- The -n/--noexec option can now effectively be set in subshells of
+  interactive shells, e.g., within a parentheses block.
+
+- The -n/--noexec option, when given at the shell's invocation, now causes
+  the shell to exit with status 1 if the linter emitted any warnings.
+
+New features in shell variables:
+
+- Added SRANDOM, a secure random number generator. It uses the operating
+  system's arc4random(3) library function or, absent that, an integrated
+  OpenBSD-based implementation that uses the ChaCha20 cipher. An upper bound
+  can be set by assigning its value to SRANDOM; subsequent numbers will be
+  uniformly distributed between 0 and the value of the upper bound minus
+  one, in a way that avoids "modulo bias".
+
+- TIMEFORMAT supports a new %C format directive that yields the total number
+  of CPU seconds, i.e. the sum of the time spent in user and system mode.
+
+- TIMEFORMAT now supports a precision of up to six places after the decimal
+  point. The default precision for format directives remains 3.
+
+- The $RANDOM pseudorandom numbers are now generated by nrand48(3) instead
+  of rand_r(3). Since POSIX specifies a particular pseudorandom generator
+  for nrand48, this means the same pseudorandom sequence should now be
+  generated on all platforms if RANDOM is assigned the same seed value.

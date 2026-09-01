@@ -1,0 +1,2 @@
+./travis/insns/vcmpeq_uqsd/vcmpeq_uqsd_narrow.asm:8: error: invalid operands in non-64-bit mode
+./travis/insns/vcmpeq_uqsd/vcmpeq_uqsd_narrow.asm:9: error: invalid operands in non-64-bit mode

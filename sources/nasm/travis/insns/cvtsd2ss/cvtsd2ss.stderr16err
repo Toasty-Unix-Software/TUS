@@ -1,0 +1,1 @@
+./travis/insns/cvtsd2ss/cvtsd2ss_narrow.asm:5: error: invalid operands in 16-bit mode

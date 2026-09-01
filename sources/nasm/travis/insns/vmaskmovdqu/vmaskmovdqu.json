@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMASKMOVDQU",
+  "id": "vmaskmovdqu16",
+  "format": "bin",
+  "source": "vmaskmovdqu_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaskmovdqu/",
+  "target": [
+   { "output": "vmaskmovdqu.bin16", "match": "vmaskmovdqu.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMASKMOVDQU",
+  "id": "vmaskmovdqu32",
+  "format": "bin",
+  "source": "vmaskmovdqu_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaskmovdqu/",
+  "target": [
+   { "output": "vmaskmovdqu.bin32", "match": "vmaskmovdqu.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMASKMOVDQU",
+  "id": "vmaskmovdqu64",
+  "format": "bin",
+  "source": "vmaskmovdqu.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaskmovdqu/",
+  "target": [
+   { "output": "vmaskmovdqu.bin64", "match": "vmaskmovdqu.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMASKMOVDQU",
+  "id": "vmaskmovdqu16err",
+  "format": "bin",
+  "source": "vmaskmovdqu_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaskmovdqu/",
+  "target": [
+   { "stderr": "vmaskmovdqu.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMASKMOVDQU",
+  "id": "vmaskmovdqu32err",
+  "format": "bin",
+  "source": "vmaskmovdqu_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaskmovdqu/",
+  "target": [
+   { "stderr": "vmaskmovdqu.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

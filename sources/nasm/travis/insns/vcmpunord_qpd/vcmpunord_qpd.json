@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPUNORD_QPD",
+  "id": "vcmpunord_qpd16",
+  "format": "bin",
+  "source": "vcmpunord_qpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunord_qpd/",
+  "target": [
+   { "output": "vcmpunord_qpd.bin16", "match": "vcmpunord_qpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPUNORD_QPD",
+  "id": "vcmpunord_qpd32",
+  "format": "bin",
+  "source": "vcmpunord_qpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunord_qpd/",
+  "target": [
+   { "output": "vcmpunord_qpd.bin32", "match": "vcmpunord_qpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPUNORD_QPD",
+  "id": "vcmpunord_qpd64",
+  "format": "bin",
+  "source": "vcmpunord_qpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunord_qpd/",
+  "target": [
+   { "output": "vcmpunord_qpd.bin64", "match": "vcmpunord_qpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPUNORD_QPD",
+  "id": "vcmpunord_qpd16err",
+  "format": "bin",
+  "source": "vcmpunord_qpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunord_qpd/",
+  "target": [
+   { "stderr": "vcmpunord_qpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPUNORD_QPD",
+  "id": "vcmpunord_qpd32err",
+  "format": "bin",
+  "source": "vcmpunord_qpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunord_qpd/",
+  "target": [
+   { "stderr": "vcmpunord_qpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,11 @@
+default rel
+	ficomp dword [0xd80]
+	ficomp dword [0x4dc]
+	ficomp word [0x953]
+	ficomp word [0x18e]
+	ficomp dword [eax+1]
+	ficomp dword [eax+64]
+	ficomp word [eax+1]
+	ficomp word [eax+64]
+	ficomp [0x6a0]
+	ficomp [0x141]

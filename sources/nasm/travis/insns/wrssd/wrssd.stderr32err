@@ -1,0 +1,2 @@
+./travis/insns/wrssd/wrssd_narrow.asm:5: error: invalid operands in 32-bit mode
+./travis/insns/wrssd/wrssd_narrow.asm:6: error: instruction not supported in 32-bit mode

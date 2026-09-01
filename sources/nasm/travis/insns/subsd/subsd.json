@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for SUBSD",
+  "id": "subsd16",
+  "format": "bin",
+  "source": "subsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/subsd/",
+  "target": [
+   { "output": "subsd.bin16", "match": "subsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SUBSD",
+  "id": "subsd32",
+  "format": "bin",
+  "source": "subsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/subsd/",
+  "target": [
+   { "output": "subsd.bin32", "match": "subsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SUBSD",
+  "id": "subsd64",
+  "format": "bin",
+  "source": "subsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/subsd/",
+  "target": [
+   { "output": "subsd.bin64", "match": "subsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SUBSD",
+  "id": "subsd16err",
+  "format": "bin",
+  "source": "subsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/subsd/",
+  "target": [
+   { "stderr": "subsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SUBSD",
+  "id": "subsd32err",
+  "format": "bin",
+  "source": "subsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/subsd/",
+  "target": [
+   { "stderr": "subsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

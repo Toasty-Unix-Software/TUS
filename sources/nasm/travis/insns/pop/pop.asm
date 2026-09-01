@@ -1,0 +1,9 @@
+default rel
+	pop es
+	pop es
+	pop cs
+	pop cs
+	pop ss
+	pop ss
+	pop ds
+	pop ds

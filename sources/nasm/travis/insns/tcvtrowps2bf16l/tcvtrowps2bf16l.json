@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for TCVTROWPS2BF16L",
+  "id": "tcvtrowps2bf16l16",
+  "format": "bin",
+  "source": "tcvtrowps2bf16l_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tcvtrowps2bf16l/",
+  "target": [
+   { "output": "tcvtrowps2bf16l.bin16", "match": "tcvtrowps2bf16l.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TCVTROWPS2BF16L",
+  "id": "tcvtrowps2bf16l32",
+  "format": "bin",
+  "source": "tcvtrowps2bf16l_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tcvtrowps2bf16l/",
+  "target": [
+   { "output": "tcvtrowps2bf16l.bin32", "match": "tcvtrowps2bf16l.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TCVTROWPS2BF16L",
+  "id": "tcvtrowps2bf16l64",
+  "format": "bin",
+  "source": "tcvtrowps2bf16l.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tcvtrowps2bf16l/",
+  "target": [
+   { "output": "tcvtrowps2bf16l.bin64", "match": "tcvtrowps2bf16l.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for TCVTROWPS2BF16L",
+  "id": "tcvtrowps2bf16l16err",
+  "format": "bin",
+  "source": "tcvtrowps2bf16l_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tcvtrowps2bf16l/",
+  "target": [
+   { "stderr": "tcvtrowps2bf16l.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for TCVTROWPS2BF16L",
+  "id": "tcvtrowps2bf16l32err",
+  "format": "bin",
+  "source": "tcvtrowps2bf16l_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tcvtrowps2bf16l/",
+  "target": [
+   { "stderr": "tcvtrowps2bf16l.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

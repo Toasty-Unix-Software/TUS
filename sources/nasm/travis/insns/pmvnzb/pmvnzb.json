@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for PMVNZB",
+  "id": "pmvnzb16",
+  "format": "bin",
+  "source": "pmvnzb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmvnzb/",
+  "target": [
+   { "output": "pmvnzb.bin16", "match": "pmvnzb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMVNZB",
+  "id": "pmvnzb32",
+  "format": "bin",
+  "source": "pmvnzb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmvnzb/",
+  "target": [
+   { "output": "pmvnzb.bin32", "match": "pmvnzb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMVNZB",
+  "id": "pmvnzb64",
+  "format": "bin",
+  "source": "pmvnzb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmvnzb/",
+  "target": [
+   { "output": "pmvnzb.bin64", "match": "pmvnzb.bin64.t" }
+  ]
+ }
+]

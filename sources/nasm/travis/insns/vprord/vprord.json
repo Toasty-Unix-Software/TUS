@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPRORD",
+  "id": "vprord16",
+  "format": "bin",
+  "source": "vprord_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprord/",
+  "target": [
+   { "output": "vprord.bin16", "match": "vprord.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPRORD",
+  "id": "vprord32",
+  "format": "bin",
+  "source": "vprord_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprord/",
+  "target": [
+   { "output": "vprord.bin32", "match": "vprord.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPRORD",
+  "id": "vprord64",
+  "format": "bin",
+  "source": "vprord.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprord/",
+  "target": [
+   { "output": "vprord.bin64", "match": "vprord.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPRORD",
+  "id": "vprord16err",
+  "format": "bin",
+  "source": "vprord_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprord/",
+  "target": [
+   { "stderr": "vprord.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPRORD",
+  "id": "vprord32err",
+  "format": "bin",
+  "source": "vprord_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprord/",
+  "target": [
+   { "stderr": "vprord.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

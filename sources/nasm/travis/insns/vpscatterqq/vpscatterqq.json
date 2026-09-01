@@ -1,0 +1,47 @@
+[
+ {
+  "description": "Pseudorandom test for VPSCATTERQQ",
+  "id": "vpscatterqq32",
+  "format": "bin",
+  "source": "vpscatterqq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpscatterqq/",
+  "target": [
+   { "output": "vpscatterqq.bin32", "match": "vpscatterqq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSCATTERQQ",
+  "id": "vpscatterqq64",
+  "format": "bin",
+  "source": "vpscatterqq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpscatterqq/",
+  "target": [
+   { "output": "vpscatterqq.bin64", "match": "vpscatterqq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSCATTERQQ",
+  "id": "vpscatterqq16err",
+  "format": "bin",
+  "source": "vpscatterqq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpscatterqq/",
+  "target": [
+   { "stderr": "vpscatterqq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSCATTERQQ",
+  "id": "vpscatterqq32err",
+  "format": "bin",
+  "source": "vpscatterqq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpscatterqq/",
+  "target": [
+   { "stderr": "vpscatterqq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,11 @@
+default rel
+	fiadd dword [0x915]
+	fiadd dword [0x86c]
+	fiadd word [0xed7]
+	fiadd word [0x75e]
+	fiadd dword [eax+1]
+	fiadd dword [eax+64]
+	fiadd word [eax+1]
+	fiadd word [eax+64]
+	fiadd [0xcce]
+	fiadd [0x115]

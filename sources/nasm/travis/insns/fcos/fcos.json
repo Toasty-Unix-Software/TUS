@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FCOS",
+  "id": "fcos16",
+  "format": "bin",
+  "source": "fcos.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcos/",
+  "target": [
+   { "output": "fcos.bin16", "match": "fcos.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FCOS",
+  "id": "fcos32",
+  "format": "bin",
+  "source": "fcos.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcos/",
+  "target": [
+   { "output": "fcos.bin32", "match": "fcos.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FCOS",
+  "id": "fcos64",
+  "format": "bin",
+  "source": "fcos.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcos/",
+  "target": [
+   { "output": "fcos.bin64", "match": "fcos.bin64.t" }
+  ]
+ }
+]

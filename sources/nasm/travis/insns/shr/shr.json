@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SHR",
+  "id": "shr64",
+  "format": "bin",
+  "source": "shr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shr/",
+  "target": [
+   { "output": "shr.bin64", "match": "shr.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHR",
+  "id": "shr16err",
+  "format": "bin",
+  "source": "shr_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shr/",
+  "target": [
+   { "stderr": "shr.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHR",
+  "id": "shr32err",
+  "format": "bin",
+  "source": "shr_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shr/",
+  "target": [
+   { "stderr": "shr.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ANDNPS",
+  "id": "andnps16",
+  "format": "bin",
+  "source": "andnps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnps/",
+  "target": [
+   { "output": "andnps.bin16", "match": "andnps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDNPS",
+  "id": "andnps32",
+  "format": "bin",
+  "source": "andnps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnps/",
+  "target": [
+   { "output": "andnps.bin32", "match": "andnps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDNPS",
+  "id": "andnps64",
+  "format": "bin",
+  "source": "andnps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnps/",
+  "target": [
+   { "output": "andnps.bin64", "match": "andnps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ANDNPS",
+  "id": "andnps16err",
+  "format": "bin",
+  "source": "andnps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnps/",
+  "target": [
+   { "stderr": "andnps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ANDNPS",
+  "id": "andnps32err",
+  "format": "bin",
+  "source": "andnps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnps/",
+  "target": [
+   { "stderr": "andnps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

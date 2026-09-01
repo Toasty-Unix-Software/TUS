@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PAVGB",
+  "id": "pavgb16",
+  "format": "bin",
+  "source": "pavgb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pavgb/",
+  "target": [
+   { "output": "pavgb.bin16", "match": "pavgb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PAVGB",
+  "id": "pavgb32",
+  "format": "bin",
+  "source": "pavgb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pavgb/",
+  "target": [
+   { "output": "pavgb.bin32", "match": "pavgb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PAVGB",
+  "id": "pavgb64",
+  "format": "bin",
+  "source": "pavgb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pavgb/",
+  "target": [
+   { "output": "pavgb.bin64", "match": "pavgb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PAVGB",
+  "id": "pavgb16err",
+  "format": "bin",
+  "source": "pavgb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pavgb/",
+  "target": [
+   { "stderr": "pavgb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PAVGB",
+  "id": "pavgb32err",
+  "format": "bin",
+  "source": "pavgb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pavgb/",
+  "target": [
+   { "stderr": "pavgb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

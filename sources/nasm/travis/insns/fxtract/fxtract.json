@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FXTRACT",
+  "id": "fxtract16",
+  "format": "bin",
+  "source": "fxtract.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fxtract/",
+  "target": [
+   { "output": "fxtract.bin16", "match": "fxtract.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FXTRACT",
+  "id": "fxtract32",
+  "format": "bin",
+  "source": "fxtract.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fxtract/",
+  "target": [
+   { "output": "fxtract.bin32", "match": "fxtract.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FXTRACT",
+  "id": "fxtract64",
+  "format": "bin",
+  "source": "fxtract.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fxtract/",
+  "target": [
+   { "output": "fxtract.bin64", "match": "fxtract.bin64.t" }
+  ]
+ }
+]

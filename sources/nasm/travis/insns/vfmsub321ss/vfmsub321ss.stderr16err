@@ -1,0 +1,1 @@
+./travis/insns/vfmsub321ss/vfmsub321ss_narrow.asm:5: error: invalid operands in non-64-bit mode

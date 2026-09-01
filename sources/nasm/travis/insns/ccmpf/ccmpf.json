@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPF",
+  "id": "ccmpf64",
+  "format": "bin",
+  "source": "ccmpf.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpf/",
+  "target": [
+   { "output": "ccmpf.bin64", "match": "ccmpf.bin64.t" },
+   { "stderr": "ccmpf.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPF",
+  "id": "ccmpf16err",
+  "format": "bin",
+  "source": "ccmpf_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpf/",
+  "target": [
+   { "stderr": "ccmpf.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPF",
+  "id": "ccmpf32err",
+  "format": "bin",
+  "source": "ccmpf_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpf/",
+  "target": [
+   { "stderr": "ccmpf.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

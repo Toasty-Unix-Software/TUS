@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FNINIT",
+  "id": "fninit16",
+  "format": "bin",
+  "source": "fninit.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fninit/",
+  "target": [
+   { "output": "fninit.bin16", "match": "fninit.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FNINIT",
+  "id": "fninit32",
+  "format": "bin",
+  "source": "fninit.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fninit/",
+  "target": [
+   { "output": "fninit.bin32", "match": "fninit.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FNINIT",
+  "id": "fninit64",
+  "format": "bin",
+  "source": "fninit.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fninit/",
+  "target": [
+   { "output": "fninit.bin64", "match": "fninit.bin64.t" }
+  ]
+ }
+]

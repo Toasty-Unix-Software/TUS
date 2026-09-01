@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for ADCX",
+  "id": "adcx64",
+  "format": "bin",
+  "source": "adcx.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adcx/",
+  "target": [
+   { "output": "adcx.bin64", "match": "adcx.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADCX",
+  "id": "adcx16err",
+  "format": "bin",
+  "source": "adcx_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adcx/",
+  "target": [
+   { "stderr": "adcx.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADCX",
+  "id": "adcx32err",
+  "format": "bin",
+  "source": "adcx_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adcx/",
+  "target": [
+   { "stderr": "adcx.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

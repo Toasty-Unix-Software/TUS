@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for WRMSRNS",
+  "id": "wrmsrns16",
+  "format": "bin",
+  "source": "wrmsrns_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrmsrns/",
+  "target": [
+   { "output": "wrmsrns.bin16", "match": "wrmsrns.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for WRMSRNS",
+  "id": "wrmsrns32",
+  "format": "bin",
+  "source": "wrmsrns_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrmsrns/",
+  "target": [
+   { "output": "wrmsrns.bin32", "match": "wrmsrns.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for WRMSRNS",
+  "id": "wrmsrns64",
+  "format": "bin",
+  "source": "wrmsrns.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrmsrns/",
+  "target": [
+   { "output": "wrmsrns.bin64", "match": "wrmsrns.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for WRMSRNS",
+  "id": "wrmsrns16err",
+  "format": "bin",
+  "source": "wrmsrns_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrmsrns/",
+  "target": [
+   { "stderr": "wrmsrns.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for WRMSRNS",
+  "id": "wrmsrns32err",
+  "format": "bin",
+  "source": "wrmsrns_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrmsrns/",
+  "target": [
+   { "stderr": "wrmsrns.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

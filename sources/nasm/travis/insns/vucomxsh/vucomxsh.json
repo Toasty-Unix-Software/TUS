@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VUCOMXSH",
+  "id": "vucomxsh16",
+  "format": "bin",
+  "source": "vucomxsh_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vucomxsh/",
+  "target": [
+   { "output": "vucomxsh.bin16", "match": "vucomxsh.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VUCOMXSH",
+  "id": "vucomxsh32",
+  "format": "bin",
+  "source": "vucomxsh_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vucomxsh/",
+  "target": [
+   { "output": "vucomxsh.bin32", "match": "vucomxsh.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VUCOMXSH",
+  "id": "vucomxsh64",
+  "format": "bin",
+  "source": "vucomxsh.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vucomxsh/",
+  "target": [
+   { "output": "vucomxsh.bin64", "match": "vucomxsh.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VUCOMXSH",
+  "id": "vucomxsh16err",
+  "format": "bin",
+  "source": "vucomxsh_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vucomxsh/",
+  "target": [
+   { "stderr": "vucomxsh.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VUCOMXSH",
+  "id": "vucomxsh32err",
+  "format": "bin",
+  "source": "vucomxsh_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vucomxsh/",
+  "target": [
+   { "stderr": "vucomxsh.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

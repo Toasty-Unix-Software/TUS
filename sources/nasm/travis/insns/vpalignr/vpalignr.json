@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPALIGNR",
+  "id": "vpalignr16",
+  "format": "bin",
+  "source": "vpalignr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpalignr/",
+  "target": [
+   { "output": "vpalignr.bin16", "match": "vpalignr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPALIGNR",
+  "id": "vpalignr32",
+  "format": "bin",
+  "source": "vpalignr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpalignr/",
+  "target": [
+   { "output": "vpalignr.bin32", "match": "vpalignr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPALIGNR",
+  "id": "vpalignr64",
+  "format": "bin",
+  "source": "vpalignr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpalignr/",
+  "target": [
+   { "output": "vpalignr.bin64", "match": "vpalignr.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPALIGNR",
+  "id": "vpalignr16err",
+  "format": "bin",
+  "source": "vpalignr_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpalignr/",
+  "target": [
+   { "stderr": "vpalignr.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPALIGNR",
+  "id": "vpalignr32err",
+  "format": "bin",
+  "source": "vpalignr_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpalignr/",
+  "target": [
+   { "stderr": "vpalignr.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

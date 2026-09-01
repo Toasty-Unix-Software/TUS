@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for DEC",
+  "id": "dec16",
+  "format": "bin",
+  "source": "dec_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dec/",
+  "target": [
+   { "output": "dec.bin16", "match": "dec.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DEC",
+  "id": "dec32",
+  "format": "bin",
+  "source": "dec_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dec/",
+  "target": [
+   { "output": "dec.bin32", "match": "dec.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DEC",
+  "id": "dec64",
+  "format": "bin",
+  "source": "dec.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dec/",
+  "target": [
+   { "output": "dec.bin64", "match": "dec.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for DEC",
+  "id": "dec16err",
+  "format": "bin",
+  "source": "dec_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dec/",
+  "target": [
+   { "stderr": "dec.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for DEC",
+  "id": "dec32err",
+  "format": "bin",
+  "source": "dec_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dec/",
+  "target": [
+   { "stderr": "dec.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

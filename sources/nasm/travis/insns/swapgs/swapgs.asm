@@ -1,0 +1,3 @@
+default rel
+	swapgs
+	swapgs

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETC",
+  "id": "setc64",
+  "format": "bin",
+  "source": "setc.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setc/",
+  "target": [
+   { "output": "setc.bin64", "match": "setc.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETC",
+  "id": "setc16err",
+  "format": "bin",
+  "source": "setc_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setc/",
+  "target": [
+   { "stderr": "setc.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETC",
+  "id": "setc32err",
+  "format": "bin",
+  "source": "setc_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setc/",
+  "target": [
+   { "stderr": "setc.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

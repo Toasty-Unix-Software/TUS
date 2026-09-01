@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSHAD",
+  "id": "vpshad16",
+  "format": "bin",
+  "source": "vpshad_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshad/",
+  "target": [
+   { "output": "vpshad.bin16", "match": "vpshad.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHAD",
+  "id": "vpshad32",
+  "format": "bin",
+  "source": "vpshad_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshad/",
+  "target": [
+   { "output": "vpshad.bin32", "match": "vpshad.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHAD",
+  "id": "vpshad64",
+  "format": "bin",
+  "source": "vpshad.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshad/",
+  "target": [
+   { "output": "vpshad.bin64", "match": "vpshad.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHAD",
+  "id": "vpshad16err",
+  "format": "bin",
+  "source": "vpshad_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshad/",
+  "target": [
+   { "stderr": "vpshad.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHAD",
+  "id": "vpshad32err",
+  "format": "bin",
+  "source": "vpshad_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshad/",
+  "target": [
+   { "stderr": "vpshad.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

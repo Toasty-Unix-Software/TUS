@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for CLUI",
+  "id": "clui64",
+  "format": "bin",
+  "source": "clui.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clui/",
+  "target": [
+   { "output": "clui.bin64", "match": "clui.bin64.t" }
+  ]
+ }
+]

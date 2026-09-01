@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMACSSWW",
+  "id": "vpmacssww16",
+  "format": "bin",
+  "source": "vpmacssww_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacssww/",
+  "target": [
+   { "output": "vpmacssww.bin16", "match": "vpmacssww.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMACSSWW",
+  "id": "vpmacssww32",
+  "format": "bin",
+  "source": "vpmacssww_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacssww/",
+  "target": [
+   { "output": "vpmacssww.bin32", "match": "vpmacssww.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMACSSWW",
+  "id": "vpmacssww64",
+  "format": "bin",
+  "source": "vpmacssww.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacssww/",
+  "target": [
+   { "output": "vpmacssww.bin64", "match": "vpmacssww.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMACSSWW",
+  "id": "vpmacssww16err",
+  "format": "bin",
+  "source": "vpmacssww_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacssww/",
+  "target": [
+   { "stderr": "vpmacssww.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMACSSWW",
+  "id": "vpmacssww32err",
+  "format": "bin",
+  "source": "vpmacssww_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacssww/",
+  "target": [
+   { "stderr": "vpmacssww.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

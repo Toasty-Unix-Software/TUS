@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for NEG",
+  "id": "neg64",
+  "format": "bin",
+  "source": "neg.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/neg/",
+  "target": [
+   { "output": "neg.bin64", "match": "neg.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for NEG",
+  "id": "neg16err",
+  "format": "bin",
+  "source": "neg_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/neg/",
+  "target": [
+   { "stderr": "neg.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for NEG",
+  "id": "neg32err",
+  "format": "bin",
+  "source": "neg_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/neg/",
+  "target": [
+   { "stderr": "neg.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

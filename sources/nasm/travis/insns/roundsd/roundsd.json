@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ROUNDSD",
+  "id": "roundsd16",
+  "format": "bin",
+  "source": "roundsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundsd/",
+  "target": [
+   { "output": "roundsd.bin16", "match": "roundsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ROUNDSD",
+  "id": "roundsd32",
+  "format": "bin",
+  "source": "roundsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundsd/",
+  "target": [
+   { "output": "roundsd.bin32", "match": "roundsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ROUNDSD",
+  "id": "roundsd64",
+  "format": "bin",
+  "source": "roundsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundsd/",
+  "target": [
+   { "output": "roundsd.bin64", "match": "roundsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ROUNDSD",
+  "id": "roundsd16err",
+  "format": "bin",
+  "source": "roundsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundsd/",
+  "target": [
+   { "stderr": "roundsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ROUNDSD",
+  "id": "roundsd32err",
+  "format": "bin",
+  "source": "roundsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundsd/",
+  "target": [
+   { "stderr": "roundsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

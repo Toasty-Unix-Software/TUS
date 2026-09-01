@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VBLENDMPD",
+  "id": "vblendmpd16",
+  "format": "bin",
+  "source": "vblendmpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendmpd/",
+  "target": [
+   { "output": "vblendmpd.bin16", "match": "vblendmpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBLENDMPD",
+  "id": "vblendmpd32",
+  "format": "bin",
+  "source": "vblendmpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendmpd/",
+  "target": [
+   { "output": "vblendmpd.bin32", "match": "vblendmpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBLENDMPD",
+  "id": "vblendmpd64",
+  "format": "bin",
+  "source": "vblendmpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendmpd/",
+  "target": [
+   { "output": "vblendmpd.bin64", "match": "vblendmpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBLENDMPD",
+  "id": "vblendmpd16err",
+  "format": "bin",
+  "source": "vblendmpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendmpd/",
+  "target": [
+   { "stderr": "vblendmpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBLENDMPD",
+  "id": "vblendmpd32err",
+  "format": "bin",
+  "source": "vblendmpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendmpd/",
+  "target": [
+   { "stderr": "vblendmpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

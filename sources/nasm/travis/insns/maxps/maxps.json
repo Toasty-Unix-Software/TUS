@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MAXPS",
+  "id": "maxps16",
+  "format": "bin",
+  "source": "maxps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/maxps/",
+  "target": [
+   { "output": "maxps.bin16", "match": "maxps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MAXPS",
+  "id": "maxps32",
+  "format": "bin",
+  "source": "maxps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/maxps/",
+  "target": [
+   { "output": "maxps.bin32", "match": "maxps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MAXPS",
+  "id": "maxps64",
+  "format": "bin",
+  "source": "maxps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/maxps/",
+  "target": [
+   { "output": "maxps.bin64", "match": "maxps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MAXPS",
+  "id": "maxps16err",
+  "format": "bin",
+  "source": "maxps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/maxps/",
+  "target": [
+   { "stderr": "maxps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MAXPS",
+  "id": "maxps32err",
+  "format": "bin",
+  "source": "maxps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/maxps/",
+  "target": [
+   { "stderr": "maxps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

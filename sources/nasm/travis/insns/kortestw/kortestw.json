@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KORTESTW",
+  "id": "kortestw16",
+  "format": "bin",
+  "source": "kortestw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kortestw/",
+  "target": [
+   { "output": "kortestw.bin16", "match": "kortestw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KORTESTW",
+  "id": "kortestw32",
+  "format": "bin",
+  "source": "kortestw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kortestw/",
+  "target": [
+   { "output": "kortestw.bin32", "match": "kortestw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KORTESTW",
+  "id": "kortestw64",
+  "format": "bin",
+  "source": "kortestw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kortestw/",
+  "target": [
+   { "output": "kortestw.bin64", "match": "kortestw.bin64.t" }
+  ]
+ }
+]

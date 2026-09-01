@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETNS",
+  "id": "setns64",
+  "format": "bin",
+  "source": "setns.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setns/",
+  "target": [
+   { "output": "setns.bin64", "match": "setns.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNS",
+  "id": "setns16err",
+  "format": "bin",
+  "source": "setns_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setns/",
+  "target": [
+   { "stderr": "setns.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNS",
+  "id": "setns32err",
+  "format": "bin",
+  "source": "setns_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setns/",
+  "target": [
+   { "stderr": "setns.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

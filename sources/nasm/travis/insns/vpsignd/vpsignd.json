@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSIGND",
+  "id": "vpsignd16",
+  "format": "bin",
+  "source": "vpsignd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsignd/",
+  "target": [
+   { "output": "vpsignd.bin16", "match": "vpsignd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSIGND",
+  "id": "vpsignd32",
+  "format": "bin",
+  "source": "vpsignd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsignd/",
+  "target": [
+   { "output": "vpsignd.bin32", "match": "vpsignd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSIGND",
+  "id": "vpsignd64",
+  "format": "bin",
+  "source": "vpsignd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsignd/",
+  "target": [
+   { "output": "vpsignd.bin64", "match": "vpsignd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSIGND",
+  "id": "vpsignd16err",
+  "format": "bin",
+  "source": "vpsignd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsignd/",
+  "target": [
+   { "stderr": "vpsignd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSIGND",
+  "id": "vpsignd32err",
+  "format": "bin",
+  "source": "vpsignd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsignd/",
+  "target": [
+   { "stderr": "vpsignd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for SQRTPS",
+  "id": "sqrtps16",
+  "format": "bin",
+  "source": "sqrtps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sqrtps/",
+  "target": [
+   { "output": "sqrtps.bin16", "match": "sqrtps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SQRTPS",
+  "id": "sqrtps32",
+  "format": "bin",
+  "source": "sqrtps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sqrtps/",
+  "target": [
+   { "output": "sqrtps.bin32", "match": "sqrtps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SQRTPS",
+  "id": "sqrtps64",
+  "format": "bin",
+  "source": "sqrtps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sqrtps/",
+  "target": [
+   { "output": "sqrtps.bin64", "match": "sqrtps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SQRTPS",
+  "id": "sqrtps16err",
+  "format": "bin",
+  "source": "sqrtps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sqrtps/",
+  "target": [
+   { "stderr": "sqrtps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SQRTPS",
+  "id": "sqrtps32err",
+  "format": "bin",
+  "source": "sqrtps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sqrtps/",
+  "target": [
+   { "stderr": "sqrtps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

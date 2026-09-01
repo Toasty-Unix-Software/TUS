@@ -1,0 +1,3 @@
+./travis/insns/ctestae/ctestae.asm:39: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/ctestae/ctestae.asm:40: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/ctestae/ctestae.asm:41: warning: byte exceeds bounds [-w+number-overflow]

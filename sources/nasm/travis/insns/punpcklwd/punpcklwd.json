@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PUNPCKLWD",
+  "id": "punpcklwd16",
+  "format": "bin",
+  "source": "punpcklwd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/punpcklwd/",
+  "target": [
+   { "output": "punpcklwd.bin16", "match": "punpcklwd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PUNPCKLWD",
+  "id": "punpcklwd32",
+  "format": "bin",
+  "source": "punpcklwd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/punpcklwd/",
+  "target": [
+   { "output": "punpcklwd.bin32", "match": "punpcklwd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PUNPCKLWD",
+  "id": "punpcklwd64",
+  "format": "bin",
+  "source": "punpcklwd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/punpcklwd/",
+  "target": [
+   { "output": "punpcklwd.bin64", "match": "punpcklwd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PUNPCKLWD",
+  "id": "punpcklwd16err",
+  "format": "bin",
+  "source": "punpcklwd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/punpcklwd/",
+  "target": [
+   { "stderr": "punpcklwd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PUNPCKLWD",
+  "id": "punpcklwd32err",
+  "format": "bin",
+  "source": "punpcklwd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/punpcklwd/",
+  "target": [
+   { "stderr": "punpcklwd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

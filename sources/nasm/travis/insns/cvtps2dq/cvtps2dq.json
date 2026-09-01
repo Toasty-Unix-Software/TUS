@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for CVTPS2DQ",
+  "id": "cvtps2dq16",
+  "format": "bin",
+  "source": "cvtps2dq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cvtps2dq/",
+  "target": [
+   { "output": "cvtps2dq.bin16", "match": "cvtps2dq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CVTPS2DQ",
+  "id": "cvtps2dq32",
+  "format": "bin",
+  "source": "cvtps2dq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cvtps2dq/",
+  "target": [
+   { "output": "cvtps2dq.bin32", "match": "cvtps2dq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CVTPS2DQ",
+  "id": "cvtps2dq64",
+  "format": "bin",
+  "source": "cvtps2dq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cvtps2dq/",
+  "target": [
+   { "output": "cvtps2dq.bin64", "match": "cvtps2dq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CVTPS2DQ",
+  "id": "cvtps2dq16err",
+  "format": "bin",
+  "source": "cvtps2dq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cvtps2dq/",
+  "target": [
+   { "stderr": "cvtps2dq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CVTPS2DQ",
+  "id": "cvtps2dq32err",
+  "format": "bin",
+  "source": "cvtps2dq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cvtps2dq/",
+  "target": [
+   { "stderr": "cvtps2dq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

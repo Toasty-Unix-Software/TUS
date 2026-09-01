@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for CMPNLESD",
+  "id": "cmpnlesd16",
+  "format": "bin",
+  "source": "cmpnlesd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlesd/",
+  "target": [
+   { "output": "cmpnlesd.bin16", "match": "cmpnlesd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPNLESD",
+  "id": "cmpnlesd32",
+  "format": "bin",
+  "source": "cmpnlesd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlesd/",
+  "target": [
+   { "output": "cmpnlesd.bin32", "match": "cmpnlesd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPNLESD",
+  "id": "cmpnlesd64",
+  "format": "bin",
+  "source": "cmpnlesd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlesd/",
+  "target": [
+   { "output": "cmpnlesd.bin64", "match": "cmpnlesd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPNLESD",
+  "id": "cmpnlesd16err",
+  "format": "bin",
+  "source": "cmpnlesd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlesd/",
+  "target": [
+   { "stderr": "cmpnlesd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPNLESD",
+  "id": "cmpnlesd32err",
+  "format": "bin",
+  "source": "cmpnlesd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlesd/",
+  "target": [
+   { "stderr": "cmpnlesd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,4 @@
+./travis/insns/rorx/rorx_narrow.asm:7: error: invalid operands in non-64-bit mode
+./travis/insns/rorx/rorx_narrow.asm:8: error: invalid operands in non-64-bit mode
+./travis/insns/rorx/rorx_narrow.asm:9: error: instruction not supported in 32-bit mode
+./travis/insns/rorx/rorx_narrow.asm:10: error: instruction not supported in 32-bit mode

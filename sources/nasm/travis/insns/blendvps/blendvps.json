@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for BLENDVPS",
+  "id": "blendvps16",
+  "format": "bin",
+  "source": "blendvps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blendvps/",
+  "target": [
+   { "output": "blendvps.bin16", "match": "blendvps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BLENDVPS",
+  "id": "blendvps32",
+  "format": "bin",
+  "source": "blendvps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blendvps/",
+  "target": [
+   { "output": "blendvps.bin32", "match": "blendvps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BLENDVPS",
+  "id": "blendvps64",
+  "format": "bin",
+  "source": "blendvps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blendvps/",
+  "target": [
+   { "output": "blendvps.bin64", "match": "blendvps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BLENDVPS",
+  "id": "blendvps16err",
+  "format": "bin",
+  "source": "blendvps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blendvps/",
+  "target": [
+   { "stderr": "blendvps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BLENDVPS",
+  "id": "blendvps32err",
+  "format": "bin",
+  "source": "blendvps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blendvps/",
+  "target": [
+   { "stderr": "blendvps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

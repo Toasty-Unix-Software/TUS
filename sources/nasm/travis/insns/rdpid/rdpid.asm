@@ -1,0 +1,9 @@
+default rel
+	rdpid rbp
+	rdpid rbp
+	rdpid edx
+	rdpid edi
+	rdpid r8
+	rdpid r10d
+	rdpid r17
+	rdpid r26d

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCOMUD",
+  "id": "vpcomud16",
+  "format": "bin",
+  "source": "vpcomud_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcomud/",
+  "target": [
+   { "output": "vpcomud.bin16", "match": "vpcomud.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCOMUD",
+  "id": "vpcomud32",
+  "format": "bin",
+  "source": "vpcomud_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcomud/",
+  "target": [
+   { "output": "vpcomud.bin32", "match": "vpcomud.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCOMUD",
+  "id": "vpcomud64",
+  "format": "bin",
+  "source": "vpcomud.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcomud/",
+  "target": [
+   { "output": "vpcomud.bin64", "match": "vpcomud.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCOMUD",
+  "id": "vpcomud16err",
+  "format": "bin",
+  "source": "vpcomud_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcomud/",
+  "target": [
+   { "stderr": "vpcomud.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCOMUD",
+  "id": "vpcomud32err",
+  "format": "bin",
+  "source": "vpcomud_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcomud/",
+  "target": [
+   { "stderr": "vpcomud.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

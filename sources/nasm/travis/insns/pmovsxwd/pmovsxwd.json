@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PMOVSXWD",
+  "id": "pmovsxwd16",
+  "format": "bin",
+  "source": "pmovsxwd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmovsxwd/",
+  "target": [
+   { "output": "pmovsxwd.bin16", "match": "pmovsxwd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMOVSXWD",
+  "id": "pmovsxwd32",
+  "format": "bin",
+  "source": "pmovsxwd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmovsxwd/",
+  "target": [
+   { "output": "pmovsxwd.bin32", "match": "pmovsxwd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMOVSXWD",
+  "id": "pmovsxwd64",
+  "format": "bin",
+  "source": "pmovsxwd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmovsxwd/",
+  "target": [
+   { "output": "pmovsxwd.bin64", "match": "pmovsxwd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMOVSXWD",
+  "id": "pmovsxwd16err",
+  "format": "bin",
+  "source": "pmovsxwd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmovsxwd/",
+  "target": [
+   { "stderr": "pmovsxwd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMOVSXWD",
+  "id": "pmovsxwd32err",
+  "format": "bin",
+  "source": "pmovsxwd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmovsxwd/",
+  "target": [
+   { "stderr": "pmovsxwd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

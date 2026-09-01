@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VSM3MSG2",
+  "id": "vsm3msg216",
+  "format": "bin",
+  "source": "vsm3msg2_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsm3msg2/",
+  "target": [
+   { "output": "vsm3msg2.bin16", "match": "vsm3msg2.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSM3MSG2",
+  "id": "vsm3msg232",
+  "format": "bin",
+  "source": "vsm3msg2_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsm3msg2/",
+  "target": [
+   { "output": "vsm3msg2.bin32", "match": "vsm3msg2.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSM3MSG2",
+  "id": "vsm3msg264",
+  "format": "bin",
+  "source": "vsm3msg2.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsm3msg2/",
+  "target": [
+   { "output": "vsm3msg2.bin64", "match": "vsm3msg2.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSM3MSG2",
+  "id": "vsm3msg216err",
+  "format": "bin",
+  "source": "vsm3msg2_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsm3msg2/",
+  "target": [
+   { "stderr": "vsm3msg2.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSM3MSG2",
+  "id": "vsm3msg232err",
+  "format": "bin",
+  "source": "vsm3msg2_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsm3msg2/",
+  "target": [
+   { "stderr": "vsm3msg2.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

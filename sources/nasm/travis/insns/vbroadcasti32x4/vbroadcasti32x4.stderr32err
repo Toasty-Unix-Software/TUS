@@ -1,0 +1,4 @@
+./travis/insns/vbroadcasti32x4/vbroadcasti32x4_narrow.asm:7: error: invalid operands in non-64-bit mode
+./travis/insns/vbroadcasti32x4/vbroadcasti32x4_narrow.asm:8: error: invalid operands in non-64-bit mode
+./travis/insns/vbroadcasti32x4/vbroadcasti32x4_narrow.asm:9: error: invalid operands in non-64-bit mode
+./travis/insns/vbroadcasti32x4/vbroadcasti32x4_narrow.asm:10: error: invalid operands in non-64-bit mode

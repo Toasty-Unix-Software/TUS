@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for RCPPS",
+  "id": "rcpps16",
+  "format": "bin",
+  "source": "rcpps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rcpps/",
+  "target": [
+   { "output": "rcpps.bin16", "match": "rcpps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RCPPS",
+  "id": "rcpps32",
+  "format": "bin",
+  "source": "rcpps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rcpps/",
+  "target": [
+   { "output": "rcpps.bin32", "match": "rcpps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RCPPS",
+  "id": "rcpps64",
+  "format": "bin",
+  "source": "rcpps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rcpps/",
+  "target": [
+   { "output": "rcpps.bin64", "match": "rcpps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RCPPS",
+  "id": "rcpps16err",
+  "format": "bin",
+  "source": "rcpps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rcpps/",
+  "target": [
+   { "stderr": "rcpps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RCPPS",
+  "id": "rcpps32err",
+  "format": "bin",
+  "source": "rcpps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rcpps/",
+  "target": [
+   { "stderr": "rcpps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

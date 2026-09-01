@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETA",
+  "id": "seta64",
+  "format": "bin",
+  "source": "seta.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/seta/",
+  "target": [
+   { "output": "seta.bin64", "match": "seta.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETA",
+  "id": "seta16err",
+  "format": "bin",
+  "source": "seta_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/seta/",
+  "target": [
+   { "stderr": "seta.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETA",
+  "id": "seta32err",
+  "format": "bin",
+  "source": "seta_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/seta/",
+  "target": [
+   { "stderr": "seta.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

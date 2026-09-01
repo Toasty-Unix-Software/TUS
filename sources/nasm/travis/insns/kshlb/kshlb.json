@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KSHLB",
+  "id": "kshlb16",
+  "format": "bin",
+  "source": "kshlb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshlb/",
+  "target": [
+   { "output": "kshlb.bin16", "match": "kshlb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KSHLB",
+  "id": "kshlb32",
+  "format": "bin",
+  "source": "kshlb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshlb/",
+  "target": [
+   { "output": "kshlb.bin32", "match": "kshlb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KSHLB",
+  "id": "kshlb64",
+  "format": "bin",
+  "source": "kshlb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshlb/",
+  "target": [
+   { "output": "kshlb.bin64", "match": "kshlb.bin64.t" }
+  ]
+ }
+]

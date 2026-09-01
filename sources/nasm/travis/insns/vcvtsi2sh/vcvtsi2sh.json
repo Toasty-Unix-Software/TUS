@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCVTSI2SH",
+  "id": "vcvtsi2sh16",
+  "format": "bin",
+  "source": "vcvtsi2sh_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvtsi2sh/",
+  "target": [
+   { "output": "vcvtsi2sh.bin16", "match": "vcvtsi2sh.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCVTSI2SH",
+  "id": "vcvtsi2sh32",
+  "format": "bin",
+  "source": "vcvtsi2sh_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvtsi2sh/",
+  "target": [
+   { "output": "vcvtsi2sh.bin32", "match": "vcvtsi2sh.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCVTSI2SH",
+  "id": "vcvtsi2sh64",
+  "format": "bin",
+  "source": "vcvtsi2sh.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvtsi2sh/",
+  "target": [
+   { "output": "vcvtsi2sh.bin64", "match": "vcvtsi2sh.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCVTSI2SH",
+  "id": "vcvtsi2sh16err",
+  "format": "bin",
+  "source": "vcvtsi2sh_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvtsi2sh/",
+  "target": [
+   { "stderr": "vcvtsi2sh.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCVTSI2SH",
+  "id": "vcvtsi2sh32err",
+  "format": "bin",
+  "source": "vcvtsi2sh_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvtsi2sh/",
+  "target": [
+   { "stderr": "vcvtsi2sh.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

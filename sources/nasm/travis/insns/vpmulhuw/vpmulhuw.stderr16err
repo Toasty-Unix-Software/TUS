@@ -1,0 +1,8 @@
+./travis/insns/vpmulhuw/vpmulhuw_narrow.asm:15: error: invalid operands in non-64-bit mode
+./travis/insns/vpmulhuw/vpmulhuw_narrow.asm:16: error: invalid operands in non-64-bit mode
+./travis/insns/vpmulhuw/vpmulhuw_narrow.asm:17: error: invalid operands in non-64-bit mode
+./travis/insns/vpmulhuw/vpmulhuw_narrow.asm:18: error: invalid operands in non-64-bit mode
+./travis/insns/vpmulhuw/vpmulhuw_narrow.asm:19: error: invalid operands in non-64-bit mode
+./travis/insns/vpmulhuw/vpmulhuw_narrow.asm:20: error: invalid operands in non-64-bit mode
+./travis/insns/vpmulhuw/vpmulhuw_narrow.asm:21: error: invalid operands in non-64-bit mode
+./travis/insns/vpmulhuw/vpmulhuw_narrow.asm:22: error: invalid operands in non-64-bit mode

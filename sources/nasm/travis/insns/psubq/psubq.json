@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PSUBQ",
+  "id": "psubq16",
+  "format": "bin",
+  "source": "psubq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psubq/",
+  "target": [
+   { "output": "psubq.bin16", "match": "psubq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSUBQ",
+  "id": "psubq32",
+  "format": "bin",
+  "source": "psubq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psubq/",
+  "target": [
+   { "output": "psubq.bin32", "match": "psubq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSUBQ",
+  "id": "psubq64",
+  "format": "bin",
+  "source": "psubq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psubq/",
+  "target": [
+   { "output": "psubq.bin64", "match": "psubq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSUBQ",
+  "id": "psubq16err",
+  "format": "bin",
+  "source": "psubq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psubq/",
+  "target": [
+   { "stderr": "psubq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSUBQ",
+  "id": "psubq32err",
+  "format": "bin",
+  "source": "psubq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psubq/",
+  "target": [
+   { "stderr": "psubq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

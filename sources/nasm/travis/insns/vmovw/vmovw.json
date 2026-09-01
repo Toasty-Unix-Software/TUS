@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMOVW",
+  "id": "vmovw16",
+  "format": "bin",
+  "source": "vmovw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovw/",
+  "target": [
+   { "output": "vmovw.bin16", "match": "vmovw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVW",
+  "id": "vmovw32",
+  "format": "bin",
+  "source": "vmovw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovw/",
+  "target": [
+   { "output": "vmovw.bin32", "match": "vmovw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVW",
+  "id": "vmovw64",
+  "format": "bin",
+  "source": "vmovw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovw/",
+  "target": [
+   { "output": "vmovw.bin64", "match": "vmovw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVW",
+  "id": "vmovw16err",
+  "format": "bin",
+  "source": "vmovw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovw/",
+  "target": [
+   { "stderr": "vmovw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVW",
+  "id": "vmovw32err",
+  "format": "bin",
+  "source": "vmovw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovw/",
+  "target": [
+   { "stderr": "vmovw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

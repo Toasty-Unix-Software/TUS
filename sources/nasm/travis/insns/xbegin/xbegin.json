@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XBEGIN",
+  "id": "xbegin16",
+  "format": "bin",
+  "source": "xbegin_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xbegin/",
+  "target": [
+   { "output": "xbegin.bin16", "match": "xbegin.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XBEGIN",
+  "id": "xbegin32",
+  "format": "bin",
+  "source": "xbegin_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xbegin/",
+  "target": [
+   { "output": "xbegin.bin32", "match": "xbegin.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XBEGIN",
+  "id": "xbegin64",
+  "format": "bin",
+  "source": "xbegin.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xbegin/",
+  "target": [
+   { "output": "xbegin.bin64", "match": "xbegin.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,1 @@
+./travis/insns/vfnmadd123sd/vfnmadd123sd_narrow.asm:5: error: invalid operands in non-64-bit mode

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for ADOX",
+  "id": "adox64",
+  "format": "bin",
+  "source": "adox.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adox/",
+  "target": [
+   { "output": "adox.bin64", "match": "adox.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADOX",
+  "id": "adox16err",
+  "format": "bin",
+  "source": "adox_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adox/",
+  "target": [
+   { "stderr": "adox.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADOX",
+  "id": "adox32err",
+  "format": "bin",
+  "source": "adox_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adox/",
+  "target": [
+   { "stderr": "adox.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

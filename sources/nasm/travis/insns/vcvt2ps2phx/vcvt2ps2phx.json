@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCVT2PS2PHX",
+  "id": "vcvt2ps2phx16",
+  "format": "bin",
+  "source": "vcvt2ps2phx_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvt2ps2phx/",
+  "target": [
+   { "output": "vcvt2ps2phx.bin16", "match": "vcvt2ps2phx.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCVT2PS2PHX",
+  "id": "vcvt2ps2phx32",
+  "format": "bin",
+  "source": "vcvt2ps2phx_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvt2ps2phx/",
+  "target": [
+   { "output": "vcvt2ps2phx.bin32", "match": "vcvt2ps2phx.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCVT2PS2PHX",
+  "id": "vcvt2ps2phx64",
+  "format": "bin",
+  "source": "vcvt2ps2phx.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvt2ps2phx/",
+  "target": [
+   { "output": "vcvt2ps2phx.bin64", "match": "vcvt2ps2phx.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCVT2PS2PHX",
+  "id": "vcvt2ps2phx16err",
+  "format": "bin",
+  "source": "vcvt2ps2phx_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvt2ps2phx/",
+  "target": [
+   { "stderr": "vcvt2ps2phx.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCVT2PS2PHX",
+  "id": "vcvt2ps2phx32err",
+  "format": "bin",
+  "source": "vcvt2ps2phx_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvt2ps2phx/",
+  "target": [
+   { "stderr": "vcvt2ps2phx.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

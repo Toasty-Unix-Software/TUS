@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for SCASB",
+  "id": "scasb16",
+  "format": "bin",
+  "source": "scasb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/scasb/",
+  "target": [
+   { "output": "scasb.bin16", "match": "scasb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SCASB",
+  "id": "scasb32",
+  "format": "bin",
+  "source": "scasb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/scasb/",
+  "target": [
+   { "output": "scasb.bin32", "match": "scasb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SCASB",
+  "id": "scasb64",
+  "format": "bin",
+  "source": "scasb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/scasb/",
+  "target": [
+   { "output": "scasb.bin64", "match": "scasb.bin64.t" }
+  ]
+ }
+]

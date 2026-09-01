@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMADD52HUQ",
+  "id": "vpmadd52huq16",
+  "format": "bin",
+  "source": "vpmadd52huq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmadd52huq/",
+  "target": [
+   { "output": "vpmadd52huq.bin16", "match": "vpmadd52huq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMADD52HUQ",
+  "id": "vpmadd52huq32",
+  "format": "bin",
+  "source": "vpmadd52huq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmadd52huq/",
+  "target": [
+   { "output": "vpmadd52huq.bin32", "match": "vpmadd52huq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMADD52HUQ",
+  "id": "vpmadd52huq64",
+  "format": "bin",
+  "source": "vpmadd52huq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmadd52huq/",
+  "target": [
+   { "output": "vpmadd52huq.bin64", "match": "vpmadd52huq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMADD52HUQ",
+  "id": "vpmadd52huq16err",
+  "format": "bin",
+  "source": "vpmadd52huq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmadd52huq/",
+  "target": [
+   { "stderr": "vpmadd52huq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMADD52HUQ",
+  "id": "vpmadd52huq32err",
+  "format": "bin",
+  "source": "vpmadd52huq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmadd52huq/",
+  "target": [
+   { "stderr": "vpmadd52huq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

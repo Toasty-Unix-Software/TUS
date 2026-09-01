@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for AAA",
+  "id": "aaa16",
+  "format": "bin",
+  "source": "aaa.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aaa/",
+  "target": [
+   { "output": "aaa.bin16", "match": "aaa.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AAA",
+  "id": "aaa32",
+  "format": "bin",
+  "source": "aaa.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aaa/",
+  "target": [
+   { "output": "aaa.bin32", "match": "aaa.bin32.t" }
+  ]
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMPGEXADD",
+  "id": "cmpgexadd64",
+  "format": "bin",
+  "source": "cmpgexadd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpgexadd/",
+  "target": [
+   { "output": "cmpgexadd.bin64", "match": "cmpgexadd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPGEXADD",
+  "id": "cmpgexadd16err",
+  "format": "bin",
+  "source": "cmpgexadd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpgexadd/",
+  "target": [
+   { "stderr": "cmpgexadd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPGEXADD",
+  "id": "cmpgexadd32err",
+  "format": "bin",
+  "source": "cmpgexadd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpgexadd/",
+  "target": [
+   { "stderr": "cmpgexadd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

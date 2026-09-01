@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PXOR",
+  "id": "pxor16",
+  "format": "bin",
+  "source": "pxor_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pxor/",
+  "target": [
+   { "output": "pxor.bin16", "match": "pxor.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PXOR",
+  "id": "pxor32",
+  "format": "bin",
+  "source": "pxor_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pxor/",
+  "target": [
+   { "output": "pxor.bin32", "match": "pxor.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PXOR",
+  "id": "pxor64",
+  "format": "bin",
+  "source": "pxor.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pxor/",
+  "target": [
+   { "output": "pxor.bin64", "match": "pxor.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PXOR",
+  "id": "pxor16err",
+  "format": "bin",
+  "source": "pxor_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pxor/",
+  "target": [
+   { "stderr": "pxor.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PXOR",
+  "id": "pxor32err",
+  "format": "bin",
+  "source": "pxor_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pxor/",
+  "target": [
+   { "stderr": "pxor.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

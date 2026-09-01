@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PSRLD",
+  "id": "psrld16",
+  "format": "bin",
+  "source": "psrld_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psrld/",
+  "target": [
+   { "output": "psrld.bin16", "match": "psrld.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSRLD",
+  "id": "psrld32",
+  "format": "bin",
+  "source": "psrld_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psrld/",
+  "target": [
+   { "output": "psrld.bin32", "match": "psrld.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSRLD",
+  "id": "psrld64",
+  "format": "bin",
+  "source": "psrld.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psrld/",
+  "target": [
+   { "output": "psrld.bin64", "match": "psrld.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSRLD",
+  "id": "psrld16err",
+  "format": "bin",
+  "source": "psrld_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psrld/",
+  "target": [
+   { "stderr": "psrld.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSRLD",
+  "id": "psrld32err",
+  "format": "bin",
+  "source": "psrld_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psrld/",
+  "target": [
+   { "stderr": "psrld.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

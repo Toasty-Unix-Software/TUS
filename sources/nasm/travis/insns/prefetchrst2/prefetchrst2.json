@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for PREFETCHRST2",
+  "id": "prefetchrst216",
+  "format": "bin",
+  "source": "prefetchrst2_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/prefetchrst2/",
+  "target": [
+   { "output": "prefetchrst2.bin16", "match": "prefetchrst2.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PREFETCHRST2",
+  "id": "prefetchrst232",
+  "format": "bin",
+  "source": "prefetchrst2_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/prefetchrst2/",
+  "target": [
+   { "output": "prefetchrst2.bin32", "match": "prefetchrst2.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PREFETCHRST2",
+  "id": "prefetchrst264",
+  "format": "bin",
+  "source": "prefetchrst2.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/prefetchrst2/",
+  "target": [
+   { "output": "prefetchrst2.bin64", "match": "prefetchrst2.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for PUSH",
+  "id": "push16",
+  "format": "bin",
+  "source": "push.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/push/",
+  "target": [
+   { "output": "push.bin16", "match": "push.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PUSH",
+  "id": "push32",
+  "format": "bin",
+  "source": "push.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/push/",
+  "target": [
+   { "output": "push.bin32", "match": "push.bin32.t" }
+  ]
+ }
+]

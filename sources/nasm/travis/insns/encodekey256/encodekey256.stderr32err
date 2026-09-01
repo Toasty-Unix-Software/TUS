@@ -1,0 +1,1 @@
+./travis/insns/encodekey256/encodekey256_narrow.asm:5: error: invalid operands in 32-bit mode

@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for POPP",
+  "id": "popp64",
+  "format": "bin",
+  "source": "popp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popp/",
+  "target": [
+   { "output": "popp.bin64", "match": "popp.bin64.t" }
+  ]
+ }
+]

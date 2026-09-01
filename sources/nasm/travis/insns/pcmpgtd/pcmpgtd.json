@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PCMPGTD",
+  "id": "pcmpgtd16",
+  "format": "bin",
+  "source": "pcmpgtd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpgtd/",
+  "target": [
+   { "output": "pcmpgtd.bin16", "match": "pcmpgtd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCMPGTD",
+  "id": "pcmpgtd32",
+  "format": "bin",
+  "source": "pcmpgtd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpgtd/",
+  "target": [
+   { "output": "pcmpgtd.bin32", "match": "pcmpgtd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCMPGTD",
+  "id": "pcmpgtd64",
+  "format": "bin",
+  "source": "pcmpgtd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpgtd/",
+  "target": [
+   { "output": "pcmpgtd.bin64", "match": "pcmpgtd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCMPGTD",
+  "id": "pcmpgtd16err",
+  "format": "bin",
+  "source": "pcmpgtd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpgtd/",
+  "target": [
+   { "stderr": "pcmpgtd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCMPGTD",
+  "id": "pcmpgtd32err",
+  "format": "bin",
+  "source": "pcmpgtd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpgtd/",
+  "target": [
+   { "stderr": "pcmpgtd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for LOOPQ",
+  "id": "loopq64",
+  "format": "bin",
+  "source": "loopq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopq/",
+  "target": [
+   { "output": "loopq.bin64", "match": "loopq.bin64.t" }
+  ]
+ }
+]

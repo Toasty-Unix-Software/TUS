@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMADCSWD",
+  "id": "vpmadcswd16",
+  "format": "bin",
+  "source": "vpmadcswd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmadcswd/",
+  "target": [
+   { "output": "vpmadcswd.bin16", "match": "vpmadcswd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMADCSWD",
+  "id": "vpmadcswd32",
+  "format": "bin",
+  "source": "vpmadcswd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmadcswd/",
+  "target": [
+   { "output": "vpmadcswd.bin32", "match": "vpmadcswd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMADCSWD",
+  "id": "vpmadcswd64",
+  "format": "bin",
+  "source": "vpmadcswd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmadcswd/",
+  "target": [
+   { "output": "vpmadcswd.bin64", "match": "vpmadcswd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMADCSWD",
+  "id": "vpmadcswd16err",
+  "format": "bin",
+  "source": "vpmadcswd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmadcswd/",
+  "target": [
+   { "stderr": "vpmadcswd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMADCSWD",
+  "id": "vpmadcswd32err",
+  "format": "bin",
+  "source": "vpmadcswd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmadcswd/",
+  "target": [
+   { "stderr": "vpmadcswd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

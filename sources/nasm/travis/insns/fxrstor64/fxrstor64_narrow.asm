@@ -1,0 +1,2 @@
+	fxrstor64 [0xa1b]
+	fxrstor64 [0xf90]

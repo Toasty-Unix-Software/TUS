@@ -1,0 +1,1 @@
+./travis/insns/cvtss2sd/cvtss2sd_narrow.asm:5: error: invalid operands in 32-bit mode

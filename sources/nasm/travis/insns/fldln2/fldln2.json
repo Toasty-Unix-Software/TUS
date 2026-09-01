@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FLDLN2",
+  "id": "fldln216",
+  "format": "bin",
+  "source": "fldln2.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fldln2/",
+  "target": [
+   { "output": "fldln2.bin16", "match": "fldln2.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FLDLN2",
+  "id": "fldln232",
+  "format": "bin",
+  "source": "fldln2.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fldln2/",
+  "target": [
+   { "output": "fldln2.bin32", "match": "fldln2.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FLDLN2",
+  "id": "fldln264",
+  "format": "bin",
+  "source": "fldln2.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fldln2/",
+  "target": [
+   { "output": "fldln2.bin64", "match": "fldln2.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for VMXOFF",
+  "id": "vmxoff16",
+  "format": "bin",
+  "source": "vmxoff.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmxoff/",
+  "target": [
+   { "output": "vmxoff.bin16", "match": "vmxoff.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMXOFF",
+  "id": "vmxoff32",
+  "format": "bin",
+  "source": "vmxoff.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmxoff/",
+  "target": [
+   { "output": "vmxoff.bin32", "match": "vmxoff.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMXOFF",
+  "id": "vmxoff64",
+  "format": "bin",
+  "source": "vmxoff.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmxoff/",
+  "target": [
+   { "output": "vmxoff.bin64", "match": "vmxoff.bin64.t" }
+  ]
+ }
+]

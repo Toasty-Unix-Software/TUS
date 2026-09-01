@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for AESIMC",
+  "id": "aesimc16",
+  "format": "bin",
+  "source": "aesimc_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesimc/",
+  "target": [
+   { "output": "aesimc.bin16", "match": "aesimc.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AESIMC",
+  "id": "aesimc32",
+  "format": "bin",
+  "source": "aesimc_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesimc/",
+  "target": [
+   { "output": "aesimc.bin32", "match": "aesimc.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AESIMC",
+  "id": "aesimc64",
+  "format": "bin",
+  "source": "aesimc.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesimc/",
+  "target": [
+   { "output": "aesimc.bin64", "match": "aesimc.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AESIMC",
+  "id": "aesimc16err",
+  "format": "bin",
+  "source": "aesimc_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesimc/",
+  "target": [
+   { "stderr": "aesimc.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AESIMC",
+  "id": "aesimc32err",
+  "format": "bin",
+  "source": "aesimc_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesimc/",
+  "target": [
+   { "stderr": "aesimc.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

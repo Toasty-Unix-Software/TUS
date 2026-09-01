@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for ORTESTD",
+  "id": "ortestd16",
+  "format": "bin",
+  "source": "ortestd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ortestd/",
+  "target": [
+   { "output": "ortestd.bin16", "match": "ortestd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ORTESTD",
+  "id": "ortestd32",
+  "format": "bin",
+  "source": "ortestd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ortestd/",
+  "target": [
+   { "output": "ortestd.bin32", "match": "ortestd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ORTESTD",
+  "id": "ortestd64",
+  "format": "bin",
+  "source": "ortestd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ortestd/",
+  "target": [
+   { "output": "ortestd.bin64", "match": "ortestd.bin64.t" }
+  ]
+ }
+]

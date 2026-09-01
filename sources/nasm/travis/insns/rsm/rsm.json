@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for RSM",
+  "id": "rsm16",
+  "format": "bin",
+  "source": "rsm.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rsm/",
+  "target": [
+   { "output": "rsm.bin16", "match": "rsm.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RSM",
+  "id": "rsm32",
+  "format": "bin",
+  "source": "rsm.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rsm/",
+  "target": [
+   { "output": "rsm.bin32", "match": "rsm.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RSM",
+  "id": "rsm64",
+  "format": "bin",
+  "source": "rsm.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rsm/",
+  "target": [
+   { "output": "rsm.bin64", "match": "rsm.bin64.t" }
+  ]
+ }
+]

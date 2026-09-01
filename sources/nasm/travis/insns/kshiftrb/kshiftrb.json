@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KSHIFTRB",
+  "id": "kshiftrb16",
+  "format": "bin",
+  "source": "kshiftrb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshiftrb/",
+  "target": [
+   { "output": "kshiftrb.bin16", "match": "kshiftrb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KSHIFTRB",
+  "id": "kshiftrb32",
+  "format": "bin",
+  "source": "kshiftrb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshiftrb/",
+  "target": [
+   { "output": "kshiftrb.bin32", "match": "kshiftrb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KSHIFTRB",
+  "id": "kshiftrb64",
+  "format": "bin",
+  "source": "kshiftrb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshiftrb/",
+  "target": [
+   { "output": "kshiftrb.bin64", "match": "kshiftrb.bin64.t" }
+  ]
+ }
+]

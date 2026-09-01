@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FDIVP",
+  "id": "fdivp16",
+  "format": "bin",
+  "source": "fdivp.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fdivp/",
+  "target": [
+   { "output": "fdivp.bin16", "match": "fdivp.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FDIVP",
+  "id": "fdivp32",
+  "format": "bin",
+  "source": "fdivp.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fdivp/",
+  "target": [
+   { "output": "fdivp.bin32", "match": "fdivp.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FDIVP",
+  "id": "fdivp64",
+  "format": "bin",
+  "source": "fdivp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fdivp/",
+  "target": [
+   { "output": "fdivp.bin64", "match": "fdivp.bin64.t" }
+  ]
+ }
+]

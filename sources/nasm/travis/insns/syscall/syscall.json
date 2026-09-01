@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for SYSCALL",
+  "id": "syscall16",
+  "format": "bin",
+  "source": "syscall.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/syscall/",
+  "target": [
+   { "output": "syscall.bin16", "match": "syscall.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SYSCALL",
+  "id": "syscall32",
+  "format": "bin",
+  "source": "syscall.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/syscall/",
+  "target": [
+   { "output": "syscall.bin32", "match": "syscall.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SYSCALL",
+  "id": "syscall64",
+  "format": "bin",
+  "source": "syscall.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/syscall/",
+  "target": [
+   { "output": "syscall.bin64", "match": "syscall.bin64.t" }
+  ]
+ }
+]

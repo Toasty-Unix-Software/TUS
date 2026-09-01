@@ -1,0 +1,47 @@
+[
+ {
+  "description": "Pseudorandom test for VGATHERPF0DPD",
+  "id": "vgatherpf0dpd32",
+  "format": "bin",
+  "source": "vgatherpf0dpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgatherpf0dpd/",
+  "target": [
+   { "output": "vgatherpf0dpd.bin32", "match": "vgatherpf0dpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGATHERPF0DPD",
+  "id": "vgatherpf0dpd64",
+  "format": "bin",
+  "source": "vgatherpf0dpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgatherpf0dpd/",
+  "target": [
+   { "output": "vgatherpf0dpd.bin64", "match": "vgatherpf0dpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGATHERPF0DPD",
+  "id": "vgatherpf0dpd16err",
+  "format": "bin",
+  "source": "vgatherpf0dpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgatherpf0dpd/",
+  "target": [
+   { "stderr": "vgatherpf0dpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGATHERPF0DPD",
+  "id": "vgatherpf0dpd32err",
+  "format": "bin",
+  "source": "vgatherpf0dpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgatherpf0dpd/",
+  "target": [
+   { "stderr": "vgatherpf0dpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

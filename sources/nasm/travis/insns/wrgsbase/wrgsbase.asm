@@ -1,0 +1,9 @@
+default rel
+	wrgsbase edi
+	wrgsbase edx
+	wrgsbase rbx
+	wrgsbase rdi
+	wrgsbase r14d
+	wrgsbase r9
+	wrgsbase r21d
+	wrgsbase r29

@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for RDSHR",
+  "id": "rdshr16",
+  "format": "bin",
+  "source": "rdshr.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdshr/",
+  "target": [
+   { "output": "rdshr.bin16", "match": "rdshr.bin16.t" },
+   { "stderr": "rdshr.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RDSHR",
+  "id": "rdshr32",
+  "format": "bin",
+  "source": "rdshr.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdshr/",
+  "target": [
+   { "output": "rdshr.bin32", "match": "rdshr.bin32.t" },
+   { "stderr": "rdshr.stderr32" }
+  ]
+ }
+]

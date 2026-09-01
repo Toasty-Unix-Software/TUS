@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMINSS",
+  "id": "vminss16",
+  "format": "bin",
+  "source": "vminss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminss/",
+  "target": [
+   { "output": "vminss.bin16", "match": "vminss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMINSS",
+  "id": "vminss32",
+  "format": "bin",
+  "source": "vminss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminss/",
+  "target": [
+   { "output": "vminss.bin32", "match": "vminss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMINSS",
+  "id": "vminss64",
+  "format": "bin",
+  "source": "vminss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminss/",
+  "target": [
+   { "output": "vminss.bin64", "match": "vminss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMINSS",
+  "id": "vminss16err",
+  "format": "bin",
+  "source": "vminss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminss/",
+  "target": [
+   { "stderr": "vminss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMINSS",
+  "id": "vminss32err",
+  "format": "bin",
+  "source": "vminss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminss/",
+  "target": [
+   { "stderr": "vminss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

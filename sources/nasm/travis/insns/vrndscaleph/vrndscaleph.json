@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VRNDSCALEPH",
+  "id": "vrndscaleph16",
+  "format": "bin",
+  "source": "vrndscaleph_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrndscaleph/",
+  "target": [
+   { "output": "vrndscaleph.bin16", "match": "vrndscaleph.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRNDSCALEPH",
+  "id": "vrndscaleph32",
+  "format": "bin",
+  "source": "vrndscaleph_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrndscaleph/",
+  "target": [
+   { "output": "vrndscaleph.bin32", "match": "vrndscaleph.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRNDSCALEPH",
+  "id": "vrndscaleph64",
+  "format": "bin",
+  "source": "vrndscaleph.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrndscaleph/",
+  "target": [
+   { "output": "vrndscaleph.bin64", "match": "vrndscaleph.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRNDSCALEPH",
+  "id": "vrndscaleph16err",
+  "format": "bin",
+  "source": "vrndscaleph_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrndscaleph/",
+  "target": [
+   { "stderr": "vrndscaleph.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRNDSCALEPH",
+  "id": "vrndscaleph32err",
+  "format": "bin",
+  "source": "vrndscaleph_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrndscaleph/",
+  "target": [
+   { "stderr": "vrndscaleph.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

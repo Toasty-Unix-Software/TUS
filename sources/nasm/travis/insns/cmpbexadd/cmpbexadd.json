@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMPBEXADD",
+  "id": "cmpbexadd64",
+  "format": "bin",
+  "source": "cmpbexadd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpbexadd/",
+  "target": [
+   { "output": "cmpbexadd.bin64", "match": "cmpbexadd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPBEXADD",
+  "id": "cmpbexadd16err",
+  "format": "bin",
+  "source": "cmpbexadd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpbexadd/",
+  "target": [
+   { "stderr": "cmpbexadd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPBEXADD",
+  "id": "cmpbexadd32err",
+  "format": "bin",
+  "source": "cmpbexadd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpbexadd/",
+  "target": [
+   { "stderr": "cmpbexadd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

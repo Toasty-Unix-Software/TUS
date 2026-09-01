@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for SENDUIPI",
+  "id": "senduipi64",
+  "format": "bin",
+  "source": "senduipi.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/senduipi/",
+  "target": [
+   { "output": "senduipi.bin64", "match": "senduipi.bin64.t" }
+  ]
+ }
+]

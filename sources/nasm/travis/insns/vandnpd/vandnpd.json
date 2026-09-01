@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VANDNPD",
+  "id": "vandnpd16",
+  "format": "bin",
+  "source": "vandnpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vandnpd/",
+  "target": [
+   { "output": "vandnpd.bin16", "match": "vandnpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VANDNPD",
+  "id": "vandnpd32",
+  "format": "bin",
+  "source": "vandnpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vandnpd/",
+  "target": [
+   { "output": "vandnpd.bin32", "match": "vandnpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VANDNPD",
+  "id": "vandnpd64",
+  "format": "bin",
+  "source": "vandnpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vandnpd/",
+  "target": [
+   { "output": "vandnpd.bin64", "match": "vandnpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VANDNPD",
+  "id": "vandnpd16err",
+  "format": "bin",
+  "source": "vandnpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vandnpd/",
+  "target": [
+   { "stderr": "vandnpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VANDNPD",
+  "id": "vandnpd32err",
+  "format": "bin",
+  "source": "vandnpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vandnpd/",
+  "target": [
+   { "stderr": "vandnpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CTESTNGE",
+  "id": "ctestnge64",
+  "format": "bin",
+  "source": "ctestnge.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestnge/",
+  "target": [
+   { "output": "ctestnge.bin64", "match": "ctestnge.bin64.t" },
+   { "stderr": "ctestnge.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTNGE",
+  "id": "ctestnge16err",
+  "format": "bin",
+  "source": "ctestnge_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestnge/",
+  "target": [
+   { "stderr": "ctestnge.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTNGE",
+  "id": "ctestnge32err",
+  "format": "bin",
+  "source": "ctestnge_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestnge/",
+  "target": [
+   { "stderr": "ctestnge.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

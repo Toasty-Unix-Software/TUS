@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for CLFLUSH",
+  "id": "clflush16",
+  "format": "bin",
+  "source": "clflush_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clflush/",
+  "target": [
+   { "output": "clflush.bin16", "match": "clflush.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLFLUSH",
+  "id": "clflush32",
+  "format": "bin",
+  "source": "clflush_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clflush/",
+  "target": [
+   { "output": "clflush.bin32", "match": "clflush.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLFLUSH",
+  "id": "clflush64",
+  "format": "bin",
+  "source": "clflush.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clflush/",
+  "target": [
+   { "output": "clflush.bin64", "match": "clflush.bin64.t" }
+  ]
+ }
+]

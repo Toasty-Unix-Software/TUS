@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FADDP",
+  "id": "faddp16",
+  "format": "bin",
+  "source": "faddp.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/faddp/",
+  "target": [
+   { "output": "faddp.bin16", "match": "faddp.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FADDP",
+  "id": "faddp32",
+  "format": "bin",
+  "source": "faddp.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/faddp/",
+  "target": [
+   { "output": "faddp.bin32", "match": "faddp.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FADDP",
+  "id": "faddp64",
+  "format": "bin",
+  "source": "faddp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/faddp/",
+  "target": [
+   { "output": "faddp.bin64", "match": "faddp.bin64.t" }
+  ]
+ }
+]

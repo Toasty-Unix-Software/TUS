@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPTESTMQ",
+  "id": "vptestmq16",
+  "format": "bin",
+  "source": "vptestmq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmq/",
+  "target": [
+   { "output": "vptestmq.bin16", "match": "vptestmq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPTESTMQ",
+  "id": "vptestmq32",
+  "format": "bin",
+  "source": "vptestmq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmq/",
+  "target": [
+   { "output": "vptestmq.bin32", "match": "vptestmq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPTESTMQ",
+  "id": "vptestmq64",
+  "format": "bin",
+  "source": "vptestmq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmq/",
+  "target": [
+   { "output": "vptestmq.bin64", "match": "vptestmq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPTESTMQ",
+  "id": "vptestmq16err",
+  "format": "bin",
+  "source": "vptestmq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmq/",
+  "target": [
+   { "stderr": "vptestmq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPTESTMQ",
+  "id": "vptestmq32err",
+  "format": "bin",
+  "source": "vptestmq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmq/",
+  "target": [
+   { "stderr": "vptestmq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

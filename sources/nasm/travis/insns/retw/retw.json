@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for RETW",
+  "id": "retw16",
+  "format": "bin",
+  "source": "retw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retw/",
+  "target": [
+   { "output": "retw.bin16", "match": "retw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RETW",
+  "id": "retw32",
+  "format": "bin",
+  "source": "retw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retw/",
+  "target": [
+   { "output": "retw.bin32", "match": "retw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RETW",
+  "id": "retw64",
+  "format": "bin",
+  "source": "retw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retw/",
+  "target": [
+   { "output": "retw.bin64", "match": "retw.bin64.t" }
+  ]
+ }
+]

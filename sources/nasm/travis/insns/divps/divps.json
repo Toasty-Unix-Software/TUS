@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for DIVPS",
+  "id": "divps16",
+  "format": "bin",
+  "source": "divps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/divps/",
+  "target": [
+   { "output": "divps.bin16", "match": "divps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DIVPS",
+  "id": "divps32",
+  "format": "bin",
+  "source": "divps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/divps/",
+  "target": [
+   { "output": "divps.bin32", "match": "divps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DIVPS",
+  "id": "divps64",
+  "format": "bin",
+  "source": "divps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/divps/",
+  "target": [
+   { "output": "divps.bin64", "match": "divps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for DIVPS",
+  "id": "divps16err",
+  "format": "bin",
+  "source": "divps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/divps/",
+  "target": [
+   { "stderr": "divps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for DIVPS",
+  "id": "divps32err",
+  "format": "bin",
+  "source": "divps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/divps/",
+  "target": [
+   { "stderr": "divps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

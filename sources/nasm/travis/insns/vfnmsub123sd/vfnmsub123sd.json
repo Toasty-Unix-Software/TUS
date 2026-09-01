@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFNMSUB123SD",
+  "id": "vfnmsub123sd16",
+  "format": "bin",
+  "source": "vfnmsub123sd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub123sd/",
+  "target": [
+   { "output": "vfnmsub123sd.bin16", "match": "vfnmsub123sd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMSUB123SD",
+  "id": "vfnmsub123sd32",
+  "format": "bin",
+  "source": "vfnmsub123sd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub123sd/",
+  "target": [
+   { "output": "vfnmsub123sd.bin32", "match": "vfnmsub123sd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMSUB123SD",
+  "id": "vfnmsub123sd64",
+  "format": "bin",
+  "source": "vfnmsub123sd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub123sd/",
+  "target": [
+   { "output": "vfnmsub123sd.bin64", "match": "vfnmsub123sd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMSUB123SD",
+  "id": "vfnmsub123sd16err",
+  "format": "bin",
+  "source": "vfnmsub123sd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub123sd/",
+  "target": [
+   { "stderr": "vfnmsub123sd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMSUB123SD",
+  "id": "vfnmsub123sd32err",
+  "format": "bin",
+  "source": "vfnmsub123sd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub123sd/",
+  "target": [
+   { "stderr": "vfnmsub123sd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

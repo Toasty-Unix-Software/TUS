@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPA",
+  "id": "ccmpa64",
+  "format": "bin",
+  "source": "ccmpa.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpa/",
+  "target": [
+   { "output": "ccmpa.bin64", "match": "ccmpa.bin64.t" },
+   { "stderr": "ccmpa.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPA",
+  "id": "ccmpa16err",
+  "format": "bin",
+  "source": "ccmpa_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpa/",
+  "target": [
+   { "stderr": "ccmpa.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPA",
+  "id": "ccmpa32err",
+  "format": "bin",
+  "source": "ccmpa_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpa/",
+  "target": [
+   { "stderr": "ccmpa.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

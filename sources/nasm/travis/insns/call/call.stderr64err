@@ -1,0 +1,2 @@
+./travis/insns/call/call.asm:16: error: instruction not supported in 64-bit mode
+./travis/insns/call/call.asm:17: error: instruction not supported in 64-bit mode

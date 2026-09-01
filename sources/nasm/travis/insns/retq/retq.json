@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for RETQ",
+  "id": "retq64",
+  "format": "bin",
+  "source": "retq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retq/",
+  "target": [
+   { "output": "retq.bin64", "match": "retq.bin64.t" }
+  ]
+ }
+]

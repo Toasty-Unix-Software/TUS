@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for VMRUN",
+  "id": "vmrun16",
+  "format": "bin",
+  "source": "vmrun.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmrun/",
+  "target": [
+   { "output": "vmrun.bin16", "match": "vmrun.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMRUN",
+  "id": "vmrun32",
+  "format": "bin",
+  "source": "vmrun.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmrun/",
+  "target": [
+   { "output": "vmrun.bin32", "match": "vmrun.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMRUN",
+  "id": "vmrun64",
+  "format": "bin",
+  "source": "vmrun.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmrun/",
+  "target": [
+   { "output": "vmrun.bin64", "match": "vmrun.bin64.t" }
+  ]
+ }
+]

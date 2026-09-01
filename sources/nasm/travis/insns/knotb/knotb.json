@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KNOTB",
+  "id": "knotb16",
+  "format": "bin",
+  "source": "knotb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/knotb/",
+  "target": [
+   { "output": "knotb.bin16", "match": "knotb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KNOTB",
+  "id": "knotb32",
+  "format": "bin",
+  "source": "knotb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/knotb/",
+  "target": [
+   { "output": "knotb.bin32", "match": "knotb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KNOTB",
+  "id": "knotb64",
+  "format": "bin",
+  "source": "knotb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/knotb/",
+  "target": [
+   { "output": "knotb.bin64", "match": "knotb.bin64.t" }
+  ]
+ }
+]

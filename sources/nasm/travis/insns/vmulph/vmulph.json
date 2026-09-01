@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMULPH",
+  "id": "vmulph16",
+  "format": "bin",
+  "source": "vmulph_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmulph/",
+  "target": [
+   { "output": "vmulph.bin16", "match": "vmulph.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMULPH",
+  "id": "vmulph32",
+  "format": "bin",
+  "source": "vmulph_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmulph/",
+  "target": [
+   { "output": "vmulph.bin32", "match": "vmulph.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMULPH",
+  "id": "vmulph64",
+  "format": "bin",
+  "source": "vmulph.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmulph/",
+  "target": [
+   { "output": "vmulph.bin64", "match": "vmulph.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMULPH",
+  "id": "vmulph16err",
+  "format": "bin",
+  "source": "vmulph_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmulph/",
+  "target": [
+   { "stderr": "vmulph.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMULPH",
+  "id": "vmulph32err",
+  "format": "bin",
+  "source": "vmulph_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmulph/",
+  "target": [
+   { "stderr": "vmulph.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

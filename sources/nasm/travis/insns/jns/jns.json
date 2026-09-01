@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for JNS",
+  "id": "jns16",
+  "format": "bin",
+  "source": "jns_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jns/",
+  "target": [
+   { "output": "jns.bin16", "match": "jns.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JNS",
+  "id": "jns32",
+  "format": "bin",
+  "source": "jns_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jns/",
+  "target": [
+   { "output": "jns.bin32", "match": "jns.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JNS",
+  "id": "jns64",
+  "format": "bin",
+  "source": "jns.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jns/",
+  "target": [
+   { "output": "jns.bin64", "match": "jns.bin64.t" }
+  ]
+ }
+]

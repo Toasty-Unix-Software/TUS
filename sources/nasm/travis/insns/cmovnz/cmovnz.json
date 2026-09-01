@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMOVNZ",
+  "id": "cmovnz64",
+  "format": "bin",
+  "source": "cmovnz.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovnz/",
+  "target": [
+   { "output": "cmovnz.bin64", "match": "cmovnz.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVNZ",
+  "id": "cmovnz16err",
+  "format": "bin",
+  "source": "cmovnz_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovnz/",
+  "target": [
+   { "stderr": "cmovnz.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVNZ",
+  "id": "cmovnz32err",
+  "format": "bin",
+  "source": "cmovnz_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovnz/",
+  "target": [
+   { "stderr": "cmovnz.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

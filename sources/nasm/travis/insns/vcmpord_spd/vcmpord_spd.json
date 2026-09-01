@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPORD_SPD",
+  "id": "vcmpord_spd16",
+  "format": "bin",
+  "source": "vcmpord_spd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpord_spd/",
+  "target": [
+   { "output": "vcmpord_spd.bin16", "match": "vcmpord_spd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPORD_SPD",
+  "id": "vcmpord_spd32",
+  "format": "bin",
+  "source": "vcmpord_spd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpord_spd/",
+  "target": [
+   { "output": "vcmpord_spd.bin32", "match": "vcmpord_spd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPORD_SPD",
+  "id": "vcmpord_spd64",
+  "format": "bin",
+  "source": "vcmpord_spd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpord_spd/",
+  "target": [
+   { "output": "vcmpord_spd.bin64", "match": "vcmpord_spd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPORD_SPD",
+  "id": "vcmpord_spd16err",
+  "format": "bin",
+  "source": "vcmpord_spd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpord_spd/",
+  "target": [
+   { "stderr": "vcmpord_spd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPORD_SPD",
+  "id": "vcmpord_spd32err",
+  "format": "bin",
+  "source": "vcmpord_spd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpord_spd/",
+  "target": [
+   { "stderr": "vcmpord_spd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

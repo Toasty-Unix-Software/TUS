@@ -1,0 +1,3 @@
+default rel
+	xabort 0x1f
+	xabort 0x73

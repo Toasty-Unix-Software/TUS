@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for PFSUBR",
+  "id": "pfsubr16",
+  "format": "bin",
+  "source": "pfsubr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pfsubr/",
+  "target": [
+   { "output": "pfsubr.bin16", "match": "pfsubr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PFSUBR",
+  "id": "pfsubr32",
+  "format": "bin",
+  "source": "pfsubr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pfsubr/",
+  "target": [
+   { "output": "pfsubr.bin32", "match": "pfsubr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PFSUBR",
+  "id": "pfsubr64",
+  "format": "bin",
+  "source": "pfsubr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pfsubr/",
+  "target": [
+   { "output": "pfsubr.bin64", "match": "pfsubr.bin64.t" }
+  ]
+ }
+]

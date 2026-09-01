@@ -1,0 +1,3 @@
+default rel
+	int 0x64
+	int 0xc9

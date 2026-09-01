@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPNLEW",
+  "id": "vpcmpnlew16",
+  "format": "bin",
+  "source": "vpcmpnlew_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpnlew/",
+  "target": [
+   { "output": "vpcmpnlew.bin16", "match": "vpcmpnlew.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPNLEW",
+  "id": "vpcmpnlew32",
+  "format": "bin",
+  "source": "vpcmpnlew_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpnlew/",
+  "target": [
+   { "output": "vpcmpnlew.bin32", "match": "vpcmpnlew.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPNLEW",
+  "id": "vpcmpnlew64",
+  "format": "bin",
+  "source": "vpcmpnlew.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpnlew/",
+  "target": [
+   { "output": "vpcmpnlew.bin64", "match": "vpcmpnlew.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPNLEW",
+  "id": "vpcmpnlew16err",
+  "format": "bin",
+  "source": "vpcmpnlew_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpnlew/",
+  "target": [
+   { "stderr": "vpcmpnlew.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPNLEW",
+  "id": "vpcmpnlew32err",
+  "format": "bin",
+  "source": "vpcmpnlew_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpnlew/",
+  "target": [
+   { "stderr": "vpcmpnlew.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

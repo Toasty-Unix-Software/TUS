@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PEXTRB",
+  "id": "pextrb16",
+  "format": "bin",
+  "source": "pextrb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pextrb/",
+  "target": [
+   { "output": "pextrb.bin16", "match": "pextrb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PEXTRB",
+  "id": "pextrb32",
+  "format": "bin",
+  "source": "pextrb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pextrb/",
+  "target": [
+   { "output": "pextrb.bin32", "match": "pextrb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PEXTRB",
+  "id": "pextrb64",
+  "format": "bin",
+  "source": "pextrb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pextrb/",
+  "target": [
+   { "output": "pextrb.bin64", "match": "pextrb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PEXTRB",
+  "id": "pextrb16err",
+  "format": "bin",
+  "source": "pextrb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pextrb/",
+  "target": [
+   { "stderr": "pextrb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PEXTRB",
+  "id": "pextrb32err",
+  "format": "bin",
+  "source": "pextrb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pextrb/",
+  "target": [
+   { "stderr": "pextrb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

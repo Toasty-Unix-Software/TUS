@@ -1,0 +1,3 @@
+default rel
+	frndint
+	frndint

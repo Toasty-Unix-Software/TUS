@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for LDTILECFG",
+  "id": "ldtilecfg64",
+  "format": "bin",
+  "source": "ldtilecfg.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ldtilecfg/",
+  "target": [
+   { "output": "ldtilecfg.bin64", "match": "ldtilecfg.bin64.t" }
+  ]
+ }
+]

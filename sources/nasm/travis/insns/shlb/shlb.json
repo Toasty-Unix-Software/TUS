@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for SHLB",
+  "id": "shlb16",
+  "format": "bin",
+  "source": "shlb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shlb/",
+  "target": [
+   { "output": "shlb.bin16", "match": "shlb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHLB",
+  "id": "shlb32",
+  "format": "bin",
+  "source": "shlb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shlb/",
+  "target": [
+   { "output": "shlb.bin32", "match": "shlb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHLB",
+  "id": "shlb64",
+  "format": "bin",
+  "source": "shlb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shlb/",
+  "target": [
+   { "output": "shlb.bin64", "match": "shlb.bin64.t" }
+  ]
+ }
+]

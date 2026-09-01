@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for LOOPNE",
+  "id": "loopne16",
+  "format": "bin",
+  "source": "loopne_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopne/",
+  "target": [
+   { "output": "loopne.bin16", "match": "loopne.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LOOPNE",
+  "id": "loopne32",
+  "format": "bin",
+  "source": "loopne_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopne/",
+  "target": [
+   { "output": "loopne.bin32", "match": "loopne.bin32.t" }
+  ]
+ }
+]

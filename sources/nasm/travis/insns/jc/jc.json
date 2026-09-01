@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for JC",
+  "id": "jc16",
+  "format": "bin",
+  "source": "jc_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jc/",
+  "target": [
+   { "output": "jc.bin16", "match": "jc.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JC",
+  "id": "jc32",
+  "format": "bin",
+  "source": "jc_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jc/",
+  "target": [
+   { "output": "jc.bin32", "match": "jc.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JC",
+  "id": "jc64",
+  "format": "bin",
+  "source": "jc.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jc/",
+  "target": [
+   { "output": "jc.bin64", "match": "jc.bin64.t" }
+  ]
+ }
+]

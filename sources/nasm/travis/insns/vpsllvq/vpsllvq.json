@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSLLVQ",
+  "id": "vpsllvq16",
+  "format": "bin",
+  "source": "vpsllvq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsllvq/",
+  "target": [
+   { "output": "vpsllvq.bin16", "match": "vpsllvq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSLLVQ",
+  "id": "vpsllvq32",
+  "format": "bin",
+  "source": "vpsllvq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsllvq/",
+  "target": [
+   { "output": "vpsllvq.bin32", "match": "vpsllvq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSLLVQ",
+  "id": "vpsllvq64",
+  "format": "bin",
+  "source": "vpsllvq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsllvq/",
+  "target": [
+   { "output": "vpsllvq.bin64", "match": "vpsllvq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSLLVQ",
+  "id": "vpsllvq16err",
+  "format": "bin",
+  "source": "vpsllvq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsllvq/",
+  "target": [
+   { "stderr": "vpsllvq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSLLVQ",
+  "id": "vpsllvq32err",
+  "format": "bin",
+  "source": "vpsllvq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsllvq/",
+  "target": [
+   { "stderr": "vpsllvq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VGETMANTPD",
+  "id": "vgetmantpd16",
+  "format": "bin",
+  "source": "vgetmantpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantpd/",
+  "target": [
+   { "output": "vgetmantpd.bin16", "match": "vgetmantpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETMANTPD",
+  "id": "vgetmantpd32",
+  "format": "bin",
+  "source": "vgetmantpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantpd/",
+  "target": [
+   { "output": "vgetmantpd.bin32", "match": "vgetmantpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETMANTPD",
+  "id": "vgetmantpd64",
+  "format": "bin",
+  "source": "vgetmantpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantpd/",
+  "target": [
+   { "output": "vgetmantpd.bin64", "match": "vgetmantpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETMANTPD",
+  "id": "vgetmantpd16err",
+  "format": "bin",
+  "source": "vgetmantpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantpd/",
+  "target": [
+   { "stderr": "vgetmantpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETMANTPD",
+  "id": "vgetmantpd32err",
+  "format": "bin",
+  "source": "vgetmantpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantpd/",
+  "target": [
+   { "stderr": "vgetmantpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

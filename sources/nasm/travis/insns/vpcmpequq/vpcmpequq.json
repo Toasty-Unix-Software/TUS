@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPEQUQ",
+  "id": "vpcmpequq16",
+  "format": "bin",
+  "source": "vpcmpequq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpequq/",
+  "target": [
+   { "output": "vpcmpequq.bin16", "match": "vpcmpequq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPEQUQ",
+  "id": "vpcmpequq32",
+  "format": "bin",
+  "source": "vpcmpequq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpequq/",
+  "target": [
+   { "output": "vpcmpequq.bin32", "match": "vpcmpequq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPEQUQ",
+  "id": "vpcmpequq64",
+  "format": "bin",
+  "source": "vpcmpequq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpequq/",
+  "target": [
+   { "output": "vpcmpequq.bin64", "match": "vpcmpequq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPEQUQ",
+  "id": "vpcmpequq16err",
+  "format": "bin",
+  "source": "vpcmpequq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpequq/",
+  "target": [
+   { "stderr": "vpcmpequq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPEQUQ",
+  "id": "vpcmpequq32err",
+  "format": "bin",
+  "source": "vpcmpequq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpequq/",
+  "target": [
+   { "stderr": "vpcmpequq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

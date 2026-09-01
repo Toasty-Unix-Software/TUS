@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPNGTQ",
+  "id": "vpcmpngtq16",
+  "format": "bin",
+  "source": "vpcmpngtq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpngtq/",
+  "target": [
+   { "output": "vpcmpngtq.bin16", "match": "vpcmpngtq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPNGTQ",
+  "id": "vpcmpngtq32",
+  "format": "bin",
+  "source": "vpcmpngtq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpngtq/",
+  "target": [
+   { "output": "vpcmpngtq.bin32", "match": "vpcmpngtq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPNGTQ",
+  "id": "vpcmpngtq64",
+  "format": "bin",
+  "source": "vpcmpngtq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpngtq/",
+  "target": [
+   { "output": "vpcmpngtq.bin64", "match": "vpcmpngtq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPNGTQ",
+  "id": "vpcmpngtq16err",
+  "format": "bin",
+  "source": "vpcmpngtq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpngtq/",
+  "target": [
+   { "stderr": "vpcmpngtq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPNGTQ",
+  "id": "vpcmpngtq32err",
+  "format": "bin",
+  "source": "vpcmpngtq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpngtq/",
+  "target": [
+   { "stderr": "vpcmpngtq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

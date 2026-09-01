@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for LTR",
+  "id": "ltr16",
+  "format": "bin",
+  "source": "ltr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ltr/",
+  "target": [
+   { "output": "ltr.bin16", "match": "ltr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LTR",
+  "id": "ltr32",
+  "format": "bin",
+  "source": "ltr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ltr/",
+  "target": [
+   { "output": "ltr.bin32", "match": "ltr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LTR",
+  "id": "ltr64",
+  "format": "bin",
+  "source": "ltr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ltr/",
+  "target": [
+   { "output": "ltr.bin64", "match": "ltr.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LTR",
+  "id": "ltr16err",
+  "format": "bin",
+  "source": "ltr_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ltr/",
+  "target": [
+   { "stderr": "ltr.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LTR",
+  "id": "ltr32err",
+  "format": "bin",
+  "source": "ltr_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ltr/",
+  "target": [
+   { "stderr": "ltr.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

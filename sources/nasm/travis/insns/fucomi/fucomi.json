@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FUCOMI",
+  "id": "fucomi16",
+  "format": "bin",
+  "source": "fucomi.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fucomi/",
+  "target": [
+   { "output": "fucomi.bin16", "match": "fucomi.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FUCOMI",
+  "id": "fucomi32",
+  "format": "bin",
+  "source": "fucomi.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fucomi/",
+  "target": [
+   { "output": "fucomi.bin32", "match": "fucomi.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FUCOMI",
+  "id": "fucomi64",
+  "format": "bin",
+  "source": "fucomi.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fucomi/",
+  "target": [
+   { "output": "fucomi.bin64", "match": "fucomi.bin64.t" }
+  ]
+ }
+]

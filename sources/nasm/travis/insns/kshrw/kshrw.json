@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KSHRW",
+  "id": "kshrw16",
+  "format": "bin",
+  "source": "kshrw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshrw/",
+  "target": [
+   { "output": "kshrw.bin16", "match": "kshrw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KSHRW",
+  "id": "kshrw32",
+  "format": "bin",
+  "source": "kshrw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshrw/",
+  "target": [
+   { "output": "kshrw.bin32", "match": "kshrw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KSHRW",
+  "id": "kshrw64",
+  "format": "bin",
+  "source": "kshrw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshrw/",
+  "target": [
+   { "output": "kshrw.bin64", "match": "kshrw.bin64.t" }
+  ]
+ }
+]

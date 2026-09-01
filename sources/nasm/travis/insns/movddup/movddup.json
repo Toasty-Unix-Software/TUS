@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MOVDDUP",
+  "id": "movddup16",
+  "format": "bin",
+  "source": "movddup_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movddup/",
+  "target": [
+   { "output": "movddup.bin16", "match": "movddup.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVDDUP",
+  "id": "movddup32",
+  "format": "bin",
+  "source": "movddup_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movddup/",
+  "target": [
+   { "output": "movddup.bin32", "match": "movddup.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVDDUP",
+  "id": "movddup64",
+  "format": "bin",
+  "source": "movddup.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movddup/",
+  "target": [
+   { "output": "movddup.bin64", "match": "movddup.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVDDUP",
+  "id": "movddup16err",
+  "format": "bin",
+  "source": "movddup_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movddup/",
+  "target": [
+   { "stderr": "movddup.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVDDUP",
+  "id": "movddup32err",
+  "format": "bin",
+  "source": "movddup_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movddup/",
+  "target": [
+   { "stderr": "movddup.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

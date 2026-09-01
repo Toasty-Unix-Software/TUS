@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPT",
+  "id": "ccmpt64",
+  "format": "bin",
+  "source": "ccmpt.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpt/",
+  "target": [
+   { "output": "ccmpt.bin64", "match": "ccmpt.bin64.t" },
+   { "stderr": "ccmpt.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPT",
+  "id": "ccmpt16err",
+  "format": "bin",
+  "source": "ccmpt_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpt/",
+  "target": [
+   { "stderr": "ccmpt.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPT",
+  "id": "ccmpt32err",
+  "format": "bin",
+  "source": "ccmpt_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpt/",
+  "target": [
+   { "stderr": "ccmpt.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

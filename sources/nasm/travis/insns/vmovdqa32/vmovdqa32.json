@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMOVDQA32",
+  "id": "vmovdqa3216",
+  "format": "bin",
+  "source": "vmovdqa32_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovdqa32/",
+  "target": [
+   { "output": "vmovdqa32.bin16", "match": "vmovdqa32.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVDQA32",
+  "id": "vmovdqa3232",
+  "format": "bin",
+  "source": "vmovdqa32_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovdqa32/",
+  "target": [
+   { "output": "vmovdqa32.bin32", "match": "vmovdqa32.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVDQA32",
+  "id": "vmovdqa3264",
+  "format": "bin",
+  "source": "vmovdqa32.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovdqa32/",
+  "target": [
+   { "output": "vmovdqa32.bin64", "match": "vmovdqa32.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVDQA32",
+  "id": "vmovdqa3216err",
+  "format": "bin",
+  "source": "vmovdqa32_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovdqa32/",
+  "target": [
+   { "stderr": "vmovdqa32.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVDQA32",
+  "id": "vmovdqa3232err",
+  "format": "bin",
+  "source": "vmovdqa32_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovdqa32/",
+  "target": [
+   { "stderr": "vmovdqa32.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

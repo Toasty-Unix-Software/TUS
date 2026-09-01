@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPFALSEPS",
+  "id": "vcmpfalseps16",
+  "format": "bin",
+  "source": "vcmpfalseps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalseps/",
+  "target": [
+   { "output": "vcmpfalseps.bin16", "match": "vcmpfalseps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPFALSEPS",
+  "id": "vcmpfalseps32",
+  "format": "bin",
+  "source": "vcmpfalseps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalseps/",
+  "target": [
+   { "output": "vcmpfalseps.bin32", "match": "vcmpfalseps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPFALSEPS",
+  "id": "vcmpfalseps64",
+  "format": "bin",
+  "source": "vcmpfalseps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalseps/",
+  "target": [
+   { "output": "vcmpfalseps.bin64", "match": "vcmpfalseps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPFALSEPS",
+  "id": "vcmpfalseps16err",
+  "format": "bin",
+  "source": "vcmpfalseps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalseps/",
+  "target": [
+   { "stderr": "vcmpfalseps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPFALSEPS",
+  "id": "vcmpfalseps32err",
+  "format": "bin",
+  "source": "vcmpfalseps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalseps/",
+  "target": [
+   { "stderr": "vcmpfalseps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

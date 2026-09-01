@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VREDUCEPH",
+  "id": "vreduceph16",
+  "format": "bin",
+  "source": "vreduceph_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreduceph/",
+  "target": [
+   { "output": "vreduceph.bin16", "match": "vreduceph.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VREDUCEPH",
+  "id": "vreduceph32",
+  "format": "bin",
+  "source": "vreduceph_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreduceph/",
+  "target": [
+   { "output": "vreduceph.bin32", "match": "vreduceph.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VREDUCEPH",
+  "id": "vreduceph64",
+  "format": "bin",
+  "source": "vreduceph.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreduceph/",
+  "target": [
+   { "output": "vreduceph.bin64", "match": "vreduceph.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VREDUCEPH",
+  "id": "vreduceph16err",
+  "format": "bin",
+  "source": "vreduceph_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreduceph/",
+  "target": [
+   { "stderr": "vreduceph.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VREDUCEPH",
+  "id": "vreduceph32err",
+  "format": "bin",
+  "source": "vreduceph_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreduceph/",
+  "target": [
+   { "stderr": "vreduceph.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

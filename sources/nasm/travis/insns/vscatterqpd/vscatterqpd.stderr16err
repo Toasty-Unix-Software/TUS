@@ -1,0 +1,12 @@
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:1: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:2: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:3: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:4: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:5: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:6: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:9: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:10: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:11: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:12: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:13: error: invalid 16-bit effective address
+./travis/insns/vscatterqpd/vscatterqpd_narrow.asm:14: error: invalid 16-bit effective address

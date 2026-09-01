@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for PREFETCH",
+  "id": "prefetch16",
+  "format": "bin",
+  "source": "prefetch_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/prefetch/",
+  "target": [
+   { "output": "prefetch.bin16", "match": "prefetch.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PREFETCH",
+  "id": "prefetch32",
+  "format": "bin",
+  "source": "prefetch_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/prefetch/",
+  "target": [
+   { "output": "prefetch.bin32", "match": "prefetch.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PREFETCH",
+  "id": "prefetch64",
+  "format": "bin",
+  "source": "prefetch.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/prefetch/",
+  "target": [
+   { "output": "prefetch.bin64", "match": "prefetch.bin64.t" }
+  ]
+ }
+]

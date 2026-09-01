@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPNEQ_OQSS",
+  "id": "vcmpneq_oqss16",
+  "format": "bin",
+  "source": "vcmpneq_oqss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpneq_oqss/",
+  "target": [
+   { "output": "vcmpneq_oqss.bin16", "match": "vcmpneq_oqss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNEQ_OQSS",
+  "id": "vcmpneq_oqss32",
+  "format": "bin",
+  "source": "vcmpneq_oqss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpneq_oqss/",
+  "target": [
+   { "output": "vcmpneq_oqss.bin32", "match": "vcmpneq_oqss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNEQ_OQSS",
+  "id": "vcmpneq_oqss64",
+  "format": "bin",
+  "source": "vcmpneq_oqss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpneq_oqss/",
+  "target": [
+   { "output": "vcmpneq_oqss.bin64", "match": "vcmpneq_oqss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNEQ_OQSS",
+  "id": "vcmpneq_oqss16err",
+  "format": "bin",
+  "source": "vcmpneq_oqss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpneq_oqss/",
+  "target": [
+   { "stderr": "vcmpneq_oqss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNEQ_OQSS",
+  "id": "vcmpneq_oqss32err",
+  "format": "bin",
+  "source": "vcmpneq_oqss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpneq_oqss/",
+  "target": [
+   { "stderr": "vcmpneq_oqss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

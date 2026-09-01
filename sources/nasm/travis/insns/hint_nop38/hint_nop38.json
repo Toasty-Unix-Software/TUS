@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for HINT_NOP38",
+  "id": "hint_nop3864",
+  "format": "bin",
+  "source": "hint_nop38.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/hint_nop38/",
+  "target": [
+   { "output": "hint_nop38.bin64", "match": "hint_nop38.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for HINT_NOP38",
+  "id": "hint_nop3816err",
+  "format": "bin",
+  "source": "hint_nop38_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/hint_nop38/",
+  "target": [
+   { "stderr": "hint_nop38.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for HINT_NOP38",
+  "id": "hint_nop3832err",
+  "format": "bin",
+  "source": "hint_nop38_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/hint_nop38/",
+  "target": [
+   { "stderr": "hint_nop38.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

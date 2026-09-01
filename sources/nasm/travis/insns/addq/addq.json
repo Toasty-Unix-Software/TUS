@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for ADDQ",
+  "id": "addq16",
+  "format": "bin",
+  "source": "addq.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addq/",
+  "target": [
+   { "output": "addq.bin16", "match": "addq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDQ",
+  "id": "addq32",
+  "format": "bin",
+  "source": "addq.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addq/",
+  "target": [
+   { "output": "addq.bin32", "match": "addq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDQ",
+  "id": "addq64",
+  "format": "bin",
+  "source": "addq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addq/",
+  "target": [
+   { "output": "addq.bin64", "match": "addq.bin64.t" }
+  ]
+ }
+]

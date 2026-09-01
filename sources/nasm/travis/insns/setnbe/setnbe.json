@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETNBE",
+  "id": "setnbe64",
+  "format": "bin",
+  "source": "setnbe.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnbe/",
+  "target": [
+   { "output": "setnbe.bin64", "match": "setnbe.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNBE",
+  "id": "setnbe16err",
+  "format": "bin",
+  "source": "setnbe_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnbe/",
+  "target": [
+   { "stderr": "setnbe.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNBE",
+  "id": "setnbe32err",
+  "format": "bin",
+  "source": "setnbe_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnbe/",
+  "target": [
+   { "stderr": "setnbe.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

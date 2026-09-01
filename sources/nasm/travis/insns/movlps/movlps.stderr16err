@@ -1,0 +1,2 @@
+./travis/insns/movlps/movlps_narrow.asm:7: error: invalid operands in 16-bit mode
+./travis/insns/movlps/movlps_narrow.asm:8: error: invalid operands in 16-bit mode

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMOVLE",
+  "id": "cmovle64",
+  "format": "bin",
+  "source": "cmovle.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovle/",
+  "target": [
+   { "output": "cmovle.bin64", "match": "cmovle.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVLE",
+  "id": "cmovle16err",
+  "format": "bin",
+  "source": "cmovle_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovle/",
+  "target": [
+   { "stderr": "cmovle.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVLE",
+  "id": "cmovle32err",
+  "format": "bin",
+  "source": "cmovle_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovle/",
+  "target": [
+   { "stderr": "cmovle.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

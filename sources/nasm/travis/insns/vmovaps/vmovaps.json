@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMOVAPS",
+  "id": "vmovaps16",
+  "format": "bin",
+  "source": "vmovaps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovaps/",
+  "target": [
+   { "output": "vmovaps.bin16", "match": "vmovaps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVAPS",
+  "id": "vmovaps32",
+  "format": "bin",
+  "source": "vmovaps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovaps/",
+  "target": [
+   { "output": "vmovaps.bin32", "match": "vmovaps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVAPS",
+  "id": "vmovaps64",
+  "format": "bin",
+  "source": "vmovaps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovaps/",
+  "target": [
+   { "output": "vmovaps.bin64", "match": "vmovaps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVAPS",
+  "id": "vmovaps16err",
+  "format": "bin",
+  "source": "vmovaps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovaps/",
+  "target": [
+   { "stderr": "vmovaps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVAPS",
+  "id": "vmovaps32err",
+  "format": "bin",
+  "source": "vmovaps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovaps/",
+  "target": [
+   { "stderr": "vmovaps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

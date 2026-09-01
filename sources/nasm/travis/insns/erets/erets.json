@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for ERETS",
+  "id": "erets64",
+  "format": "bin",
+  "source": "erets.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/erets/",
+  "target": [
+   { "output": "erets.bin64", "match": "erets.bin64.t" }
+  ]
+ }
+]

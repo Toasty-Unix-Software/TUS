@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for MONITORQ",
+  "id": "monitorq64",
+  "format": "bin",
+  "source": "monitorq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/monitorq/",
+  "target": [
+   { "output": "monitorq.bin64", "match": "monitorq.bin64.t" }
+  ]
+ }
+]

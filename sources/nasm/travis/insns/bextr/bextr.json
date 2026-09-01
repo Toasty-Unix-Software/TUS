@@ -1,0 +1,61 @@
+[
+ {
+  "description": "Pseudorandom test for BEXTR",
+  "id": "bextr16",
+  "format": "bin",
+  "source": "bextr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bextr/",
+  "target": [
+   { "output": "bextr.bin16", "match": "bextr.bin16.t" },
+   { "stderr": "bextr.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BEXTR",
+  "id": "bextr32",
+  "format": "bin",
+  "source": "bextr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bextr/",
+  "target": [
+   { "output": "bextr.bin32", "match": "bextr.bin32.t" },
+   { "stderr": "bextr.stderr32" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BEXTR",
+  "id": "bextr64",
+  "format": "bin",
+  "source": "bextr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bextr/",
+  "target": [
+   { "output": "bextr.bin64", "match": "bextr.bin64.t" },
+   { "stderr": "bextr.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BEXTR",
+  "id": "bextr16err",
+  "format": "bin",
+  "source": "bextr_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bextr/",
+  "target": [
+   { "stderr": "bextr.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BEXTR",
+  "id": "bextr32err",
+  "format": "bin",
+  "source": "bextr_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bextr/",
+  "target": [
+   { "stderr": "bextr.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

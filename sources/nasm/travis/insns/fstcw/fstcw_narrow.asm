@@ -1,0 +1,2 @@
+	fstcw [0x36c]
+	fstcw [0xe04]

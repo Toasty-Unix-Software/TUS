@@ -1,0 +1,1 @@
+./travis/insns/subps/subps_narrow.asm:5: error: invalid operands in 32-bit mode

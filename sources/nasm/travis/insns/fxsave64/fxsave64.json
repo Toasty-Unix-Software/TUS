@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for FXSAVE64",
+  "id": "fxsave6464",
+  "format": "bin",
+  "source": "fxsave64.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fxsave64/",
+  "target": [
+   { "output": "fxsave64.bin64", "match": "fxsave64.bin64.t" }
+  ]
+ }
+]

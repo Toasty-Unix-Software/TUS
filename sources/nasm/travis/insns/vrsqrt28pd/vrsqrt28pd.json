@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VRSQRT28PD",
+  "id": "vrsqrt28pd16",
+  "format": "bin",
+  "source": "vrsqrt28pd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrsqrt28pd/",
+  "target": [
+   { "output": "vrsqrt28pd.bin16", "match": "vrsqrt28pd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRSQRT28PD",
+  "id": "vrsqrt28pd32",
+  "format": "bin",
+  "source": "vrsqrt28pd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrsqrt28pd/",
+  "target": [
+   { "output": "vrsqrt28pd.bin32", "match": "vrsqrt28pd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRSQRT28PD",
+  "id": "vrsqrt28pd64",
+  "format": "bin",
+  "source": "vrsqrt28pd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrsqrt28pd/",
+  "target": [
+   { "output": "vrsqrt28pd.bin64", "match": "vrsqrt28pd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRSQRT28PD",
+  "id": "vrsqrt28pd16err",
+  "format": "bin",
+  "source": "vrsqrt28pd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrsqrt28pd/",
+  "target": [
+   { "stderr": "vrsqrt28pd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRSQRT28PD",
+  "id": "vrsqrt28pd32err",
+  "format": "bin",
+  "source": "vrsqrt28pd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrsqrt28pd/",
+  "target": [
+   { "stderr": "vrsqrt28pd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

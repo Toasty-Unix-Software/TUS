@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for BNDLDX",
+  "id": "bndldx32",
+  "format": "bin",
+  "source": "bndldx_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bndldx/",
+  "target": [
+   { "output": "bndldx.bin32", "match": "bndldx.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BNDLDX",
+  "id": "bndldx16err",
+  "format": "bin",
+  "source": "bndldx_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bndldx/",
+  "target": [
+   { "stderr": "bndldx.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BNDLDX",
+  "id": "bndldx32err",
+  "format": "bin",
+  "source": "bndldx_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bndldx/",
+  "target": [
+   { "stderr": "bndldx.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

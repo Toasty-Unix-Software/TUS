@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XSAVE",
+  "id": "xsave16",
+  "format": "bin",
+  "source": "xsave_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsave/",
+  "target": [
+   { "output": "xsave.bin16", "match": "xsave.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XSAVE",
+  "id": "xsave32",
+  "format": "bin",
+  "source": "xsave_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsave/",
+  "target": [
+   { "output": "xsave.bin32", "match": "xsave.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XSAVE",
+  "id": "xsave64",
+  "format": "bin",
+  "source": "xsave.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsave/",
+  "target": [
+   { "output": "xsave.bin64", "match": "xsave.bin64.t" }
+  ]
+ }
+]

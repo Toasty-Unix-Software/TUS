@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CFCMOVNE",
+  "id": "cfcmovne64",
+  "format": "bin",
+  "source": "cfcmovne.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovne/",
+  "target": [
+   { "output": "cfcmovne.bin64", "match": "cfcmovne.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVNE",
+  "id": "cfcmovne16err",
+  "format": "bin",
+  "source": "cfcmovne_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovne/",
+  "target": [
+   { "stderr": "cfcmovne.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVNE",
+  "id": "cfcmovne32err",
+  "format": "bin",
+  "source": "cfcmovne_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovne/",
+  "target": [
+   { "stderr": "cfcmovne.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

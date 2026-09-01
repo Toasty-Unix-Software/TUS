@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for DIVSD",
+  "id": "divsd16",
+  "format": "bin",
+  "source": "divsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/divsd/",
+  "target": [
+   { "output": "divsd.bin16", "match": "divsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DIVSD",
+  "id": "divsd32",
+  "format": "bin",
+  "source": "divsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/divsd/",
+  "target": [
+   { "output": "divsd.bin32", "match": "divsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DIVSD",
+  "id": "divsd64",
+  "format": "bin",
+  "source": "divsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/divsd/",
+  "target": [
+   { "output": "divsd.bin64", "match": "divsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for DIVSD",
+  "id": "divsd16err",
+  "format": "bin",
+  "source": "divsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/divsd/",
+  "target": [
+   { "stderr": "divsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for DIVSD",
+  "id": "divsd32err",
+  "format": "bin",
+  "source": "divsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/divsd/",
+  "target": [
+   { "stderr": "divsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

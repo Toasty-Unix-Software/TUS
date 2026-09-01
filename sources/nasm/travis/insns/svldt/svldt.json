@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for SVLDT",
+  "id": "svldt16",
+  "format": "bin",
+  "source": "svldt.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/svldt/",
+  "target": [
+   { "output": "svldt.bin16", "match": "svldt.bin16.t" },
+   { "stderr": "svldt.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SVLDT",
+  "id": "svldt32",
+  "format": "bin",
+  "source": "svldt.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/svldt/",
+  "target": [
+   { "output": "svldt.bin32", "match": "svldt.bin32.t" },
+   { "stderr": "svldt.stderr32" }
+  ]
+ }
+]

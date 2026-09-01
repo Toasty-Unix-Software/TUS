@@ -1,0 +1,66 @@
+iff	AST_SYS
+ref	-D_def_map_ast
+
+header	stdlib.h
+header	stddef.h
+header	sys/types.h
+header	stdint.h
+header	inttypes.h
+header	string.h
+header	strings.h
+header	unistd.h
+header	limits.h
+header	fcntl.h
+header	locale.h
+
+typ socklen_t sys/socket.h fail{
+	echo "#ifndef $m"
+	echo "#define $m	1"
+	echo "typedef int $v;"
+	echo "#endif"
+}end
+
+typ max_align_t stddef.h no{
+	/*
+	 * A type whose alignment requirement is at least as large as that of every scalar
+	 * type. Pointers returned by allocation functions must be aligned at least as strictly
+	 * as max_align_t. Aligning to the largest of these dummy union members should work.
+	 */
+	typedef union
+	{
+		void		*p;	/* any pointer */
+		intmax_t	i;	/* max-size int type */
+		_ast_fltmax_t	f;	/* max-size float type */
+	} max_align_t;
+}end
+
+define	offsetof	(type,member)	__builtin_offsetof(type,member)
+define	EXIT_FAILURE	1
+define	EXIT_SUCCESS	0
+define	MB_CUR_MAX	1
+define	RAND_MAX	32767
+
+define	STDIN_FILENO	0
+define	STDOUT_FILENO	1
+define	STDERR_FILENO	2
+
+define	NULL		0
+
+define	SEEK_SET	0
+define	SEEK_CUR	1
+define	SEEK_END	2
+
+define	F_OK		0
+define	X_OK		1
+define	W_OK		2
+define	R_OK		4
+
+extern	eaccess		int		(const char*, int)
+extern	fsync		int		(int)
+extern	ftruncate	int		(int, off_t)
+extern	memalign	void*		(size_t, size_t)
+extern	strlcat		size_t		(char*, const char*, size_t)
+extern	strlcpy		size_t		(char*, const char*, size_t)
+extern	strcasestr	char*		(const char*, const char*)
+
+print	#include <stdarg.h>

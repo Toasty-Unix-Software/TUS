@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FIDIV",
+  "id": "fidiv16",
+  "format": "bin",
+  "source": "fidiv_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fidiv/",
+  "target": [
+   { "output": "fidiv.bin16", "match": "fidiv.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FIDIV",
+  "id": "fidiv32",
+  "format": "bin",
+  "source": "fidiv_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fidiv/",
+  "target": [
+   { "output": "fidiv.bin32", "match": "fidiv.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FIDIV",
+  "id": "fidiv64",
+  "format": "bin",
+  "source": "fidiv.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fidiv/",
+  "target": [
+   { "output": "fidiv.bin64", "match": "fidiv.bin64.t" }
+  ]
+ }
+]

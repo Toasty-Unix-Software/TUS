@@ -1,0 +1,2 @@
+./travis/insns/vcmpltsd/vcmpltsd_narrow.asm:8: error: invalid operands in non-64-bit mode
+./travis/insns/vcmpltsd/vcmpltsd_narrow.asm:9: error: invalid operands in non-64-bit mode

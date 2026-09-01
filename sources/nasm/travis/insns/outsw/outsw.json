@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for OUTSW",
+  "id": "outsw16",
+  "format": "bin",
+  "source": "outsw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/outsw/",
+  "target": [
+   { "output": "outsw.bin16", "match": "outsw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for OUTSW",
+  "id": "outsw32",
+  "format": "bin",
+  "source": "outsw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/outsw/",
+  "target": [
+   { "output": "outsw.bin32", "match": "outsw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for OUTSW",
+  "id": "outsw64",
+  "format": "bin",
+  "source": "outsw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/outsw/",
+  "target": [
+   { "output": "outsw.bin64", "match": "outsw.bin64.t" }
+  ]
+ }
+]

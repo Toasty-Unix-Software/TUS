@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for GETSEC",
+  "id": "getsec16",
+  "format": "bin",
+  "source": "getsec.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/getsec/",
+  "target": [
+   { "output": "getsec.bin16", "match": "getsec.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for GETSEC",
+  "id": "getsec32",
+  "format": "bin",
+  "source": "getsec.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/getsec/",
+  "target": [
+   { "output": "getsec.bin32", "match": "getsec.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for GETSEC",
+  "id": "getsec64",
+  "format": "bin",
+  "source": "getsec.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/getsec/",
+  "target": [
+   { "output": "getsec.bin64", "match": "getsec.bin64.t" }
+  ]
+ }
+]

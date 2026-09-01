@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for PBNDKB",
+  "id": "pbndkb16",
+  "format": "bin",
+  "source": "pbndkb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pbndkb/",
+  "target": [
+   { "output": "pbndkb.bin16", "match": "pbndkb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PBNDKB",
+  "id": "pbndkb32",
+  "format": "bin",
+  "source": "pbndkb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pbndkb/",
+  "target": [
+   { "output": "pbndkb.bin32", "match": "pbndkb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PBNDKB",
+  "id": "pbndkb64",
+  "format": "bin",
+  "source": "pbndkb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pbndkb/",
+  "target": [
+   { "output": "pbndkb.bin64", "match": "pbndkb.bin64.t" }
+  ]
+ }
+]

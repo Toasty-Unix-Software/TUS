@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VROUNDPS",
+  "id": "vroundps16",
+  "format": "bin",
+  "source": "vroundps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vroundps/",
+  "target": [
+   { "output": "vroundps.bin16", "match": "vroundps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VROUNDPS",
+  "id": "vroundps32",
+  "format": "bin",
+  "source": "vroundps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vroundps/",
+  "target": [
+   { "output": "vroundps.bin32", "match": "vroundps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VROUNDPS",
+  "id": "vroundps64",
+  "format": "bin",
+  "source": "vroundps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vroundps/",
+  "target": [
+   { "output": "vroundps.bin64", "match": "vroundps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VROUNDPS",
+  "id": "vroundps16err",
+  "format": "bin",
+  "source": "vroundps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vroundps/",
+  "target": [
+   { "stderr": "vroundps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VROUNDPS",
+  "id": "vroundps32err",
+  "format": "bin",
+  "source": "vroundps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vroundps/",
+  "target": [
+   { "stderr": "vroundps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

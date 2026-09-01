@@ -1,0 +1,4 @@
+./travis/insns/rdmsr/rdmsr_narrow.asm:5: error: instruction not supported in 32-bit mode
+./travis/insns/rdmsr/rdmsr_narrow.asm:6: error: instruction not supported in 32-bit mode
+./travis/insns/rdmsr/rdmsr_narrow.asm:7: error: instruction not supported in 32-bit mode
+./travis/insns/rdmsr/rdmsr_narrow.asm:8: error: instruction not supported in 32-bit mode

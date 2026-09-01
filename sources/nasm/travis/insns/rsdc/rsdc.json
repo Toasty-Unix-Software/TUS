@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for RSDC",
+  "id": "rsdc16",
+  "format": "bin",
+  "source": "rsdc.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rsdc/",
+  "target": [
+   { "output": "rsdc.bin16", "match": "rsdc.bin16.t" },
+   { "stderr": "rsdc.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RSDC",
+  "id": "rsdc32",
+  "format": "bin",
+  "source": "rsdc.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rsdc/",
+  "target": [
+   { "output": "rsdc.bin32", "match": "rsdc.bin32.t" },
+   { "stderr": "rsdc.stderr32" }
+  ]
+ }
+]

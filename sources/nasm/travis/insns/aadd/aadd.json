@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for AADD",
+  "id": "aadd64",
+  "format": "bin",
+  "source": "aadd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aadd/",
+  "target": [
+   { "output": "aadd.bin64", "match": "aadd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AADD",
+  "id": "aadd16err",
+  "format": "bin",
+  "source": "aadd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aadd/",
+  "target": [
+   { "stderr": "aadd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AADD",
+  "id": "aadd32err",
+  "format": "bin",
+  "source": "aadd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aadd/",
+  "target": [
+   { "stderr": "aadd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

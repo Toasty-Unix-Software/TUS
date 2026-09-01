@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for JP",
+  "id": "jp16",
+  "format": "bin",
+  "source": "jp_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jp/",
+  "target": [
+   { "output": "jp.bin16", "match": "jp.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JP",
+  "id": "jp32",
+  "format": "bin",
+  "source": "jp_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jp/",
+  "target": [
+   { "output": "jp.bin32", "match": "jp.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JP",
+  "id": "jp64",
+  "format": "bin",
+  "source": "jp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jp/",
+  "target": [
+   { "output": "jp.bin64", "match": "jp.bin64.t" }
+  ]
+ }
+]

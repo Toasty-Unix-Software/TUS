@@ -1,0 +1,6 @@
+	fild dword [0x9b1]
+	fild dword [0x27e]
+	fild word [0xc1d]
+	fild word [0x41d]
+	fild qword [0xda8]
+	fild qword [0x460]

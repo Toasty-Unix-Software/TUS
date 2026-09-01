@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FDIVR",
+  "id": "fdivr16",
+  "format": "bin",
+  "source": "fdivr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fdivr/",
+  "target": [
+   { "output": "fdivr.bin16", "match": "fdivr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FDIVR",
+  "id": "fdivr32",
+  "format": "bin",
+  "source": "fdivr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fdivr/",
+  "target": [
+   { "output": "fdivr.bin32", "match": "fdivr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FDIVR",
+  "id": "fdivr64",
+  "format": "bin",
+  "source": "fdivr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fdivr/",
+  "target": [
+   { "output": "fdivr.bin64", "match": "fdivr.bin64.t" }
+  ]
+ }
+]

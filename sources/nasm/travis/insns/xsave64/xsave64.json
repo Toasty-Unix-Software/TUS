@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for XSAVE64",
+  "id": "xsave6464",
+  "format": "bin",
+  "source": "xsave64.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsave64/",
+  "target": [
+   { "output": "xsave64.bin64", "match": "xsave64.bin64.t" }
+  ]
+ }
+]

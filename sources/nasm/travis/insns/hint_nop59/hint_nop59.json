@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for HINT_NOP59",
+  "id": "hint_nop5964",
+  "format": "bin",
+  "source": "hint_nop59.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/hint_nop59/",
+  "target": [
+   { "output": "hint_nop59.bin64", "match": "hint_nop59.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for HINT_NOP59",
+  "id": "hint_nop5916err",
+  "format": "bin",
+  "source": "hint_nop59_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/hint_nop59/",
+  "target": [
+   { "stderr": "hint_nop59.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for HINT_NOP59",
+  "id": "hint_nop5932err",
+  "format": "bin",
+  "source": "hint_nop59_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/hint_nop59/",
+  "target": [
+   { "stderr": "hint_nop59.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MINPD",
+  "id": "minpd16",
+  "format": "bin",
+  "source": "minpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minpd/",
+  "target": [
+   { "output": "minpd.bin16", "match": "minpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MINPD",
+  "id": "minpd32",
+  "format": "bin",
+  "source": "minpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minpd/",
+  "target": [
+   { "output": "minpd.bin32", "match": "minpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MINPD",
+  "id": "minpd64",
+  "format": "bin",
+  "source": "minpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minpd/",
+  "target": [
+   { "output": "minpd.bin64", "match": "minpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MINPD",
+  "id": "minpd16err",
+  "format": "bin",
+  "source": "minpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minpd/",
+  "target": [
+   { "stderr": "minpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MINPD",
+  "id": "minpd32err",
+  "format": "bin",
+  "source": "minpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minpd/",
+  "target": [
+   { "stderr": "minpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

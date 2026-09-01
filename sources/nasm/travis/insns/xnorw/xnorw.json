@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XNORW",
+  "id": "xnorw16",
+  "format": "bin",
+  "source": "xnorw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xnorw/",
+  "target": [
+   { "output": "xnorw.bin16", "match": "xnorw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XNORW",
+  "id": "xnorw32",
+  "format": "bin",
+  "source": "xnorw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xnorw/",
+  "target": [
+   { "output": "xnorw.bin32", "match": "xnorw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XNORW",
+  "id": "xnorw64",
+  "format": "bin",
+  "source": "xnorw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xnorw/",
+  "target": [
+   { "output": "xnorw.bin64", "match": "xnorw.bin64.t" }
+  ]
+ }
+]

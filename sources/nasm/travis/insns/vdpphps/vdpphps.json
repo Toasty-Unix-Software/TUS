@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VDPPHPS",
+  "id": "vdpphps16",
+  "format": "bin",
+  "source": "vdpphps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdpphps/",
+  "target": [
+   { "output": "vdpphps.bin16", "match": "vdpphps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VDPPHPS",
+  "id": "vdpphps32",
+  "format": "bin",
+  "source": "vdpphps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdpphps/",
+  "target": [
+   { "output": "vdpphps.bin32", "match": "vdpphps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VDPPHPS",
+  "id": "vdpphps64",
+  "format": "bin",
+  "source": "vdpphps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdpphps/",
+  "target": [
+   { "output": "vdpphps.bin64", "match": "vdpphps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VDPPHPS",
+  "id": "vdpphps16err",
+  "format": "bin",
+  "source": "vdpphps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdpphps/",
+  "target": [
+   { "stderr": "vdpphps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VDPPHPS",
+  "id": "vdpphps32err",
+  "format": "bin",
+  "source": "vdpphps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdpphps/",
+  "target": [
+   { "stderr": "vdpphps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

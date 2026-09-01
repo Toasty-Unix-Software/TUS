@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMINMAXPD",
+  "id": "vminmaxpd16",
+  "format": "bin",
+  "source": "vminmaxpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminmaxpd/",
+  "target": [
+   { "output": "vminmaxpd.bin16", "match": "vminmaxpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMINMAXPD",
+  "id": "vminmaxpd32",
+  "format": "bin",
+  "source": "vminmaxpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminmaxpd/",
+  "target": [
+   { "output": "vminmaxpd.bin32", "match": "vminmaxpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMINMAXPD",
+  "id": "vminmaxpd64",
+  "format": "bin",
+  "source": "vminmaxpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminmaxpd/",
+  "target": [
+   { "output": "vminmaxpd.bin64", "match": "vminmaxpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMINMAXPD",
+  "id": "vminmaxpd16err",
+  "format": "bin",
+  "source": "vminmaxpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminmaxpd/",
+  "target": [
+   { "stderr": "vminmaxpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMINMAXPD",
+  "id": "vminmaxpd32err",
+  "format": "bin",
+  "source": "vminmaxpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminmaxpd/",
+  "target": [
+   { "stderr": "vminmaxpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

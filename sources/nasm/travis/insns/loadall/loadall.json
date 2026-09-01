@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for LOADALL",
+  "id": "loadall16",
+  "format": "bin",
+  "source": "loadall.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loadall/",
+  "target": [
+   { "output": "loadall.bin16", "match": "loadall.bin16.t" },
+   { "stderr": "loadall.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LOADALL",
+  "id": "loadall32",
+  "format": "bin",
+  "source": "loadall.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loadall/",
+  "target": [
+   { "output": "loadall.bin32", "match": "loadall.bin32.t" },
+   { "stderr": "loadall.stderr32" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LOADALL",
+  "id": "loadall64",
+  "format": "bin",
+  "source": "loadall.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loadall/",
+  "target": [
+   { "output": "loadall.bin64", "match": "loadall.bin64.t" },
+   { "stderr": "loadall.stderr64" }
+  ]
+ }
+]

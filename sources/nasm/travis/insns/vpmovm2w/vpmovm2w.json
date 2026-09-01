@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMOVM2W",
+  "id": "vpmovm2w16",
+  "format": "bin",
+  "source": "vpmovm2w_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovm2w/",
+  "target": [
+   { "output": "vpmovm2w.bin16", "match": "vpmovm2w.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMOVM2W",
+  "id": "vpmovm2w32",
+  "format": "bin",
+  "source": "vpmovm2w_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovm2w/",
+  "target": [
+   { "output": "vpmovm2w.bin32", "match": "vpmovm2w.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMOVM2W",
+  "id": "vpmovm2w64",
+  "format": "bin",
+  "source": "vpmovm2w.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovm2w/",
+  "target": [
+   { "output": "vpmovm2w.bin64", "match": "vpmovm2w.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMOVM2W",
+  "id": "vpmovm2w16err",
+  "format": "bin",
+  "source": "vpmovm2w_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovm2w/",
+  "target": [
+   { "stderr": "vpmovm2w.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMOVM2W",
+  "id": "vpmovm2w32err",
+  "format": "bin",
+  "source": "vpmovm2w_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovm2w/",
+  "target": [
+   { "stderr": "vpmovm2w.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

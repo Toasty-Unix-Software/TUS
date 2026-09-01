@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for IMUL",
+  "id": "imul64",
+  "format": "bin",
+  "source": "imul.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/imul/",
+  "target": [
+   { "output": "imul.bin64", "match": "imul.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for IMUL",
+  "id": "imul16err",
+  "format": "bin",
+  "source": "imul_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/imul/",
+  "target": [
+   { "stderr": "imul.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for IMUL",
+  "id": "imul32err",
+  "format": "bin",
+  "source": "imul_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/imul/",
+  "target": [
+   { "stderr": "imul.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

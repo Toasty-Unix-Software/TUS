@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFMADD321PD",
+  "id": "vfmadd321pd16",
+  "format": "bin",
+  "source": "vfmadd321pd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmadd321pd/",
+  "target": [
+   { "output": "vfmadd321pd.bin16", "match": "vfmadd321pd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMADD321PD",
+  "id": "vfmadd321pd32",
+  "format": "bin",
+  "source": "vfmadd321pd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmadd321pd/",
+  "target": [
+   { "output": "vfmadd321pd.bin32", "match": "vfmadd321pd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMADD321PD",
+  "id": "vfmadd321pd64",
+  "format": "bin",
+  "source": "vfmadd321pd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmadd321pd/",
+  "target": [
+   { "output": "vfmadd321pd.bin64", "match": "vfmadd321pd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMADD321PD",
+  "id": "vfmadd321pd16err",
+  "format": "bin",
+  "source": "vfmadd321pd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmadd321pd/",
+  "target": [
+   { "stderr": "vfmadd321pd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMADD321PD",
+  "id": "vfmadd321pd32err",
+  "format": "bin",
+  "source": "vfmadd321pd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmadd321pd/",
+  "target": [
+   { "stderr": "vfmadd321pd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

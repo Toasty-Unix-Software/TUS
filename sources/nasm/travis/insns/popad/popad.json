@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for POPAD",
+  "id": "popad16",
+  "format": "bin",
+  "source": "popad.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popad/",
+  "target": [
+   { "output": "popad.bin16", "match": "popad.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for POPAD",
+  "id": "popad32",
+  "format": "bin",
+  "source": "popad.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popad/",
+  "target": [
+   { "output": "popad.bin32", "match": "popad.bin32.t" }
+  ]
+ }
+]

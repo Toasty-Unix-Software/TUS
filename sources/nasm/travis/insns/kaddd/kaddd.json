@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KADDD",
+  "id": "kaddd16",
+  "format": "bin",
+  "source": "kaddd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kaddd/",
+  "target": [
+   { "output": "kaddd.bin16", "match": "kaddd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KADDD",
+  "id": "kaddd32",
+  "format": "bin",
+  "source": "kaddd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kaddd/",
+  "target": [
+   { "output": "kaddd.bin32", "match": "kaddd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KADDD",
+  "id": "kaddd64",
+  "format": "bin",
+  "source": "kaddd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kaddd/",
+  "target": [
+   { "output": "kaddd.bin64", "match": "kaddd.bin64.t" }
+  ]
+ }
+]

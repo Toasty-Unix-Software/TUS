@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPLEPS",
+  "id": "vcmpleps16",
+  "format": "bin",
+  "source": "vcmpleps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpleps/",
+  "target": [
+   { "output": "vcmpleps.bin16", "match": "vcmpleps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPLEPS",
+  "id": "vcmpleps32",
+  "format": "bin",
+  "source": "vcmpleps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpleps/",
+  "target": [
+   { "output": "vcmpleps.bin32", "match": "vcmpleps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPLEPS",
+  "id": "vcmpleps64",
+  "format": "bin",
+  "source": "vcmpleps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpleps/",
+  "target": [
+   { "output": "vcmpleps.bin64", "match": "vcmpleps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPLEPS",
+  "id": "vcmpleps16err",
+  "format": "bin",
+  "source": "vcmpleps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpleps/",
+  "target": [
+   { "stderr": "vcmpleps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPLEPS",
+  "id": "vcmpleps32err",
+  "format": "bin",
+  "source": "vcmpleps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpleps/",
+  "target": [
+   { "stderr": "vcmpleps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

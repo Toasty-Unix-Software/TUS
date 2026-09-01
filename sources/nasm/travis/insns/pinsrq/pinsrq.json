@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for PINSRQ",
+  "id": "pinsrq64",
+  "format": "bin",
+  "source": "pinsrq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pinsrq/",
+  "target": [
+   { "output": "pinsrq.bin64", "match": "pinsrq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PINSRQ",
+  "id": "pinsrq16err",
+  "format": "bin",
+  "source": "pinsrq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pinsrq/",
+  "target": [
+   { "stderr": "pinsrq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PINSRQ",
+  "id": "pinsrq32err",
+  "format": "bin",
+  "source": "pinsrq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pinsrq/",
+  "target": [
+   { "stderr": "pinsrq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

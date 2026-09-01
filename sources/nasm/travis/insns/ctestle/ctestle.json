@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CTESTLE",
+  "id": "ctestle64",
+  "format": "bin",
+  "source": "ctestle.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestle/",
+  "target": [
+   { "output": "ctestle.bin64", "match": "ctestle.bin64.t" },
+   { "stderr": "ctestle.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTLE",
+  "id": "ctestle16err",
+  "format": "bin",
+  "source": "ctestle_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestle/",
+  "target": [
+   { "stderr": "ctestle.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTLE",
+  "id": "ctestle32err",
+  "format": "bin",
+  "source": "ctestle_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestle/",
+  "target": [
+   { "stderr": "ctestle.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for PAVEB",
+  "id": "paveb16",
+  "format": "bin",
+  "source": "paveb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paveb/",
+  "target": [
+   { "output": "paveb.bin16", "match": "paveb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PAVEB",
+  "id": "paveb32",
+  "format": "bin",
+  "source": "paveb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paveb/",
+  "target": [
+   { "output": "paveb.bin32", "match": "paveb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PAVEB",
+  "id": "paveb64",
+  "format": "bin",
+  "source": "paveb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paveb/",
+  "target": [
+   { "output": "paveb.bin64", "match": "paveb.bin64.t" }
+  ]
+ }
+]

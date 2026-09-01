@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for IBTS",
+  "id": "ibts16",
+  "format": "bin",
+  "source": "ibts.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ibts/",
+  "target": [
+   { "output": "ibts.bin16", "match": "ibts.bin16.t" },
+   { "stderr": "ibts.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for IBTS",
+  "id": "ibts32",
+  "format": "bin",
+  "source": "ibts.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ibts/",
+  "target": [
+   { "output": "ibts.bin32", "match": "ibts.bin32.t" },
+   { "stderr": "ibts.stderr32" }
+  ]
+ }
+]

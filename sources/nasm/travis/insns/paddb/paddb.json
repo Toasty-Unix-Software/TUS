@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PADDB",
+  "id": "paddb16",
+  "format": "bin",
+  "source": "paddb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddb/",
+  "target": [
+   { "output": "paddb.bin16", "match": "paddb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PADDB",
+  "id": "paddb32",
+  "format": "bin",
+  "source": "paddb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddb/",
+  "target": [
+   { "output": "paddb.bin32", "match": "paddb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PADDB",
+  "id": "paddb64",
+  "format": "bin",
+  "source": "paddb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddb/",
+  "target": [
+   { "output": "paddb.bin64", "match": "paddb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PADDB",
+  "id": "paddb16err",
+  "format": "bin",
+  "source": "paddb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddb/",
+  "target": [
+   { "stderr": "paddb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PADDB",
+  "id": "paddb32err",
+  "format": "bin",
+  "source": "paddb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddb/",
+  "target": [
+   { "stderr": "paddb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

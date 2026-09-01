@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPNLESS",
+  "id": "vcmpnless16",
+  "format": "bin",
+  "source": "vcmpnless_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnless/",
+  "target": [
+   { "output": "vcmpnless.bin16", "match": "vcmpnless.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNLESS",
+  "id": "vcmpnless32",
+  "format": "bin",
+  "source": "vcmpnless_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnless/",
+  "target": [
+   { "output": "vcmpnless.bin32", "match": "vcmpnless.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNLESS",
+  "id": "vcmpnless64",
+  "format": "bin",
+  "source": "vcmpnless.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnless/",
+  "target": [
+   { "output": "vcmpnless.bin64", "match": "vcmpnless.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNLESS",
+  "id": "vcmpnless16err",
+  "format": "bin",
+  "source": "vcmpnless_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnless/",
+  "target": [
+   { "stderr": "vcmpnless.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNLESS",
+  "id": "vcmpnless32err",
+  "format": "bin",
+  "source": "vcmpnless_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnless/",
+  "target": [
+   { "stderr": "vcmpnless.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for TTCMMIMFP16PS",
+  "id": "ttcmmimfp16ps16",
+  "format": "bin",
+  "source": "ttcmmimfp16ps.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ttcmmimfp16ps/",
+  "target": [
+   { "output": "ttcmmimfp16ps.bin16", "match": "ttcmmimfp16ps.bin16.t" },
+   { "stderr": "ttcmmimfp16ps.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TTCMMIMFP16PS",
+  "id": "ttcmmimfp16ps32",
+  "format": "bin",
+  "source": "ttcmmimfp16ps.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ttcmmimfp16ps/",
+  "target": [
+   { "output": "ttcmmimfp16ps.bin32", "match": "ttcmmimfp16ps.bin32.t" },
+   { "stderr": "ttcmmimfp16ps.stderr32" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TTCMMIMFP16PS",
+  "id": "ttcmmimfp16ps64",
+  "format": "bin",
+  "source": "ttcmmimfp16ps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ttcmmimfp16ps/",
+  "target": [
+   { "output": "ttcmmimfp16ps.bin64", "match": "ttcmmimfp16ps.bin64.t" },
+   { "stderr": "ttcmmimfp16ps.stderr64" }
+  ]
+ }
+]

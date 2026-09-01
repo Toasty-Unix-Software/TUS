@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for ENCLU",
+  "id": "enclu16",
+  "format": "bin",
+  "source": "enclu.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/enclu/",
+  "target": [
+   { "output": "enclu.bin16", "match": "enclu.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ENCLU",
+  "id": "enclu32",
+  "format": "bin",
+  "source": "enclu.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/enclu/",
+  "target": [
+   { "output": "enclu.bin32", "match": "enclu.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ENCLU",
+  "id": "enclu64",
+  "format": "bin",
+  "source": "enclu.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/enclu/",
+  "target": [
+   { "output": "enclu.bin64", "match": "enclu.bin64.t" }
+  ]
+ }
+]

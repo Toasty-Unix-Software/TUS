@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for CMPUNORDSS",
+  "id": "cmpunordss16",
+  "format": "bin",
+  "source": "cmpunordss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpunordss/",
+  "target": [
+   { "output": "cmpunordss.bin16", "match": "cmpunordss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPUNORDSS",
+  "id": "cmpunordss32",
+  "format": "bin",
+  "source": "cmpunordss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpunordss/",
+  "target": [
+   { "output": "cmpunordss.bin32", "match": "cmpunordss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPUNORDSS",
+  "id": "cmpunordss64",
+  "format": "bin",
+  "source": "cmpunordss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpunordss/",
+  "target": [
+   { "output": "cmpunordss.bin64", "match": "cmpunordss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPUNORDSS",
+  "id": "cmpunordss16err",
+  "format": "bin",
+  "source": "cmpunordss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpunordss/",
+  "target": [
+   { "stderr": "cmpunordss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPUNORDSS",
+  "id": "cmpunordss32err",
+  "format": "bin",
+  "source": "cmpunordss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpunordss/",
+  "target": [
+   { "stderr": "cmpunordss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

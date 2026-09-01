@@ -1,0 +1,1 @@
+./travis/insns/movdq2q/movdq2q_narrow.asm:5: error: invalid operands in 16-bit mode

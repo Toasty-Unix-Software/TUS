@@ -1,0 +1,61 @@
+[
+ {
+  "description": "Pseudorandom test for T1MSKC",
+  "id": "t1mskc16",
+  "format": "bin",
+  "source": "t1mskc_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/t1mskc/",
+  "target": [
+   { "output": "t1mskc.bin16", "match": "t1mskc.bin16.t" },
+   { "stderr": "t1mskc.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for T1MSKC",
+  "id": "t1mskc32",
+  "format": "bin",
+  "source": "t1mskc_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/t1mskc/",
+  "target": [
+   { "output": "t1mskc.bin32", "match": "t1mskc.bin32.t" },
+   { "stderr": "t1mskc.stderr32" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for T1MSKC",
+  "id": "t1mskc64",
+  "format": "bin",
+  "source": "t1mskc.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/t1mskc/",
+  "target": [
+   { "output": "t1mskc.bin64", "match": "t1mskc.bin64.t" },
+   { "stderr": "t1mskc.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for T1MSKC",
+  "id": "t1mskc16err",
+  "format": "bin",
+  "source": "t1mskc_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/t1mskc/",
+  "target": [
+   { "stderr": "t1mskc.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for T1MSKC",
+  "id": "t1mskc32err",
+  "format": "bin",
+  "source": "t1mskc_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/t1mskc/",
+  "target": [
+   { "stderr": "t1mskc.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

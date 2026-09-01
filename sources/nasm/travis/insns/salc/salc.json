@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for SALC",
+  "id": "salc16",
+  "format": "bin",
+  "source": "salc.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/salc/",
+  "target": [
+   { "output": "salc.bin16", "match": "salc.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SALC",
+  "id": "salc32",
+  "format": "bin",
+  "source": "salc.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/salc/",
+  "target": [
+   { "output": "salc.bin32", "match": "salc.bin32.t" }
+  ]
+ }
+]

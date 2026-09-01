@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VLDQQU",
+  "id": "vldqqu16",
+  "format": "bin",
+  "source": "vldqqu_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vldqqu/",
+  "target": [
+   { "output": "vldqqu.bin16", "match": "vldqqu.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VLDQQU",
+  "id": "vldqqu32",
+  "format": "bin",
+  "source": "vldqqu_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vldqqu/",
+  "target": [
+   { "output": "vldqqu.bin32", "match": "vldqqu.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VLDQQU",
+  "id": "vldqqu64",
+  "format": "bin",
+  "source": "vldqqu.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vldqqu/",
+  "target": [
+   { "output": "vldqqu.bin64", "match": "vldqqu.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VLDQQU",
+  "id": "vldqqu16err",
+  "format": "bin",
+  "source": "vldqqu_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vldqqu/",
+  "target": [
+   { "stderr": "vldqqu.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VLDQQU",
+  "id": "vldqqu32err",
+  "format": "bin",
+  "source": "vldqqu_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vldqqu/",
+  "target": [
+   { "stderr": "vldqqu.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for SAVEPREVSSP",
+  "id": "saveprevssp16",
+  "format": "bin",
+  "source": "saveprevssp.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/saveprevssp/",
+  "target": [
+   { "output": "saveprevssp.bin16", "match": "saveprevssp.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SAVEPREVSSP",
+  "id": "saveprevssp32",
+  "format": "bin",
+  "source": "saveprevssp.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/saveprevssp/",
+  "target": [
+   { "output": "saveprevssp.bin32", "match": "saveprevssp.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SAVEPREVSSP",
+  "id": "saveprevssp64",
+  "format": "bin",
+  "source": "saveprevssp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/saveprevssp/",
+  "target": [
+   { "output": "saveprevssp.bin64", "match": "saveprevssp.bin64.t" }
+  ]
+ }
+]

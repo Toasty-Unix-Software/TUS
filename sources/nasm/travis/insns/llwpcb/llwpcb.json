@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for LLWPCB",
+  "id": "llwpcb16",
+  "format": "bin",
+  "source": "llwpcb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/llwpcb/",
+  "target": [
+   { "output": "llwpcb.bin16", "match": "llwpcb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LLWPCB",
+  "id": "llwpcb32",
+  "format": "bin",
+  "source": "llwpcb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/llwpcb/",
+  "target": [
+   { "output": "llwpcb.bin32", "match": "llwpcb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LLWPCB",
+  "id": "llwpcb64",
+  "format": "bin",
+  "source": "llwpcb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/llwpcb/",
+  "target": [
+   { "output": "llwpcb.bin64", "match": "llwpcb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LLWPCB",
+  "id": "llwpcb16err",
+  "format": "bin",
+  "source": "llwpcb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/llwpcb/",
+  "target": [
+   { "stderr": "llwpcb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LLWPCB",
+  "id": "llwpcb32err",
+  "format": "bin",
+  "source": "llwpcb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/llwpcb/",
+  "target": [
+   { "stderr": "llwpcb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

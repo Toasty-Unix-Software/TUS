@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KXNORB",
+  "id": "kxnorb16",
+  "format": "bin",
+  "source": "kxnorb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kxnorb/",
+  "target": [
+   { "output": "kxnorb.bin16", "match": "kxnorb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KXNORB",
+  "id": "kxnorb32",
+  "format": "bin",
+  "source": "kxnorb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kxnorb/",
+  "target": [
+   { "output": "kxnorb.bin32", "match": "kxnorb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KXNORB",
+  "id": "kxnorb64",
+  "format": "bin",
+  "source": "kxnorb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kxnorb/",
+  "target": [
+   { "output": "kxnorb.bin64", "match": "kxnorb.bin64.t" }
+  ]
+ }
+]

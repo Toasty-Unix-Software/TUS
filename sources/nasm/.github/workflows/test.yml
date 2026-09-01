@@ -1,0 +1,147 @@
+name: NASM CI/CD
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+
+    container:
+      image: ubuntu:24.04
+
+    steps:
+      - name: Install dependencies
+        run: |
+          apt-get update && apt-get install -y automake perl python3 build-essential
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Prepare build system
+        run: |
+          sh autogen.sh
+          sh configure
+
+      - name: Build
+        run: |
+          make
+          ./nasm --version
+
+      - name: Run travis tests
+        run: |
+          make travis
+
+      - name: Upload travis.log
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: travis-log
+          path: travis.log
+          if-no-files-found: warn
+
+  build-msvc:
+    name: Build with MSVC (Windows)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up MSVC developer environment
+        # step-security/msvc-dev-cmd is a StepSecurity-maintained,
+        # actively updated (Node 24) drop-in replacement for
+        # ilammy/msvc-dev-cmd@v1, which is Node 20 and has no newer
+        # release addressing that.
+        uses: step-security/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Install NSIS
+        # Needed to build the Windows installer (nsis/nasm.nsi) via the
+        # "nsis" nmake target below. Not preinstalled on windows-latest.
+        # choco updates the machine PATH, but that doesn't propagate to
+        # the already-running Actions Runner process (and thus not to
+        # later steps), so add makensis's directory to $GITHUB_PATH
+        # explicitly.
+        run: |
+          choco install nsis --no-progress -y
+          Get-Item "${env:ProgramFiles(x86)}\NSIS", "$env:ProgramFiles\NSIS" -ErrorAction SilentlyContinue |
+            Select-Object -First 1 -ExpandProperty FullName |
+            Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Install Perl CPAN modules for doc build
+        # doc/genps.pl's font-metrics computation needs Font::TTF, and
+        # the wider doc toolchain needs a handful of other non-core
+        # CPAN modules; see doc/perlbreq.src (generated from
+        # doc/source.src's requirements list by tools/genperlbreq.pl)
+        # for the authoritative list. windows-latest ships Strawberry
+        # Perl, which bundles cpanm.
+        shell: cmd
+        run: cpanm --notest Font::TTF JSON Sort::Versions Compress::Zlib Win32::TieRegistry
+
+      - name: Install Ghostscript and doc-build fonts
+        # nasmdoc.pdf (packaged into the installer) is built via
+        # doc/pspdf.pl, which shells out to Ghostscript, and
+        # doc/genps.pl, which needs the Roboto and Roboto Mono font
+        # files to compute glyph metrics (see doc/source.src, "Optional
+        # Build Tools"). Neither is preinstalled on windows-latest.
+        #
+        # Font versions match what Fedora's google-roboto-fonts (from
+        # github.com/google/roboto, release v2.138) and
+        # google-roboto-mono-fonts (from github.com/googlefonts/RobotoMono)
+        # packages ship, which is known-good: only Bold/BoldItalic/
+        # Italic/Regular of Roboto and Bold/Medium/Regular of Roboto
+        # Mono are actually used by doc/psfonts.ph. Dropping the .ttf
+        # files straight into %windir%\Fonts is sufficient: findfont.ph
+        # falls back to scanning that directory directly and identifies
+        # faces from each file's own name table, no font-registration
+        # step required.
+        shell: pwsh
+        run: |
+          choco install ghostscript --no-progress -y
+
+          $fontsDir = "$env:windir\Fonts"
+
+          Invoke-WebRequest -Uri "https://github.com/google/roboto/releases/download/v2.138/roboto-unhinted.zip" -OutFile roboto.zip
+          Expand-Archive -Path roboto.zip -DestinationPath roboto-unhinted
+          foreach ($f in "Regular", "Bold", "Italic", "BoldItalic") {
+            Copy-Item "roboto-unhinted\Roboto-$f.ttf" $fontsDir
+          }
+
+          foreach ($f in "Regular", "Bold", "Medium") {
+            Invoke-WebRequest -Uri "https://raw.githubusercontent.com/googlefonts/RobotoMono/main/fonts/ttf/RobotoMono-$f.ttf" -OutFile "$fontsDir\RobotoMono-$f.ttf"
+          }
+
+      - name: Build with nmake/cl.exe
+        shell: cmd
+        run: |
+          nmake /f Mkfiles\msvc.mak
+
+      - name: Smoke-test the resulting binaries
+        shell: cmd
+        run: |
+          nasm.exe --version
+          ndisasm.exe --version
+          echo mov eax, 1 > smoke.asm
+          echo ret >> smoke.asm
+          nasm.exe -f bin smoke.asm -o smoke.bin
+          ndisasm.exe -b 64 smoke.bin
+          nasm.exe -f win64 smoke.asm -o smoke.obj
+
+      - name: Build documentation and NSIS installer
+        shell: cmd
+        run: |
+          nmake /f Mkfiles\msvc.mak docs
+          nmake /f Mkfiles\msvc.mak nsis
+
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: nasm-windows-installer
+          path: nasm-*-installer-*.exe
+          if-no-files-found: error

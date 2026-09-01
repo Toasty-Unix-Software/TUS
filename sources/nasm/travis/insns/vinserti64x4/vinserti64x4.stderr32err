@@ -1,0 +1,2 @@
+./travis/insns/vinserti64x4/vinserti64x4_narrow.asm:6: error: invalid operands in non-64-bit mode
+./travis/insns/vinserti64x4/vinserti64x4_narrow.asm:7: error: invalid operands in non-64-bit mode

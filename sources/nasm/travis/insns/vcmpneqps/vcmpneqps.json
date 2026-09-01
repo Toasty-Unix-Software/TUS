@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPNEQPS",
+  "id": "vcmpneqps16",
+  "format": "bin",
+  "source": "vcmpneqps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpneqps/",
+  "target": [
+   { "output": "vcmpneqps.bin16", "match": "vcmpneqps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNEQPS",
+  "id": "vcmpneqps32",
+  "format": "bin",
+  "source": "vcmpneqps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpneqps/",
+  "target": [
+   { "output": "vcmpneqps.bin32", "match": "vcmpneqps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNEQPS",
+  "id": "vcmpneqps64",
+  "format": "bin",
+  "source": "vcmpneqps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpneqps/",
+  "target": [
+   { "output": "vcmpneqps.bin64", "match": "vcmpneqps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNEQPS",
+  "id": "vcmpneqps16err",
+  "format": "bin",
+  "source": "vcmpneqps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpneqps/",
+  "target": [
+   { "stderr": "vcmpneqps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNEQPS",
+  "id": "vcmpneqps32err",
+  "format": "bin",
+  "source": "vcmpneqps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpneqps/",
+  "target": [
+   { "stderr": "vcmpneqps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for BTS",
+  "id": "bts16",
+  "format": "bin",
+  "source": "bts_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bts/",
+  "target": [
+   { "output": "bts.bin16", "match": "bts.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BTS",
+  "id": "bts32",
+  "format": "bin",
+  "source": "bts_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bts/",
+  "target": [
+   { "output": "bts.bin32", "match": "bts.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BTS",
+  "id": "bts64",
+  "format": "bin",
+  "source": "bts.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bts/",
+  "target": [
+   { "output": "bts.bin64", "match": "bts.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BTS",
+  "id": "bts16err",
+  "format": "bin",
+  "source": "bts_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bts/",
+  "target": [
+   { "stderr": "bts.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BTS",
+  "id": "bts32err",
+  "format": "bin",
+  "source": "bts_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bts/",
+  "target": [
+   { "stderr": "bts.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

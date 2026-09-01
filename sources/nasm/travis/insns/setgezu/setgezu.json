@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETGEZU",
+  "id": "setgezu64",
+  "format": "bin",
+  "source": "setgezu.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setgezu/",
+  "target": [
+   { "output": "setgezu.bin64", "match": "setgezu.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETGEZU",
+  "id": "setgezu16err",
+  "format": "bin",
+  "source": "setgezu_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setgezu/",
+  "target": [
+   { "stderr": "setgezu.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETGEZU",
+  "id": "setgezu32err",
+  "format": "bin",
+  "source": "setgezu_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setgezu/",
+  "target": [
+   { "stderr": "setgezu.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

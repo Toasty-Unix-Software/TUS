@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VHADDPD",
+  "id": "vhaddpd16",
+  "format": "bin",
+  "source": "vhaddpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vhaddpd/",
+  "target": [
+   { "output": "vhaddpd.bin16", "match": "vhaddpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VHADDPD",
+  "id": "vhaddpd32",
+  "format": "bin",
+  "source": "vhaddpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vhaddpd/",
+  "target": [
+   { "output": "vhaddpd.bin32", "match": "vhaddpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VHADDPD",
+  "id": "vhaddpd64",
+  "format": "bin",
+  "source": "vhaddpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vhaddpd/",
+  "target": [
+   { "output": "vhaddpd.bin64", "match": "vhaddpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VHADDPD",
+  "id": "vhaddpd16err",
+  "format": "bin",
+  "source": "vhaddpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vhaddpd/",
+  "target": [
+   { "stderr": "vhaddpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VHADDPD",
+  "id": "vhaddpd32err",
+  "format": "bin",
+  "source": "vhaddpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vhaddpd/",
+  "target": [
+   { "stderr": "vhaddpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for TPAUSE",
+  "id": "tpause16",
+  "format": "bin",
+  "source": "tpause_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tpause/",
+  "target": [
+   { "output": "tpause.bin16", "match": "tpause.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TPAUSE",
+  "id": "tpause32",
+  "format": "bin",
+  "source": "tpause_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tpause/",
+  "target": [
+   { "output": "tpause.bin32", "match": "tpause.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TPAUSE",
+  "id": "tpause64",
+  "format": "bin",
+  "source": "tpause.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tpause/",
+  "target": [
+   { "output": "tpause.bin64", "match": "tpause.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for TPAUSE",
+  "id": "tpause16err",
+  "format": "bin",
+  "source": "tpause_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tpause/",
+  "target": [
+   { "stderr": "tpause.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for TPAUSE",
+  "id": "tpause32err",
+  "format": "bin",
+  "source": "tpause_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tpause/",
+  "target": [
+   { "stderr": "tpause.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

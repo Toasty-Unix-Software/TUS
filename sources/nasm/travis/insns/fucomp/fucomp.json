@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FUCOMP",
+  "id": "fucomp16",
+  "format": "bin",
+  "source": "fucomp.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fucomp/",
+  "target": [
+   { "output": "fucomp.bin16", "match": "fucomp.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FUCOMP",
+  "id": "fucomp32",
+  "format": "bin",
+  "source": "fucomp.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fucomp/",
+  "target": [
+   { "output": "fucomp.bin32", "match": "fucomp.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FUCOMP",
+  "id": "fucomp64",
+  "format": "bin",
+  "source": "fucomp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fucomp/",
+  "target": [
+   { "output": "fucomp.bin64", "match": "fucomp.bin64.t" }
+  ]
+ }
+]

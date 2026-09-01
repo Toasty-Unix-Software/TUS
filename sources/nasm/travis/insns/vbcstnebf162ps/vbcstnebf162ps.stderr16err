@@ -1,0 +1,2 @@
+./travis/insns/vbcstnebf162ps/vbcstnebf162ps_narrow.asm:7: error: invalid operands in non-64-bit mode
+./travis/insns/vbcstnebf162ps/vbcstnebf162ps_narrow.asm:8: error: invalid operands in non-64-bit mode

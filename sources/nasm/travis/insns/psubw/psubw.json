@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PSUBW",
+  "id": "psubw16",
+  "format": "bin",
+  "source": "psubw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psubw/",
+  "target": [
+   { "output": "psubw.bin16", "match": "psubw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSUBW",
+  "id": "psubw32",
+  "format": "bin",
+  "source": "psubw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psubw/",
+  "target": [
+   { "output": "psubw.bin32", "match": "psubw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSUBW",
+  "id": "psubw64",
+  "format": "bin",
+  "source": "psubw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psubw/",
+  "target": [
+   { "output": "psubw.bin64", "match": "psubw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSUBW",
+  "id": "psubw16err",
+  "format": "bin",
+  "source": "psubw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psubw/",
+  "target": [
+   { "stderr": "psubw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSUBW",
+  "id": "psubw32err",
+  "format": "bin",
+  "source": "psubw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psubw/",
+  "target": [
+   { "stderr": "psubw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

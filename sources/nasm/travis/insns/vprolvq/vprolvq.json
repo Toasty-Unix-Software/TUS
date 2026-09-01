@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPROLVQ",
+  "id": "vprolvq16",
+  "format": "bin",
+  "source": "vprolvq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprolvq/",
+  "target": [
+   { "output": "vprolvq.bin16", "match": "vprolvq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPROLVQ",
+  "id": "vprolvq32",
+  "format": "bin",
+  "source": "vprolvq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprolvq/",
+  "target": [
+   { "output": "vprolvq.bin32", "match": "vprolvq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPROLVQ",
+  "id": "vprolvq64",
+  "format": "bin",
+  "source": "vprolvq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprolvq/",
+  "target": [
+   { "output": "vprolvq.bin64", "match": "vprolvq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPROLVQ",
+  "id": "vprolvq16err",
+  "format": "bin",
+  "source": "vprolvq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprolvq/",
+  "target": [
+   { "stderr": "vprolvq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPROLVQ",
+  "id": "vprolvq32err",
+  "format": "bin",
+  "source": "vprolvq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprolvq/",
+  "target": [
+   { "stderr": "vprolvq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

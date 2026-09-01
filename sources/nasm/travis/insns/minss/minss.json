@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MINSS",
+  "id": "minss16",
+  "format": "bin",
+  "source": "minss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minss/",
+  "target": [
+   { "output": "minss.bin16", "match": "minss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MINSS",
+  "id": "minss32",
+  "format": "bin",
+  "source": "minss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minss/",
+  "target": [
+   { "output": "minss.bin32", "match": "minss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MINSS",
+  "id": "minss64",
+  "format": "bin",
+  "source": "minss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minss/",
+  "target": [
+   { "output": "minss.bin64", "match": "minss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MINSS",
+  "id": "minss16err",
+  "format": "bin",
+  "source": "minss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minss/",
+  "target": [
+   { "stderr": "minss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MINSS",
+  "id": "minss32err",
+  "format": "bin",
+  "source": "minss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minss/",
+  "target": [
+   { "stderr": "minss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

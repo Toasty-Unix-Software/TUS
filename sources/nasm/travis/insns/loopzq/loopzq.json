@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for LOOPZQ",
+  "id": "loopzq64",
+  "format": "bin",
+  "source": "loopzq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopzq/",
+  "target": [
+   { "output": "loopzq.bin64", "match": "loopzq.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for RDSSPD",
+  "id": "rdsspd16",
+  "format": "bin",
+  "source": "rdsspd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdsspd/",
+  "target": [
+   { "output": "rdsspd.bin16", "match": "rdsspd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RDSSPD",
+  "id": "rdsspd32",
+  "format": "bin",
+  "source": "rdsspd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdsspd/",
+  "target": [
+   { "output": "rdsspd.bin32", "match": "rdsspd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RDSSPD",
+  "id": "rdsspd64",
+  "format": "bin",
+  "source": "rdsspd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdsspd/",
+  "target": [
+   { "output": "rdsspd.bin64", "match": "rdsspd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RDSSPD",
+  "id": "rdsspd16err",
+  "format": "bin",
+  "source": "rdsspd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdsspd/",
+  "target": [
+   { "stderr": "rdsspd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RDSSPD",
+  "id": "rdsspd32err",
+  "format": "bin",
+  "source": "rdsspd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdsspd/",
+  "target": [
+   { "stderr": "rdsspd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

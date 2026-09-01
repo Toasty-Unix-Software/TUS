@@ -1,0 +1,13 @@
+default rel
+	vlddqu xmm7, oword [0x149]
+	vlddqu xmm1, oword [0xade]
+	vlddqu ymm7, yword [0x66d]
+	vlddqu ymm7, yword [0x966]
+	vlddqu xmm12, oword [0x827]
+	vlddqu ymm8, yword [0x488]
+	vlddqu xmm0, oword [eax+1]
+	vlddqu xmm2, oword [eax+64]
+	vlddqu ymm6, yword [eax+1]
+	vlddqu ymm2, yword [eax+64]
+	vlddqu xmm3, [0x6a5]
+	vlddqu ymm4, [0xb8e]

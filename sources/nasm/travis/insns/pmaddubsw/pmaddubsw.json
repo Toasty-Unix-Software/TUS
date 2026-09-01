@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PMADDUBSW",
+  "id": "pmaddubsw16",
+  "format": "bin",
+  "source": "pmaddubsw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaddubsw/",
+  "target": [
+   { "output": "pmaddubsw.bin16", "match": "pmaddubsw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMADDUBSW",
+  "id": "pmaddubsw32",
+  "format": "bin",
+  "source": "pmaddubsw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaddubsw/",
+  "target": [
+   { "output": "pmaddubsw.bin32", "match": "pmaddubsw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMADDUBSW",
+  "id": "pmaddubsw64",
+  "format": "bin",
+  "source": "pmaddubsw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaddubsw/",
+  "target": [
+   { "output": "pmaddubsw.bin64", "match": "pmaddubsw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMADDUBSW",
+  "id": "pmaddubsw16err",
+  "format": "bin",
+  "source": "pmaddubsw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaddubsw/",
+  "target": [
+   { "stderr": "pmaddubsw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMADDUBSW",
+  "id": "pmaddubsw32err",
+  "format": "bin",
+  "source": "pmaddubsw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaddubsw/",
+  "target": [
+   { "stderr": "pmaddubsw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

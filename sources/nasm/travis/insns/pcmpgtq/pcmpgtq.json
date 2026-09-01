@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PCMPGTQ",
+  "id": "pcmpgtq16",
+  "format": "bin",
+  "source": "pcmpgtq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpgtq/",
+  "target": [
+   { "output": "pcmpgtq.bin16", "match": "pcmpgtq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCMPGTQ",
+  "id": "pcmpgtq32",
+  "format": "bin",
+  "source": "pcmpgtq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpgtq/",
+  "target": [
+   { "output": "pcmpgtq.bin32", "match": "pcmpgtq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCMPGTQ",
+  "id": "pcmpgtq64",
+  "format": "bin",
+  "source": "pcmpgtq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpgtq/",
+  "target": [
+   { "output": "pcmpgtq.bin64", "match": "pcmpgtq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCMPGTQ",
+  "id": "pcmpgtq16err",
+  "format": "bin",
+  "source": "pcmpgtq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpgtq/",
+  "target": [
+   { "stderr": "pcmpgtq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCMPGTQ",
+  "id": "pcmpgtq32err",
+  "format": "bin",
+  "source": "pcmpgtq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpgtq/",
+  "target": [
+   { "stderr": "pcmpgtq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

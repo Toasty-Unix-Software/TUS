@@ -1,0 +1,3 @@
+./travis/insns/ctests/ctests.asm:39: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/ctests/ctests.asm:40: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/ctests/ctests.asm:41: warning: byte exceeds bounds [-w+number-overflow]

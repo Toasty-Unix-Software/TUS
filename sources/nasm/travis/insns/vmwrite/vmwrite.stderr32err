@@ -1,0 +1,2 @@
+./travis/insns/vmwrite/vmwrite_narrow.asm:5: error: instruction not supported in 32-bit mode
+./travis/insns/vmwrite/vmwrite_narrow.asm:6: error: instruction not supported in 32-bit mode

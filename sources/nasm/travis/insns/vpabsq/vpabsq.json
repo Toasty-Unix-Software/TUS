@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPABSQ",
+  "id": "vpabsq16",
+  "format": "bin",
+  "source": "vpabsq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpabsq/",
+  "target": [
+   { "output": "vpabsq.bin16", "match": "vpabsq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPABSQ",
+  "id": "vpabsq32",
+  "format": "bin",
+  "source": "vpabsq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpabsq/",
+  "target": [
+   { "output": "vpabsq.bin32", "match": "vpabsq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPABSQ",
+  "id": "vpabsq64",
+  "format": "bin",
+  "source": "vpabsq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpabsq/",
+  "target": [
+   { "output": "vpabsq.bin64", "match": "vpabsq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPABSQ",
+  "id": "vpabsq16err",
+  "format": "bin",
+  "source": "vpabsq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpabsq/",
+  "target": [
+   { "stderr": "vpabsq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPABSQ",
+  "id": "vpabsq32err",
+  "format": "bin",
+  "source": "vpabsq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpabsq/",
+  "target": [
+   { "stderr": "vpabsq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

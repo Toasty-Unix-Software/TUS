@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CFCMOVS",
+  "id": "cfcmovs64",
+  "format": "bin",
+  "source": "cfcmovs.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovs/",
+  "target": [
+   { "output": "cfcmovs.bin64", "match": "cfcmovs.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVS",
+  "id": "cfcmovs16err",
+  "format": "bin",
+  "source": "cfcmovs_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovs/",
+  "target": [
+   { "stderr": "cfcmovs.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVS",
+  "id": "cfcmovs32err",
+  "format": "bin",
+  "source": "cfcmovs_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovs/",
+  "target": [
+   { "stderr": "cfcmovs.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

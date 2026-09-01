@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VALIGNQ",
+  "id": "valignq16",
+  "format": "bin",
+  "source": "valignq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/valignq/",
+  "target": [
+   { "output": "valignq.bin16", "match": "valignq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VALIGNQ",
+  "id": "valignq32",
+  "format": "bin",
+  "source": "valignq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/valignq/",
+  "target": [
+   { "output": "valignq.bin32", "match": "valignq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VALIGNQ",
+  "id": "valignq64",
+  "format": "bin",
+  "source": "valignq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/valignq/",
+  "target": [
+   { "output": "valignq.bin64", "match": "valignq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VALIGNQ",
+  "id": "valignq16err",
+  "format": "bin",
+  "source": "valignq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/valignq/",
+  "target": [
+   { "stderr": "valignq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VALIGNQ",
+  "id": "valignq32err",
+  "format": "bin",
+  "source": "valignq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/valignq/",
+  "target": [
+   { "stderr": "valignq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

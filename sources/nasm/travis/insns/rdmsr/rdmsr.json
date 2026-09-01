@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for RDMSR",
+  "id": "rdmsr16",
+  "format": "bin",
+  "source": "rdmsr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdmsr/",
+  "target": [
+   { "output": "rdmsr.bin16", "match": "rdmsr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RDMSR",
+  "id": "rdmsr32",
+  "format": "bin",
+  "source": "rdmsr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdmsr/",
+  "target": [
+   { "output": "rdmsr.bin32", "match": "rdmsr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RDMSR",
+  "id": "rdmsr64",
+  "format": "bin",
+  "source": "rdmsr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdmsr/",
+  "target": [
+   { "output": "rdmsr.bin64", "match": "rdmsr.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RDMSR",
+  "id": "rdmsr16err",
+  "format": "bin",
+  "source": "rdmsr_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdmsr/",
+  "target": [
+   { "stderr": "rdmsr.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RDMSR",
+  "id": "rdmsr32err",
+  "format": "bin",
+  "source": "rdmsr_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdmsr/",
+  "target": [
+   { "stderr": "rdmsr.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

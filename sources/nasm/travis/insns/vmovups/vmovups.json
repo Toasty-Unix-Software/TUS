@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMOVUPS",
+  "id": "vmovups16",
+  "format": "bin",
+  "source": "vmovups_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovups/",
+  "target": [
+   { "output": "vmovups.bin16", "match": "vmovups.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVUPS",
+  "id": "vmovups32",
+  "format": "bin",
+  "source": "vmovups_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovups/",
+  "target": [
+   { "output": "vmovups.bin32", "match": "vmovups.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVUPS",
+  "id": "vmovups64",
+  "format": "bin",
+  "source": "vmovups.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovups/",
+  "target": [
+   { "output": "vmovups.bin64", "match": "vmovups.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVUPS",
+  "id": "vmovups16err",
+  "format": "bin",
+  "source": "vmovups_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovups/",
+  "target": [
+   { "stderr": "vmovups.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVUPS",
+  "id": "vmovups32err",
+  "format": "bin",
+  "source": "vmovups_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovups/",
+  "target": [
+   { "stderr": "vmovups.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

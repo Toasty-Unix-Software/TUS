@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for INCSSPD",
+  "id": "incsspd16",
+  "format": "bin",
+  "source": "incsspd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/incsspd/",
+  "target": [
+   { "output": "incsspd.bin16", "match": "incsspd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for INCSSPD",
+  "id": "incsspd32",
+  "format": "bin",
+  "source": "incsspd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/incsspd/",
+  "target": [
+   { "output": "incsspd.bin32", "match": "incsspd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for INCSSPD",
+  "id": "incsspd64",
+  "format": "bin",
+  "source": "incsspd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/incsspd/",
+  "target": [
+   { "output": "incsspd.bin64", "match": "incsspd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for INCSSPD",
+  "id": "incsspd16err",
+  "format": "bin",
+  "source": "incsspd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/incsspd/",
+  "target": [
+   { "stderr": "incsspd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for INCSSPD",
+  "id": "incsspd32err",
+  "format": "bin",
+  "source": "incsspd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/incsspd/",
+  "target": [
+   { "stderr": "incsspd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

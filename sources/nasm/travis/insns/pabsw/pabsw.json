@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PABSW",
+  "id": "pabsw16",
+  "format": "bin",
+  "source": "pabsw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pabsw/",
+  "target": [
+   { "output": "pabsw.bin16", "match": "pabsw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PABSW",
+  "id": "pabsw32",
+  "format": "bin",
+  "source": "pabsw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pabsw/",
+  "target": [
+   { "output": "pabsw.bin32", "match": "pabsw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PABSW",
+  "id": "pabsw64",
+  "format": "bin",
+  "source": "pabsw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pabsw/",
+  "target": [
+   { "output": "pabsw.bin64", "match": "pabsw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PABSW",
+  "id": "pabsw16err",
+  "format": "bin",
+  "source": "pabsw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pabsw/",
+  "target": [
+   { "stderr": "pabsw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PABSW",
+  "id": "pabsw32err",
+  "format": "bin",
+  "source": "pabsw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pabsw/",
+  "target": [
+   { "stderr": "pabsw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

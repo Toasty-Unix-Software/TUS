@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for JMPE",
+  "id": "jmpe16",
+  "format": "bin",
+  "source": "jmpe_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jmpe/",
+  "target": [
+   { "output": "jmpe.bin16", "match": "jmpe.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JMPE",
+  "id": "jmpe32",
+  "format": "bin",
+  "source": "jmpe_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jmpe/",
+  "target": [
+   { "output": "jmpe.bin32", "match": "jmpe.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JMPE",
+  "id": "jmpe64",
+  "format": "bin",
+  "source": "jmpe.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jmpe/",
+  "target": [
+   { "output": "jmpe.bin64", "match": "jmpe.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for JMPE",
+  "id": "jmpe16err",
+  "format": "bin",
+  "source": "jmpe_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jmpe/",
+  "target": [
+   { "stderr": "jmpe.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for JMPE",
+  "id": "jmpe32err",
+  "format": "bin",
+  "source": "jmpe_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jmpe/",
+  "target": [
+   { "stderr": "jmpe.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

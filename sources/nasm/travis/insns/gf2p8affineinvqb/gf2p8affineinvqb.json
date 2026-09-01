@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for GF2P8AFFINEINVQB",
+  "id": "gf2p8affineinvqb16",
+  "format": "bin",
+  "source": "gf2p8affineinvqb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/gf2p8affineinvqb/",
+  "target": [
+   { "output": "gf2p8affineinvqb.bin16", "match": "gf2p8affineinvqb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for GF2P8AFFINEINVQB",
+  "id": "gf2p8affineinvqb32",
+  "format": "bin",
+  "source": "gf2p8affineinvqb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/gf2p8affineinvqb/",
+  "target": [
+   { "output": "gf2p8affineinvqb.bin32", "match": "gf2p8affineinvqb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for GF2P8AFFINEINVQB",
+  "id": "gf2p8affineinvqb64",
+  "format": "bin",
+  "source": "gf2p8affineinvqb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/gf2p8affineinvqb/",
+  "target": [
+   { "output": "gf2p8affineinvqb.bin64", "match": "gf2p8affineinvqb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for GF2P8AFFINEINVQB",
+  "id": "gf2p8affineinvqb16err",
+  "format": "bin",
+  "source": "gf2p8affineinvqb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/gf2p8affineinvqb/",
+  "target": [
+   { "stderr": "gf2p8affineinvqb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for GF2P8AFFINEINVQB",
+  "id": "gf2p8affineinvqb32err",
+  "format": "bin",
+  "source": "gf2p8affineinvqb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/gf2p8affineinvqb/",
+  "target": [
+   { "stderr": "gf2p8affineinvqb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

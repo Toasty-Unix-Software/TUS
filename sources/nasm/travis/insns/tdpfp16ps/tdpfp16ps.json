@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for TDPFP16PS",
+  "id": "tdpfp16ps64",
+  "format": "bin",
+  "source": "tdpfp16ps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tdpfp16ps/",
+  "target": [
+   { "output": "tdpfp16ps.bin64", "match": "tdpfp16ps.bin64.t" }
+  ]
+ }
+]

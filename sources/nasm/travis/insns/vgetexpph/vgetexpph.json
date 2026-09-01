@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VGETEXPPH",
+  "id": "vgetexpph16",
+  "format": "bin",
+  "source": "vgetexpph_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexpph/",
+  "target": [
+   { "output": "vgetexpph.bin16", "match": "vgetexpph.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETEXPPH",
+  "id": "vgetexpph32",
+  "format": "bin",
+  "source": "vgetexpph_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexpph/",
+  "target": [
+   { "output": "vgetexpph.bin32", "match": "vgetexpph.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETEXPPH",
+  "id": "vgetexpph64",
+  "format": "bin",
+  "source": "vgetexpph.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexpph/",
+  "target": [
+   { "output": "vgetexpph.bin64", "match": "vgetexpph.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETEXPPH",
+  "id": "vgetexpph16err",
+  "format": "bin",
+  "source": "vgetexpph_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexpph/",
+  "target": [
+   { "stderr": "vgetexpph.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETEXPPH",
+  "id": "vgetexpph32err",
+  "format": "bin",
+  "source": "vgetexpph_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexpph/",
+  "target": [
+   { "stderr": "vgetexpph.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

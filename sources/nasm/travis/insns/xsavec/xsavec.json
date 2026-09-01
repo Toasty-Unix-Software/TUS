@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XSAVEC",
+  "id": "xsavec16",
+  "format": "bin",
+  "source": "xsavec_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsavec/",
+  "target": [
+   { "output": "xsavec.bin16", "match": "xsavec.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XSAVEC",
+  "id": "xsavec32",
+  "format": "bin",
+  "source": "xsavec_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsavec/",
+  "target": [
+   { "output": "xsavec.bin32", "match": "xsavec.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XSAVEC",
+  "id": "xsavec64",
+  "format": "bin",
+  "source": "xsavec.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsavec/",
+  "target": [
+   { "output": "xsavec.bin64", "match": "xsavec.bin64.t" }
+  ]
+ }
+]

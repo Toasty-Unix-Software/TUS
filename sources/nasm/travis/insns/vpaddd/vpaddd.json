@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPADDD",
+  "id": "vpaddd16",
+  "format": "bin",
+  "source": "vpaddd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddd/",
+  "target": [
+   { "output": "vpaddd.bin16", "match": "vpaddd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPADDD",
+  "id": "vpaddd32",
+  "format": "bin",
+  "source": "vpaddd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddd/",
+  "target": [
+   { "output": "vpaddd.bin32", "match": "vpaddd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPADDD",
+  "id": "vpaddd64",
+  "format": "bin",
+  "source": "vpaddd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddd/",
+  "target": [
+   { "output": "vpaddd.bin64", "match": "vpaddd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPADDD",
+  "id": "vpaddd16err",
+  "format": "bin",
+  "source": "vpaddd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddd/",
+  "target": [
+   { "stderr": "vpaddd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPADDD",
+  "id": "vpaddd32err",
+  "format": "bin",
+  "source": "vpaddd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddd/",
+  "target": [
+   { "stderr": "vpaddd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

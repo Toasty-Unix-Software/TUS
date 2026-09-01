@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for SHRX",
+  "id": "shrx16",
+  "format": "bin",
+  "source": "shrx_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shrx/",
+  "target": [
+   { "output": "shrx.bin16", "match": "shrx.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHRX",
+  "id": "shrx32",
+  "format": "bin",
+  "source": "shrx_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shrx/",
+  "target": [
+   { "output": "shrx.bin32", "match": "shrx.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHRX",
+  "id": "shrx64",
+  "format": "bin",
+  "source": "shrx.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shrx/",
+  "target": [
+   { "output": "shrx.bin64", "match": "shrx.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHRX",
+  "id": "shrx16err",
+  "format": "bin",
+  "source": "shrx_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shrx/",
+  "target": [
+   { "stderr": "shrx.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHRX",
+  "id": "shrx32err",
+  "format": "bin",
+  "source": "shrx_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shrx/",
+  "target": [
+   { "stderr": "shrx.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

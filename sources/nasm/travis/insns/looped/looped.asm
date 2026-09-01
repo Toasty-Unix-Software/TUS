@@ -1,0 +1,7 @@
+default rel
+	looped 0x1726
+	looped 0xb55d
+	looped 0x8ed9d7
+	looped 0x2d358d95
+	looped 0xc646140
+	looped 0x832aacf

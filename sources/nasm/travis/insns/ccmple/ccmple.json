@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPLE",
+  "id": "ccmple64",
+  "format": "bin",
+  "source": "ccmple.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmple/",
+  "target": [
+   { "output": "ccmple.bin64", "match": "ccmple.bin64.t" },
+   { "stderr": "ccmple.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPLE",
+  "id": "ccmple16err",
+  "format": "bin",
+  "source": "ccmple_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmple/",
+  "target": [
+   { "stderr": "ccmple.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPLE",
+  "id": "ccmple32err",
+  "format": "bin",
+  "source": "ccmple_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmple/",
+  "target": [
+   { "stderr": "ccmple.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

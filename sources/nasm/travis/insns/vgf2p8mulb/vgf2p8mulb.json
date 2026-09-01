@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VGF2P8MULB",
+  "id": "vgf2p8mulb16",
+  "format": "bin",
+  "source": "vgf2p8mulb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgf2p8mulb/",
+  "target": [
+   { "output": "vgf2p8mulb.bin16", "match": "vgf2p8mulb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGF2P8MULB",
+  "id": "vgf2p8mulb32",
+  "format": "bin",
+  "source": "vgf2p8mulb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgf2p8mulb/",
+  "target": [
+   { "output": "vgf2p8mulb.bin32", "match": "vgf2p8mulb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGF2P8MULB",
+  "id": "vgf2p8mulb64",
+  "format": "bin",
+  "source": "vgf2p8mulb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgf2p8mulb/",
+  "target": [
+   { "output": "vgf2p8mulb.bin64", "match": "vgf2p8mulb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGF2P8MULB",
+  "id": "vgf2p8mulb16err",
+  "format": "bin",
+  "source": "vgf2p8mulb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgf2p8mulb/",
+  "target": [
+   { "stderr": "vgf2p8mulb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGF2P8MULB",
+  "id": "vgf2p8mulb32err",
+  "format": "bin",
+  "source": "vgf2p8mulb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgf2p8mulb/",
+  "target": [
+   { "stderr": "vgf2p8mulb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

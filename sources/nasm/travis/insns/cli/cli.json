@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for CLI",
+  "id": "cli16",
+  "format": "bin",
+  "source": "cli.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cli/",
+  "target": [
+   { "output": "cli.bin16", "match": "cli.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLI",
+  "id": "cli32",
+  "format": "bin",
+  "source": "cli.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cli/",
+  "target": [
+   { "output": "cli.bin32", "match": "cli.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLI",
+  "id": "cli64",
+  "format": "bin",
+  "source": "cli.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cli/",
+  "target": [
+   { "output": "cli.bin64", "match": "cli.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for TILEZERO",
+  "id": "tilezero64",
+  "format": "bin",
+  "source": "tilezero.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tilezero/",
+  "target": [
+   { "output": "tilezero.bin64", "match": "tilezero.bin64.t" }
+  ]
+ }
+]

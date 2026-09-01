@@ -1,0 +1,1 @@
+./travis/insns/vinsertf128/vinsertf128_narrow.asm:6: error: invalid operands in non-64-bit mode

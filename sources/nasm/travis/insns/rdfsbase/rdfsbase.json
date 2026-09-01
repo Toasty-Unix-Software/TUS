@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for RDFSBASE",
+  "id": "rdfsbase64",
+  "format": "bin",
+  "source": "rdfsbase.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdfsbase/",
+  "target": [
+   { "output": "rdfsbase.bin64", "match": "rdfsbase.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RDFSBASE",
+  "id": "rdfsbase16err",
+  "format": "bin",
+  "source": "rdfsbase_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdfsbase/",
+  "target": [
+   { "stderr": "rdfsbase.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RDFSBASE",
+  "id": "rdfsbase32err",
+  "format": "bin",
+  "source": "rdfsbase_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdfsbase/",
+  "target": [
+   { "stderr": "rdfsbase.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

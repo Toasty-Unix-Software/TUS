@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VERR",
+  "id": "verr16",
+  "format": "bin",
+  "source": "verr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/verr/",
+  "target": [
+   { "output": "verr.bin16", "match": "verr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VERR",
+  "id": "verr32",
+  "format": "bin",
+  "source": "verr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/verr/",
+  "target": [
+   { "output": "verr.bin32", "match": "verr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VERR",
+  "id": "verr64",
+  "format": "bin",
+  "source": "verr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/verr/",
+  "target": [
+   { "output": "verr.bin64", "match": "verr.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VERR",
+  "id": "verr16err",
+  "format": "bin",
+  "source": "verr_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/verr/",
+  "target": [
+   { "stderr": "verr.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VERR",
+  "id": "verr32err",
+  "format": "bin",
+  "source": "verr_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/verr/",
+  "target": [
+   { "stderr": "verr.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

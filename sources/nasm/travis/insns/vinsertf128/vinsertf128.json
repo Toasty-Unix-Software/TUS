@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VINSERTF128",
+  "id": "vinsertf12816",
+  "format": "bin",
+  "source": "vinsertf128_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertf128/",
+  "target": [
+   { "output": "vinsertf128.bin16", "match": "vinsertf128.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VINSERTF128",
+  "id": "vinsertf12832",
+  "format": "bin",
+  "source": "vinsertf128_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertf128/",
+  "target": [
+   { "output": "vinsertf128.bin32", "match": "vinsertf128.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VINSERTF128",
+  "id": "vinsertf12864",
+  "format": "bin",
+  "source": "vinsertf128.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertf128/",
+  "target": [
+   { "output": "vinsertf128.bin64", "match": "vinsertf128.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VINSERTF128",
+  "id": "vinsertf12816err",
+  "format": "bin",
+  "source": "vinsertf128_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertf128/",
+  "target": [
+   { "stderr": "vinsertf128.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VINSERTF128",
+  "id": "vinsertf12832err",
+  "format": "bin",
+  "source": "vinsertf128_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertf128/",
+  "target": [
+   { "stderr": "vinsertf128.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

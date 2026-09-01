@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for MOVSW",
+  "id": "movsw16",
+  "format": "bin",
+  "source": "movsw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movsw/",
+  "target": [
+   { "output": "movsw.bin16", "match": "movsw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVSW",
+  "id": "movsw32",
+  "format": "bin",
+  "source": "movsw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movsw/",
+  "target": [
+   { "output": "movsw.bin32", "match": "movsw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVSW",
+  "id": "movsw64",
+  "format": "bin",
+  "source": "movsw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movsw/",
+  "target": [
+   { "output": "movsw.bin64", "match": "movsw.bin64.t" }
+  ]
+ }
+]

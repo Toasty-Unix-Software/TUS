@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for LEAVED",
+  "id": "leaved16",
+  "format": "bin",
+  "source": "leaved.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/leaved/",
+  "target": [
+   { "output": "leaved.bin16", "match": "leaved.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LEAVED",
+  "id": "leaved32",
+  "format": "bin",
+  "source": "leaved.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/leaved/",
+  "target": [
+   { "output": "leaved.bin32", "match": "leaved.bin32.t" }
+  ]
+ }
+]

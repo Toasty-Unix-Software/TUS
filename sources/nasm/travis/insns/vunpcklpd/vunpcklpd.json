@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VUNPCKLPD",
+  "id": "vunpcklpd16",
+  "format": "bin",
+  "source": "vunpcklpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vunpcklpd/",
+  "target": [
+   { "output": "vunpcklpd.bin16", "match": "vunpcklpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VUNPCKLPD",
+  "id": "vunpcklpd32",
+  "format": "bin",
+  "source": "vunpcklpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vunpcklpd/",
+  "target": [
+   { "output": "vunpcklpd.bin32", "match": "vunpcklpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VUNPCKLPD",
+  "id": "vunpcklpd64",
+  "format": "bin",
+  "source": "vunpcklpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vunpcklpd/",
+  "target": [
+   { "output": "vunpcklpd.bin64", "match": "vunpcklpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VUNPCKLPD",
+  "id": "vunpcklpd16err",
+  "format": "bin",
+  "source": "vunpcklpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vunpcklpd/",
+  "target": [
+   { "stderr": "vunpcklpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VUNPCKLPD",
+  "id": "vunpcklpd32err",
+  "format": "bin",
+  "source": "vunpcklpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vunpcklpd/",
+  "target": [
+   { "stderr": "vunpcklpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

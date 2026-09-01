@@ -1,0 +1,11 @@
+default rel
+	fist dword [0x6a5]
+	fist dword [0x157]
+	fist word [0xb37]
+	fist word [0x7cd]
+	fist dword [eax+1]
+	fist dword [eax+64]
+	fist word [eax+1]
+	fist word [eax+64]
+	fist [0x344]
+	fist [0x7f8]

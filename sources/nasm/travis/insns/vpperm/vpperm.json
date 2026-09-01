@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPPERM",
+  "id": "vpperm16",
+  "format": "bin",
+  "source": "vpperm_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpperm/",
+  "target": [
+   { "output": "vpperm.bin16", "match": "vpperm.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPPERM",
+  "id": "vpperm32",
+  "format": "bin",
+  "source": "vpperm_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpperm/",
+  "target": [
+   { "output": "vpperm.bin32", "match": "vpperm.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPPERM",
+  "id": "vpperm64",
+  "format": "bin",
+  "source": "vpperm.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpperm/",
+  "target": [
+   { "output": "vpperm.bin64", "match": "vpperm.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPPERM",
+  "id": "vpperm16err",
+  "format": "bin",
+  "source": "vpperm_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpperm/",
+  "target": [
+   { "stderr": "vpperm.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPPERM",
+  "id": "vpperm32err",
+  "format": "bin",
+  "source": "vpperm_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpperm/",
+  "target": [
+   { "stderr": "vpperm.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

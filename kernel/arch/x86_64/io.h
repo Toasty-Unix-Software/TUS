@@ -1,0 +1,104 @@
+/*
+ * io.h - x86_64 port I/O and CPU control primitives
+ *
+ * Everything in this header is a static inline function; there is no
+ * code in a separate translation unit, which keeps the kernel binary
+ * small and these hot paths as fast as possible.
+ */
+
+#ifndef TUS_ARCH_IO_H
+#define TUS_ARCH_IO_H
+
+#include <stdint.h>
+
+/* Write one byte to an I/O port. */
+static inline void outb(uint16_t port, uint8_t value) {
+    __asm__ volatile("outb %0, %1" : : "a"(value), "Nd"(port));
+}
+
+/* Read one byte from an I/O port. */
+static inline uint8_t inb(uint16_t port) {
+    uint8_t value;
+    __asm__ volatile("inb %1, %0" : "=a"(value) : "Nd"(port));
+    return value;
+}
+
+/* Write one 16-bit word to an I/O port. */
+static inline void outw(uint16_t port, uint16_t value) {
+    __asm__ volatile("outw %0, %1" : : "a"(value), "Nd"(port));
+}
+
+/* Read one 16-bit word from an I/O port. */
+static inline uint16_t inw(uint16_t port) {
+    uint16_t value;
+    __asm__ volatile("inw %1, %0" : "=a"(value) : "Nd"(port));
+    return value;
+}
+
+/* Write one 32-bit dword to an I/O port. */
+static inline void outl(uint16_t port, uint32_t value) {
+    __asm__ volatile("outl %0, %1" : : "a"(value), "Nd"(port));
+}
+
+/* Read one 32-bit dword from an I/O port. */
+static inline uint32_t inl(uint16_t port) {
+    uint32_t value;
+    __asm__ volatile("inl %1, %0" : "=a"(value) : "Nd"(port));
+    return value;
+}
+
+/*
+ * Briefly stall the I/O bus. The legacy PC has a well-known quirk where
+ * consecutive writes to certain chips (notably the PIC) can be lost;
+ * a dummy write to port 0x80 (an unused "post" port) in between gives
+ * the hardware time to settle.
+ */
+static inline void io_wait(void) {
+    outb(0x80, 0);
+}
+
+/* Clear the interrupt flag: mask all maskable interrupts. */
+static inline void cli(void) {
+    __asm__ volatile("cli");
+}
+
+/* Set the interrupt flag: unmask all maskable interrupts. */
+static inline void sti(void) {
+    __asm__ volatile("sti");
+}
+
+/* Disable interrupts, returning the previous RFLAGS so the caller can
+ * put things back exactly as they were. Unlike a bare cli()/sti()
+ * pair this is safe inside an interrupt handler, where interrupts are
+ * already off and must stay off on the way out. */
+static inline uint64_t irq_save(void) {
+    uint64_t flags;
+    __asm__ volatile("pushfq\n\tpop %0\n\tcli" : "=r"(flags) : : "memory");
+    return flags;
+}
+
+/* Restore the interrupt flag saved by irq_save(). */
+static inline void irq_restore(uint64_t flags) {
+    __asm__ volatile("push %0\n\tpopfq" : : "r"(flags) : "memory", "cc");
+}
+
+/* Halt the CPU until the next interrupt arrives. */
+static inline void hlt(void) {
+    __asm__ volatile("hlt");
+}
+
+/* Write a 64-bit value to a model-specific register. */
+static inline void wrmsr(uint32_t msr, uint64_t value) {
+    uint32_t lo = (uint32_t)value;
+    uint32_t hi = (uint32_t)(value >> 32);
+    __asm__ volatile("wrmsr" : : "c"(msr), "a"(lo), "d"(hi));
+}
+
+/* Read a 64-bit value from a model-specific register. */
+static inline uint64_t rdmsr(uint32_t msr) {
+    uint32_t lo, hi;
+    __asm__ volatile("rdmsr" : "=a"(lo), "=d"(hi) : "c"(msr));
+    return ((uint64_t)hi << 32) | lo;
+}
+
+#endif /* TUS_ARCH_IO_H */

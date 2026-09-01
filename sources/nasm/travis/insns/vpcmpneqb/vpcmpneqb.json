@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPNEQB",
+  "id": "vpcmpneqb16",
+  "format": "bin",
+  "source": "vpcmpneqb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpneqb/",
+  "target": [
+   { "output": "vpcmpneqb.bin16", "match": "vpcmpneqb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPNEQB",
+  "id": "vpcmpneqb32",
+  "format": "bin",
+  "source": "vpcmpneqb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpneqb/",
+  "target": [
+   { "output": "vpcmpneqb.bin32", "match": "vpcmpneqb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPNEQB",
+  "id": "vpcmpneqb64",
+  "format": "bin",
+  "source": "vpcmpneqb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpneqb/",
+  "target": [
+   { "output": "vpcmpneqb.bin64", "match": "vpcmpneqb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPNEQB",
+  "id": "vpcmpneqb16err",
+  "format": "bin",
+  "source": "vpcmpneqb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpneqb/",
+  "target": [
+   { "stderr": "vpcmpneqb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPNEQB",
+  "id": "vpcmpneqb32err",
+  "format": "bin",
+  "source": "vpcmpneqb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpneqb/",
+  "target": [
+   { "stderr": "vpcmpneqb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

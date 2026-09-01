@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FLDPI",
+  "id": "fldpi16",
+  "format": "bin",
+  "source": "fldpi.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fldpi/",
+  "target": [
+   { "output": "fldpi.bin16", "match": "fldpi.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FLDPI",
+  "id": "fldpi32",
+  "format": "bin",
+  "source": "fldpi.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fldpi/",
+  "target": [
+   { "output": "fldpi.bin32", "match": "fldpi.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FLDPI",
+  "id": "fldpi64",
+  "format": "bin",
+  "source": "fldpi.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fldpi/",
+  "target": [
+   { "output": "fldpi.bin64", "match": "fldpi.bin64.t" }
+  ]
+ }
+]

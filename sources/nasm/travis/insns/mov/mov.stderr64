@@ -1,0 +1,3 @@
+./travis/insns/mov/mov.asm:55: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/mov/mov.asm:56: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/mov/mov.asm:57: warning: byte exceeds bounds [-w+number-overflow]

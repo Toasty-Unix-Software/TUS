@@ -1,0 +1,3 @@
+./travis/insns/pinsrw/pinsrw_narrow.asm:11: error: invalid operands in 16-bit mode
+./travis/insns/pinsrw/pinsrw_narrow.asm:12: error: invalid operands in 16-bit mode
+./travis/insns/pinsrw/pinsrw_narrow.asm:13: error: invalid operands in 16-bit mode

@@ -1,0 +1,1 @@
+./travis/insns/addpd/addpd_narrow.asm:5: error: invalid operands in 16-bit mode

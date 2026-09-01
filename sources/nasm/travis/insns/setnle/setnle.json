@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETNLE",
+  "id": "setnle64",
+  "format": "bin",
+  "source": "setnle.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnle/",
+  "target": [
+   { "output": "setnle.bin64", "match": "setnle.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNLE",
+  "id": "setnle16err",
+  "format": "bin",
+  "source": "setnle_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnle/",
+  "target": [
+   { "stderr": "setnle.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNLE",
+  "id": "setnle32err",
+  "format": "bin",
+  "source": "setnle_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnle/",
+  "target": [
+   { "stderr": "setnle.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

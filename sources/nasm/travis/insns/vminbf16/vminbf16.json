@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMINBF16",
+  "id": "vminbf1616",
+  "format": "bin",
+  "source": "vminbf16_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminbf16/",
+  "target": [
+   { "output": "vminbf16.bin16", "match": "vminbf16.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMINBF16",
+  "id": "vminbf1632",
+  "format": "bin",
+  "source": "vminbf16_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminbf16/",
+  "target": [
+   { "output": "vminbf16.bin32", "match": "vminbf16.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMINBF16",
+  "id": "vminbf1664",
+  "format": "bin",
+  "source": "vminbf16.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminbf16/",
+  "target": [
+   { "output": "vminbf16.bin64", "match": "vminbf16.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMINBF16",
+  "id": "vminbf1616err",
+  "format": "bin",
+  "source": "vminbf16_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminbf16/",
+  "target": [
+   { "stderr": "vminbf16.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMINBF16",
+  "id": "vminbf1632err",
+  "format": "bin",
+  "source": "vminbf16_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminbf16/",
+  "target": [
+   { "stderr": "vminbf16.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

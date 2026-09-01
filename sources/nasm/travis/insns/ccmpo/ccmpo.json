@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPO",
+  "id": "ccmpo64",
+  "format": "bin",
+  "source": "ccmpo.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpo/",
+  "target": [
+   { "output": "ccmpo.bin64", "match": "ccmpo.bin64.t" },
+   { "stderr": "ccmpo.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPO",
+  "id": "ccmpo16err",
+  "format": "bin",
+  "source": "ccmpo_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpo/",
+  "target": [
+   { "stderr": "ccmpo.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPO",
+  "id": "ccmpo32err",
+  "format": "bin",
+  "source": "ccmpo_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpo/",
+  "target": [
+   { "stderr": "ccmpo.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

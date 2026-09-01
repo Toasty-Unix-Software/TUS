@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VGETMANTSH",
+  "id": "vgetmantsh16",
+  "format": "bin",
+  "source": "vgetmantsh_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantsh/",
+  "target": [
+   { "output": "vgetmantsh.bin16", "match": "vgetmantsh.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETMANTSH",
+  "id": "vgetmantsh32",
+  "format": "bin",
+  "source": "vgetmantsh_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantsh/",
+  "target": [
+   { "output": "vgetmantsh.bin32", "match": "vgetmantsh.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETMANTSH",
+  "id": "vgetmantsh64",
+  "format": "bin",
+  "source": "vgetmantsh.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantsh/",
+  "target": [
+   { "output": "vgetmantsh.bin64", "match": "vgetmantsh.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETMANTSH",
+  "id": "vgetmantsh16err",
+  "format": "bin",
+  "source": "vgetmantsh_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantsh/",
+  "target": [
+   { "stderr": "vgetmantsh.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETMANTSH",
+  "id": "vgetmantsh32err",
+  "format": "bin",
+  "source": "vgetmantsh_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantsh/",
+  "target": [
+   { "stderr": "vgetmantsh.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

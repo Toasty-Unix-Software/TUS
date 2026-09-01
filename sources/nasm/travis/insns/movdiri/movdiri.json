@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MOVDIRI",
+  "id": "movdiri16",
+  "format": "bin",
+  "source": "movdiri_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movdiri/",
+  "target": [
+   { "output": "movdiri.bin16", "match": "movdiri.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVDIRI",
+  "id": "movdiri32",
+  "format": "bin",
+  "source": "movdiri_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movdiri/",
+  "target": [
+   { "output": "movdiri.bin32", "match": "movdiri.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVDIRI",
+  "id": "movdiri64",
+  "format": "bin",
+  "source": "movdiri.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movdiri/",
+  "target": [
+   { "output": "movdiri.bin64", "match": "movdiri.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVDIRI",
+  "id": "movdiri16err",
+  "format": "bin",
+  "source": "movdiri_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movdiri/",
+  "target": [
+   { "stderr": "movdiri.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVDIRI",
+  "id": "movdiri32err",
+  "format": "bin",
+  "source": "movdiri_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movdiri/",
+  "target": [
+   { "stderr": "movdiri.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

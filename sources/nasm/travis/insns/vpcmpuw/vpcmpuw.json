@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPUW",
+  "id": "vpcmpuw16",
+  "format": "bin",
+  "source": "vpcmpuw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpuw/",
+  "target": [
+   { "output": "vpcmpuw.bin16", "match": "vpcmpuw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPUW",
+  "id": "vpcmpuw32",
+  "format": "bin",
+  "source": "vpcmpuw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpuw/",
+  "target": [
+   { "output": "vpcmpuw.bin32", "match": "vpcmpuw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPUW",
+  "id": "vpcmpuw64",
+  "format": "bin",
+  "source": "vpcmpuw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpuw/",
+  "target": [
+   { "output": "vpcmpuw.bin64", "match": "vpcmpuw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPUW",
+  "id": "vpcmpuw16err",
+  "format": "bin",
+  "source": "vpcmpuw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpuw/",
+  "target": [
+   { "stderr": "vpcmpuw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPUW",
+  "id": "vpcmpuw32err",
+  "format": "bin",
+  "source": "vpcmpuw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpuw/",
+  "target": [
+   { "stderr": "vpcmpuw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

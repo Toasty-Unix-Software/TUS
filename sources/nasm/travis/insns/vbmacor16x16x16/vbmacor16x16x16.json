@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VBMACOR16X16X16",
+  "id": "vbmacor16x16x1616",
+  "format": "bin",
+  "source": "vbmacor16x16x16_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbmacor16x16x16/",
+  "target": [
+   { "output": "vbmacor16x16x16.bin16", "match": "vbmacor16x16x16.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBMACOR16X16X16",
+  "id": "vbmacor16x16x1632",
+  "format": "bin",
+  "source": "vbmacor16x16x16_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbmacor16x16x16/",
+  "target": [
+   { "output": "vbmacor16x16x16.bin32", "match": "vbmacor16x16x16.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBMACOR16X16X16",
+  "id": "vbmacor16x16x1664",
+  "format": "bin",
+  "source": "vbmacor16x16x16.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbmacor16x16x16/",
+  "target": [
+   { "output": "vbmacor16x16x16.bin64", "match": "vbmacor16x16x16.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBMACOR16X16X16",
+  "id": "vbmacor16x16x1616err",
+  "format": "bin",
+  "source": "vbmacor16x16x16_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbmacor16x16x16/",
+  "target": [
+   { "stderr": "vbmacor16x16x16.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBMACOR16X16X16",
+  "id": "vbmacor16x16x1632err",
+  "format": "bin",
+  "source": "vbmacor16x16x16_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbmacor16x16x16/",
+  "target": [
+   { "stderr": "vbmacor16x16x16.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

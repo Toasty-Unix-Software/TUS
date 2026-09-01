@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for ADDW",
+  "id": "addw16",
+  "format": "bin",
+  "source": "addw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addw/",
+  "target": [
+   { "output": "addw.bin16", "match": "addw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDW",
+  "id": "addw32",
+  "format": "bin",
+  "source": "addw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addw/",
+  "target": [
+   { "output": "addw.bin32", "match": "addw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDW",
+  "id": "addw64",
+  "format": "bin",
+  "source": "addw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addw/",
+  "target": [
+   { "output": "addw.bin64", "match": "addw.bin64.t" }
+  ]
+ }
+]

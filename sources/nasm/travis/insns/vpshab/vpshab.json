@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSHAB",
+  "id": "vpshab16",
+  "format": "bin",
+  "source": "vpshab_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshab/",
+  "target": [
+   { "output": "vpshab.bin16", "match": "vpshab.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHAB",
+  "id": "vpshab32",
+  "format": "bin",
+  "source": "vpshab_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshab/",
+  "target": [
+   { "output": "vpshab.bin32", "match": "vpshab.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHAB",
+  "id": "vpshab64",
+  "format": "bin",
+  "source": "vpshab.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshab/",
+  "target": [
+   { "output": "vpshab.bin64", "match": "vpshab.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHAB",
+  "id": "vpshab16err",
+  "format": "bin",
+  "source": "vpshab_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshab/",
+  "target": [
+   { "stderr": "vpshab.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHAB",
+  "id": "vpshab32err",
+  "format": "bin",
+  "source": "vpshab_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshab/",
+  "target": [
+   { "stderr": "vpshab.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

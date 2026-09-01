@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for UMOV",
+  "id": "umov16",
+  "format": "bin",
+  "source": "umov.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/umov/",
+  "target": [
+   { "output": "umov.bin16", "match": "umov.bin16.t" },
+   { "stderr": "umov.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UMOV",
+  "id": "umov32",
+  "format": "bin",
+  "source": "umov.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/umov/",
+  "target": [
+   { "output": "umov.bin32", "match": "umov.bin32.t" },
+   { "stderr": "umov.stderr32" }
+  ]
+ }
+]

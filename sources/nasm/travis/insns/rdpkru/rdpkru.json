@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for RDPKRU",
+  "id": "rdpkru64",
+  "format": "bin",
+  "source": "rdpkru.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdpkru/",
+  "target": [
+   { "output": "rdpkru.bin64", "match": "rdpkru.bin64.t" }
+  ]
+ }
+]

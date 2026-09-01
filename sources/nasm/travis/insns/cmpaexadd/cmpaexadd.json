@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMPAEXADD",
+  "id": "cmpaexadd64",
+  "format": "bin",
+  "source": "cmpaexadd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpaexadd/",
+  "target": [
+   { "output": "cmpaexadd.bin64", "match": "cmpaexadd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPAEXADD",
+  "id": "cmpaexadd16err",
+  "format": "bin",
+  "source": "cmpaexadd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpaexadd/",
+  "target": [
+   { "stderr": "cmpaexadd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPAEXADD",
+  "id": "cmpaexadd32err",
+  "format": "bin",
+  "source": "cmpaexadd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpaexadd/",
+  "target": [
+   { "stderr": "cmpaexadd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

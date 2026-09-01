@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for LDDQU",
+  "id": "lddqu16",
+  "format": "bin",
+  "source": "lddqu_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lddqu/",
+  "target": [
+   { "output": "lddqu.bin16", "match": "lddqu.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LDDQU",
+  "id": "lddqu32",
+  "format": "bin",
+  "source": "lddqu_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lddqu/",
+  "target": [
+   { "output": "lddqu.bin32", "match": "lddqu.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LDDQU",
+  "id": "lddqu64",
+  "format": "bin",
+  "source": "lddqu.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lddqu/",
+  "target": [
+   { "output": "lddqu.bin64", "match": "lddqu.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LDDQU",
+  "id": "lddqu16err",
+  "format": "bin",
+  "source": "lddqu_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lddqu/",
+  "target": [
+   { "stderr": "lddqu.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LDDQU",
+  "id": "lddqu32err",
+  "format": "bin",
+  "source": "lddqu_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lddqu/",
+  "target": [
+   { "stderr": "lddqu.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FBLD",
+  "id": "fbld16",
+  "format": "bin",
+  "source": "fbld_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fbld/",
+  "target": [
+   { "output": "fbld.bin16", "match": "fbld.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FBLD",
+  "id": "fbld32",
+  "format": "bin",
+  "source": "fbld_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fbld/",
+  "target": [
+   { "output": "fbld.bin32", "match": "fbld.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FBLD",
+  "id": "fbld64",
+  "format": "bin",
+  "source": "fbld.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fbld/",
+  "target": [
+   { "output": "fbld.bin64", "match": "fbld.bin64.t" }
+  ]
+ }
+]

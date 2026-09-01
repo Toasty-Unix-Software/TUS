@@ -1,0 +1,61 @@
+[
+ {
+  "description": "Pseudorandom test for TZMSK",
+  "id": "tzmsk16",
+  "format": "bin",
+  "source": "tzmsk_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tzmsk/",
+  "target": [
+   { "output": "tzmsk.bin16", "match": "tzmsk.bin16.t" },
+   { "stderr": "tzmsk.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TZMSK",
+  "id": "tzmsk32",
+  "format": "bin",
+  "source": "tzmsk_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tzmsk/",
+  "target": [
+   { "output": "tzmsk.bin32", "match": "tzmsk.bin32.t" },
+   { "stderr": "tzmsk.stderr32" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TZMSK",
+  "id": "tzmsk64",
+  "format": "bin",
+  "source": "tzmsk.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tzmsk/",
+  "target": [
+   { "output": "tzmsk.bin64", "match": "tzmsk.bin64.t" },
+   { "stderr": "tzmsk.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for TZMSK",
+  "id": "tzmsk16err",
+  "format": "bin",
+  "source": "tzmsk_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tzmsk/",
+  "target": [
+   { "stderr": "tzmsk.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for TZMSK",
+  "id": "tzmsk32err",
+  "format": "bin",
+  "source": "tzmsk_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tzmsk/",
+  "target": [
+   { "stderr": "tzmsk.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PEXT",
+  "id": "pext16",
+  "format": "bin",
+  "source": "pext_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pext/",
+  "target": [
+   { "output": "pext.bin16", "match": "pext.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PEXT",
+  "id": "pext32",
+  "format": "bin",
+  "source": "pext_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pext/",
+  "target": [
+   { "output": "pext.bin32", "match": "pext.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PEXT",
+  "id": "pext64",
+  "format": "bin",
+  "source": "pext.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pext/",
+  "target": [
+   { "output": "pext.bin64", "match": "pext.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PEXT",
+  "id": "pext16err",
+  "format": "bin",
+  "source": "pext_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pext/",
+  "target": [
+   { "stderr": "pext.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PEXT",
+  "id": "pext32err",
+  "format": "bin",
+  "source": "pext_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pext/",
+  "target": [
+   { "stderr": "pext.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMOVSHDUP",
+  "id": "vmovshdup16",
+  "format": "bin",
+  "source": "vmovshdup_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovshdup/",
+  "target": [
+   { "output": "vmovshdup.bin16", "match": "vmovshdup.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVSHDUP",
+  "id": "vmovshdup32",
+  "format": "bin",
+  "source": "vmovshdup_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovshdup/",
+  "target": [
+   { "output": "vmovshdup.bin32", "match": "vmovshdup.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVSHDUP",
+  "id": "vmovshdup64",
+  "format": "bin",
+  "source": "vmovshdup.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovshdup/",
+  "target": [
+   { "output": "vmovshdup.bin64", "match": "vmovshdup.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVSHDUP",
+  "id": "vmovshdup16err",
+  "format": "bin",
+  "source": "vmovshdup_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovshdup/",
+  "target": [
+   { "stderr": "vmovshdup.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVSHDUP",
+  "id": "vmovshdup32err",
+  "format": "bin",
+  "source": "vmovshdup_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovshdup/",
+  "target": [
+   { "stderr": "vmovshdup.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

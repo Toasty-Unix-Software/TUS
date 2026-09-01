@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for SLDT",
+  "id": "sldt16",
+  "format": "bin",
+  "source": "sldt_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sldt/",
+  "target": [
+   { "output": "sldt.bin16", "match": "sldt.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SLDT",
+  "id": "sldt32",
+  "format": "bin",
+  "source": "sldt_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sldt/",
+  "target": [
+   { "output": "sldt.bin32", "match": "sldt.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SLDT",
+  "id": "sldt64",
+  "format": "bin",
+  "source": "sldt.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sldt/",
+  "target": [
+   { "output": "sldt.bin64", "match": "sldt.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SLDT",
+  "id": "sldt16err",
+  "format": "bin",
+  "source": "sldt_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sldt/",
+  "target": [
+   { "stderr": "sldt.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SLDT",
+  "id": "sldt32err",
+  "format": "bin",
+  "source": "sldt_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sldt/",
+  "target": [
+   { "stderr": "sldt.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

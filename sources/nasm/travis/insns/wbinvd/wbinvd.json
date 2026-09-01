@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for WBINVD",
+  "id": "wbinvd16",
+  "format": "bin",
+  "source": "wbinvd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wbinvd/",
+  "target": [
+   { "output": "wbinvd.bin16", "match": "wbinvd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for WBINVD",
+  "id": "wbinvd32",
+  "format": "bin",
+  "source": "wbinvd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wbinvd/",
+  "target": [
+   { "output": "wbinvd.bin32", "match": "wbinvd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for WBINVD",
+  "id": "wbinvd64",
+  "format": "bin",
+  "source": "wbinvd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wbinvd/",
+  "target": [
+   { "output": "wbinvd.bin64", "match": "wbinvd.bin64.t" }
+  ]
+ }
+]

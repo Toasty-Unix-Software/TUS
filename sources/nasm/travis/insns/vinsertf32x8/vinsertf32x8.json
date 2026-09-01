@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VINSERTF32X8",
+  "id": "vinsertf32x816",
+  "format": "bin",
+  "source": "vinsertf32x8_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertf32x8/",
+  "target": [
+   { "output": "vinsertf32x8.bin16", "match": "vinsertf32x8.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VINSERTF32X8",
+  "id": "vinsertf32x832",
+  "format": "bin",
+  "source": "vinsertf32x8_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertf32x8/",
+  "target": [
+   { "output": "vinsertf32x8.bin32", "match": "vinsertf32x8.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VINSERTF32X8",
+  "id": "vinsertf32x864",
+  "format": "bin",
+  "source": "vinsertf32x8.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertf32x8/",
+  "target": [
+   { "output": "vinsertf32x8.bin64", "match": "vinsertf32x8.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VINSERTF32X8",
+  "id": "vinsertf32x816err",
+  "format": "bin",
+  "source": "vinsertf32x8_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertf32x8/",
+  "target": [
+   { "stderr": "vinsertf32x8.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VINSERTF32X8",
+  "id": "vinsertf32x832err",
+  "format": "bin",
+  "source": "vinsertf32x8_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertf32x8/",
+  "target": [
+   { "stderr": "vinsertf32x8.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

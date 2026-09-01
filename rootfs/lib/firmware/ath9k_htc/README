@@ -1,0 +1,21 @@
+Atheros ath9k-htc Firmware Files
+==================================
+
+This directory should contain firmware binaries for Atheros AR7010 and AR9271 USB 802.11n NICs.
+
+Required firmware files:
+  - ar7010.fw    (AR7010 USB/PCIe SoC firmware)
+  - ar9271.fw    (AR9271 USB/Wifi SoC firmware)
+
+To obtain these firmware binaries:
+
+1. Build from source (open-ath9k-htc-firmware):
+   - Requires Xtensa compiler toolchain
+   - Source: /sources/open-ath9k-htc-firmware/
+   - Run: make toolchain && make -C target_firmware
+
+2. Or download from Linux kernel firmware repository:
+   - https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/
+   - Path: ath9k_htc/ar7010.fw and ath9k_htc/ar9271.fw
+
+The kernel ath9k driver will load these at runtime when an ath9k device is detected.

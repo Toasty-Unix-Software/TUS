@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VADDPS",
+  "id": "vaddps16",
+  "format": "bin",
+  "source": "vaddps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaddps/",
+  "target": [
+   { "output": "vaddps.bin16", "match": "vaddps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VADDPS",
+  "id": "vaddps32",
+  "format": "bin",
+  "source": "vaddps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaddps/",
+  "target": [
+   { "output": "vaddps.bin32", "match": "vaddps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VADDPS",
+  "id": "vaddps64",
+  "format": "bin",
+  "source": "vaddps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaddps/",
+  "target": [
+   { "output": "vaddps.bin64", "match": "vaddps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VADDPS",
+  "id": "vaddps16err",
+  "format": "bin",
+  "source": "vaddps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaddps/",
+  "target": [
+   { "stderr": "vaddps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VADDPS",
+  "id": "vaddps32err",
+  "format": "bin",
+  "source": "vaddps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaddps/",
+  "target": [
+   { "stderr": "vaddps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

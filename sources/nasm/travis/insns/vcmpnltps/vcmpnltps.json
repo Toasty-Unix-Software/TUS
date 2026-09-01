@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPNLTPS",
+  "id": "vcmpnltps16",
+  "format": "bin",
+  "source": "vcmpnltps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnltps/",
+  "target": [
+   { "output": "vcmpnltps.bin16", "match": "vcmpnltps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNLTPS",
+  "id": "vcmpnltps32",
+  "format": "bin",
+  "source": "vcmpnltps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnltps/",
+  "target": [
+   { "output": "vcmpnltps.bin32", "match": "vcmpnltps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNLTPS",
+  "id": "vcmpnltps64",
+  "format": "bin",
+  "source": "vcmpnltps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnltps/",
+  "target": [
+   { "output": "vcmpnltps.bin64", "match": "vcmpnltps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNLTPS",
+  "id": "vcmpnltps16err",
+  "format": "bin",
+  "source": "vcmpnltps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnltps/",
+  "target": [
+   { "stderr": "vcmpnltps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNLTPS",
+  "id": "vcmpnltps32err",
+  "format": "bin",
+  "source": "vcmpnltps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnltps/",
+  "target": [
+   { "stderr": "vcmpnltps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

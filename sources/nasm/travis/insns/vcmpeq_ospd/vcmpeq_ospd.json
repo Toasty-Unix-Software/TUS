@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPEQ_OSPD",
+  "id": "vcmpeq_ospd16",
+  "format": "bin",
+  "source": "vcmpeq_ospd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpeq_ospd/",
+  "target": [
+   { "output": "vcmpeq_ospd.bin16", "match": "vcmpeq_ospd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPEQ_OSPD",
+  "id": "vcmpeq_ospd32",
+  "format": "bin",
+  "source": "vcmpeq_ospd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpeq_ospd/",
+  "target": [
+   { "output": "vcmpeq_ospd.bin32", "match": "vcmpeq_ospd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPEQ_OSPD",
+  "id": "vcmpeq_ospd64",
+  "format": "bin",
+  "source": "vcmpeq_ospd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpeq_ospd/",
+  "target": [
+   { "output": "vcmpeq_ospd.bin64", "match": "vcmpeq_ospd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPEQ_OSPD",
+  "id": "vcmpeq_ospd16err",
+  "format": "bin",
+  "source": "vcmpeq_ospd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpeq_ospd/",
+  "target": [
+   { "stderr": "vcmpeq_ospd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPEQ_OSPD",
+  "id": "vcmpeq_ospd32err",
+  "format": "bin",
+  "source": "vcmpeq_ospd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpeq_ospd/",
+  "target": [
+   { "stderr": "vcmpeq_ospd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMOVB",
+  "id": "cmovb64",
+  "format": "bin",
+  "source": "cmovb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovb/",
+  "target": [
+   { "output": "cmovb.bin64", "match": "cmovb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVB",
+  "id": "cmovb16err",
+  "format": "bin",
+  "source": "cmovb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovb/",
+  "target": [
+   { "stderr": "cmovb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVB",
+  "id": "cmovb32err",
+  "format": "bin",
+  "source": "cmovb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovb/",
+  "target": [
+   { "stderr": "cmovb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

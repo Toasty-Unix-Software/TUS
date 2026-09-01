@@ -1,0 +1,5 @@
+default rel
+	loopw 0xa989
+	loopw 0xdba
+	loopw 0x2a768bac
+	loopw 0x1b60db96

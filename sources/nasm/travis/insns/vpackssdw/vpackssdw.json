@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPACKSSDW",
+  "id": "vpackssdw16",
+  "format": "bin",
+  "source": "vpackssdw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpackssdw/",
+  "target": [
+   { "output": "vpackssdw.bin16", "match": "vpackssdw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPACKSSDW",
+  "id": "vpackssdw32",
+  "format": "bin",
+  "source": "vpackssdw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpackssdw/",
+  "target": [
+   { "output": "vpackssdw.bin32", "match": "vpackssdw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPACKSSDW",
+  "id": "vpackssdw64",
+  "format": "bin",
+  "source": "vpackssdw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpackssdw/",
+  "target": [
+   { "output": "vpackssdw.bin64", "match": "vpackssdw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPACKSSDW",
+  "id": "vpackssdw16err",
+  "format": "bin",
+  "source": "vpackssdw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpackssdw/",
+  "target": [
+   { "stderr": "vpackssdw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPACKSSDW",
+  "id": "vpackssdw32err",
+  "format": "bin",
+  "source": "vpackssdw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpackssdw/",
+  "target": [
+   { "stderr": "vpackssdw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

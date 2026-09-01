@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for INC",
+  "id": "inc16",
+  "format": "bin",
+  "source": "inc_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/inc/",
+  "target": [
+   { "output": "inc.bin16", "match": "inc.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for INC",
+  "id": "inc32",
+  "format": "bin",
+  "source": "inc_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/inc/",
+  "target": [
+   { "output": "inc.bin32", "match": "inc.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for INC",
+  "id": "inc64",
+  "format": "bin",
+  "source": "inc.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/inc/",
+  "target": [
+   { "output": "inc.bin64", "match": "inc.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for INC",
+  "id": "inc16err",
+  "format": "bin",
+  "source": "inc_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/inc/",
+  "target": [
+   { "stderr": "inc.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for INC",
+  "id": "inc32err",
+  "format": "bin",
+  "source": "inc_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/inc/",
+  "target": [
+   { "stderr": "inc.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

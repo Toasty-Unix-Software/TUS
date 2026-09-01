@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PMAXUW",
+  "id": "pmaxuw16",
+  "format": "bin",
+  "source": "pmaxuw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaxuw/",
+  "target": [
+   { "output": "pmaxuw.bin16", "match": "pmaxuw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMAXUW",
+  "id": "pmaxuw32",
+  "format": "bin",
+  "source": "pmaxuw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaxuw/",
+  "target": [
+   { "output": "pmaxuw.bin32", "match": "pmaxuw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMAXUW",
+  "id": "pmaxuw64",
+  "format": "bin",
+  "source": "pmaxuw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaxuw/",
+  "target": [
+   { "output": "pmaxuw.bin64", "match": "pmaxuw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMAXUW",
+  "id": "pmaxuw16err",
+  "format": "bin",
+  "source": "pmaxuw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaxuw/",
+  "target": [
+   { "stderr": "pmaxuw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMAXUW",
+  "id": "pmaxuw32err",
+  "format": "bin",
+  "source": "pmaxuw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaxuw/",
+  "target": [
+   { "stderr": "pmaxuw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

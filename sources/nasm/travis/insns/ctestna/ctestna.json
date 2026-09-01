@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CTESTNA",
+  "id": "ctestna64",
+  "format": "bin",
+  "source": "ctestna.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestna/",
+  "target": [
+   { "output": "ctestna.bin64", "match": "ctestna.bin64.t" },
+   { "stderr": "ctestna.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTNA",
+  "id": "ctestna16err",
+  "format": "bin",
+  "source": "ctestna_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestna/",
+  "target": [
+   { "stderr": "ctestna.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTNA",
+  "id": "ctestna32err",
+  "format": "bin",
+  "source": "ctestna_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestna/",
+  "target": [
+   { "stderr": "ctestna.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

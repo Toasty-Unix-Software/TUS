@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for JO",
+  "id": "jo16",
+  "format": "bin",
+  "source": "jo_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jo/",
+  "target": [
+   { "output": "jo.bin16", "match": "jo.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JO",
+  "id": "jo32",
+  "format": "bin",
+  "source": "jo_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jo/",
+  "target": [
+   { "output": "jo.bin32", "match": "jo.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JO",
+  "id": "jo64",
+  "format": "bin",
+  "source": "jo.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jo/",
+  "target": [
+   { "output": "jo.bin64", "match": "jo.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PMAXSB",
+  "id": "pmaxsb16",
+  "format": "bin",
+  "source": "pmaxsb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaxsb/",
+  "target": [
+   { "output": "pmaxsb.bin16", "match": "pmaxsb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMAXSB",
+  "id": "pmaxsb32",
+  "format": "bin",
+  "source": "pmaxsb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaxsb/",
+  "target": [
+   { "output": "pmaxsb.bin32", "match": "pmaxsb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMAXSB",
+  "id": "pmaxsb64",
+  "format": "bin",
+  "source": "pmaxsb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaxsb/",
+  "target": [
+   { "output": "pmaxsb.bin64", "match": "pmaxsb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMAXSB",
+  "id": "pmaxsb16err",
+  "format": "bin",
+  "source": "pmaxsb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaxsb/",
+  "target": [
+   { "stderr": "pmaxsb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMAXSB",
+  "id": "pmaxsb32err",
+  "format": "bin",
+  "source": "pmaxsb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaxsb/",
+  "target": [
+   { "stderr": "pmaxsb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPEQUB",
+  "id": "vpcmpequb16",
+  "format": "bin",
+  "source": "vpcmpequb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpequb/",
+  "target": [
+   { "output": "vpcmpequb.bin16", "match": "vpcmpequb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPEQUB",
+  "id": "vpcmpequb32",
+  "format": "bin",
+  "source": "vpcmpequb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpequb/",
+  "target": [
+   { "output": "vpcmpequb.bin32", "match": "vpcmpequb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPEQUB",
+  "id": "vpcmpequb64",
+  "format": "bin",
+  "source": "vpcmpequb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpequb/",
+  "target": [
+   { "output": "vpcmpequb.bin64", "match": "vpcmpequb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPEQUB",
+  "id": "vpcmpequb16err",
+  "format": "bin",
+  "source": "vpcmpequb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpequb/",
+  "target": [
+   { "stderr": "vpcmpequb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPEQUB",
+  "id": "vpcmpequb32err",
+  "format": "bin",
+  "source": "vpcmpequb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpequb/",
+  "target": [
+   { "stderr": "vpcmpequb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SHL",
+  "id": "shl64",
+  "format": "bin",
+  "source": "shl.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shl/",
+  "target": [
+   { "output": "shl.bin64", "match": "shl.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHL",
+  "id": "shl16err",
+  "format": "bin",
+  "source": "shl_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shl/",
+  "target": [
+   { "stderr": "shl.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHL",
+  "id": "shl32err",
+  "format": "bin",
+  "source": "shl_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shl/",
+  "target": [
+   { "stderr": "shl.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

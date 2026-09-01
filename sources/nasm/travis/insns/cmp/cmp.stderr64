@@ -1,0 +1,3 @@
+./travis/insns/cmp/cmp.asm:58: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/cmp/cmp.asm:60: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/cmp/cmp.asm:62: warning: byte exceeds bounds [-w+number-overflow]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPUNORDSS",
+  "id": "vcmpunordss16",
+  "format": "bin",
+  "source": "vcmpunordss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordss/",
+  "target": [
+   { "output": "vcmpunordss.bin16", "match": "vcmpunordss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPUNORDSS",
+  "id": "vcmpunordss32",
+  "format": "bin",
+  "source": "vcmpunordss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordss/",
+  "target": [
+   { "output": "vcmpunordss.bin32", "match": "vcmpunordss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPUNORDSS",
+  "id": "vcmpunordss64",
+  "format": "bin",
+  "source": "vcmpunordss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordss/",
+  "target": [
+   { "output": "vcmpunordss.bin64", "match": "vcmpunordss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPUNORDSS",
+  "id": "vcmpunordss16err",
+  "format": "bin",
+  "source": "vcmpunordss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordss/",
+  "target": [
+   { "stderr": "vcmpunordss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPUNORDSS",
+  "id": "vcmpunordss32err",
+  "format": "bin",
+  "source": "vcmpunordss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordss/",
+  "target": [
+   { "stderr": "vcmpunordss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

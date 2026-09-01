@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSHLDQ",
+  "id": "vpshldq16",
+  "format": "bin",
+  "source": "vpshldq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshldq/",
+  "target": [
+   { "output": "vpshldq.bin16", "match": "vpshldq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHLDQ",
+  "id": "vpshldq32",
+  "format": "bin",
+  "source": "vpshldq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshldq/",
+  "target": [
+   { "output": "vpshldq.bin32", "match": "vpshldq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHLDQ",
+  "id": "vpshldq64",
+  "format": "bin",
+  "source": "vpshldq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshldq/",
+  "target": [
+   { "output": "vpshldq.bin64", "match": "vpshldq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHLDQ",
+  "id": "vpshldq16err",
+  "format": "bin",
+  "source": "vpshldq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshldq/",
+  "target": [
+   { "stderr": "vpshldq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHLDQ",
+  "id": "vpshldq32err",
+  "format": "bin",
+  "source": "vpshldq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshldq/",
+  "target": [
+   { "stderr": "vpshldq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

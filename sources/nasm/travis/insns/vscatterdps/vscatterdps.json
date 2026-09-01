@@ -1,0 +1,47 @@
+[
+ {
+  "description": "Pseudorandom test for VSCATTERDPS",
+  "id": "vscatterdps32",
+  "format": "bin",
+  "source": "vscatterdps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscatterdps/",
+  "target": [
+   { "output": "vscatterdps.bin32", "match": "vscatterdps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSCATTERDPS",
+  "id": "vscatterdps64",
+  "format": "bin",
+  "source": "vscatterdps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscatterdps/",
+  "target": [
+   { "output": "vscatterdps.bin64", "match": "vscatterdps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSCATTERDPS",
+  "id": "vscatterdps16err",
+  "format": "bin",
+  "source": "vscatterdps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscatterdps/",
+  "target": [
+   { "stderr": "vscatterdps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSCATTERDPS",
+  "id": "vscatterdps32err",
+  "format": "bin",
+  "source": "vscatterdps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscatterdps/",
+  "target": [
+   { "stderr": "vscatterdps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

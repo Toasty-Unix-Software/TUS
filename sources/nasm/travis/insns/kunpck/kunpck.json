@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KUNPCK",
+  "id": "kunpck16",
+  "format": "bin",
+  "source": "kunpck.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kunpck/",
+  "target": [
+   { "output": "kunpck.bin16", "match": "kunpck.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KUNPCK",
+  "id": "kunpck32",
+  "format": "bin",
+  "source": "kunpck.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kunpck/",
+  "target": [
+   { "output": "kunpck.bin32", "match": "kunpck.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KUNPCK",
+  "id": "kunpck64",
+  "format": "bin",
+  "source": "kunpck.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kunpck/",
+  "target": [
+   { "output": "kunpck.bin64", "match": "kunpck.bin64.t" }
+  ]
+ }
+]

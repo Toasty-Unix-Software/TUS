@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MOVRS",
+  "id": "movrs16",
+  "format": "bin",
+  "source": "movrs_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movrs/",
+  "target": [
+   { "output": "movrs.bin16", "match": "movrs.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVRS",
+  "id": "movrs32",
+  "format": "bin",
+  "source": "movrs_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movrs/",
+  "target": [
+   { "output": "movrs.bin32", "match": "movrs.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVRS",
+  "id": "movrs64",
+  "format": "bin",
+  "source": "movrs.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movrs/",
+  "target": [
+   { "output": "movrs.bin64", "match": "movrs.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVRS",
+  "id": "movrs16err",
+  "format": "bin",
+  "source": "movrs_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movrs/",
+  "target": [
+   { "stderr": "movrs.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVRS",
+  "id": "movrs32err",
+  "format": "bin",
+  "source": "movrs_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movrs/",
+  "target": [
+   { "stderr": "movrs.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

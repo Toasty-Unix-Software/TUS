@@ -1,0 +1,1 @@
+./travis/insns/sha256msg1/sha256msg1_narrow.asm:5: error: invalid operands in 32-bit mode

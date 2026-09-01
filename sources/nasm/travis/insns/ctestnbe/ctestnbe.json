@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CTESTNBE",
+  "id": "ctestnbe64",
+  "format": "bin",
+  "source": "ctestnbe.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestnbe/",
+  "target": [
+   { "output": "ctestnbe.bin64", "match": "ctestnbe.bin64.t" },
+   { "stderr": "ctestnbe.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTNBE",
+  "id": "ctestnbe16err",
+  "format": "bin",
+  "source": "ctestnbe_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestnbe/",
+  "target": [
+   { "stderr": "ctestnbe.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTNBE",
+  "id": "ctestnbe32err",
+  "format": "bin",
+  "source": "ctestnbe_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestnbe/",
+  "target": [
+   { "stderr": "ctestnbe.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

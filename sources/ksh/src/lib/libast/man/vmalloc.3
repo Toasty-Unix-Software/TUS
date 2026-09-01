@@ -1,0 +1,268 @@
+.fp 5 CW
+.TH VMALLOC 3 "4 April 2025"
+.SH NAME
+Vmalloc \- Simplified virtual regions for memory allocation
+.SH SYNOPSIS
+.de Tp
+.fl
+.ne 2
+.TP
+..
+.de Ss
+.fl
+.ne 2
+.SS "\\$1"
+..
+.de Cs
+.nf
+.ft 5
+..
+.de Ce
+.ft 1
+.fi
+..
+.ta 0.67i 1.34i 2.01i 2.68i 3.35i 4.02i 4.69i 5.36i 6.03i 6.70i
+.Cs
+#include <vmalloc.h>
+.Ce
+.Ss "REGION CONTROL"
+.Cs
+Vmalloc_t *vmopen(void);
+void      vmclear(Vmalloc_t* vm);
+void      vmclose(Vmalloc_t* vm);
+.Ce
+.Ss "ALLOCATION"
+.Cs
+void      *vmalloc(Vmalloc_t* vm, size_t size);
+void      *vmresize(Vmalloc_t* vm, void* addr, size_t size);
+void      *vmresize_i(Vmalloc_t* vm, void* addr, size_t size, int init);
+char      *vmstrdup(Vmalloc_t *vm, const char *s);
+void      vmfree(Vmalloc_t* vm, void* addr);
+.Ce
+.Ss "LEGACY MACROS"
+.Cs
+void      *vmnewof(Vmalloc_t* vm, void* addr, type, size_t n, size_t x);
+void      *vmoldof(Vmalloc_t* vm, void* addr, type, size_t n, size_t x);
+.Ce
+.SH DESCRIPTION
+Vmalloc is a small wrapper interface over the local operating system's
+standard memory allocation facilities
+.RB ( malloc (3)
+and friends)
+that confers two advantages:
+.IP 1.
+Virtual regions.
+Each memory allocation is associated with a region.
+An unlimited number of regions may be opened.
+When a region is closed,
+all memory associated with it is automatically freed.
+This allows compartmentalizing memory management
+and can simplify the avoidance of memory leaks.
+.IP 2.
+Automatic initialization.
+A region may be opened with an option that
+causes all allocated memory
+(including memory added when resizing a block)
+to be automatically initialized to zero.
+This is a safeguard against the use of uninitialized memory.
+.PP
+While Vmalloc and the standard interface may be mixed,
+each block must always be freed or resized
+using the interface and/or region it was allocated with.
+Otherwise, undefined behavior will result.
+.PP
+.Ss "REGION CONTROL"
+.PP
+.Ss "  Vmalloc_t *vmopen(void);"
+Open a region.
+This function returns a pointer to an initialized structure declared as:
+.PP
+.Cs
+typedef struct
+{
+        uint32_t  options;
+        void      (*outofmemory)(size_t);
+        /* other field(s) for internal use only */
+} Vmalloc_t;
+.Ce
+.PP
+The
+.I options
+field is an options bitmask.
+If the
+.B VM_INIT
+option bit is set, then all memory allocated in the region,
+including memory added when resizing,
+will be automatically initialized to zero.
+If the
+.B VM_FREEONFAIL
+option bit is set, then
+.B vmresize
+and
+.B vmresize_i
+will free an existing block that it failed to resize before returning
+.BR NULL .
+All other bits are reserved for future use and should be zero.
+.PP
+The
+.I outofmemory
+field can be set to point to a function that
+will be called when a memory block fails to be allocated or resized.
+The size of the requested block is passed in the argument.
+The function may
+.BR abort (3)
+or
+.BR longjmp (3).
+If it returns, default failure behavior is resumed.
+.PP
+.B vmopen
+returns a pointer to the new region, or
+.B NULL
+on failure.
+.PP
+.Ss "  void vmclear(Vmalloc_t *vm);"
+Clear a region.
+This function frees all allocations associated with the region
+.IR vm .
+.PP
+.Ss "  void vmclose(Vmalloc_t *vm);"
+Close a region.
+This function performs a
+.B vmclear
+on the region
+.I vm
+and then frees the region itself.
+.PP
+.Ss "ALLOCATION"
+.PP
+.Ss "  void *vmalloc(Vmalloc_t *vm, size_t size);"
+Allocate a block of the requested
+.I size
+in the region
+.IR vm .
+If the region has the
+.B VM_INIT
+option bit set, the block is allocated with
+.BR calloc (3),
+otherwise with
+.BR malloc (3).
+.B vmalloc
+returns the allocated block on success or
+.B NULL
+on failure.
+.PP
+.Ss "  void *vmresize(Vmalloc_t *vm, void *addr, size_t size);"
+Create, resize (grow or shrink), or free a block allocated in the region
+.IR vm .
+If
+.I size
+is 0,
+.I addr
+is freed using
+.B vmfree
+and
+.B vmresize
+returns
+.BR NULL ,
+or if
+.I addr
+is
+.BR NULL ,
+a new block is allocated using
+.BR vmalloc .
+Otherwise, this function uses
+.BR realloc (3)
+to change the size of the block pointed to by
+.I addr
+to the new
+.IR size .
+The block may be moved to a different location in memory.
+The new block is initialized with as much of the old content as will fit.
+If the new size is larger than the old,
+then the added memory is either left uninitialized or,
+if the region has the
+.B VM_INIT
+option bit set, it is initialized to zero.
+If resizing fails and the region has the
+.B VM_FREEONFAIL
+option bit set, the original block is freed.
+.B vmresize
+returns a pointer to the new block,
+or
+.B NULL
+on failure.
+.PP
+The
+.B vmresize
+function is suitable for use as a memory discipline function, for example, as
+.BR re_resizef " (with " re_resizehandle " set to the region) in the AST " regex "(3) library."
+.PP
+.Ss "  void *vmresize_i(Vmalloc_t *vm, void *addr, size_t size, int init);"
+This function does the same as
+.BR vmresize ,
+except that the
+.B VM_INIT
+option bit is ignored and the non-zeroness of the
+.I init
+parameter determines for each call whether initialization is done.
+.PP
+.Ss "  char *vmstrdup(Vmalloc_t *vm, const char *s);"
+String duplication.
+This function allocates as much memory in the region
+.I vm
+as is necessary to contain the zero-terminated string
+.I s
+and copies the string into it.
+.B vmstrdup
+returns a pointer to the duplicated string,
+or
+.B NULL
+on failure.
+.PP
+.Ss "  void vmfree(Vmalloc_t *vm, void *addr);"
+Free the block pointed to by
+.I addr
+from the region
+.IR vm .
+.PP
+.Ss "LEGACY MACROS"
+.PP
+.Ss "  void *vmnewof(Vmalloc_t *vm, void *addr, type, size_t n, size_t x);"
+.Ss "  void *vmoldof(Vmalloc_t *vm, void *addr, type, size_t n, size_t x);"
+These macro functions are provided for backward compatibility.
+They call
+.B vmresize_i
+to resize block
+.I addr
+to the new size
+.IR "n * sizeof(type) + x" ,
+or, if
+.I addr
+is
+.BR NULL ,
+to allocate a new block of that size.
+Whereas
+.B vmnewof
+initializes added memory,
+.B vmoldof
+does not.
+.SH HISTORY
+AT&T was providing its own feature-packed Vmalloc memory allocator
+in libast since the 1990s and maintained it until the early 2010s.
+However, modern operating systems' native memory allocators
+were outperforming it by then in terms of reliability, speed
+and memory efficiency, and there was no one left to maintain or improve it.
+Consequently, the KornShell 93u+m distribution deprecated Vmalloc soon after
+forking ksh and libast in 2020 and removed it entirely in 2024.
+.PP
+In April/May 2025, this modified and simplified subset
+of the original Vmalloc interface was added instead,
+rewritten from scratch to restore the benefits
+of regions and automatic initialization
+while continuing to rely on the native OS memory allocator.
+Though this interface is not fully compatible with the original,
+it is similar enough that porting most programs should be easy.
+.SH AUTHOR
+Martijn Dekker <martijn@inlv.org> \- current rewrite
+.br
+Kiem-Phong Vo <kpv@research.att.com> \- original

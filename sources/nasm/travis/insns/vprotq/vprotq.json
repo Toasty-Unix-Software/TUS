@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPROTQ",
+  "id": "vprotq16",
+  "format": "bin",
+  "source": "vprotq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprotq/",
+  "target": [
+   { "output": "vprotq.bin16", "match": "vprotq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPROTQ",
+  "id": "vprotq32",
+  "format": "bin",
+  "source": "vprotq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprotq/",
+  "target": [
+   { "output": "vprotq.bin32", "match": "vprotq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPROTQ",
+  "id": "vprotq64",
+  "format": "bin",
+  "source": "vprotq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprotq/",
+  "target": [
+   { "output": "vprotq.bin64", "match": "vprotq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPROTQ",
+  "id": "vprotq16err",
+  "format": "bin",
+  "source": "vprotq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprotq/",
+  "target": [
+   { "stderr": "vprotq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPROTQ",
+  "id": "vprotq32err",
+  "format": "bin",
+  "source": "vprotq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprotq/",
+  "target": [
+   { "stderr": "vprotq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

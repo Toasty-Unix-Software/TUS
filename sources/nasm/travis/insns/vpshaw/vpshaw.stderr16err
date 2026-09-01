@@ -1,0 +1,2 @@
+./travis/insns/vpshaw/vpshaw_narrow.asm:9: error: invalid operands in non-64-bit mode
+./travis/insns/vpshaw/vpshaw_narrow.asm:10: error: invalid operands in non-64-bit mode

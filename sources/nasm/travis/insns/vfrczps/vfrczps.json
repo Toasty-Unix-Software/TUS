@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFRCZPS",
+  "id": "vfrczps16",
+  "format": "bin",
+  "source": "vfrczps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfrczps/",
+  "target": [
+   { "output": "vfrczps.bin16", "match": "vfrczps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFRCZPS",
+  "id": "vfrczps32",
+  "format": "bin",
+  "source": "vfrczps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfrczps/",
+  "target": [
+   { "output": "vfrczps.bin32", "match": "vfrczps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFRCZPS",
+  "id": "vfrczps64",
+  "format": "bin",
+  "source": "vfrczps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfrczps/",
+  "target": [
+   { "output": "vfrczps.bin64", "match": "vfrczps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFRCZPS",
+  "id": "vfrczps16err",
+  "format": "bin",
+  "source": "vfrczps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfrczps/",
+  "target": [
+   { "stderr": "vfrczps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFRCZPS",
+  "id": "vfrczps32err",
+  "format": "bin",
+  "source": "vfrczps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfrczps/",
+  "target": [
+   { "stderr": "vfrczps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for WRFSBASE",
+  "id": "wrfsbase64",
+  "format": "bin",
+  "source": "wrfsbase.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrfsbase/",
+  "target": [
+   { "output": "wrfsbase.bin64", "match": "wrfsbase.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for WRFSBASE",
+  "id": "wrfsbase16err",
+  "format": "bin",
+  "source": "wrfsbase_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrfsbase/",
+  "target": [
+   { "stderr": "wrfsbase.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for WRFSBASE",
+  "id": "wrfsbase32err",
+  "format": "bin",
+  "source": "wrfsbase_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrfsbase/",
+  "target": [
+   { "stderr": "wrfsbase.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ROUNDPD",
+  "id": "roundpd16",
+  "format": "bin",
+  "source": "roundpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundpd/",
+  "target": [
+   { "output": "roundpd.bin16", "match": "roundpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ROUNDPD",
+  "id": "roundpd32",
+  "format": "bin",
+  "source": "roundpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundpd/",
+  "target": [
+   { "output": "roundpd.bin32", "match": "roundpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ROUNDPD",
+  "id": "roundpd64",
+  "format": "bin",
+  "source": "roundpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundpd/",
+  "target": [
+   { "output": "roundpd.bin64", "match": "roundpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ROUNDPD",
+  "id": "roundpd16err",
+  "format": "bin",
+  "source": "roundpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundpd/",
+  "target": [
+   { "stderr": "roundpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ROUNDPD",
+  "id": "roundpd32err",
+  "format": "bin",
+  "source": "roundpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundpd/",
+  "target": [
+   { "stderr": "roundpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

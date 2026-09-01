@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMULPD",
+  "id": "vmulpd16",
+  "format": "bin",
+  "source": "vmulpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmulpd/",
+  "target": [
+   { "output": "vmulpd.bin16", "match": "vmulpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMULPD",
+  "id": "vmulpd32",
+  "format": "bin",
+  "source": "vmulpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmulpd/",
+  "target": [
+   { "output": "vmulpd.bin32", "match": "vmulpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMULPD",
+  "id": "vmulpd64",
+  "format": "bin",
+  "source": "vmulpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmulpd/",
+  "target": [
+   { "output": "vmulpd.bin64", "match": "vmulpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMULPD",
+  "id": "vmulpd16err",
+  "format": "bin",
+  "source": "vmulpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmulpd/",
+  "target": [
+   { "stderr": "vmulpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMULPD",
+  "id": "vmulpd32err",
+  "format": "bin",
+  "source": "vmulpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmulpd/",
+  "target": [
+   { "stderr": "vmulpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

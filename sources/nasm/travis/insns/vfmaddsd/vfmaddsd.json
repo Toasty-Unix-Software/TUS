@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFMADDSD",
+  "id": "vfmaddsd16",
+  "format": "bin",
+  "source": "vfmaddsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddsd/",
+  "target": [
+   { "output": "vfmaddsd.bin16", "match": "vfmaddsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMADDSD",
+  "id": "vfmaddsd32",
+  "format": "bin",
+  "source": "vfmaddsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddsd/",
+  "target": [
+   { "output": "vfmaddsd.bin32", "match": "vfmaddsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMADDSD",
+  "id": "vfmaddsd64",
+  "format": "bin",
+  "source": "vfmaddsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddsd/",
+  "target": [
+   { "output": "vfmaddsd.bin64", "match": "vfmaddsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMADDSD",
+  "id": "vfmaddsd16err",
+  "format": "bin",
+  "source": "vfmaddsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddsd/",
+  "target": [
+   { "stderr": "vfmaddsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMADDSD",
+  "id": "vfmaddsd32err",
+  "format": "bin",
+  "source": "vfmaddsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddsd/",
+  "target": [
+   { "stderr": "vfmaddsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

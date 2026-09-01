@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for STD",
+  "id": "std16",
+  "format": "bin",
+  "source": "std.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/std/",
+  "target": [
+   { "output": "std.bin16", "match": "std.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for STD",
+  "id": "std32",
+  "format": "bin",
+  "source": "std.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/std/",
+  "target": [
+   { "output": "std.bin32", "match": "std.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for STD",
+  "id": "std64",
+  "format": "bin",
+  "source": "std.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/std/",
+  "target": [
+   { "output": "std.bin64", "match": "std.bin64.t" }
+  ]
+ }
+]

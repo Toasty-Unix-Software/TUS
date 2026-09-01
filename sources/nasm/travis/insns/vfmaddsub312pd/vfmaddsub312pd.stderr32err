@@ -1,0 +1,2 @@
+./travis/insns/vfmaddsub312pd/vfmaddsub312pd_narrow.asm:7: error: invalid operands in non-64-bit mode
+./travis/insns/vfmaddsub312pd/vfmaddsub312pd_narrow.asm:8: error: invalid operands in non-64-bit mode

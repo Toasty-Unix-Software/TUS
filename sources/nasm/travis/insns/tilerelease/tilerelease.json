@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for TILERELEASE",
+  "id": "tilerelease64",
+  "format": "bin",
+  "source": "tilerelease.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tilerelease/",
+  "target": [
+   { "output": "tilerelease.bin64", "match": "tilerelease.bin64.t" }
+  ]
+ }
+]

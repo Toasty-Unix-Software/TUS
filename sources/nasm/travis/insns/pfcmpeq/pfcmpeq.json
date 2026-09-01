@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for PFCMPEQ",
+  "id": "pfcmpeq16",
+  "format": "bin",
+  "source": "pfcmpeq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pfcmpeq/",
+  "target": [
+   { "output": "pfcmpeq.bin16", "match": "pfcmpeq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PFCMPEQ",
+  "id": "pfcmpeq32",
+  "format": "bin",
+  "source": "pfcmpeq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pfcmpeq/",
+  "target": [
+   { "output": "pfcmpeq.bin32", "match": "pfcmpeq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PFCMPEQ",
+  "id": "pfcmpeq64",
+  "format": "bin",
+  "source": "pfcmpeq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pfcmpeq/",
+  "target": [
+   { "output": "pfcmpeq.bin64", "match": "pfcmpeq.bin64.t" }
+  ]
+ }
+]

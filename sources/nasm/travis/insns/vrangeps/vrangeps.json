@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VRANGEPS",
+  "id": "vrangeps16",
+  "format": "bin",
+  "source": "vrangeps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrangeps/",
+  "target": [
+   { "output": "vrangeps.bin16", "match": "vrangeps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRANGEPS",
+  "id": "vrangeps32",
+  "format": "bin",
+  "source": "vrangeps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrangeps/",
+  "target": [
+   { "output": "vrangeps.bin32", "match": "vrangeps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRANGEPS",
+  "id": "vrangeps64",
+  "format": "bin",
+  "source": "vrangeps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrangeps/",
+  "target": [
+   { "output": "vrangeps.bin64", "match": "vrangeps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRANGEPS",
+  "id": "vrangeps16err",
+  "format": "bin",
+  "source": "vrangeps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrangeps/",
+  "target": [
+   { "stderr": "vrangeps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRANGEPS",
+  "id": "vrangeps32err",
+  "format": "bin",
+  "source": "vrangeps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrangeps/",
+  "target": [
+   { "stderr": "vrangeps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

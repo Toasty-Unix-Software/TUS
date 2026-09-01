@@ -1,0 +1,2 @@
+./travis/insns/psrld/psrld_narrow.asm:11: error: invalid operands in 32-bit mode
+./travis/insns/psrld/psrld_narrow.asm:12: error: invalid operands in 32-bit mode

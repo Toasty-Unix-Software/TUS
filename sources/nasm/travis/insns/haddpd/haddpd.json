@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for HADDPD",
+  "id": "haddpd16",
+  "format": "bin",
+  "source": "haddpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/haddpd/",
+  "target": [
+   { "output": "haddpd.bin16", "match": "haddpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for HADDPD",
+  "id": "haddpd32",
+  "format": "bin",
+  "source": "haddpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/haddpd/",
+  "target": [
+   { "output": "haddpd.bin32", "match": "haddpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for HADDPD",
+  "id": "haddpd64",
+  "format": "bin",
+  "source": "haddpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/haddpd/",
+  "target": [
+   { "output": "haddpd.bin64", "match": "haddpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for HADDPD",
+  "id": "haddpd16err",
+  "format": "bin",
+  "source": "haddpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/haddpd/",
+  "target": [
+   { "stderr": "haddpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for HADDPD",
+  "id": "haddpd32err",
+  "format": "bin",
+  "source": "haddpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/haddpd/",
+  "target": [
+   { "stderr": "haddpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

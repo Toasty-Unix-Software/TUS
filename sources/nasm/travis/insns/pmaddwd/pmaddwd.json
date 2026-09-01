@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PMADDWD",
+  "id": "pmaddwd16",
+  "format": "bin",
+  "source": "pmaddwd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaddwd/",
+  "target": [
+   { "output": "pmaddwd.bin16", "match": "pmaddwd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMADDWD",
+  "id": "pmaddwd32",
+  "format": "bin",
+  "source": "pmaddwd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaddwd/",
+  "target": [
+   { "output": "pmaddwd.bin32", "match": "pmaddwd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMADDWD",
+  "id": "pmaddwd64",
+  "format": "bin",
+  "source": "pmaddwd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaddwd/",
+  "target": [
+   { "output": "pmaddwd.bin64", "match": "pmaddwd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMADDWD",
+  "id": "pmaddwd16err",
+  "format": "bin",
+  "source": "pmaddwd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaddwd/",
+  "target": [
+   { "stderr": "pmaddwd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMADDWD",
+  "id": "pmaddwd32err",
+  "format": "bin",
+  "source": "pmaddwd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmaddwd/",
+  "target": [
+   { "stderr": "pmaddwd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

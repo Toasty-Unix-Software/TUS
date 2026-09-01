@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for STI",
+  "id": "sti16",
+  "format": "bin",
+  "source": "sti.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sti/",
+  "target": [
+   { "output": "sti.bin16", "match": "sti.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for STI",
+  "id": "sti32",
+  "format": "bin",
+  "source": "sti.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sti/",
+  "target": [
+   { "output": "sti.bin32", "match": "sti.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for STI",
+  "id": "sti64",
+  "format": "bin",
+  "source": "sti.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sti/",
+  "target": [
+   { "output": "sti.bin64", "match": "sti.bin64.t" }
+  ]
+ }
+]

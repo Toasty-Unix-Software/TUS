@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VGETEXPPD",
+  "id": "vgetexppd16",
+  "format": "bin",
+  "source": "vgetexppd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexppd/",
+  "target": [
+   { "output": "vgetexppd.bin16", "match": "vgetexppd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETEXPPD",
+  "id": "vgetexppd32",
+  "format": "bin",
+  "source": "vgetexppd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexppd/",
+  "target": [
+   { "output": "vgetexppd.bin32", "match": "vgetexppd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETEXPPD",
+  "id": "vgetexppd64",
+  "format": "bin",
+  "source": "vgetexppd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexppd/",
+  "target": [
+   { "output": "vgetexppd.bin64", "match": "vgetexppd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETEXPPD",
+  "id": "vgetexppd16err",
+  "format": "bin",
+  "source": "vgetexppd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexppd/",
+  "target": [
+   { "stderr": "vgetexppd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETEXPPD",
+  "id": "vgetexppd32err",
+  "format": "bin",
+  "source": "vgetexppd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexppd/",
+  "target": [
+   { "stderr": "vgetexppd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

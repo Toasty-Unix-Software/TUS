@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for BLSR",
+  "id": "blsr16",
+  "format": "bin",
+  "source": "blsr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blsr/",
+  "target": [
+   { "output": "blsr.bin16", "match": "blsr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BLSR",
+  "id": "blsr32",
+  "format": "bin",
+  "source": "blsr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blsr/",
+  "target": [
+   { "output": "blsr.bin32", "match": "blsr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BLSR",
+  "id": "blsr64",
+  "format": "bin",
+  "source": "blsr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blsr/",
+  "target": [
+   { "output": "blsr.bin64", "match": "blsr.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BLSR",
+  "id": "blsr16err",
+  "format": "bin",
+  "source": "blsr_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blsr/",
+  "target": [
+   { "stderr": "blsr.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BLSR",
+  "id": "blsr32err",
+  "format": "bin",
+  "source": "blsr_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blsr/",
+  "target": [
+   { "stderr": "blsr.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

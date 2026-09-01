@@ -1,0 +1,94 @@
+.TH AST_CLOSE 3
+.SH NAME
+ast_close \- portably and reliably close a file descriptor
+.SH SYNOPSIS
+.EX
+#include <ast.h>
+int \f3ast_close\fP(int \f2fd\fP);
+
+#include <error.h>
+void (*\f3error_info.io\fP)(char *\f2path\fP, int \f2fd\fP);
+.EE
+.SH DESCRIPTION
+The
+.B ast_close
+function closes a file descriptor so that it becomes invalid and may be
+reused. If the file descriptor was the last reference to an object, then
+its associated resources are deallocated. For example, if it was the
+last reference to a file that has been unlinked with
+.BR unlink (2)
+or
+.BR remove (2),
+then the file's data blocks are deallocated in the file system and made
+available as free space.
+.PP
+Unlike the native
+.BR close (2)
+implementations of Unix-like operationg systems,
+and unlike even
+.BR posix_close (2),
+.B ast_close
+can be relied upon both
+to fully close any valid and open file descriptor
+and to return 0 upon success,
+unless an I/O error occurred (see below).
+It works around the known system-specific complications
+and intricacies on the supported operating systems. In particular,
+.B ast_close
+never returns a
+\f[CB]EINTR\fP
+or
+\f[CB]EINPROGRESS\fP
+error, nor is there any failure mode where it should be retried.
+.SH "RETURN VALUES"
+.TP
+.B -1
+An error occurred. The
+.B errno
+variable has been set to one of the errors detailed below.
+.TP
+.B 0
+Succes.
+.SH ERRORS
+.TP
+\f[CB]EBADF\fP
+The file descriptor passed was not valid.
+.PP
+Depending on the operating system,
+.B ast_close
+may also return the following errors.
+The file descriptor is still closed in spite of these errors.
+.TP
+\f[CB]EIO\fP
+An input/output error occurred as the operating system was finalising write
+operations. Data may have been lost.
+.TP
+\f[CB]ENOLINKfP
+The file is located on a remote machine to which the link is no longer
+active.
+.TP
+\f[CB]ENOSPC\fP
+Not enough space on the file system. Data in the write cache has been lost.
+.TP
+\f[CB]EDQUOT\fP
+The user exceeded their storage quota on the file system. Data in the write
+cache may have been lost.
+.TP
+\f[CB]ETIMEDOUT\fP
+The connection to an NFS mount timed out while closing the file.
+.SH AUTHOR
+Martijn Dekker <martijn@inlv.org>
+.br
+based on prior work by Johnothan King <johnothanking@protonmail.com>
+.SH HISTORY
+The
+.B ast_close
+function was added to libast at
+\f[CB]AST_VERSION\fP
+20260805, replacing an earlier
+.B ast_close
+macro added on 2026-02-05.
+.SH SEE ALSO
+.BR close (2),
+.BR posix_close (2),
+.BR sfio (3)

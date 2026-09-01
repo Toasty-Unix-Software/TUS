@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VSCALEFPD",
+  "id": "vscalefpd16",
+  "format": "bin",
+  "source": "vscalefpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefpd/",
+  "target": [
+   { "output": "vscalefpd.bin16", "match": "vscalefpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSCALEFPD",
+  "id": "vscalefpd32",
+  "format": "bin",
+  "source": "vscalefpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefpd/",
+  "target": [
+   { "output": "vscalefpd.bin32", "match": "vscalefpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSCALEFPD",
+  "id": "vscalefpd64",
+  "format": "bin",
+  "source": "vscalefpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefpd/",
+  "target": [
+   { "output": "vscalefpd.bin64", "match": "vscalefpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSCALEFPD",
+  "id": "vscalefpd16err",
+  "format": "bin",
+  "source": "vscalefpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefpd/",
+  "target": [
+   { "stderr": "vscalefpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSCALEFPD",
+  "id": "vscalefpd32err",
+  "format": "bin",
+  "source": "vscalefpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefpd/",
+  "target": [
+   { "stderr": "vscalefpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

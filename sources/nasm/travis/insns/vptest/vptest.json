@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPTEST",
+  "id": "vptest16",
+  "format": "bin",
+  "source": "vptest_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptest/",
+  "target": [
+   { "output": "vptest.bin16", "match": "vptest.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPTEST",
+  "id": "vptest32",
+  "format": "bin",
+  "source": "vptest_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptest/",
+  "target": [
+   { "output": "vptest.bin32", "match": "vptest.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPTEST",
+  "id": "vptest64",
+  "format": "bin",
+  "source": "vptest.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptest/",
+  "target": [
+   { "output": "vptest.bin64", "match": "vptest.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPTEST",
+  "id": "vptest16err",
+  "format": "bin",
+  "source": "vptest_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptest/",
+  "target": [
+   { "stderr": "vptest.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPTEST",
+  "id": "vptest32err",
+  "format": "bin",
+  "source": "vptest_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptest/",
+  "target": [
+   { "stderr": "vptest.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

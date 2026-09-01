@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSHAQ",
+  "id": "vpshaq16",
+  "format": "bin",
+  "source": "vpshaq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshaq/",
+  "target": [
+   { "output": "vpshaq.bin16", "match": "vpshaq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHAQ",
+  "id": "vpshaq32",
+  "format": "bin",
+  "source": "vpshaq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshaq/",
+  "target": [
+   { "output": "vpshaq.bin32", "match": "vpshaq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHAQ",
+  "id": "vpshaq64",
+  "format": "bin",
+  "source": "vpshaq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshaq/",
+  "target": [
+   { "output": "vpshaq.bin64", "match": "vpshaq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHAQ",
+  "id": "vpshaq16err",
+  "format": "bin",
+  "source": "vpshaq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshaq/",
+  "target": [
+   { "stderr": "vpshaq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHAQ",
+  "id": "vpshaq32err",
+  "format": "bin",
+  "source": "vpshaq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshaq/",
+  "target": [
+   { "stderr": "vpshaq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

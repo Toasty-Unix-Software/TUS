@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPHADDWD",
+  "id": "vphaddwd16",
+  "format": "bin",
+  "source": "vphaddwd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vphaddwd/",
+  "target": [
+   { "output": "vphaddwd.bin16", "match": "vphaddwd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPHADDWD",
+  "id": "vphaddwd32",
+  "format": "bin",
+  "source": "vphaddwd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vphaddwd/",
+  "target": [
+   { "output": "vphaddwd.bin32", "match": "vphaddwd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPHADDWD",
+  "id": "vphaddwd64",
+  "format": "bin",
+  "source": "vphaddwd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vphaddwd/",
+  "target": [
+   { "output": "vphaddwd.bin64", "match": "vphaddwd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPHADDWD",
+  "id": "vphaddwd16err",
+  "format": "bin",
+  "source": "vphaddwd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vphaddwd/",
+  "target": [
+   { "stderr": "vphaddwd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPHADDWD",
+  "id": "vphaddwd32err",
+  "format": "bin",
+  "source": "vphaddwd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vphaddwd/",
+  "target": [
+   { "stderr": "vphaddwd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

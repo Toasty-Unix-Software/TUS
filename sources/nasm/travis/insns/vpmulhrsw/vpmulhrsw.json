@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMULHRSW",
+  "id": "vpmulhrsw16",
+  "format": "bin",
+  "source": "vpmulhrsw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulhrsw/",
+  "target": [
+   { "output": "vpmulhrsw.bin16", "match": "vpmulhrsw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMULHRSW",
+  "id": "vpmulhrsw32",
+  "format": "bin",
+  "source": "vpmulhrsw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulhrsw/",
+  "target": [
+   { "output": "vpmulhrsw.bin32", "match": "vpmulhrsw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMULHRSW",
+  "id": "vpmulhrsw64",
+  "format": "bin",
+  "source": "vpmulhrsw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulhrsw/",
+  "target": [
+   { "output": "vpmulhrsw.bin64", "match": "vpmulhrsw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMULHRSW",
+  "id": "vpmulhrsw16err",
+  "format": "bin",
+  "source": "vpmulhrsw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulhrsw/",
+  "target": [
+   { "stderr": "vpmulhrsw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMULHRSW",
+  "id": "vpmulhrsw32err",
+  "format": "bin",
+  "source": "vpmulhrsw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulhrsw/",
+  "target": [
+   { "stderr": "vpmulhrsw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

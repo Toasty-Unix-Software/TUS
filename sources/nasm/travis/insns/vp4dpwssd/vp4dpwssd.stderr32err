@@ -1,0 +1,2 @@
+./travis/insns/vp4dpwssd/vp4dpwssd_narrow.asm:5: error: invalid operands in non-64-bit mode
+./travis/insns/vp4dpwssd/vp4dpwssd_narrow.asm:6: error: invalid operands in non-64-bit mode

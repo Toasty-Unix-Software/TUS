@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VEXTRACTPS",
+  "id": "vextractps16",
+  "format": "bin",
+  "source": "vextractps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vextractps/",
+  "target": [
+   { "output": "vextractps.bin16", "match": "vextractps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VEXTRACTPS",
+  "id": "vextractps32",
+  "format": "bin",
+  "source": "vextractps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vextractps/",
+  "target": [
+   { "output": "vextractps.bin32", "match": "vextractps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VEXTRACTPS",
+  "id": "vextractps64",
+  "format": "bin",
+  "source": "vextractps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vextractps/",
+  "target": [
+   { "output": "vextractps.bin64", "match": "vextractps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VEXTRACTPS",
+  "id": "vextractps16err",
+  "format": "bin",
+  "source": "vextractps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vextractps/",
+  "target": [
+   { "stderr": "vextractps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VEXTRACTPS",
+  "id": "vextractps32err",
+  "format": "bin",
+  "source": "vextractps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vextractps/",
+  "target": [
+   { "stderr": "vextractps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

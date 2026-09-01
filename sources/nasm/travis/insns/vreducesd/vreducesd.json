@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VREDUCESD",
+  "id": "vreducesd16",
+  "format": "bin",
+  "source": "vreducesd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducesd/",
+  "target": [
+   { "output": "vreducesd.bin16", "match": "vreducesd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VREDUCESD",
+  "id": "vreducesd32",
+  "format": "bin",
+  "source": "vreducesd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducesd/",
+  "target": [
+   { "output": "vreducesd.bin32", "match": "vreducesd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VREDUCESD",
+  "id": "vreducesd64",
+  "format": "bin",
+  "source": "vreducesd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducesd/",
+  "target": [
+   { "output": "vreducesd.bin64", "match": "vreducesd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VREDUCESD",
+  "id": "vreducesd16err",
+  "format": "bin",
+  "source": "vreducesd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducesd/",
+  "target": [
+   { "stderr": "vreducesd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VREDUCESD",
+  "id": "vreducesd32err",
+  "format": "bin",
+  "source": "vreducesd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducesd/",
+  "target": [
+   { "stderr": "vreducesd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

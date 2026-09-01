@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPLT_OSSS",
+  "id": "vcmplt_osss16",
+  "format": "bin",
+  "source": "vcmplt_osss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmplt_osss/",
+  "target": [
+   { "output": "vcmplt_osss.bin16", "match": "vcmplt_osss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPLT_OSSS",
+  "id": "vcmplt_osss32",
+  "format": "bin",
+  "source": "vcmplt_osss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmplt_osss/",
+  "target": [
+   { "output": "vcmplt_osss.bin32", "match": "vcmplt_osss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPLT_OSSS",
+  "id": "vcmplt_osss64",
+  "format": "bin",
+  "source": "vcmplt_osss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmplt_osss/",
+  "target": [
+   { "output": "vcmplt_osss.bin64", "match": "vcmplt_osss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPLT_OSSS",
+  "id": "vcmplt_osss16err",
+  "format": "bin",
+  "source": "vcmplt_osss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmplt_osss/",
+  "target": [
+   { "stderr": "vcmplt_osss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPLT_OSSS",
+  "id": "vcmplt_osss32err",
+  "format": "bin",
+  "source": "vcmplt_osss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmplt_osss/",
+  "target": [
+   { "stderr": "vcmplt_osss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

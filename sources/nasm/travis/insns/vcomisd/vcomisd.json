@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCOMISD",
+  "id": "vcomisd16",
+  "format": "bin",
+  "source": "vcomisd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomisd/",
+  "target": [
+   { "output": "vcomisd.bin16", "match": "vcomisd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCOMISD",
+  "id": "vcomisd32",
+  "format": "bin",
+  "source": "vcomisd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomisd/",
+  "target": [
+   { "output": "vcomisd.bin32", "match": "vcomisd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCOMISD",
+  "id": "vcomisd64",
+  "format": "bin",
+  "source": "vcomisd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomisd/",
+  "target": [
+   { "output": "vcomisd.bin64", "match": "vcomisd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCOMISD",
+  "id": "vcomisd16err",
+  "format": "bin",
+  "source": "vcomisd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomisd/",
+  "target": [
+   { "stderr": "vcomisd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCOMISD",
+  "id": "vcomisd32err",
+  "format": "bin",
+  "source": "vcomisd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomisd/",
+  "target": [
+   { "stderr": "vcomisd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

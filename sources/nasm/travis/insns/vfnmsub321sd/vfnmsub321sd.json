@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFNMSUB321SD",
+  "id": "vfnmsub321sd16",
+  "format": "bin",
+  "source": "vfnmsub321sd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub321sd/",
+  "target": [
+   { "output": "vfnmsub321sd.bin16", "match": "vfnmsub321sd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMSUB321SD",
+  "id": "vfnmsub321sd32",
+  "format": "bin",
+  "source": "vfnmsub321sd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub321sd/",
+  "target": [
+   { "output": "vfnmsub321sd.bin32", "match": "vfnmsub321sd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMSUB321SD",
+  "id": "vfnmsub321sd64",
+  "format": "bin",
+  "source": "vfnmsub321sd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub321sd/",
+  "target": [
+   { "output": "vfnmsub321sd.bin64", "match": "vfnmsub321sd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMSUB321SD",
+  "id": "vfnmsub321sd16err",
+  "format": "bin",
+  "source": "vfnmsub321sd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub321sd/",
+  "target": [
+   { "stderr": "vfnmsub321sd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMSUB321SD",
+  "id": "vfnmsub321sd32err",
+  "format": "bin",
+  "source": "vfnmsub321sd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub321sd/",
+  "target": [
+   { "stderr": "vfnmsub321sd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

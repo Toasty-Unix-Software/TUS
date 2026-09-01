@@ -1,0 +1,1 @@
+./travis/insns/blendps/blendps_narrow.asm:5: error: invalid operands in 32-bit mode

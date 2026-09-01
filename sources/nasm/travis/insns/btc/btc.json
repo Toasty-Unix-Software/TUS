@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for BTC",
+  "id": "btc16",
+  "format": "bin",
+  "source": "btc_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/btc/",
+  "target": [
+   { "output": "btc.bin16", "match": "btc.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BTC",
+  "id": "btc32",
+  "format": "bin",
+  "source": "btc_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/btc/",
+  "target": [
+   { "output": "btc.bin32", "match": "btc.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BTC",
+  "id": "btc64",
+  "format": "bin",
+  "source": "btc.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/btc/",
+  "target": [
+   { "output": "btc.bin64", "match": "btc.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BTC",
+  "id": "btc16err",
+  "format": "bin",
+  "source": "btc_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/btc/",
+  "target": [
+   { "stderr": "btc.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BTC",
+  "id": "btc32err",
+  "format": "bin",
+  "source": "btc_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/btc/",
+  "target": [
+   { "stderr": "btc.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

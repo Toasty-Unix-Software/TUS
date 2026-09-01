@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSHUFBITQMB",
+  "id": "vpshufbitqmb16",
+  "format": "bin",
+  "source": "vpshufbitqmb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshufbitqmb/",
+  "target": [
+   { "output": "vpshufbitqmb.bin16", "match": "vpshufbitqmb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHUFBITQMB",
+  "id": "vpshufbitqmb32",
+  "format": "bin",
+  "source": "vpshufbitqmb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshufbitqmb/",
+  "target": [
+   { "output": "vpshufbitqmb.bin32", "match": "vpshufbitqmb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHUFBITQMB",
+  "id": "vpshufbitqmb64",
+  "format": "bin",
+  "source": "vpshufbitqmb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshufbitqmb/",
+  "target": [
+   { "output": "vpshufbitqmb.bin64", "match": "vpshufbitqmb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHUFBITQMB",
+  "id": "vpshufbitqmb16err",
+  "format": "bin",
+  "source": "vpshufbitqmb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshufbitqmb/",
+  "target": [
+   { "stderr": "vpshufbitqmb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHUFBITQMB",
+  "id": "vpshufbitqmb32err",
+  "format": "bin",
+  "source": "vpshufbitqmb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshufbitqmb/",
+  "target": [
+   { "stderr": "vpshufbitqmb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

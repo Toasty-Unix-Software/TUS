@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for STMXCSR",
+  "id": "stmxcsr16",
+  "format": "bin",
+  "source": "stmxcsr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/stmxcsr/",
+  "target": [
+   { "output": "stmxcsr.bin16", "match": "stmxcsr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for STMXCSR",
+  "id": "stmxcsr32",
+  "format": "bin",
+  "source": "stmxcsr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/stmxcsr/",
+  "target": [
+   { "output": "stmxcsr.bin32", "match": "stmxcsr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for STMXCSR",
+  "id": "stmxcsr64",
+  "format": "bin",
+  "source": "stmxcsr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/stmxcsr/",
+  "target": [
+   { "output": "stmxcsr.bin64", "match": "stmxcsr.bin64.t" }
+  ]
+ }
+]

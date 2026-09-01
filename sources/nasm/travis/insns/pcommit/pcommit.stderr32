@@ -1,0 +1,2 @@
+./travis/insns/pcommit/pcommit.asm:2: warning: instruction never implemented and is a noop on the target CPU [-w+obsolete-nop]
+./travis/insns/pcommit/pcommit.asm:3: warning: instruction never implemented and is a noop on the target CPU [-w+obsolete-nop]

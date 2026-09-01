@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FILD",
+  "id": "fild16",
+  "format": "bin",
+  "source": "fild_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fild/",
+  "target": [
+   { "output": "fild.bin16", "match": "fild.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FILD",
+  "id": "fild32",
+  "format": "bin",
+  "source": "fild_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fild/",
+  "target": [
+   { "output": "fild.bin32", "match": "fild.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FILD",
+  "id": "fild64",
+  "format": "bin",
+  "source": "fild.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fild/",
+  "target": [
+   { "output": "fild.bin64", "match": "fild.bin64.t" }
+  ]
+ }
+]

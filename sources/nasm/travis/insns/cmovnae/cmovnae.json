@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMOVNAE",
+  "id": "cmovnae64",
+  "format": "bin",
+  "source": "cmovnae.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovnae/",
+  "target": [
+   { "output": "cmovnae.bin64", "match": "cmovnae.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVNAE",
+  "id": "cmovnae16err",
+  "format": "bin",
+  "source": "cmovnae_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovnae/",
+  "target": [
+   { "stderr": "cmovnae.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVNAE",
+  "id": "cmovnae32err",
+  "format": "bin",
+  "source": "cmovnae_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovnae/",
+  "target": [
+   { "stderr": "cmovnae.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

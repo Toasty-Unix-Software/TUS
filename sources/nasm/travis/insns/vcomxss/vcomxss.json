@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCOMXSS",
+  "id": "vcomxss16",
+  "format": "bin",
+  "source": "vcomxss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomxss/",
+  "target": [
+   { "output": "vcomxss.bin16", "match": "vcomxss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCOMXSS",
+  "id": "vcomxss32",
+  "format": "bin",
+  "source": "vcomxss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomxss/",
+  "target": [
+   { "output": "vcomxss.bin32", "match": "vcomxss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCOMXSS",
+  "id": "vcomxss64",
+  "format": "bin",
+  "source": "vcomxss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomxss/",
+  "target": [
+   { "output": "vcomxss.bin64", "match": "vcomxss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCOMXSS",
+  "id": "vcomxss16err",
+  "format": "bin",
+  "source": "vcomxss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomxss/",
+  "target": [
+   { "stderr": "vcomxss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCOMXSS",
+  "id": "vcomxss32err",
+  "format": "bin",
+  "source": "vcomxss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomxss/",
+  "target": [
+   { "stderr": "vcomxss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

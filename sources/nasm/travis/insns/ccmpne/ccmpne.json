@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPNE",
+  "id": "ccmpne64",
+  "format": "bin",
+  "source": "ccmpne.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpne/",
+  "target": [
+   { "output": "ccmpne.bin64", "match": "ccmpne.bin64.t" },
+   { "stderr": "ccmpne.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPNE",
+  "id": "ccmpne16err",
+  "format": "bin",
+  "source": "ccmpne_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpne/",
+  "target": [
+   { "stderr": "ccmpne.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPNE",
+  "id": "ccmpne32err",
+  "format": "bin",
+  "source": "ccmpne_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpne/",
+  "target": [
+   { "stderr": "ccmpne.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for POP2",
+  "id": "pop264",
+  "format": "bin",
+  "source": "pop2.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pop2/",
+  "target": [
+   { "output": "pop2.bin64", "match": "pop2.bin64.t" }
+  ]
+ }
+]

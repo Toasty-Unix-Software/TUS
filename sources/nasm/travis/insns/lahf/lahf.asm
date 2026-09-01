@@ -1,0 +1,3 @@
+default rel
+	lahf
+	lahf

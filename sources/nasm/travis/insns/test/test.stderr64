@@ -1,0 +1,3 @@
+./travis/insns/test/test.asm:51: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/test/test.asm:52: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/test/test.asm:53: warning: byte exceeds bounds [-w+number-overflow]

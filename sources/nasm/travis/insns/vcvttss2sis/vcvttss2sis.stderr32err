@@ -1,0 +1,9 @@
+./travis/insns/vcvttss2sis/vcvttss2sis_narrow.asm:5: error: instruction not supported in 32-bit mode
+./travis/insns/vcvttss2sis/vcvttss2sis_narrow.asm:6: error: instruction not supported in 32-bit mode
+./travis/insns/vcvttss2sis/vcvttss2sis_narrow.asm:7: error: invalid operands in non-64-bit mode
+./travis/insns/vcvttss2sis/vcvttss2sis_narrow.asm:8: error: instruction not supported in 32-bit mode
+./travis/insns/vcvttss2sis/vcvttss2sis_narrow.asm:9: error: invalid operands in non-64-bit mode
+./travis/insns/vcvttss2sis/vcvttss2sis_narrow.asm:10: error: instruction not supported in 32-bit mode
+./travis/insns/vcvttss2sis/vcvttss2sis_narrow.asm:11: error: instruction not supported in 32-bit mode
+./travis/insns/vcvttss2sis/vcvttss2sis_narrow.asm:12: error: instruction not supported in 32-bit mode
+./travis/insns/vcvttss2sis/vcvttss2sis_narrow.asm:13: error: instruction not supported in 32-bit mode

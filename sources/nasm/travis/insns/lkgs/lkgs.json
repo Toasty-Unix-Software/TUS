@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for LKGS",
+  "id": "lkgs64",
+  "format": "bin",
+  "source": "lkgs.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lkgs/",
+  "target": [
+   { "output": "lkgs.bin64", "match": "lkgs.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LKGS",
+  "id": "lkgs16err",
+  "format": "bin",
+  "source": "lkgs_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lkgs/",
+  "target": [
+   { "stderr": "lkgs.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LKGS",
+  "id": "lkgs32err",
+  "format": "bin",
+  "source": "lkgs_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lkgs/",
+  "target": [
+   { "stderr": "lkgs.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

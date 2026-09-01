@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MULX",
+  "id": "mulx16",
+  "format": "bin",
+  "source": "mulx_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mulx/",
+  "target": [
+   { "output": "mulx.bin16", "match": "mulx.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MULX",
+  "id": "mulx32",
+  "format": "bin",
+  "source": "mulx_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mulx/",
+  "target": [
+   { "output": "mulx.bin32", "match": "mulx.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MULX",
+  "id": "mulx64",
+  "format": "bin",
+  "source": "mulx.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mulx/",
+  "target": [
+   { "output": "mulx.bin64", "match": "mulx.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MULX",
+  "id": "mulx16err",
+  "format": "bin",
+  "source": "mulx_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mulx/",
+  "target": [
+   { "stderr": "mulx.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MULX",
+  "id": "mulx32err",
+  "format": "bin",
+  "source": "mulx_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mulx/",
+  "target": [
+   { "stderr": "mulx.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

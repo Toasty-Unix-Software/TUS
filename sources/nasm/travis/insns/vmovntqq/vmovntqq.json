@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMOVNTQQ",
+  "id": "vmovntqq16",
+  "format": "bin",
+  "source": "vmovntqq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovntqq/",
+  "target": [
+   { "output": "vmovntqq.bin16", "match": "vmovntqq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVNTQQ",
+  "id": "vmovntqq32",
+  "format": "bin",
+  "source": "vmovntqq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovntqq/",
+  "target": [
+   { "output": "vmovntqq.bin32", "match": "vmovntqq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVNTQQ",
+  "id": "vmovntqq64",
+  "format": "bin",
+  "source": "vmovntqq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovntqq/",
+  "target": [
+   { "output": "vmovntqq.bin64", "match": "vmovntqq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVNTQQ",
+  "id": "vmovntqq16err",
+  "format": "bin",
+  "source": "vmovntqq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovntqq/",
+  "target": [
+   { "stderr": "vmovntqq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVNTQQ",
+  "id": "vmovntqq32err",
+  "format": "bin",
+  "source": "vmovntqq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovntqq/",
+  "target": [
+   { "stderr": "vmovntqq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

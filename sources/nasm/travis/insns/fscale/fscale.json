@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FSCALE",
+  "id": "fscale16",
+  "format": "bin",
+  "source": "fscale.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fscale/",
+  "target": [
+   { "output": "fscale.bin16", "match": "fscale.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FSCALE",
+  "id": "fscale32",
+  "format": "bin",
+  "source": "fscale.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fscale/",
+  "target": [
+   { "output": "fscale.bin32", "match": "fscale.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FSCALE",
+  "id": "fscale64",
+  "format": "bin",
+  "source": "fscale.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fscale/",
+  "target": [
+   { "output": "fscale.bin64", "match": "fscale.bin64.t" }
+  ]
+ }
+]

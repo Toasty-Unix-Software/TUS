@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XNORQ",
+  "id": "xnorq16",
+  "format": "bin",
+  "source": "xnorq.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xnorq/",
+  "target": [
+   { "output": "xnorq.bin16", "match": "xnorq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XNORQ",
+  "id": "xnorq32",
+  "format": "bin",
+  "source": "xnorq.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xnorq/",
+  "target": [
+   { "output": "xnorq.bin32", "match": "xnorq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XNORQ",
+  "id": "xnorq64",
+  "format": "bin",
+  "source": "xnorq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xnorq/",
+  "target": [
+   { "output": "xnorq.bin64", "match": "xnorq.bin64.t" }
+  ]
+ }
+]

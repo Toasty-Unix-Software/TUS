@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for JNA",
+  "id": "jna16",
+  "format": "bin",
+  "source": "jna_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jna/",
+  "target": [
+   { "output": "jna.bin16", "match": "jna.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JNA",
+  "id": "jna32",
+  "format": "bin",
+  "source": "jna_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jna/",
+  "target": [
+   { "output": "jna.bin32", "match": "jna.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JNA",
+  "id": "jna64",
+  "format": "bin",
+  "source": "jna.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jna/",
+  "target": [
+   { "output": "jna.bin64", "match": "jna.bin64.t" }
+  ]
+ }
+]

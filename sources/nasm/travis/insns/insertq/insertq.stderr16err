@@ -1,0 +1,2 @@
+./travis/insns/insertq/insertq_narrow.asm:7: error: invalid operands in 16-bit mode
+./travis/insns/insertq/insertq_narrow.asm:8: error: invalid operands in 16-bit mode

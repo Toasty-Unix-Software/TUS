@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PHADDSW",
+  "id": "phaddsw16",
+  "format": "bin",
+  "source": "phaddsw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/phaddsw/",
+  "target": [
+   { "output": "phaddsw.bin16", "match": "phaddsw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PHADDSW",
+  "id": "phaddsw32",
+  "format": "bin",
+  "source": "phaddsw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/phaddsw/",
+  "target": [
+   { "output": "phaddsw.bin32", "match": "phaddsw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PHADDSW",
+  "id": "phaddsw64",
+  "format": "bin",
+  "source": "phaddsw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/phaddsw/",
+  "target": [
+   { "output": "phaddsw.bin64", "match": "phaddsw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PHADDSW",
+  "id": "phaddsw16err",
+  "format": "bin",
+  "source": "phaddsw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/phaddsw/",
+  "target": [
+   { "stderr": "phaddsw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PHADDSW",
+  "id": "phaddsw32err",
+  "format": "bin",
+  "source": "phaddsw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/phaddsw/",
+  "target": [
+   { "stderr": "phaddsw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

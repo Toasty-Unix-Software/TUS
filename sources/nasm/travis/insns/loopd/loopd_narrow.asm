@@ -1,0 +1,9 @@
+	loopd 0xe549
+	loopd 0x900b
+	loopd 0x1791bd84
+	loopd 0x2405970d
+
+%ifdef ERROR
+	loopd 0xa648ba7
+	loopd 0x391b9bf7
+%endif

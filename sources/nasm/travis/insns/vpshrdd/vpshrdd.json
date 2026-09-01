@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSHRDD",
+  "id": "vpshrdd16",
+  "format": "bin",
+  "source": "vpshrdd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshrdd/",
+  "target": [
+   { "output": "vpshrdd.bin16", "match": "vpshrdd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHRDD",
+  "id": "vpshrdd32",
+  "format": "bin",
+  "source": "vpshrdd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshrdd/",
+  "target": [
+   { "output": "vpshrdd.bin32", "match": "vpshrdd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHRDD",
+  "id": "vpshrdd64",
+  "format": "bin",
+  "source": "vpshrdd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshrdd/",
+  "target": [
+   { "output": "vpshrdd.bin64", "match": "vpshrdd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHRDD",
+  "id": "vpshrdd16err",
+  "format": "bin",
+  "source": "vpshrdd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshrdd/",
+  "target": [
+   { "stderr": "vpshrdd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHRDD",
+  "id": "vpshrdd32err",
+  "format": "bin",
+  "source": "vpshrdd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshrdd/",
+  "target": [
+   { "stderr": "vpshrdd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

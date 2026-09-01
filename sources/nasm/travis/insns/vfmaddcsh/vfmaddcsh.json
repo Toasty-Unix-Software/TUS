@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFMADDCSH",
+  "id": "vfmaddcsh16",
+  "format": "bin",
+  "source": "vfmaddcsh_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddcsh/",
+  "target": [
+   { "output": "vfmaddcsh.bin16", "match": "vfmaddcsh.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMADDCSH",
+  "id": "vfmaddcsh32",
+  "format": "bin",
+  "source": "vfmaddcsh_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddcsh/",
+  "target": [
+   { "output": "vfmaddcsh.bin32", "match": "vfmaddcsh.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMADDCSH",
+  "id": "vfmaddcsh64",
+  "format": "bin",
+  "source": "vfmaddcsh.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddcsh/",
+  "target": [
+   { "output": "vfmaddcsh.bin64", "match": "vfmaddcsh.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMADDCSH",
+  "id": "vfmaddcsh16err",
+  "format": "bin",
+  "source": "vfmaddcsh_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddcsh/",
+  "target": [
+   { "stderr": "vfmaddcsh.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMADDCSH",
+  "id": "vfmaddcsh32err",
+  "format": "bin",
+  "source": "vfmaddcsh_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddcsh/",
+  "target": [
+   { "stderr": "vfmaddcsh.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

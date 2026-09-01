@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for UNPCKLPD",
+  "id": "unpcklpd16",
+  "format": "bin",
+  "source": "unpcklpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpcklpd/",
+  "target": [
+   { "output": "unpcklpd.bin16", "match": "unpcklpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UNPCKLPD",
+  "id": "unpcklpd32",
+  "format": "bin",
+  "source": "unpcklpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpcklpd/",
+  "target": [
+   { "output": "unpcklpd.bin32", "match": "unpcklpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UNPCKLPD",
+  "id": "unpcklpd64",
+  "format": "bin",
+  "source": "unpcklpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpcklpd/",
+  "target": [
+   { "output": "unpcklpd.bin64", "match": "unpcklpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for UNPCKLPD",
+  "id": "unpcklpd16err",
+  "format": "bin",
+  "source": "unpcklpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpcklpd/",
+  "target": [
+   { "stderr": "unpcklpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for UNPCKLPD",
+  "id": "unpcklpd32err",
+  "format": "bin",
+  "source": "unpcklpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpcklpd/",
+  "target": [
+   { "stderr": "unpcklpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,13 @@
+default rel
+	vcvtneobf162ps xmm2, oword [0x5f3]
+	vcvtneobf162ps xmm7, oword [0x9cd]
+	vcvtneobf162ps ymm4, yword [0x664]
+	vcvtneobf162ps ymm5, yword [0x838]
+	vcvtneobf162ps xmm9, oword [0x1ce]
+	vcvtneobf162ps ymm10, yword [0xb43]
+	vcvtneobf162ps xmm6, oword [eax+1]
+	vcvtneobf162ps xmm7, oword [eax+64]
+	vcvtneobf162ps ymm3, yword [eax+1]
+	vcvtneobf162ps ymm5, yword [eax+64]
+	vcvtneobf162ps xmm5, [0xb66]
+	vcvtneobf162ps ymm5, [0x420]

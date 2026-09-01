@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPNS",
+  "id": "ccmpns64",
+  "format": "bin",
+  "source": "ccmpns.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpns/",
+  "target": [
+   { "output": "ccmpns.bin64", "match": "ccmpns.bin64.t" },
+   { "stderr": "ccmpns.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPNS",
+  "id": "ccmpns16err",
+  "format": "bin",
+  "source": "ccmpns_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpns/",
+  "target": [
+   { "stderr": "ccmpns.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPNS",
+  "id": "ccmpns32err",
+  "format": "bin",
+  "source": "ccmpns_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpns/",
+  "target": [
+   { "stderr": "ccmpns.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

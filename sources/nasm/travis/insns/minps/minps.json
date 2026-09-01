@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MINPS",
+  "id": "minps16",
+  "format": "bin",
+  "source": "minps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minps/",
+  "target": [
+   { "output": "minps.bin16", "match": "minps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MINPS",
+  "id": "minps32",
+  "format": "bin",
+  "source": "minps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minps/",
+  "target": [
+   { "output": "minps.bin32", "match": "minps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MINPS",
+  "id": "minps64",
+  "format": "bin",
+  "source": "minps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minps/",
+  "target": [
+   { "output": "minps.bin64", "match": "minps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MINPS",
+  "id": "minps16err",
+  "format": "bin",
+  "source": "minps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minps/",
+  "target": [
+   { "stderr": "minps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MINPS",
+  "id": "minps32err",
+  "format": "bin",
+  "source": "minps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/minps/",
+  "target": [
+   { "stderr": "minps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

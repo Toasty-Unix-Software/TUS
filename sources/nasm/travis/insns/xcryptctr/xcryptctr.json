@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XCRYPTCTR",
+  "id": "xcryptctr16",
+  "format": "bin",
+  "source": "xcryptctr.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xcryptctr/",
+  "target": [
+   { "output": "xcryptctr.bin16", "match": "xcryptctr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XCRYPTCTR",
+  "id": "xcryptctr32",
+  "format": "bin",
+  "source": "xcryptctr.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xcryptctr/",
+  "target": [
+   { "output": "xcryptctr.bin32", "match": "xcryptctr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XCRYPTCTR",
+  "id": "xcryptctr64",
+  "format": "bin",
+  "source": "xcryptctr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xcryptctr/",
+  "target": [
+   { "output": "xcryptctr.bin64", "match": "xcryptctr.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for PREFETCHIT1",
+  "id": "prefetchit116",
+  "format": "bin",
+  "source": "prefetchit1_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/prefetchit1/",
+  "target": [
+   { "output": "prefetchit1.bin16", "match": "prefetchit1.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PREFETCHIT1",
+  "id": "prefetchit132",
+  "format": "bin",
+  "source": "prefetchit1_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/prefetchit1/",
+  "target": [
+   { "output": "prefetchit1.bin32", "match": "prefetchit1.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PREFETCHIT1",
+  "id": "prefetchit164",
+  "format": "bin",
+  "source": "prefetchit1.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/prefetchit1/",
+  "target": [
+   { "output": "prefetchit1.bin64", "match": "prefetchit1.bin64.t" }
+  ]
+ }
+]

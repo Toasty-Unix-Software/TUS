@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for CMPXCHG16B",
+  "id": "cmpxchg16b64",
+  "format": "bin",
+  "source": "cmpxchg16b.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpxchg16b/",
+  "target": [
+   { "output": "cmpxchg16b.bin64", "match": "cmpxchg16b.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMAXSH",
+  "id": "vmaxsh16",
+  "format": "bin",
+  "source": "vmaxsh_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaxsh/",
+  "target": [
+   { "output": "vmaxsh.bin16", "match": "vmaxsh.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMAXSH",
+  "id": "vmaxsh32",
+  "format": "bin",
+  "source": "vmaxsh_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaxsh/",
+  "target": [
+   { "output": "vmaxsh.bin32", "match": "vmaxsh.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMAXSH",
+  "id": "vmaxsh64",
+  "format": "bin",
+  "source": "vmaxsh.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaxsh/",
+  "target": [
+   { "output": "vmaxsh.bin64", "match": "vmaxsh.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMAXSH",
+  "id": "vmaxsh16err",
+  "format": "bin",
+  "source": "vmaxsh_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaxsh/",
+  "target": [
+   { "stderr": "vmaxsh.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMAXSH",
+  "id": "vmaxsh32err",
+  "format": "bin",
+  "source": "vmaxsh_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaxsh/",
+  "target": [
+   { "stderr": "vmaxsh.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

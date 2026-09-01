@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPTRUEPD",
+  "id": "vcmptruepd16",
+  "format": "bin",
+  "source": "vcmptruepd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptruepd/",
+  "target": [
+   { "output": "vcmptruepd.bin16", "match": "vcmptruepd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPTRUEPD",
+  "id": "vcmptruepd32",
+  "format": "bin",
+  "source": "vcmptruepd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptruepd/",
+  "target": [
+   { "output": "vcmptruepd.bin32", "match": "vcmptruepd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPTRUEPD",
+  "id": "vcmptruepd64",
+  "format": "bin",
+  "source": "vcmptruepd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptruepd/",
+  "target": [
+   { "output": "vcmptruepd.bin64", "match": "vcmptruepd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPTRUEPD",
+  "id": "vcmptruepd16err",
+  "format": "bin",
+  "source": "vcmptruepd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptruepd/",
+  "target": [
+   { "stderr": "vcmptruepd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPTRUEPD",
+  "id": "vcmptruepd32err",
+  "format": "bin",
+  "source": "vcmptruepd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptruepd/",
+  "target": [
+   { "stderr": "vcmptruepd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VGETEXPBF16",
+  "id": "vgetexpbf1616",
+  "format": "bin",
+  "source": "vgetexpbf16_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexpbf16/",
+  "target": [
+   { "output": "vgetexpbf16.bin16", "match": "vgetexpbf16.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETEXPBF16",
+  "id": "vgetexpbf1632",
+  "format": "bin",
+  "source": "vgetexpbf16_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexpbf16/",
+  "target": [
+   { "output": "vgetexpbf16.bin32", "match": "vgetexpbf16.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETEXPBF16",
+  "id": "vgetexpbf1664",
+  "format": "bin",
+  "source": "vgetexpbf16.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexpbf16/",
+  "target": [
+   { "output": "vgetexpbf16.bin64", "match": "vgetexpbf16.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETEXPBF16",
+  "id": "vgetexpbf1616err",
+  "format": "bin",
+  "source": "vgetexpbf16_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexpbf16/",
+  "target": [
+   { "stderr": "vgetexpbf16.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETEXPBF16",
+  "id": "vgetexpbf1632err",
+  "format": "bin",
+  "source": "vgetexpbf16_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetexpbf16/",
+  "target": [
+   { "stderr": "vgetexpbf16.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for LEAVEQ",
+  "id": "leaveq64",
+  "format": "bin",
+  "source": "leaveq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/leaveq/",
+  "target": [
+   { "output": "leaveq.bin64", "match": "leaveq.bin64.t" }
+  ]
+ }
+]

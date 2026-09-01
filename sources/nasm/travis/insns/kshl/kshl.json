@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KSHL",
+  "id": "kshl16",
+  "format": "bin",
+  "source": "kshl.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshl/",
+  "target": [
+   { "output": "kshl.bin16", "match": "kshl.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KSHL",
+  "id": "kshl32",
+  "format": "bin",
+  "source": "kshl.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshl/",
+  "target": [
+   { "output": "kshl.bin32", "match": "kshl.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KSHL",
+  "id": "kshl64",
+  "format": "bin",
+  "source": "kshl.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kshl/",
+  "target": [
+   { "output": "kshl.bin64", "match": "kshl.bin64.t" }
+  ]
+ }
+]

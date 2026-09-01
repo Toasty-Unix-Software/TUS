@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for ENTERD",
+  "id": "enterd16",
+  "format": "bin",
+  "source": "enterd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/enterd/",
+  "target": [
+   { "output": "enterd.bin16", "match": "enterd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ENTERD",
+  "id": "enterd32",
+  "format": "bin",
+  "source": "enterd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/enterd/",
+  "target": [
+   { "output": "enterd.bin32", "match": "enterd.bin32.t" }
+  ]
+ }
+]

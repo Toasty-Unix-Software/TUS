@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VSCALEFPS",
+  "id": "vscalefps16",
+  "format": "bin",
+  "source": "vscalefps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefps/",
+  "target": [
+   { "output": "vscalefps.bin16", "match": "vscalefps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSCALEFPS",
+  "id": "vscalefps32",
+  "format": "bin",
+  "source": "vscalefps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefps/",
+  "target": [
+   { "output": "vscalefps.bin32", "match": "vscalefps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSCALEFPS",
+  "id": "vscalefps64",
+  "format": "bin",
+  "source": "vscalefps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefps/",
+  "target": [
+   { "output": "vscalefps.bin64", "match": "vscalefps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSCALEFPS",
+  "id": "vscalefps16err",
+  "format": "bin",
+  "source": "vscalefps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefps/",
+  "target": [
+   { "stderr": "vscalefps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSCALEFPS",
+  "id": "vscalefps32err",
+  "format": "bin",
+  "source": "vscalefps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefps/",
+  "target": [
+   { "stderr": "vscalefps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPFALSESD",
+  "id": "vcmpfalsesd16",
+  "format": "bin",
+  "source": "vcmpfalsesd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalsesd/",
+  "target": [
+   { "output": "vcmpfalsesd.bin16", "match": "vcmpfalsesd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPFALSESD",
+  "id": "vcmpfalsesd32",
+  "format": "bin",
+  "source": "vcmpfalsesd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalsesd/",
+  "target": [
+   { "output": "vcmpfalsesd.bin32", "match": "vcmpfalsesd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPFALSESD",
+  "id": "vcmpfalsesd64",
+  "format": "bin",
+  "source": "vcmpfalsesd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalsesd/",
+  "target": [
+   { "output": "vcmpfalsesd.bin64", "match": "vcmpfalsesd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPFALSESD",
+  "id": "vcmpfalsesd16err",
+  "format": "bin",
+  "source": "vcmpfalsesd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalsesd/",
+  "target": [
+   { "stderr": "vcmpfalsesd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPFALSESD",
+  "id": "vcmpfalsesd32err",
+  "format": "bin",
+  "source": "vcmpfalsesd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalsesd/",
+  "target": [
+   { "stderr": "vcmpfalsesd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

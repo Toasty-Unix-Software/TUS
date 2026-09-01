@@ -1,0 +1,61 @@
+[
+ {
+  "description": "Pseudorandom test for BLCFILL",
+  "id": "blcfill16",
+  "format": "bin",
+  "source": "blcfill_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blcfill/",
+  "target": [
+   { "output": "blcfill.bin16", "match": "blcfill.bin16.t" },
+   { "stderr": "blcfill.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BLCFILL",
+  "id": "blcfill32",
+  "format": "bin",
+  "source": "blcfill_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blcfill/",
+  "target": [
+   { "output": "blcfill.bin32", "match": "blcfill.bin32.t" },
+   { "stderr": "blcfill.stderr32" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BLCFILL",
+  "id": "blcfill64",
+  "format": "bin",
+  "source": "blcfill.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blcfill/",
+  "target": [
+   { "output": "blcfill.bin64", "match": "blcfill.bin64.t" },
+   { "stderr": "blcfill.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BLCFILL",
+  "id": "blcfill16err",
+  "format": "bin",
+  "source": "blcfill_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blcfill/",
+  "target": [
+   { "stderr": "blcfill.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BLCFILL",
+  "id": "blcfill32err",
+  "format": "bin",
+  "source": "blcfill_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/blcfill/",
+  "target": [
+   { "stderr": "blcfill.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

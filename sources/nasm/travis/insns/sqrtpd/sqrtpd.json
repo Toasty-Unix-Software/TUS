@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for SQRTPD",
+  "id": "sqrtpd16",
+  "format": "bin",
+  "source": "sqrtpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sqrtpd/",
+  "target": [
+   { "output": "sqrtpd.bin16", "match": "sqrtpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SQRTPD",
+  "id": "sqrtpd32",
+  "format": "bin",
+  "source": "sqrtpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sqrtpd/",
+  "target": [
+   { "output": "sqrtpd.bin32", "match": "sqrtpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SQRTPD",
+  "id": "sqrtpd64",
+  "format": "bin",
+  "source": "sqrtpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sqrtpd/",
+  "target": [
+   { "output": "sqrtpd.bin64", "match": "sqrtpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SQRTPD",
+  "id": "sqrtpd16err",
+  "format": "bin",
+  "source": "sqrtpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sqrtpd/",
+  "target": [
+   { "stderr": "sqrtpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SQRTPD",
+  "id": "sqrtpd32err",
+  "format": "bin",
+  "source": "sqrtpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sqrtpd/",
+  "target": [
+   { "stderr": "sqrtpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

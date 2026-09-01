@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPEXTRW",
+  "id": "vpextrw16",
+  "format": "bin",
+  "source": "vpextrw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpextrw/",
+  "target": [
+   { "output": "vpextrw.bin16", "match": "vpextrw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPEXTRW",
+  "id": "vpextrw32",
+  "format": "bin",
+  "source": "vpextrw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpextrw/",
+  "target": [
+   { "output": "vpextrw.bin32", "match": "vpextrw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPEXTRW",
+  "id": "vpextrw64",
+  "format": "bin",
+  "source": "vpextrw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpextrw/",
+  "target": [
+   { "output": "vpextrw.bin64", "match": "vpextrw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPEXTRW",
+  "id": "vpextrw16err",
+  "format": "bin",
+  "source": "vpextrw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpextrw/",
+  "target": [
+   { "stderr": "vpextrw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPEXTRW",
+  "id": "vpextrw32err",
+  "format": "bin",
+  "source": "vpextrw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpextrw/",
+  "target": [
+   { "stderr": "vpextrw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

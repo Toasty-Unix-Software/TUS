@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FYL2XP1",
+  "id": "fyl2xp116",
+  "format": "bin",
+  "source": "fyl2xp1.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fyl2xp1/",
+  "target": [
+   { "output": "fyl2xp1.bin16", "match": "fyl2xp1.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FYL2XP1",
+  "id": "fyl2xp132",
+  "format": "bin",
+  "source": "fyl2xp1.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fyl2xp1/",
+  "target": [
+   { "output": "fyl2xp1.bin32", "match": "fyl2xp1.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FYL2XP1",
+  "id": "fyl2xp164",
+  "format": "bin",
+  "source": "fyl2xp1.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fyl2xp1/",
+  "target": [
+   { "output": "fyl2xp1.bin64", "match": "fyl2xp1.bin64.t" }
+  ]
+ }
+]

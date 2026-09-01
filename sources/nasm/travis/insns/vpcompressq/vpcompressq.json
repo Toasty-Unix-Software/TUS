@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCOMPRESSQ",
+  "id": "vpcompressq16",
+  "format": "bin",
+  "source": "vpcompressq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcompressq/",
+  "target": [
+   { "output": "vpcompressq.bin16", "match": "vpcompressq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCOMPRESSQ",
+  "id": "vpcompressq32",
+  "format": "bin",
+  "source": "vpcompressq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcompressq/",
+  "target": [
+   { "output": "vpcompressq.bin32", "match": "vpcompressq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCOMPRESSQ",
+  "id": "vpcompressq64",
+  "format": "bin",
+  "source": "vpcompressq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcompressq/",
+  "target": [
+   { "output": "vpcompressq.bin64", "match": "vpcompressq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCOMPRESSQ",
+  "id": "vpcompressq16err",
+  "format": "bin",
+  "source": "vpcompressq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcompressq/",
+  "target": [
+   { "stderr": "vpcompressq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCOMPRESSQ",
+  "id": "vpcompressq32err",
+  "format": "bin",
+  "source": "vpcompressq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcompressq/",
+  "target": [
+   { "stderr": "vpcompressq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for UNPCKQ",
+  "id": "unpckq16",
+  "format": "bin",
+  "source": "unpckq.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpckq/",
+  "target": [
+   { "output": "unpckq.bin16", "match": "unpckq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UNPCKQ",
+  "id": "unpckq32",
+  "format": "bin",
+  "source": "unpckq.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpckq/",
+  "target": [
+   { "output": "unpckq.bin32", "match": "unpckq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UNPCKQ",
+  "id": "unpckq64",
+  "format": "bin",
+  "source": "unpckq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpckq/",
+  "target": [
+   { "output": "unpckq.bin64", "match": "unpckq.bin64.t" }
+  ]
+ }
+]

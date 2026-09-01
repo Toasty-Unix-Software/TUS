@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for RSQRTPS",
+  "id": "rsqrtps16",
+  "format": "bin",
+  "source": "rsqrtps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rsqrtps/",
+  "target": [
+   { "output": "rsqrtps.bin16", "match": "rsqrtps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RSQRTPS",
+  "id": "rsqrtps32",
+  "format": "bin",
+  "source": "rsqrtps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rsqrtps/",
+  "target": [
+   { "output": "rsqrtps.bin32", "match": "rsqrtps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RSQRTPS",
+  "id": "rsqrtps64",
+  "format": "bin",
+  "source": "rsqrtps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rsqrtps/",
+  "target": [
+   { "output": "rsqrtps.bin64", "match": "rsqrtps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RSQRTPS",
+  "id": "rsqrtps16err",
+  "format": "bin",
+  "source": "rsqrtps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rsqrtps/",
+  "target": [
+   { "stderr": "rsqrtps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RSQRTPS",
+  "id": "rsqrtps32err",
+  "format": "bin",
+  "source": "rsqrtps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rsqrtps/",
+  "target": [
+   { "stderr": "rsqrtps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

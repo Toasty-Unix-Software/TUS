@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFNMADD132SS",
+  "id": "vfnmadd132ss16",
+  "format": "bin",
+  "source": "vfnmadd132ss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmadd132ss/",
+  "target": [
+   { "output": "vfnmadd132ss.bin16", "match": "vfnmadd132ss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMADD132SS",
+  "id": "vfnmadd132ss32",
+  "format": "bin",
+  "source": "vfnmadd132ss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmadd132ss/",
+  "target": [
+   { "output": "vfnmadd132ss.bin32", "match": "vfnmadd132ss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMADD132SS",
+  "id": "vfnmadd132ss64",
+  "format": "bin",
+  "source": "vfnmadd132ss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmadd132ss/",
+  "target": [
+   { "output": "vfnmadd132ss.bin64", "match": "vfnmadd132ss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMADD132SS",
+  "id": "vfnmadd132ss16err",
+  "format": "bin",
+  "source": "vfnmadd132ss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmadd132ss/",
+  "target": [
+   { "stderr": "vfnmadd132ss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMADD132SS",
+  "id": "vfnmadd132ss32err",
+  "format": "bin",
+  "source": "vfnmadd132ss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmadd132ss/",
+  "target": [
+   { "stderr": "vfnmadd132ss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

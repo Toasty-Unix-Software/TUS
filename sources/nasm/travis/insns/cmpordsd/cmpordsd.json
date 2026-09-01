@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for CMPORDSD",
+  "id": "cmpordsd16",
+  "format": "bin",
+  "source": "cmpordsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpordsd/",
+  "target": [
+   { "output": "cmpordsd.bin16", "match": "cmpordsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPORDSD",
+  "id": "cmpordsd32",
+  "format": "bin",
+  "source": "cmpordsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpordsd/",
+  "target": [
+   { "output": "cmpordsd.bin32", "match": "cmpordsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPORDSD",
+  "id": "cmpordsd64",
+  "format": "bin",
+  "source": "cmpordsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpordsd/",
+  "target": [
+   { "output": "cmpordsd.bin64", "match": "cmpordsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPORDSD",
+  "id": "cmpordsd16err",
+  "format": "bin",
+  "source": "cmpordsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpordsd/",
+  "target": [
+   { "stderr": "cmpordsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPORDSD",
+  "id": "cmpordsd32err",
+  "format": "bin",
+  "source": "cmpordsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpordsd/",
+  "target": [
+   { "stderr": "cmpordsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

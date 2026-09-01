@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSADBW",
+  "id": "vpsadbw16",
+  "format": "bin",
+  "source": "vpsadbw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsadbw/",
+  "target": [
+   { "output": "vpsadbw.bin16", "match": "vpsadbw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSADBW",
+  "id": "vpsadbw32",
+  "format": "bin",
+  "source": "vpsadbw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsadbw/",
+  "target": [
+   { "output": "vpsadbw.bin32", "match": "vpsadbw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSADBW",
+  "id": "vpsadbw64",
+  "format": "bin",
+  "source": "vpsadbw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsadbw/",
+  "target": [
+   { "output": "vpsadbw.bin64", "match": "vpsadbw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSADBW",
+  "id": "vpsadbw16err",
+  "format": "bin",
+  "source": "vpsadbw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsadbw/",
+  "target": [
+   { "stderr": "vpsadbw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSADBW",
+  "id": "vpsadbw32err",
+  "format": "bin",
+  "source": "vpsadbw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsadbw/",
+  "target": [
+   { "stderr": "vpsadbw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

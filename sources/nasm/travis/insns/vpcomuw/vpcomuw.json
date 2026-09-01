@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCOMUW",
+  "id": "vpcomuw16",
+  "format": "bin",
+  "source": "vpcomuw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcomuw/",
+  "target": [
+   { "output": "vpcomuw.bin16", "match": "vpcomuw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCOMUW",
+  "id": "vpcomuw32",
+  "format": "bin",
+  "source": "vpcomuw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcomuw/",
+  "target": [
+   { "output": "vpcomuw.bin32", "match": "vpcomuw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCOMUW",
+  "id": "vpcomuw64",
+  "format": "bin",
+  "source": "vpcomuw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcomuw/",
+  "target": [
+   { "output": "vpcomuw.bin64", "match": "vpcomuw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCOMUW",
+  "id": "vpcomuw16err",
+  "format": "bin",
+  "source": "vpcomuw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcomuw/",
+  "target": [
+   { "stderr": "vpcomuw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCOMUW",
+  "id": "vpcomuw32err",
+  "format": "bin",
+  "source": "vpcomuw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcomuw/",
+  "target": [
+   { "stderr": "vpcomuw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

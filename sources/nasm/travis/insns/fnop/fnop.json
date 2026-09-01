@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FNOP",
+  "id": "fnop16",
+  "format": "bin",
+  "source": "fnop.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fnop/",
+  "target": [
+   { "output": "fnop.bin16", "match": "fnop.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FNOP",
+  "id": "fnop32",
+  "format": "bin",
+  "source": "fnop.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fnop/",
+  "target": [
+   { "output": "fnop.bin32", "match": "fnop.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FNOP",
+  "id": "fnop64",
+  "format": "bin",
+  "source": "fnop.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fnop/",
+  "target": [
+   { "output": "fnop.bin64", "match": "fnop.bin64.t" }
+  ]
+ }
+]

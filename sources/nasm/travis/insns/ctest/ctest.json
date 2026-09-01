@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CTEST",
+  "id": "ctest64",
+  "format": "bin",
+  "source": "ctest.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctest/",
+  "target": [
+   { "output": "ctest.bin64", "match": "ctest.bin64.t" },
+   { "stderr": "ctest.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTEST",
+  "id": "ctest16err",
+  "format": "bin",
+  "source": "ctest_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctest/",
+  "target": [
+   { "stderr": "ctest.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTEST",
+  "id": "ctest32err",
+  "format": "bin",
+  "source": "ctest_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctest/",
+  "target": [
+   { "stderr": "ctest.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

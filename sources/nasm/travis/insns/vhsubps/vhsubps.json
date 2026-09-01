@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VHSUBPS",
+  "id": "vhsubps16",
+  "format": "bin",
+  "source": "vhsubps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vhsubps/",
+  "target": [
+   { "output": "vhsubps.bin16", "match": "vhsubps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VHSUBPS",
+  "id": "vhsubps32",
+  "format": "bin",
+  "source": "vhsubps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vhsubps/",
+  "target": [
+   { "output": "vhsubps.bin32", "match": "vhsubps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VHSUBPS",
+  "id": "vhsubps64",
+  "format": "bin",
+  "source": "vhsubps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vhsubps/",
+  "target": [
+   { "output": "vhsubps.bin64", "match": "vhsubps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VHSUBPS",
+  "id": "vhsubps16err",
+  "format": "bin",
+  "source": "vhsubps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vhsubps/",
+  "target": [
+   { "stderr": "vhsubps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VHSUBPS",
+  "id": "vhsubps32err",
+  "format": "bin",
+  "source": "vhsubps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vhsubps/",
+  "target": [
+   { "stderr": "vhsubps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

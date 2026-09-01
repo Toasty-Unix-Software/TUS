@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PCLMULHQLQDQ",
+  "id": "pclmulhqlqdq16",
+  "format": "bin",
+  "source": "pclmulhqlqdq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pclmulhqlqdq/",
+  "target": [
+   { "output": "pclmulhqlqdq.bin16", "match": "pclmulhqlqdq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCLMULHQLQDQ",
+  "id": "pclmulhqlqdq32",
+  "format": "bin",
+  "source": "pclmulhqlqdq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pclmulhqlqdq/",
+  "target": [
+   { "output": "pclmulhqlqdq.bin32", "match": "pclmulhqlqdq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCLMULHQLQDQ",
+  "id": "pclmulhqlqdq64",
+  "format": "bin",
+  "source": "pclmulhqlqdq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pclmulhqlqdq/",
+  "target": [
+   { "output": "pclmulhqlqdq.bin64", "match": "pclmulhqlqdq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCLMULHQLQDQ",
+  "id": "pclmulhqlqdq16err",
+  "format": "bin",
+  "source": "pclmulhqlqdq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pclmulhqlqdq/",
+  "target": [
+   { "stderr": "pclmulhqlqdq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCLMULHQLQDQ",
+  "id": "pclmulhqlqdq32err",
+  "format": "bin",
+  "source": "pclmulhqlqdq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pclmulhqlqdq/",
+  "target": [
+   { "stderr": "pclmulhqlqdq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPGE_OSSD",
+  "id": "vcmpge_ossd16",
+  "format": "bin",
+  "source": "vcmpge_ossd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpge_ossd/",
+  "target": [
+   { "output": "vcmpge_ossd.bin16", "match": "vcmpge_ossd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPGE_OSSD",
+  "id": "vcmpge_ossd32",
+  "format": "bin",
+  "source": "vcmpge_ossd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpge_ossd/",
+  "target": [
+   { "output": "vcmpge_ossd.bin32", "match": "vcmpge_ossd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPGE_OSSD",
+  "id": "vcmpge_ossd64",
+  "format": "bin",
+  "source": "vcmpge_ossd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpge_ossd/",
+  "target": [
+   { "output": "vcmpge_ossd.bin64", "match": "vcmpge_ossd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPGE_OSSD",
+  "id": "vcmpge_ossd16err",
+  "format": "bin",
+  "source": "vcmpge_ossd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpge_ossd/",
+  "target": [
+   { "stderr": "vcmpge_ossd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPGE_OSSD",
+  "id": "vcmpge_ossd32err",
+  "format": "bin",
+  "source": "vcmpge_ossd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpge_ossd/",
+  "target": [
+   { "stderr": "vcmpge_ossd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

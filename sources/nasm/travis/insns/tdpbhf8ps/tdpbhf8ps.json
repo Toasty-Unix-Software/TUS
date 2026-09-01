@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for TDPBHF8PS",
+  "id": "tdpbhf8ps16",
+  "format": "bin",
+  "source": "tdpbhf8ps.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tdpbhf8ps/",
+  "target": [
+   { "output": "tdpbhf8ps.bin16", "match": "tdpbhf8ps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TDPBHF8PS",
+  "id": "tdpbhf8ps32",
+  "format": "bin",
+  "source": "tdpbhf8ps.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tdpbhf8ps/",
+  "target": [
+   { "output": "tdpbhf8ps.bin32", "match": "tdpbhf8ps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TDPBHF8PS",
+  "id": "tdpbhf8ps64",
+  "format": "bin",
+  "source": "tdpbhf8ps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tdpbhf8ps/",
+  "target": [
+   { "output": "tdpbhf8ps.bin64", "match": "tdpbhf8ps.bin64.t" }
+  ]
+ }
+]

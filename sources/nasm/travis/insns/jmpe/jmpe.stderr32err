@@ -1,0 +1,2 @@
+./travis/insns/jmpe/jmpe_narrow.asm:12: error: invalid operands in 32-bit mode
+./travis/insns/jmpe/jmpe_narrow.asm:13: error: invalid operands in 32-bit mode

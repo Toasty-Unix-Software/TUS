@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for SHIFTLB",
+  "id": "shiftlb16",
+  "format": "bin",
+  "source": "shiftlb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shiftlb/",
+  "target": [
+   { "output": "shiftlb.bin16", "match": "shiftlb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHIFTLB",
+  "id": "shiftlb32",
+  "format": "bin",
+  "source": "shiftlb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shiftlb/",
+  "target": [
+   { "output": "shiftlb.bin32", "match": "shiftlb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHIFTLB",
+  "id": "shiftlb64",
+  "format": "bin",
+  "source": "shiftlb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shiftlb/",
+  "target": [
+   { "output": "shiftlb.bin64", "match": "shiftlb.bin64.t" }
+  ]
+ }
+]

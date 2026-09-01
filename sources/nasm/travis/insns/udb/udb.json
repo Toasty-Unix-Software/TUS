@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for UDB",
+  "id": "udb64",
+  "format": "bin",
+  "source": "udb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/udb/",
+  "target": [
+   { "output": "udb.bin64", "match": "udb.bin64.t" }
+  ]
+ }
+]

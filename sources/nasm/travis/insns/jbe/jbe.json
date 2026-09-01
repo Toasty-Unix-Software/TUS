@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for JBE",
+  "id": "jbe16",
+  "format": "bin",
+  "source": "jbe_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jbe/",
+  "target": [
+   { "output": "jbe.bin16", "match": "jbe.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JBE",
+  "id": "jbe32",
+  "format": "bin",
+  "source": "jbe_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jbe/",
+  "target": [
+   { "output": "jbe.bin32", "match": "jbe.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JBE",
+  "id": "jbe64",
+  "format": "bin",
+  "source": "jbe.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jbe/",
+  "target": [
+   { "output": "jbe.bin64", "match": "jbe.bin64.t" }
+  ]
+ }
+]

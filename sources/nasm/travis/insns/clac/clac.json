@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for CLAC",
+  "id": "clac16",
+  "format": "bin",
+  "source": "clac.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clac/",
+  "target": [
+   { "output": "clac.bin16", "match": "clac.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLAC",
+  "id": "clac32",
+  "format": "bin",
+  "source": "clac.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clac/",
+  "target": [
+   { "output": "clac.bin32", "match": "clac.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLAC",
+  "id": "clac64",
+  "format": "bin",
+  "source": "clac.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clac/",
+  "target": [
+   { "output": "clac.bin64", "match": "clac.bin64.t" }
+  ]
+ }
+]

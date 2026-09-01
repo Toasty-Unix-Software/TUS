@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for AAND",
+  "id": "aand64",
+  "format": "bin",
+  "source": "aand.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aand/",
+  "target": [
+   { "output": "aand.bin64", "match": "aand.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AAND",
+  "id": "aand16err",
+  "format": "bin",
+  "source": "aand_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aand/",
+  "target": [
+   { "stderr": "aand.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AAND",
+  "id": "aand32err",
+  "format": "bin",
+  "source": "aand_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aand/",
+  "target": [
+   { "stderr": "aand.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

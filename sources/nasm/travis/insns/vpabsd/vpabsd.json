@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPABSD",
+  "id": "vpabsd16",
+  "format": "bin",
+  "source": "vpabsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpabsd/",
+  "target": [
+   { "output": "vpabsd.bin16", "match": "vpabsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPABSD",
+  "id": "vpabsd32",
+  "format": "bin",
+  "source": "vpabsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpabsd/",
+  "target": [
+   { "output": "vpabsd.bin32", "match": "vpabsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPABSD",
+  "id": "vpabsd64",
+  "format": "bin",
+  "source": "vpabsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpabsd/",
+  "target": [
+   { "output": "vpabsd.bin64", "match": "vpabsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPABSD",
+  "id": "vpabsd16err",
+  "format": "bin",
+  "source": "vpabsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpabsd/",
+  "target": [
+   { "stderr": "vpabsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPABSD",
+  "id": "vpabsd32err",
+  "format": "bin",
+  "source": "vpabsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpabsd/",
+  "target": [
+   { "stderr": "vpabsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

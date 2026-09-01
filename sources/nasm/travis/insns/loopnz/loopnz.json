@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for LOOPNZ",
+  "id": "loopnz16",
+  "format": "bin",
+  "source": "loopnz_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopnz/",
+  "target": [
+   { "output": "loopnz.bin16", "match": "loopnz.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LOOPNZ",
+  "id": "loopnz32",
+  "format": "bin",
+  "source": "loopnz_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopnz/",
+  "target": [
+   { "output": "loopnz.bin32", "match": "loopnz.bin32.t" }
+  ]
+ }
+]

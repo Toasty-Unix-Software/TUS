@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ROUNDPS",
+  "id": "roundps16",
+  "format": "bin",
+  "source": "roundps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundps/",
+  "target": [
+   { "output": "roundps.bin16", "match": "roundps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ROUNDPS",
+  "id": "roundps32",
+  "format": "bin",
+  "source": "roundps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundps/",
+  "target": [
+   { "output": "roundps.bin32", "match": "roundps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ROUNDPS",
+  "id": "roundps64",
+  "format": "bin",
+  "source": "roundps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundps/",
+  "target": [
+   { "output": "roundps.bin64", "match": "roundps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ROUNDPS",
+  "id": "roundps16err",
+  "format": "bin",
+  "source": "roundps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundps/",
+  "target": [
+   { "stderr": "roundps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ROUNDPS",
+  "id": "roundps32err",
+  "format": "bin",
+  "source": "roundps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/roundps/",
+  "target": [
+   { "stderr": "roundps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

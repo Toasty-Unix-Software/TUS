@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for CMPNLTPD",
+  "id": "cmpnltpd16",
+  "format": "bin",
+  "source": "cmpnltpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnltpd/",
+  "target": [
+   { "output": "cmpnltpd.bin16", "match": "cmpnltpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPNLTPD",
+  "id": "cmpnltpd32",
+  "format": "bin",
+  "source": "cmpnltpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnltpd/",
+  "target": [
+   { "output": "cmpnltpd.bin32", "match": "cmpnltpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPNLTPD",
+  "id": "cmpnltpd64",
+  "format": "bin",
+  "source": "cmpnltpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnltpd/",
+  "target": [
+   { "output": "cmpnltpd.bin64", "match": "cmpnltpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPNLTPD",
+  "id": "cmpnltpd16err",
+  "format": "bin",
+  "source": "cmpnltpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnltpd/",
+  "target": [
+   { "stderr": "cmpnltpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPNLTPD",
+  "id": "cmpnltpd32err",
+  "format": "bin",
+  "source": "cmpnltpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnltpd/",
+  "target": [
+   { "stderr": "cmpnltpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

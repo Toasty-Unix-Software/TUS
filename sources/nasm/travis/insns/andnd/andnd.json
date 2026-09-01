@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for ANDND",
+  "id": "andnd16",
+  "format": "bin",
+  "source": "andnd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnd/",
+  "target": [
+   { "output": "andnd.bin16", "match": "andnd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDND",
+  "id": "andnd32",
+  "format": "bin",
+  "source": "andnd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnd/",
+  "target": [
+   { "output": "andnd.bin32", "match": "andnd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDND",
+  "id": "andnd64",
+  "format": "bin",
+  "source": "andnd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnd/",
+  "target": [
+   { "output": "andnd.bin64", "match": "andnd.bin64.t" }
+  ]
+ }
+]

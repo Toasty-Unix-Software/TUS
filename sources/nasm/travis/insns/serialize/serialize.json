@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for SERIALIZE",
+  "id": "serialize16",
+  "format": "bin",
+  "source": "serialize.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/serialize/",
+  "target": [
+   { "output": "serialize.bin16", "match": "serialize.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SERIALIZE",
+  "id": "serialize32",
+  "format": "bin",
+  "source": "serialize.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/serialize/",
+  "target": [
+   { "output": "serialize.bin32", "match": "serialize.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SERIALIZE",
+  "id": "serialize64",
+  "format": "bin",
+  "source": "serialize.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/serialize/",
+  "target": [
+   { "output": "serialize.bin64", "match": "serialize.bin64.t" }
+  ]
+ }
+]

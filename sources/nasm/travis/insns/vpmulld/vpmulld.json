@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMULLD",
+  "id": "vpmulld16",
+  "format": "bin",
+  "source": "vpmulld_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulld/",
+  "target": [
+   { "output": "vpmulld.bin16", "match": "vpmulld.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMULLD",
+  "id": "vpmulld32",
+  "format": "bin",
+  "source": "vpmulld_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulld/",
+  "target": [
+   { "output": "vpmulld.bin32", "match": "vpmulld.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMULLD",
+  "id": "vpmulld64",
+  "format": "bin",
+  "source": "vpmulld.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulld/",
+  "target": [
+   { "output": "vpmulld.bin64", "match": "vpmulld.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMULLD",
+  "id": "vpmulld16err",
+  "format": "bin",
+  "source": "vpmulld_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulld/",
+  "target": [
+   { "stderr": "vpmulld.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMULLD",
+  "id": "vpmulld32err",
+  "format": "bin",
+  "source": "vpmulld_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulld/",
+  "target": [
+   { "stderr": "vpmulld.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

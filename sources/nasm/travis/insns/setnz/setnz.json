@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETNZ",
+  "id": "setnz64",
+  "format": "bin",
+  "source": "setnz.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnz/",
+  "target": [
+   { "output": "setnz.bin64", "match": "setnz.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNZ",
+  "id": "setnz16err",
+  "format": "bin",
+  "source": "setnz_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnz/",
+  "target": [
+   { "stderr": "setnz.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNZ",
+  "id": "setnz32err",
+  "format": "bin",
+  "source": "setnz_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnz/",
+  "target": [
+   { "stderr": "setnz.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

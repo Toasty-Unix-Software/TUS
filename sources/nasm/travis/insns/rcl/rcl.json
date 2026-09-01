@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for RCL",
+  "id": "rcl64",
+  "format": "bin",
+  "source": "rcl.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rcl/",
+  "target": [
+   { "output": "rcl.bin64", "match": "rcl.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RCL",
+  "id": "rcl16err",
+  "format": "bin",
+  "source": "rcl_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rcl/",
+  "target": [
+   { "stderr": "rcl.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for RCL",
+  "id": "rcl32err",
+  "format": "bin",
+  "source": "rcl_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rcl/",
+  "target": [
+   { "stderr": "rcl.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

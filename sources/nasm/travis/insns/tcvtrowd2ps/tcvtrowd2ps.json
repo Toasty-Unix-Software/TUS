@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for TCVTROWD2PS",
+  "id": "tcvtrowd2ps16",
+  "format": "bin",
+  "source": "tcvtrowd2ps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tcvtrowd2ps/",
+  "target": [
+   { "output": "tcvtrowd2ps.bin16", "match": "tcvtrowd2ps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TCVTROWD2PS",
+  "id": "tcvtrowd2ps32",
+  "format": "bin",
+  "source": "tcvtrowd2ps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tcvtrowd2ps/",
+  "target": [
+   { "output": "tcvtrowd2ps.bin32", "match": "tcvtrowd2ps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TCVTROWD2PS",
+  "id": "tcvtrowd2ps64",
+  "format": "bin",
+  "source": "tcvtrowd2ps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tcvtrowd2ps/",
+  "target": [
+   { "output": "tcvtrowd2ps.bin64", "match": "tcvtrowd2ps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for TCVTROWD2PS",
+  "id": "tcvtrowd2ps16err",
+  "format": "bin",
+  "source": "tcvtrowd2ps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tcvtrowd2ps/",
+  "target": [
+   { "stderr": "tcvtrowd2ps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for TCVTROWD2PS",
+  "id": "tcvtrowd2ps32err",
+  "format": "bin",
+  "source": "tcvtrowd2ps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tcvtrowd2ps/",
+  "target": [
+   { "stderr": "tcvtrowd2ps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

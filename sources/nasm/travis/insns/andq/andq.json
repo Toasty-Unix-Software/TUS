@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for ANDQ",
+  "id": "andq16",
+  "format": "bin",
+  "source": "andq.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andq/",
+  "target": [
+   { "output": "andq.bin16", "match": "andq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDQ",
+  "id": "andq32",
+  "format": "bin",
+  "source": "andq.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andq/",
+  "target": [
+   { "output": "andq.bin32", "match": "andq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDQ",
+  "id": "andq64",
+  "format": "bin",
+  "source": "andq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andq/",
+  "target": [
+   { "output": "andq.bin64", "match": "andq.bin64.t" }
+  ]
+ }
+]

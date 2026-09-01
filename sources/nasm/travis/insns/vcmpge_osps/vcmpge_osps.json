@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPGE_OSPS",
+  "id": "vcmpge_osps16",
+  "format": "bin",
+  "source": "vcmpge_osps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpge_osps/",
+  "target": [
+   { "output": "vcmpge_osps.bin16", "match": "vcmpge_osps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPGE_OSPS",
+  "id": "vcmpge_osps32",
+  "format": "bin",
+  "source": "vcmpge_osps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpge_osps/",
+  "target": [
+   { "output": "vcmpge_osps.bin32", "match": "vcmpge_osps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPGE_OSPS",
+  "id": "vcmpge_osps64",
+  "format": "bin",
+  "source": "vcmpge_osps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpge_osps/",
+  "target": [
+   { "output": "vcmpge_osps.bin64", "match": "vcmpge_osps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPGE_OSPS",
+  "id": "vcmpge_osps16err",
+  "format": "bin",
+  "source": "vcmpge_osps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpge_osps/",
+  "target": [
+   { "stderr": "vcmpge_osps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPGE_OSPS",
+  "id": "vcmpge_osps32err",
+  "format": "bin",
+  "source": "vcmpge_osps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpge_osps/",
+  "target": [
+   { "stderr": "vcmpge_osps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

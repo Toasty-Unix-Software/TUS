@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for UNPCKWD",
+  "id": "unpckwd16",
+  "format": "bin",
+  "source": "unpckwd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpckwd/",
+  "target": [
+   { "output": "unpckwd.bin16", "match": "unpckwd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UNPCKWD",
+  "id": "unpckwd32",
+  "format": "bin",
+  "source": "unpckwd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpckwd/",
+  "target": [
+   { "output": "unpckwd.bin32", "match": "unpckwd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UNPCKWD",
+  "id": "unpckwd64",
+  "format": "bin",
+  "source": "unpckwd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/unpckwd/",
+  "target": [
+   { "output": "unpckwd.bin64", "match": "unpckwd.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,4 @@
+	fist dword [0x6a5]
+	fist dword [0x157]
+	fist word [0xb37]
+	fist word [0x7cd]

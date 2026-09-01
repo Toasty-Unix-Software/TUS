@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ADDPD",
+  "id": "addpd16",
+  "format": "bin",
+  "source": "addpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addpd/",
+  "target": [
+   { "output": "addpd.bin16", "match": "addpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDPD",
+  "id": "addpd32",
+  "format": "bin",
+  "source": "addpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addpd/",
+  "target": [
+   { "output": "addpd.bin32", "match": "addpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDPD",
+  "id": "addpd64",
+  "format": "bin",
+  "source": "addpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addpd/",
+  "target": [
+   { "output": "addpd.bin64", "match": "addpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADDPD",
+  "id": "addpd16err",
+  "format": "bin",
+  "source": "addpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addpd/",
+  "target": [
+   { "stderr": "addpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADDPD",
+  "id": "addpd32err",
+  "format": "bin",
+  "source": "addpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addpd/",
+  "target": [
+   { "stderr": "addpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

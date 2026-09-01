@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for PUSHAW",
+  "id": "pushaw16",
+  "format": "bin",
+  "source": "pushaw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pushaw/",
+  "target": [
+   { "output": "pushaw.bin16", "match": "pushaw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PUSHAW",
+  "id": "pushaw32",
+  "format": "bin",
+  "source": "pushaw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pushaw/",
+  "target": [
+   { "output": "pushaw.bin32", "match": "pushaw.bin32.t" }
+  ]
+ }
+]

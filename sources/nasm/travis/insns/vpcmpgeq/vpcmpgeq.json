@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPGEQ",
+  "id": "vpcmpgeq16",
+  "format": "bin",
+  "source": "vpcmpgeq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpgeq/",
+  "target": [
+   { "output": "vpcmpgeq.bin16", "match": "vpcmpgeq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPGEQ",
+  "id": "vpcmpgeq32",
+  "format": "bin",
+  "source": "vpcmpgeq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpgeq/",
+  "target": [
+   { "output": "vpcmpgeq.bin32", "match": "vpcmpgeq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPGEQ",
+  "id": "vpcmpgeq64",
+  "format": "bin",
+  "source": "vpcmpgeq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpgeq/",
+  "target": [
+   { "output": "vpcmpgeq.bin64", "match": "vpcmpgeq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPGEQ",
+  "id": "vpcmpgeq16err",
+  "format": "bin",
+  "source": "vpcmpgeq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpgeq/",
+  "target": [
+   { "stderr": "vpcmpgeq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPGEQ",
+  "id": "vpcmpgeq32err",
+  "format": "bin",
+  "source": "vpcmpgeq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpgeq/",
+  "target": [
+   { "stderr": "vpcmpgeq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

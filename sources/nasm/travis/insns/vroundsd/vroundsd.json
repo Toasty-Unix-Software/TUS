@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VROUNDSD",
+  "id": "vroundsd16",
+  "format": "bin",
+  "source": "vroundsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vroundsd/",
+  "target": [
+   { "output": "vroundsd.bin16", "match": "vroundsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VROUNDSD",
+  "id": "vroundsd32",
+  "format": "bin",
+  "source": "vroundsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vroundsd/",
+  "target": [
+   { "output": "vroundsd.bin32", "match": "vroundsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VROUNDSD",
+  "id": "vroundsd64",
+  "format": "bin",
+  "source": "vroundsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vroundsd/",
+  "target": [
+   { "output": "vroundsd.bin64", "match": "vroundsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VROUNDSD",
+  "id": "vroundsd16err",
+  "format": "bin",
+  "source": "vroundsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vroundsd/",
+  "target": [
+   { "stderr": "vroundsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VROUNDSD",
+  "id": "vroundsd32err",
+  "format": "bin",
+  "source": "vroundsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vroundsd/",
+  "target": [
+   { "stderr": "vroundsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

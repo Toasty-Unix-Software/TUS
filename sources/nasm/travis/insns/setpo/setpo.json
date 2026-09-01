@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETPO",
+  "id": "setpo64",
+  "format": "bin",
+  "source": "setpo.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setpo/",
+  "target": [
+   { "output": "setpo.bin64", "match": "setpo.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETPO",
+  "id": "setpo16err",
+  "format": "bin",
+  "source": "setpo_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setpo/",
+  "target": [
+   { "stderr": "setpo.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETPO",
+  "id": "setpo32err",
+  "format": "bin",
+  "source": "setpo_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setpo/",
+  "target": [
+   { "stderr": "setpo.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

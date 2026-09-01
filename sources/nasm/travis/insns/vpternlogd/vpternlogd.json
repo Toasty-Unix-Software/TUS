@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPTERNLOGD",
+  "id": "vpternlogd16",
+  "format": "bin",
+  "source": "vpternlogd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpternlogd/",
+  "target": [
+   { "output": "vpternlogd.bin16", "match": "vpternlogd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPTERNLOGD",
+  "id": "vpternlogd32",
+  "format": "bin",
+  "source": "vpternlogd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpternlogd/",
+  "target": [
+   { "output": "vpternlogd.bin32", "match": "vpternlogd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPTERNLOGD",
+  "id": "vpternlogd64",
+  "format": "bin",
+  "source": "vpternlogd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpternlogd/",
+  "target": [
+   { "output": "vpternlogd.bin64", "match": "vpternlogd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPTERNLOGD",
+  "id": "vpternlogd16err",
+  "format": "bin",
+  "source": "vpternlogd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpternlogd/",
+  "target": [
+   { "stderr": "vpternlogd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPTERNLOGD",
+  "id": "vpternlogd32err",
+  "format": "bin",
+  "source": "vpternlogd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpternlogd/",
+  "target": [
+   { "stderr": "vpternlogd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

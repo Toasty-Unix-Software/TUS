@@ -1,0 +1,47 @@
+[
+ {
+  "description": "Pseudorandom test for VSCATTERQPD",
+  "id": "vscatterqpd32",
+  "format": "bin",
+  "source": "vscatterqpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscatterqpd/",
+  "target": [
+   { "output": "vscatterqpd.bin32", "match": "vscatterqpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSCATTERQPD",
+  "id": "vscatterqpd64",
+  "format": "bin",
+  "source": "vscatterqpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscatterqpd/",
+  "target": [
+   { "output": "vscatterqpd.bin64", "match": "vscatterqpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSCATTERQPD",
+  "id": "vscatterqpd16err",
+  "format": "bin",
+  "source": "vscatterqpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscatterqpd/",
+  "target": [
+   { "stderr": "vscatterqpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSCATTERQPD",
+  "id": "vscatterqpd32err",
+  "format": "bin",
+  "source": "vscatterqpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscatterqpd/",
+  "target": [
+   { "stderr": "vscatterqpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMOVDB",
+  "id": "vpmovdb16",
+  "format": "bin",
+  "source": "vpmovdb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovdb/",
+  "target": [
+   { "output": "vpmovdb.bin16", "match": "vpmovdb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMOVDB",
+  "id": "vpmovdb32",
+  "format": "bin",
+  "source": "vpmovdb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovdb/",
+  "target": [
+   { "output": "vpmovdb.bin32", "match": "vpmovdb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMOVDB",
+  "id": "vpmovdb64",
+  "format": "bin",
+  "source": "vpmovdb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovdb/",
+  "target": [
+   { "output": "vpmovdb.bin64", "match": "vpmovdb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMOVDB",
+  "id": "vpmovdb16err",
+  "format": "bin",
+  "source": "vpmovdb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovdb/",
+  "target": [
+   { "stderr": "vpmovdb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMOVDB",
+  "id": "vpmovdb32err",
+  "format": "bin",
+  "source": "vpmovdb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovdb/",
+  "target": [
+   { "stderr": "vpmovdb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

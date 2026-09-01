@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VBROADCASTI32X4",
+  "id": "vbroadcasti32x416",
+  "format": "bin",
+  "source": "vbroadcasti32x4_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbroadcasti32x4/",
+  "target": [
+   { "output": "vbroadcasti32x4.bin16", "match": "vbroadcasti32x4.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBROADCASTI32X4",
+  "id": "vbroadcasti32x432",
+  "format": "bin",
+  "source": "vbroadcasti32x4_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbroadcasti32x4/",
+  "target": [
+   { "output": "vbroadcasti32x4.bin32", "match": "vbroadcasti32x4.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBROADCASTI32X4",
+  "id": "vbroadcasti32x464",
+  "format": "bin",
+  "source": "vbroadcasti32x4.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbroadcasti32x4/",
+  "target": [
+   { "output": "vbroadcasti32x4.bin64", "match": "vbroadcasti32x4.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBROADCASTI32X4",
+  "id": "vbroadcasti32x416err",
+  "format": "bin",
+  "source": "vbroadcasti32x4_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbroadcasti32x4/",
+  "target": [
+   { "stderr": "vbroadcasti32x4.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBROADCASTI32X4",
+  "id": "vbroadcasti32x432err",
+  "format": "bin",
+  "source": "vbroadcasti32x4_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbroadcasti32x4/",
+  "target": [
+   { "stderr": "vbroadcasti32x4.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

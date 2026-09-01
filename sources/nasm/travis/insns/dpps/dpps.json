@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for DPPS",
+  "id": "dpps16",
+  "format": "bin",
+  "source": "dpps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dpps/",
+  "target": [
+   { "output": "dpps.bin16", "match": "dpps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DPPS",
+  "id": "dpps32",
+  "format": "bin",
+  "source": "dpps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dpps/",
+  "target": [
+   { "output": "dpps.bin32", "match": "dpps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DPPS",
+  "id": "dpps64",
+  "format": "bin",
+  "source": "dpps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dpps/",
+  "target": [
+   { "output": "dpps.bin64", "match": "dpps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for DPPS",
+  "id": "dpps16err",
+  "format": "bin",
+  "source": "dpps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dpps/",
+  "target": [
+   { "stderr": "dpps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for DPPS",
+  "id": "dpps32err",
+  "format": "bin",
+  "source": "dpps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dpps/",
+  "target": [
+   { "stderr": "dpps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

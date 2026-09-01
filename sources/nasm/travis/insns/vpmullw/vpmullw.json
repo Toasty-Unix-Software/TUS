@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMULLW",
+  "id": "vpmullw16",
+  "format": "bin",
+  "source": "vpmullw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmullw/",
+  "target": [
+   { "output": "vpmullw.bin16", "match": "vpmullw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMULLW",
+  "id": "vpmullw32",
+  "format": "bin",
+  "source": "vpmullw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmullw/",
+  "target": [
+   { "output": "vpmullw.bin32", "match": "vpmullw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMULLW",
+  "id": "vpmullw64",
+  "format": "bin",
+  "source": "vpmullw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmullw/",
+  "target": [
+   { "output": "vpmullw.bin64", "match": "vpmullw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMULLW",
+  "id": "vpmullw16err",
+  "format": "bin",
+  "source": "vpmullw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmullw/",
+  "target": [
+   { "stderr": "vpmullw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMULLW",
+  "id": "vpmullw32err",
+  "format": "bin",
+  "source": "vpmullw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmullw/",
+  "target": [
+   { "stderr": "vpmullw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

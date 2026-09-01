@@ -1,0 +1,1 @@
+./travis/insns/aesenc128kl/aesenc128kl_narrow.asm:5: error: invalid operands in 16-bit mode

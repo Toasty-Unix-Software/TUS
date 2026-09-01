@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for STTILECFG",
+  "id": "sttilecfg64",
+  "format": "bin",
+  "source": "sttilecfg.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sttilecfg/",
+  "target": [
+   { "output": "sttilecfg.bin64", "match": "sttilecfg.bin64.t" }
+  ]
+ }
+]

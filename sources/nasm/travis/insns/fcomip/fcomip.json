@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FCOMIP",
+  "id": "fcomip16",
+  "format": "bin",
+  "source": "fcomip.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcomip/",
+  "target": [
+   { "output": "fcomip.bin16", "match": "fcomip.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FCOMIP",
+  "id": "fcomip32",
+  "format": "bin",
+  "source": "fcomip.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcomip/",
+  "target": [
+   { "output": "fcomip.bin32", "match": "fcomip.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FCOMIP",
+  "id": "fcomip64",
+  "format": "bin",
+  "source": "fcomip.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcomip/",
+  "target": [
+   { "output": "fcomip.bin64", "match": "fcomip.bin64.t" }
+  ]
+ }
+]

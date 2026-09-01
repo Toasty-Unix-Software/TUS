@@ -1,0 +1,2 @@
+./travis/insns/rdshr/rdshr.asm:2: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/rdshr/rdshr.asm:3: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]

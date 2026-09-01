@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VREDUCEPD",
+  "id": "vreducepd16",
+  "format": "bin",
+  "source": "vreducepd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducepd/",
+  "target": [
+   { "output": "vreducepd.bin16", "match": "vreducepd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VREDUCEPD",
+  "id": "vreducepd32",
+  "format": "bin",
+  "source": "vreducepd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducepd/",
+  "target": [
+   { "output": "vreducepd.bin32", "match": "vreducepd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VREDUCEPD",
+  "id": "vreducepd64",
+  "format": "bin",
+  "source": "vreducepd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducepd/",
+  "target": [
+   { "output": "vreducepd.bin64", "match": "vreducepd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VREDUCEPD",
+  "id": "vreducepd16err",
+  "format": "bin",
+  "source": "vreducepd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducepd/",
+  "target": [
+   { "stderr": "vreducepd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VREDUCEPD",
+  "id": "vreducepd32err",
+  "format": "bin",
+  "source": "vreducepd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducepd/",
+  "target": [
+   { "stderr": "vreducepd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

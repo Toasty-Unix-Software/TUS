@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VBROADCASTI128",
+  "id": "vbroadcasti12816",
+  "format": "bin",
+  "source": "vbroadcasti128_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbroadcasti128/",
+  "target": [
+   { "output": "vbroadcasti128.bin16", "match": "vbroadcasti128.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBROADCASTI128",
+  "id": "vbroadcasti12832",
+  "format": "bin",
+  "source": "vbroadcasti128_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbroadcasti128/",
+  "target": [
+   { "output": "vbroadcasti128.bin32", "match": "vbroadcasti128.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBROADCASTI128",
+  "id": "vbroadcasti12864",
+  "format": "bin",
+  "source": "vbroadcasti128.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbroadcasti128/",
+  "target": [
+   { "output": "vbroadcasti128.bin64", "match": "vbroadcasti128.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBROADCASTI128",
+  "id": "vbroadcasti12816err",
+  "format": "bin",
+  "source": "vbroadcasti128_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbroadcasti128/",
+  "target": [
+   { "stderr": "vbroadcasti128.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBROADCASTI128",
+  "id": "vbroadcasti12832err",
+  "format": "bin",
+  "source": "vbroadcasti128_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vbroadcasti128/",
+  "target": [
+   { "stderr": "vbroadcasti128.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

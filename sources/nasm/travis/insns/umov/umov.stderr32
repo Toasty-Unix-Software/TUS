@@ -1,0 +1,8 @@
+./travis/insns/umov/umov.asm:2: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/umov/umov.asm:3: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/umov/umov.asm:4: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/umov/umov.asm:5: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/umov/umov.asm:6: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/umov/umov.asm:7: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/umov/umov.asm:8: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/umov/umov.asm:9: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]

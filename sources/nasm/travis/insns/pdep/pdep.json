@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PDEP",
+  "id": "pdep16",
+  "format": "bin",
+  "source": "pdep_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pdep/",
+  "target": [
+   { "output": "pdep.bin16", "match": "pdep.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PDEP",
+  "id": "pdep32",
+  "format": "bin",
+  "source": "pdep_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pdep/",
+  "target": [
+   { "output": "pdep.bin32", "match": "pdep.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PDEP",
+  "id": "pdep64",
+  "format": "bin",
+  "source": "pdep.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pdep/",
+  "target": [
+   { "output": "pdep.bin64", "match": "pdep.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PDEP",
+  "id": "pdep16err",
+  "format": "bin",
+  "source": "pdep_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pdep/",
+  "target": [
+   { "stderr": "pdep.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PDEP",
+  "id": "pdep32err",
+  "format": "bin",
+  "source": "pdep_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pdep/",
+  "target": [
+   { "stderr": "pdep.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

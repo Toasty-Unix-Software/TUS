@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPNLE_USSS",
+  "id": "vcmpnle_usss16",
+  "format": "bin",
+  "source": "vcmpnle_usss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnle_usss/",
+  "target": [
+   { "output": "vcmpnle_usss.bin16", "match": "vcmpnle_usss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNLE_USSS",
+  "id": "vcmpnle_usss32",
+  "format": "bin",
+  "source": "vcmpnle_usss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnle_usss/",
+  "target": [
+   { "output": "vcmpnle_usss.bin32", "match": "vcmpnle_usss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNLE_USSS",
+  "id": "vcmpnle_usss64",
+  "format": "bin",
+  "source": "vcmpnle_usss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnle_usss/",
+  "target": [
+   { "output": "vcmpnle_usss.bin64", "match": "vcmpnle_usss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNLE_USSS",
+  "id": "vcmpnle_usss16err",
+  "format": "bin",
+  "source": "vcmpnle_usss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnle_usss/",
+  "target": [
+   { "stderr": "vcmpnle_usss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNLE_USSS",
+  "id": "vcmpnle_usss32err",
+  "format": "bin",
+  "source": "vcmpnle_usss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnle_usss/",
+  "target": [
+   { "stderr": "vcmpnle_usss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

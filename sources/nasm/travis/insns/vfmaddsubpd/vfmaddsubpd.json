@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFMADDSUBPD",
+  "id": "vfmaddsubpd16",
+  "format": "bin",
+  "source": "vfmaddsubpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddsubpd/",
+  "target": [
+   { "output": "vfmaddsubpd.bin16", "match": "vfmaddsubpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMADDSUBPD",
+  "id": "vfmaddsubpd32",
+  "format": "bin",
+  "source": "vfmaddsubpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddsubpd/",
+  "target": [
+   { "output": "vfmaddsubpd.bin32", "match": "vfmaddsubpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMADDSUBPD",
+  "id": "vfmaddsubpd64",
+  "format": "bin",
+  "source": "vfmaddsubpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddsubpd/",
+  "target": [
+   { "output": "vfmaddsubpd.bin64", "match": "vfmaddsubpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMADDSUBPD",
+  "id": "vfmaddsubpd16err",
+  "format": "bin",
+  "source": "vfmaddsubpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddsubpd/",
+  "target": [
+   { "stderr": "vfmaddsubpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMADDSUBPD",
+  "id": "vfmaddsubpd32err",
+  "format": "bin",
+  "source": "vfmaddsubpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmaddsubpd/",
+  "target": [
+   { "stderr": "vfmaddsubpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

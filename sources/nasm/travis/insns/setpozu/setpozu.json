@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETPOZU",
+  "id": "setpozu64",
+  "format": "bin",
+  "source": "setpozu.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setpozu/",
+  "target": [
+   { "output": "setpozu.bin64", "match": "setpozu.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETPOZU",
+  "id": "setpozu16err",
+  "format": "bin",
+  "source": "setpozu_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setpozu/",
+  "target": [
+   { "stderr": "setpozu.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETPOZU",
+  "id": "setpozu32err",
+  "format": "bin",
+  "source": "setpozu_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setpozu/",
+  "target": [
+   { "stderr": "setpozu.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

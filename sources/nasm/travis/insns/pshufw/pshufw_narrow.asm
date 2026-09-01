@@ -1,0 +1,2 @@
+	pshufw mm4, qword [0x610], 0x33
+	pshufw mm3, mm6, 0x3e

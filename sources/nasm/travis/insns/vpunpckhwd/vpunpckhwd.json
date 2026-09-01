@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPUNPCKHWD",
+  "id": "vpunpckhwd16",
+  "format": "bin",
+  "source": "vpunpckhwd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpunpckhwd/",
+  "target": [
+   { "output": "vpunpckhwd.bin16", "match": "vpunpckhwd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPUNPCKHWD",
+  "id": "vpunpckhwd32",
+  "format": "bin",
+  "source": "vpunpckhwd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpunpckhwd/",
+  "target": [
+   { "output": "vpunpckhwd.bin32", "match": "vpunpckhwd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPUNPCKHWD",
+  "id": "vpunpckhwd64",
+  "format": "bin",
+  "source": "vpunpckhwd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpunpckhwd/",
+  "target": [
+   { "output": "vpunpckhwd.bin64", "match": "vpunpckhwd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPUNPCKHWD",
+  "id": "vpunpckhwd16err",
+  "format": "bin",
+  "source": "vpunpckhwd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpunpckhwd/",
+  "target": [
+   { "stderr": "vpunpckhwd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPUNPCKHWD",
+  "id": "vpunpckhwd32err",
+  "format": "bin",
+  "source": "vpunpckhwd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpunpckhwd/",
+  "target": [
+   { "stderr": "vpunpckhwd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

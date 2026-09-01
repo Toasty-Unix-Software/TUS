@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for LOOPZD",
+  "id": "loopzd16",
+  "format": "bin",
+  "source": "loopzd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopzd/",
+  "target": [
+   { "output": "loopzd.bin16", "match": "loopzd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LOOPZD",
+  "id": "loopzd32",
+  "format": "bin",
+  "source": "loopzd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopzd/",
+  "target": [
+   { "output": "loopzd.bin32", "match": "loopzd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LOOPZD",
+  "id": "loopzd64",
+  "format": "bin",
+  "source": "loopzd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopzd/",
+  "target": [
+   { "output": "loopzd.bin64", "match": "loopzd.bin64.t" }
+  ]
+ }
+]

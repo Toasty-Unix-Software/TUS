@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for TTMMULTF32PS",
+  "id": "ttmmultf32ps16",
+  "format": "bin",
+  "source": "ttmmultf32ps.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ttmmultf32ps/",
+  "target": [
+   { "output": "ttmmultf32ps.bin16", "match": "ttmmultf32ps.bin16.t" },
+   { "stderr": "ttmmultf32ps.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TTMMULTF32PS",
+  "id": "ttmmultf32ps32",
+  "format": "bin",
+  "source": "ttmmultf32ps.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ttmmultf32ps/",
+  "target": [
+   { "output": "ttmmultf32ps.bin32", "match": "ttmmultf32ps.bin32.t" },
+   { "stderr": "ttmmultf32ps.stderr32" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TTMMULTF32PS",
+  "id": "ttmmultf32ps64",
+  "format": "bin",
+  "source": "ttmmultf32ps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ttmmultf32ps/",
+  "target": [
+   { "output": "ttmmultf32ps.bin64", "match": "ttmmultf32ps.bin64.t" },
+   { "stderr": "ttmmultf32ps.stderr64" }
+  ]
+ }
+]

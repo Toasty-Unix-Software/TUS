@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSHLDW",
+  "id": "vpshldw16",
+  "format": "bin",
+  "source": "vpshldw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshldw/",
+  "target": [
+   { "output": "vpshldw.bin16", "match": "vpshldw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHLDW",
+  "id": "vpshldw32",
+  "format": "bin",
+  "source": "vpshldw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshldw/",
+  "target": [
+   { "output": "vpshldw.bin32", "match": "vpshldw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHLDW",
+  "id": "vpshldw64",
+  "format": "bin",
+  "source": "vpshldw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshldw/",
+  "target": [
+   { "output": "vpshldw.bin64", "match": "vpshldw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHLDW",
+  "id": "vpshldw16err",
+  "format": "bin",
+  "source": "vpshldw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshldw/",
+  "target": [
+   { "stderr": "vpshldw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHLDW",
+  "id": "vpshldw32err",
+  "format": "bin",
+  "source": "vpshldw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshldw/",
+  "target": [
+   { "stderr": "vpshldw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

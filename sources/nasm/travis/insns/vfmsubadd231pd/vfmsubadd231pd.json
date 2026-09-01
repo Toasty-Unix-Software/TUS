@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFMSUBADD231PD",
+  "id": "vfmsubadd231pd16",
+  "format": "bin",
+  "source": "vfmsubadd231pd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmsubadd231pd/",
+  "target": [
+   { "output": "vfmsubadd231pd.bin16", "match": "vfmsubadd231pd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMSUBADD231PD",
+  "id": "vfmsubadd231pd32",
+  "format": "bin",
+  "source": "vfmsubadd231pd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmsubadd231pd/",
+  "target": [
+   { "output": "vfmsubadd231pd.bin32", "match": "vfmsubadd231pd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMSUBADD231PD",
+  "id": "vfmsubadd231pd64",
+  "format": "bin",
+  "source": "vfmsubadd231pd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmsubadd231pd/",
+  "target": [
+   { "output": "vfmsubadd231pd.bin64", "match": "vfmsubadd231pd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMSUBADD231PD",
+  "id": "vfmsubadd231pd16err",
+  "format": "bin",
+  "source": "vfmsubadd231pd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmsubadd231pd/",
+  "target": [
+   { "stderr": "vfmsubadd231pd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMSUBADD231PD",
+  "id": "vfmsubadd231pd32err",
+  "format": "bin",
+  "source": "vfmsubadd231pd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmsubadd231pd/",
+  "target": [
+   { "stderr": "vfmsubadd231pd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

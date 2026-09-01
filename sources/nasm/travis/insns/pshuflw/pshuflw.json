@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PSHUFLW",
+  "id": "pshuflw16",
+  "format": "bin",
+  "source": "pshuflw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pshuflw/",
+  "target": [
+   { "output": "pshuflw.bin16", "match": "pshuflw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSHUFLW",
+  "id": "pshuflw32",
+  "format": "bin",
+  "source": "pshuflw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pshuflw/",
+  "target": [
+   { "output": "pshuflw.bin32", "match": "pshuflw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSHUFLW",
+  "id": "pshuflw64",
+  "format": "bin",
+  "source": "pshuflw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pshuflw/",
+  "target": [
+   { "output": "pshuflw.bin64", "match": "pshuflw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSHUFLW",
+  "id": "pshuflw16err",
+  "format": "bin",
+  "source": "pshuflw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pshuflw/",
+  "target": [
+   { "stderr": "pshuflw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSHUFLW",
+  "id": "pshuflw32err",
+  "format": "bin",
+  "source": "pshuflw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pshuflw/",
+  "target": [
+   { "stderr": "pshuflw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

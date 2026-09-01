@@ -1,0 +1,11 @@
+default rel
+	fisubr dword [0xe9e]
+	fisubr dword [0x66f]
+	fisubr word [0x7bd]
+	fisubr word [0xe04]
+	fisubr dword [eax+1]
+	fisubr dword [eax+64]
+	fisubr word [eax+1]
+	fisubr word [eax+64]
+	fisubr [0x8c4]
+	fisubr [0x5c2]

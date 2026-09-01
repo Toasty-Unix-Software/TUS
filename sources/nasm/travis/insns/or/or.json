@@ -1,0 +1,59 @@
+[
+ {
+  "description": "Pseudorandom test for OR",
+  "id": "or16",
+  "format": "bin",
+  "source": "or_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/or/",
+  "target": [
+   { "output": "or.bin16", "match": "or.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for OR",
+  "id": "or32",
+  "format": "bin",
+  "source": "or_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/or/",
+  "target": [
+   { "output": "or.bin32", "match": "or.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for OR",
+  "id": "or64",
+  "format": "bin",
+  "source": "or.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/or/",
+  "target": [
+   { "output": "or.bin64", "match": "or.bin64.t" },
+   { "stderr": "or.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for OR",
+  "id": "or16err",
+  "format": "bin",
+  "source": "or_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/or/",
+  "target": [
+   { "stderr": "or.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for OR",
+  "id": "or32err",
+  "format": "bin",
+  "source": "or_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/or/",
+  "target": [
+   { "stderr": "or.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

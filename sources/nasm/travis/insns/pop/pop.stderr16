@@ -1,0 +1,2 @@
+./travis/insns/pop/pop.asm:4: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/pop/pop.asm:5: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]

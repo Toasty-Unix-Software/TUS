@@ -1,0 +1,86 @@
+ref	-D_def_map_ast=1
+key	signed
+
+tst	- note{ number of bits in pointer }end output{
+	#include <stdio.h>
+	int
+	main(void)
+	{
+		printf("#define _ptr_bits	%lu\n", (unsigned long)(sizeof(char*) * 8));
+		return 0;
+	}
+}end fail{
+	echo "$0: Output block failed to compile. Export IFFEFLAGS=-d1 to debug." >&2
+	exit 1
+}end
+
+tst	tmp_rmfail note{ open files cannot be removed }end execute{
+	#include <string.h>
+	#include <time.h>
+	int
+	main(void)
+	{
+		int		n;
+		char*		s;
+		FILE*		fr;
+		FILE*		fw;
+		char		file[16];
+		static char	data[] = "0123456789";
+		s = file;
+		*s++ = '1';
+		*s++ = 'F';
+		*s++ = 'F';
+		*s++ = '3';
+		n = (int)time(0);
+		*s++ = (n & 0xF) + 'A';
+		*s++ = ((n >> 4) & 0xF) + 'A';
+		*s++ = ((n >> 8) & 0xF) + 'A';
+		*s++ = ((n >> 12) & 0xF) + 'A';
+		*s++ = '.';
+		*s++ = 'T';
+		*s++ = 'M';
+		*s++ = 'P';
+		*s = 0;
+		remove(file);
+		if (!(fw = fopen(file, "w")))
+			return 0;
+		if (!(fr = fopen(file, "r")))
+		{
+			fclose(fw);
+			remove(file);
+			return 0;
+		}
+		if (remove(file) < 0)
+		{
+			fclose(fr);
+			fclose(fw);
+			remove(file);
+			return 0;
+		}
+		if (fwrite(data, sizeof(data), 1, fw) != 1)
+			return 0;
+		fclose(fw);
+		if (fread(file, sizeof(data), 1, fr) != 1)
+			return 0;
+		fclose(fr);
+		if (strcmp(file, data) != 0)
+			return 0;
+		return 1;
+	}
+}end
+
+more void_int note{ voidptr is larger than int }end execute{
+	int
+	main(void)
+	{
+		return sizeof(char*) > sizeof(int) ? 0 : 1;
+	}
+}end
+
+more long_int note{ long is larger than int }end execute{
+	int
+	main(void)
+	{
+		return sizeof(long) > sizeof(int) ? 0 : 1;
+	}
+}end

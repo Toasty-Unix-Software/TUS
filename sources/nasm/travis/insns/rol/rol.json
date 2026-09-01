@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for ROL",
+  "id": "rol64",
+  "format": "bin",
+  "source": "rol.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rol/",
+  "target": [
+   { "output": "rol.bin64", "match": "rol.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ROL",
+  "id": "rol16err",
+  "format": "bin",
+  "source": "rol_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rol/",
+  "target": [
+   { "stderr": "rol.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ROL",
+  "id": "rol32err",
+  "format": "bin",
+  "source": "rol_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rol/",
+  "target": [
+   { "stderr": "rol.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

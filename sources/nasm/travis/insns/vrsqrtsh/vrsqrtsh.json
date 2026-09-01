@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VRSQRTSH",
+  "id": "vrsqrtsh16",
+  "format": "bin",
+  "source": "vrsqrtsh_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrsqrtsh/",
+  "target": [
+   { "output": "vrsqrtsh.bin16", "match": "vrsqrtsh.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRSQRTSH",
+  "id": "vrsqrtsh32",
+  "format": "bin",
+  "source": "vrsqrtsh_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrsqrtsh/",
+  "target": [
+   { "output": "vrsqrtsh.bin32", "match": "vrsqrtsh.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRSQRTSH",
+  "id": "vrsqrtsh64",
+  "format": "bin",
+  "source": "vrsqrtsh.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrsqrtsh/",
+  "target": [
+   { "output": "vrsqrtsh.bin64", "match": "vrsqrtsh.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRSQRTSH",
+  "id": "vrsqrtsh16err",
+  "format": "bin",
+  "source": "vrsqrtsh_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrsqrtsh/",
+  "target": [
+   { "stderr": "vrsqrtsh.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRSQRTSH",
+  "id": "vrsqrtsh32err",
+  "format": "bin",
+  "source": "vrsqrtsh_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrsqrtsh/",
+  "target": [
+   { "stderr": "vrsqrtsh.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

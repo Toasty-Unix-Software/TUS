@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for LLDT",
+  "id": "lldt16",
+  "format": "bin",
+  "source": "lldt_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lldt/",
+  "target": [
+   { "output": "lldt.bin16", "match": "lldt.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LLDT",
+  "id": "lldt32",
+  "format": "bin",
+  "source": "lldt_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lldt/",
+  "target": [
+   { "output": "lldt.bin32", "match": "lldt.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LLDT",
+  "id": "lldt64",
+  "format": "bin",
+  "source": "lldt.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lldt/",
+  "target": [
+   { "output": "lldt.bin64", "match": "lldt.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LLDT",
+  "id": "lldt16err",
+  "format": "bin",
+  "source": "lldt_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lldt/",
+  "target": [
+   { "stderr": "lldt.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LLDT",
+  "id": "lldt32err",
+  "format": "bin",
+  "source": "lldt_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lldt/",
+  "target": [
+   { "stderr": "lldt.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for CMPSW",
+  "id": "cmpsw16",
+  "format": "bin",
+  "source": "cmpsw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpsw/",
+  "target": [
+   { "output": "cmpsw.bin16", "match": "cmpsw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPSW",
+  "id": "cmpsw32",
+  "format": "bin",
+  "source": "cmpsw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpsw/",
+  "target": [
+   { "output": "cmpsw.bin32", "match": "cmpsw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPSW",
+  "id": "cmpsw64",
+  "format": "bin",
+  "source": "cmpsw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpsw/",
+  "target": [
+   { "output": "cmpsw.bin64", "match": "cmpsw.bin64.t" }
+  ]
+ }
+]

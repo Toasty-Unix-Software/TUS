@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPXORQ",
+  "id": "vpxorq16",
+  "format": "bin",
+  "source": "vpxorq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpxorq/",
+  "target": [
+   { "output": "vpxorq.bin16", "match": "vpxorq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPXORQ",
+  "id": "vpxorq32",
+  "format": "bin",
+  "source": "vpxorq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpxorq/",
+  "target": [
+   { "output": "vpxorq.bin32", "match": "vpxorq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPXORQ",
+  "id": "vpxorq64",
+  "format": "bin",
+  "source": "vpxorq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpxorq/",
+  "target": [
+   { "output": "vpxorq.bin64", "match": "vpxorq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPXORQ",
+  "id": "vpxorq16err",
+  "format": "bin",
+  "source": "vpxorq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpxorq/",
+  "target": [
+   { "stderr": "vpxorq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPXORQ",
+  "id": "vpxorq32err",
+  "format": "bin",
+  "source": "vpxorq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpxorq/",
+  "target": [
+   { "stderr": "vpxorq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

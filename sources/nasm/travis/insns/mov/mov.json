@@ -1,0 +1,59 @@
+[
+ {
+  "description": "Pseudorandom test for MOV",
+  "id": "mov16",
+  "format": "bin",
+  "source": "mov_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mov/",
+  "target": [
+   { "output": "mov.bin16", "match": "mov.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOV",
+  "id": "mov32",
+  "format": "bin",
+  "source": "mov_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mov/",
+  "target": [
+   { "output": "mov.bin32", "match": "mov.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOV",
+  "id": "mov64",
+  "format": "bin",
+  "source": "mov.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mov/",
+  "target": [
+   { "output": "mov.bin64", "match": "mov.bin64.t" },
+   { "stderr": "mov.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOV",
+  "id": "mov16err",
+  "format": "bin",
+  "source": "mov_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mov/",
+  "target": [
+   { "stderr": "mov.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOV",
+  "id": "mov32err",
+  "format": "bin",
+  "source": "mov_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mov/",
+  "target": [
+   { "stderr": "mov.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ADDSUBPS",
+  "id": "addsubps16",
+  "format": "bin",
+  "source": "addsubps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addsubps/",
+  "target": [
+   { "output": "addsubps.bin16", "match": "addsubps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDSUBPS",
+  "id": "addsubps32",
+  "format": "bin",
+  "source": "addsubps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addsubps/",
+  "target": [
+   { "output": "addsubps.bin32", "match": "addsubps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDSUBPS",
+  "id": "addsubps64",
+  "format": "bin",
+  "source": "addsubps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addsubps/",
+  "target": [
+   { "output": "addsubps.bin64", "match": "addsubps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADDSUBPS",
+  "id": "addsubps16err",
+  "format": "bin",
+  "source": "addsubps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addsubps/",
+  "target": [
+   { "stderr": "addsubps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADDSUBPS",
+  "id": "addsubps32err",
+  "format": "bin",
+  "source": "addsubps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addsubps/",
+  "target": [
+   { "stderr": "addsubps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

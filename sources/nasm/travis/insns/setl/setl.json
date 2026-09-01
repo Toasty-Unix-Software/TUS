@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETL",
+  "id": "setl64",
+  "format": "bin",
+  "source": "setl.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setl/",
+  "target": [
+   { "output": "setl.bin64", "match": "setl.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETL",
+  "id": "setl16err",
+  "format": "bin",
+  "source": "setl_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setl/",
+  "target": [
+   { "stderr": "setl.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETL",
+  "id": "setl32err",
+  "format": "bin",
+  "source": "setl_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setl/",
+  "target": [
+   { "stderr": "setl.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

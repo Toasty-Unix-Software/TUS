@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPB",
+  "id": "ccmpb64",
+  "format": "bin",
+  "source": "ccmpb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpb/",
+  "target": [
+   { "output": "ccmpb.bin64", "match": "ccmpb.bin64.t" },
+   { "stderr": "ccmpb.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPB",
+  "id": "ccmpb16err",
+  "format": "bin",
+  "source": "ccmpb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpb/",
+  "target": [
+   { "stderr": "ccmpb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPB",
+  "id": "ccmpb32err",
+  "format": "bin",
+  "source": "ccmpb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpb/",
+  "target": [
+   { "stderr": "ccmpb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

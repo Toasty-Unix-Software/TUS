@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPGTSD",
+  "id": "vcmpgtsd16",
+  "format": "bin",
+  "source": "vcmpgtsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgtsd/",
+  "target": [
+   { "output": "vcmpgtsd.bin16", "match": "vcmpgtsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPGTSD",
+  "id": "vcmpgtsd32",
+  "format": "bin",
+  "source": "vcmpgtsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgtsd/",
+  "target": [
+   { "output": "vcmpgtsd.bin32", "match": "vcmpgtsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPGTSD",
+  "id": "vcmpgtsd64",
+  "format": "bin",
+  "source": "vcmpgtsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgtsd/",
+  "target": [
+   { "output": "vcmpgtsd.bin64", "match": "vcmpgtsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPGTSD",
+  "id": "vcmpgtsd16err",
+  "format": "bin",
+  "source": "vcmpgtsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgtsd/",
+  "target": [
+   { "stderr": "vcmpgtsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPGTSD",
+  "id": "vcmpgtsd32err",
+  "format": "bin",
+  "source": "vcmpgtsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgtsd/",
+  "target": [
+   { "stderr": "vcmpgtsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

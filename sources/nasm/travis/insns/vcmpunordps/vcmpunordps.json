@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPUNORDPS",
+  "id": "vcmpunordps16",
+  "format": "bin",
+  "source": "vcmpunordps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordps/",
+  "target": [
+   { "output": "vcmpunordps.bin16", "match": "vcmpunordps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPUNORDPS",
+  "id": "vcmpunordps32",
+  "format": "bin",
+  "source": "vcmpunordps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordps/",
+  "target": [
+   { "output": "vcmpunordps.bin32", "match": "vcmpunordps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPUNORDPS",
+  "id": "vcmpunordps64",
+  "format": "bin",
+  "source": "vcmpunordps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordps/",
+  "target": [
+   { "output": "vcmpunordps.bin64", "match": "vcmpunordps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPUNORDPS",
+  "id": "vcmpunordps16err",
+  "format": "bin",
+  "source": "vcmpunordps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordps/",
+  "target": [
+   { "stderr": "vcmpunordps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPUNORDPS",
+  "id": "vcmpunordps32err",
+  "format": "bin",
+  "source": "vcmpunordps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordps/",
+  "target": [
+   { "stderr": "vcmpunordps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

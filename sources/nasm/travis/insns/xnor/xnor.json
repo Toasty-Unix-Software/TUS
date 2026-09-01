@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XNOR",
+  "id": "xnor16",
+  "format": "bin",
+  "source": "xnor.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xnor/",
+  "target": [
+   { "output": "xnor.bin16", "match": "xnor.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XNOR",
+  "id": "xnor32",
+  "format": "bin",
+  "source": "xnor.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xnor/",
+  "target": [
+   { "output": "xnor.bin32", "match": "xnor.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XNOR",
+  "id": "xnor64",
+  "format": "bin",
+  "source": "xnor.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xnor/",
+  "target": [
+   { "output": "xnor.bin64", "match": "xnor.bin64.t" }
+  ]
+ }
+]

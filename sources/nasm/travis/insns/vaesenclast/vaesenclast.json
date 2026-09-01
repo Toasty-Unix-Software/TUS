@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VAESENCLAST",
+  "id": "vaesenclast16",
+  "format": "bin",
+  "source": "vaesenclast_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaesenclast/",
+  "target": [
+   { "output": "vaesenclast.bin16", "match": "vaesenclast.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VAESENCLAST",
+  "id": "vaesenclast32",
+  "format": "bin",
+  "source": "vaesenclast_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaesenclast/",
+  "target": [
+   { "output": "vaesenclast.bin32", "match": "vaesenclast.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VAESENCLAST",
+  "id": "vaesenclast64",
+  "format": "bin",
+  "source": "vaesenclast.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaesenclast/",
+  "target": [
+   { "output": "vaesenclast.bin64", "match": "vaesenclast.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VAESENCLAST",
+  "id": "vaesenclast16err",
+  "format": "bin",
+  "source": "vaesenclast_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaesenclast/",
+  "target": [
+   { "stderr": "vaesenclast.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VAESENCLAST",
+  "id": "vaesenclast32err",
+  "format": "bin",
+  "source": "vaesenclast_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaesenclast/",
+  "target": [
+   { "stderr": "vaesenclast.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

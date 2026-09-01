@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPBLENDMW",
+  "id": "vpblendmw16",
+  "format": "bin",
+  "source": "vpblendmw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpblendmw/",
+  "target": [
+   { "output": "vpblendmw.bin16", "match": "vpblendmw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPBLENDMW",
+  "id": "vpblendmw32",
+  "format": "bin",
+  "source": "vpblendmw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpblendmw/",
+  "target": [
+   { "output": "vpblendmw.bin32", "match": "vpblendmw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPBLENDMW",
+  "id": "vpblendmw64",
+  "format": "bin",
+  "source": "vpblendmw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpblendmw/",
+  "target": [
+   { "output": "vpblendmw.bin64", "match": "vpblendmw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPBLENDMW",
+  "id": "vpblendmw16err",
+  "format": "bin",
+  "source": "vpblendmw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpblendmw/",
+  "target": [
+   { "stderr": "vpblendmw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPBLENDMW",
+  "id": "vpblendmw32err",
+  "format": "bin",
+  "source": "vpblendmw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpblendmw/",
+  "target": [
+   { "stderr": "vpblendmw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

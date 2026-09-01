@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMOVSQD",
+  "id": "vpmovsqd16",
+  "format": "bin",
+  "source": "vpmovsqd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovsqd/",
+  "target": [
+   { "output": "vpmovsqd.bin16", "match": "vpmovsqd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMOVSQD",
+  "id": "vpmovsqd32",
+  "format": "bin",
+  "source": "vpmovsqd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovsqd/",
+  "target": [
+   { "output": "vpmovsqd.bin32", "match": "vpmovsqd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMOVSQD",
+  "id": "vpmovsqd64",
+  "format": "bin",
+  "source": "vpmovsqd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovsqd/",
+  "target": [
+   { "output": "vpmovsqd.bin64", "match": "vpmovsqd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMOVSQD",
+  "id": "vpmovsqd16err",
+  "format": "bin",
+  "source": "vpmovsqd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovsqd/",
+  "target": [
+   { "stderr": "vpmovsqd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMOVSQD",
+  "id": "vpmovsqd32err",
+  "format": "bin",
+  "source": "vpmovsqd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovsqd/",
+  "target": [
+   { "stderr": "vpmovsqd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

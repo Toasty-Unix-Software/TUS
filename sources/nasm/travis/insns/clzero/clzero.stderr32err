@@ -1,0 +1,2 @@
+./travis/insns/clzero/clzero_narrow.asm:9: error: instruction not supported in 32-bit mode
+./travis/insns/clzero/clzero_narrow.asm:10: error: instruction not supported in 32-bit mode

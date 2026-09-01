@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMOVA",
+  "id": "cmova64",
+  "format": "bin",
+  "source": "cmova.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmova/",
+  "target": [
+   { "output": "cmova.bin64", "match": "cmova.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVA",
+  "id": "cmova16err",
+  "format": "bin",
+  "source": "cmova_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmova/",
+  "target": [
+   { "stderr": "cmova.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVA",
+  "id": "cmova32err",
+  "format": "bin",
+  "source": "cmova_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmova/",
+  "target": [
+   { "stderr": "cmova.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

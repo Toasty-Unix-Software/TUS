@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MULPS",
+  "id": "mulps16",
+  "format": "bin",
+  "source": "mulps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mulps/",
+  "target": [
+   { "output": "mulps.bin16", "match": "mulps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MULPS",
+  "id": "mulps32",
+  "format": "bin",
+  "source": "mulps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mulps/",
+  "target": [
+   { "output": "mulps.bin32", "match": "mulps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MULPS",
+  "id": "mulps64",
+  "format": "bin",
+  "source": "mulps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mulps/",
+  "target": [
+   { "output": "mulps.bin64", "match": "mulps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MULPS",
+  "id": "mulps16err",
+  "format": "bin",
+  "source": "mulps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mulps/",
+  "target": [
+   { "stderr": "mulps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MULPS",
+  "id": "mulps32err",
+  "format": "bin",
+  "source": "mulps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/mulps/",
+  "target": [
+   { "stderr": "mulps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

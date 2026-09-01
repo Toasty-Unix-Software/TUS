@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for POPA",
+  "id": "popa16",
+  "format": "bin",
+  "source": "popa.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popa/",
+  "target": [
+   { "output": "popa.bin16", "match": "popa.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for POPA",
+  "id": "popa32",
+  "format": "bin",
+  "source": "popa.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popa/",
+  "target": [
+   { "output": "popa.bin32", "match": "popa.bin32.t" }
+  ]
+ }
+]

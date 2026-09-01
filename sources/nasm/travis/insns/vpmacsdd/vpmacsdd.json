@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMACSDD",
+  "id": "vpmacsdd16",
+  "format": "bin",
+  "source": "vpmacsdd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacsdd/",
+  "target": [
+   { "output": "vpmacsdd.bin16", "match": "vpmacsdd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMACSDD",
+  "id": "vpmacsdd32",
+  "format": "bin",
+  "source": "vpmacsdd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacsdd/",
+  "target": [
+   { "output": "vpmacsdd.bin32", "match": "vpmacsdd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMACSDD",
+  "id": "vpmacsdd64",
+  "format": "bin",
+  "source": "vpmacsdd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacsdd/",
+  "target": [
+   { "output": "vpmacsdd.bin64", "match": "vpmacsdd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMACSDD",
+  "id": "vpmacsdd16err",
+  "format": "bin",
+  "source": "vpmacsdd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacsdd/",
+  "target": [
+   { "stderr": "vpmacsdd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMACSDD",
+  "id": "vpmacsdd32err",
+  "format": "bin",
+  "source": "vpmacsdd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacsdd/",
+  "target": [
+   { "stderr": "vpmacsdd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

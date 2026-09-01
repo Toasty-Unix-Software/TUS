@@ -1,0 +1,5 @@
+default rel
+	loopew 0xb8a7
+	loopew 0xd4cd
+	loopew 0x36c5c78e
+	loopew 0x8b60205

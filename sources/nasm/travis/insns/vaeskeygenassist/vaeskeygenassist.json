@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VAESKEYGENASSIST",
+  "id": "vaeskeygenassist16",
+  "format": "bin",
+  "source": "vaeskeygenassist_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaeskeygenassist/",
+  "target": [
+   { "output": "vaeskeygenassist.bin16", "match": "vaeskeygenassist.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VAESKEYGENASSIST",
+  "id": "vaeskeygenassist32",
+  "format": "bin",
+  "source": "vaeskeygenassist_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaeskeygenassist/",
+  "target": [
+   { "output": "vaeskeygenassist.bin32", "match": "vaeskeygenassist.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VAESKEYGENASSIST",
+  "id": "vaeskeygenassist64",
+  "format": "bin",
+  "source": "vaeskeygenassist.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaeskeygenassist/",
+  "target": [
+   { "output": "vaeskeygenassist.bin64", "match": "vaeskeygenassist.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VAESKEYGENASSIST",
+  "id": "vaeskeygenassist16err",
+  "format": "bin",
+  "source": "vaeskeygenassist_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaeskeygenassist/",
+  "target": [
+   { "stderr": "vaeskeygenassist.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VAESKEYGENASSIST",
+  "id": "vaeskeygenassist32err",
+  "format": "bin",
+  "source": "vaeskeygenassist_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaeskeygenassist/",
+  "target": [
+   { "stderr": "vaeskeygenassist.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

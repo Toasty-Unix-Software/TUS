@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPNLEUQ",
+  "id": "vpcmpnleuq16",
+  "format": "bin",
+  "source": "vpcmpnleuq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpnleuq/",
+  "target": [
+   { "output": "vpcmpnleuq.bin16", "match": "vpcmpnleuq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPNLEUQ",
+  "id": "vpcmpnleuq32",
+  "format": "bin",
+  "source": "vpcmpnleuq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpnleuq/",
+  "target": [
+   { "output": "vpcmpnleuq.bin32", "match": "vpcmpnleuq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPNLEUQ",
+  "id": "vpcmpnleuq64",
+  "format": "bin",
+  "source": "vpcmpnleuq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpnleuq/",
+  "target": [
+   { "output": "vpcmpnleuq.bin64", "match": "vpcmpnleuq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPNLEUQ",
+  "id": "vpcmpnleuq16err",
+  "format": "bin",
+  "source": "vpcmpnleuq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpnleuq/",
+  "target": [
+   { "stderr": "vpcmpnleuq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPNLEUQ",
+  "id": "vpcmpnleuq32err",
+  "format": "bin",
+  "source": "vpcmpnleuq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpnleuq/",
+  "target": [
+   { "stderr": "vpcmpnleuq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for RETN",
+  "id": "retn16",
+  "format": "bin",
+  "source": "retn.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retn/",
+  "target": [
+   { "output": "retn.bin16", "match": "retn.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RETN",
+  "id": "retn32",
+  "format": "bin",
+  "source": "retn.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retn/",
+  "target": [
+   { "output": "retn.bin32", "match": "retn.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RETN",
+  "id": "retn64",
+  "format": "bin",
+  "source": "retn.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retn/",
+  "target": [
+   { "output": "retn.bin64", "match": "retn.bin64.t" }
+  ]
+ }
+]

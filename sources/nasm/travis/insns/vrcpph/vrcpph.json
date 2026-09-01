@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VRCPPH",
+  "id": "vrcpph16",
+  "format": "bin",
+  "source": "vrcpph_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrcpph/",
+  "target": [
+   { "output": "vrcpph.bin16", "match": "vrcpph.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRCPPH",
+  "id": "vrcpph32",
+  "format": "bin",
+  "source": "vrcpph_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrcpph/",
+  "target": [
+   { "output": "vrcpph.bin32", "match": "vrcpph.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRCPPH",
+  "id": "vrcpph64",
+  "format": "bin",
+  "source": "vrcpph.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrcpph/",
+  "target": [
+   { "output": "vrcpph.bin64", "match": "vrcpph.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRCPPH",
+  "id": "vrcpph16err",
+  "format": "bin",
+  "source": "vrcpph_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrcpph/",
+  "target": [
+   { "stderr": "vrcpph.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRCPPH",
+  "id": "vrcpph32err",
+  "format": "bin",
+  "source": "vrcpph_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrcpph/",
+  "target": [
+   { "stderr": "vrcpph.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

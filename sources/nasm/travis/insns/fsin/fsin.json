@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FSIN",
+  "id": "fsin16",
+  "format": "bin",
+  "source": "fsin.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fsin/",
+  "target": [
+   { "output": "fsin.bin16", "match": "fsin.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FSIN",
+  "id": "fsin32",
+  "format": "bin",
+  "source": "fsin.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fsin/",
+  "target": [
+   { "output": "fsin.bin32", "match": "fsin.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FSIN",
+  "id": "fsin64",
+  "format": "bin",
+  "source": "fsin.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fsin/",
+  "target": [
+   { "output": "fsin.bin64", "match": "fsin.bin64.t" }
+  ]
+ }
+]

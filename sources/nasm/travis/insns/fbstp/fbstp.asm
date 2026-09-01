@@ -1,0 +1,9 @@
+default rel
+	fbstp [0xa7d]
+	fbstp [0xfef]
+	fbstp [0x544]
+	fbstp [0x823]
+	fbstp [eax+1]
+	fbstp [eax+64]
+	fbstp [eax+1]
+	fbstp [eax+64]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFNMADDPD",
+  "id": "vfnmaddpd16",
+  "format": "bin",
+  "source": "vfnmaddpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmaddpd/",
+  "target": [
+   { "output": "vfnmaddpd.bin16", "match": "vfnmaddpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMADDPD",
+  "id": "vfnmaddpd32",
+  "format": "bin",
+  "source": "vfnmaddpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmaddpd/",
+  "target": [
+   { "output": "vfnmaddpd.bin32", "match": "vfnmaddpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMADDPD",
+  "id": "vfnmaddpd64",
+  "format": "bin",
+  "source": "vfnmaddpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmaddpd/",
+  "target": [
+   { "output": "vfnmaddpd.bin64", "match": "vfnmaddpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMADDPD",
+  "id": "vfnmaddpd16err",
+  "format": "bin",
+  "source": "vfnmaddpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmaddpd/",
+  "target": [
+   { "stderr": "vfnmaddpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMADDPD",
+  "id": "vfnmaddpd32err",
+  "format": "bin",
+  "source": "vfnmaddpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmaddpd/",
+  "target": [
+   { "stderr": "vfnmaddpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for WRMSRLIST",
+  "id": "wrmsrlist64",
+  "format": "bin",
+  "source": "wrmsrlist.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrmsrlist/",
+  "target": [
+   { "output": "wrmsrlist.bin64", "match": "wrmsrlist.bin64.t" }
+  ]
+ }
+]

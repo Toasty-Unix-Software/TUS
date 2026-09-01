@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPADDUSB",
+  "id": "vpaddusb16",
+  "format": "bin",
+  "source": "vpaddusb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddusb/",
+  "target": [
+   { "output": "vpaddusb.bin16", "match": "vpaddusb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPADDUSB",
+  "id": "vpaddusb32",
+  "format": "bin",
+  "source": "vpaddusb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddusb/",
+  "target": [
+   { "output": "vpaddusb.bin32", "match": "vpaddusb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPADDUSB",
+  "id": "vpaddusb64",
+  "format": "bin",
+  "source": "vpaddusb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddusb/",
+  "target": [
+   { "output": "vpaddusb.bin64", "match": "vpaddusb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPADDUSB",
+  "id": "vpaddusb16err",
+  "format": "bin",
+  "source": "vpaddusb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddusb/",
+  "target": [
+   { "stderr": "vpaddusb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPADDUSB",
+  "id": "vpaddusb32err",
+  "format": "bin",
+  "source": "vpaddusb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpaddusb/",
+  "target": [
+   { "stderr": "vpaddusb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETNP",
+  "id": "setnp64",
+  "format": "bin",
+  "source": "setnp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnp/",
+  "target": [
+   { "output": "setnp.bin64", "match": "setnp.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNP",
+  "id": "setnp16err",
+  "format": "bin",
+  "source": "setnp_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnp/",
+  "target": [
+   { "stderr": "setnp.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNP",
+  "id": "setnp32err",
+  "format": "bin",
+  "source": "setnp_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnp/",
+  "target": [
+   { "stderr": "setnp.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

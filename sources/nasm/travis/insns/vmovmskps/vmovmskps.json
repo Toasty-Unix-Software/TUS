@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMOVMSKPS",
+  "id": "vmovmskps16",
+  "format": "bin",
+  "source": "vmovmskps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovmskps/",
+  "target": [
+   { "output": "vmovmskps.bin16", "match": "vmovmskps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVMSKPS",
+  "id": "vmovmskps32",
+  "format": "bin",
+  "source": "vmovmskps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovmskps/",
+  "target": [
+   { "output": "vmovmskps.bin32", "match": "vmovmskps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVMSKPS",
+  "id": "vmovmskps64",
+  "format": "bin",
+  "source": "vmovmskps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovmskps/",
+  "target": [
+   { "output": "vmovmskps.bin64", "match": "vmovmskps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVMSKPS",
+  "id": "vmovmskps16err",
+  "format": "bin",
+  "source": "vmovmskps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovmskps/",
+  "target": [
+   { "stderr": "vmovmskps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVMSKPS",
+  "id": "vmovmskps32err",
+  "format": "bin",
+  "source": "vmovmskps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovmskps/",
+  "target": [
+   { "stderr": "vmovmskps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

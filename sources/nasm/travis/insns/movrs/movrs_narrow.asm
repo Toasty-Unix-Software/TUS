@@ -1,0 +1,22 @@
+	movrs bl, byte [0xf85]
+	movrs dl, byte [0xf4f]
+	movrs ax, word [0xa0d]
+	movrs bx, word [0x48e]
+	movrs eax, dword [0xd42]
+	movrs edi, dword [0xc22]
+
+%ifdef ERROR
+	movrs rax, qword [0xbec]
+	movrs rdi, qword [0x82e]
+	movrs r8b, byte [0x9b8]
+	movrs r14w, word [0x450]
+	movrs r10d, dword [0x98b]
+	movrs r15, qword [0xbd0]
+	movrs r21b, byte [0x532]
+	movrs r23w, word [0xd9a]
+	movrs r27d, dword [0x5da]
+	movrs r17, qword [0x7aa]
+	movrs rdi, qword [eax+1]
+	movrs rsi, qword [eax+64]
+	movrs rbx, [0x132]
+%endif

@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for DAS",
+  "id": "das16",
+  "format": "bin",
+  "source": "das.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/das/",
+  "target": [
+   { "output": "das.bin16", "match": "das.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DAS",
+  "id": "das32",
+  "format": "bin",
+  "source": "das.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/das/",
+  "target": [
+   { "output": "das.bin32", "match": "das.bin32.t" }
+  ]
+ }
+]

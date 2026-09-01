@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPTRUE_UQSS",
+  "id": "vcmptrue_uqss16",
+  "format": "bin",
+  "source": "vcmptrue_uqss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptrue_uqss/",
+  "target": [
+   { "output": "vcmptrue_uqss.bin16", "match": "vcmptrue_uqss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPTRUE_UQSS",
+  "id": "vcmptrue_uqss32",
+  "format": "bin",
+  "source": "vcmptrue_uqss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptrue_uqss/",
+  "target": [
+   { "output": "vcmptrue_uqss.bin32", "match": "vcmptrue_uqss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPTRUE_UQSS",
+  "id": "vcmptrue_uqss64",
+  "format": "bin",
+  "source": "vcmptrue_uqss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptrue_uqss/",
+  "target": [
+   { "output": "vcmptrue_uqss.bin64", "match": "vcmptrue_uqss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPTRUE_UQSS",
+  "id": "vcmptrue_uqss16err",
+  "format": "bin",
+  "source": "vcmptrue_uqss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptrue_uqss/",
+  "target": [
+   { "stderr": "vcmptrue_uqss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPTRUE_UQSS",
+  "id": "vcmptrue_uqss32err",
+  "format": "bin",
+  "source": "vcmptrue_uqss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptrue_uqss/",
+  "target": [
+   { "stderr": "vcmptrue_uqss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

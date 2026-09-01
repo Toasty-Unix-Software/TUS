@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PADDSB",
+  "id": "paddsb16",
+  "format": "bin",
+  "source": "paddsb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddsb/",
+  "target": [
+   { "output": "paddsb.bin16", "match": "paddsb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PADDSB",
+  "id": "paddsb32",
+  "format": "bin",
+  "source": "paddsb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddsb/",
+  "target": [
+   { "output": "paddsb.bin32", "match": "paddsb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PADDSB",
+  "id": "paddsb64",
+  "format": "bin",
+  "source": "paddsb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddsb/",
+  "target": [
+   { "output": "paddsb.bin64", "match": "paddsb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PADDSB",
+  "id": "paddsb16err",
+  "format": "bin",
+  "source": "paddsb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddsb/",
+  "target": [
+   { "stderr": "paddsb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PADDSB",
+  "id": "paddsb32err",
+  "format": "bin",
+  "source": "paddsb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddsb/",
+  "target": [
+   { "stderr": "paddsb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

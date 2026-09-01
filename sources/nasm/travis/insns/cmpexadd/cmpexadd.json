@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMPEXADD",
+  "id": "cmpexadd64",
+  "format": "bin",
+  "source": "cmpexadd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpexadd/",
+  "target": [
+   { "output": "cmpexadd.bin64", "match": "cmpexadd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPEXADD",
+  "id": "cmpexadd16err",
+  "format": "bin",
+  "source": "cmpexadd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpexadd/",
+  "target": [
+   { "stderr": "cmpexadd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPEXADD",
+  "id": "cmpexadd32err",
+  "format": "bin",
+  "source": "cmpexadd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpexadd/",
+  "target": [
+   { "stderr": "cmpexadd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

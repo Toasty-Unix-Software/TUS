@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VINSERTPS",
+  "id": "vinsertps16",
+  "format": "bin",
+  "source": "vinsertps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertps/",
+  "target": [
+   { "output": "vinsertps.bin16", "match": "vinsertps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VINSERTPS",
+  "id": "vinsertps32",
+  "format": "bin",
+  "source": "vinsertps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertps/",
+  "target": [
+   { "output": "vinsertps.bin32", "match": "vinsertps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VINSERTPS",
+  "id": "vinsertps64",
+  "format": "bin",
+  "source": "vinsertps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertps/",
+  "target": [
+   { "output": "vinsertps.bin64", "match": "vinsertps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VINSERTPS",
+  "id": "vinsertps16err",
+  "format": "bin",
+  "source": "vinsertps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertps/",
+  "target": [
+   { "stderr": "vinsertps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VINSERTPS",
+  "id": "vinsertps32err",
+  "format": "bin",
+  "source": "vinsertps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vinsertps/",
+  "target": [
+   { "stderr": "vinsertps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPERMB",
+  "id": "vpermb16",
+  "format": "bin",
+  "source": "vpermb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermb/",
+  "target": [
+   { "output": "vpermb.bin16", "match": "vpermb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPERMB",
+  "id": "vpermb32",
+  "format": "bin",
+  "source": "vpermb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermb/",
+  "target": [
+   { "output": "vpermb.bin32", "match": "vpermb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPERMB",
+  "id": "vpermb64",
+  "format": "bin",
+  "source": "vpermb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermb/",
+  "target": [
+   { "output": "vpermb.bin64", "match": "vpermb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPERMB",
+  "id": "vpermb16err",
+  "format": "bin",
+  "source": "vpermb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermb/",
+  "target": [
+   { "stderr": "vpermb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPERMB",
+  "id": "vpermb32err",
+  "format": "bin",
+  "source": "vpermb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermb/",
+  "target": [
+   { "stderr": "vpermb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

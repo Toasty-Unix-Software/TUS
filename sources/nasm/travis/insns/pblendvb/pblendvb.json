@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PBLENDVB",
+  "id": "pblendvb16",
+  "format": "bin",
+  "source": "pblendvb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pblendvb/",
+  "target": [
+   { "output": "pblendvb.bin16", "match": "pblendvb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PBLENDVB",
+  "id": "pblendvb32",
+  "format": "bin",
+  "source": "pblendvb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pblendvb/",
+  "target": [
+   { "output": "pblendvb.bin32", "match": "pblendvb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PBLENDVB",
+  "id": "pblendvb64",
+  "format": "bin",
+  "source": "pblendvb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pblendvb/",
+  "target": [
+   { "output": "pblendvb.bin64", "match": "pblendvb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PBLENDVB",
+  "id": "pblendvb16err",
+  "format": "bin",
+  "source": "pblendvb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pblendvb/",
+  "target": [
+   { "stderr": "pblendvb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PBLENDVB",
+  "id": "pblendvb32err",
+  "format": "bin",
+  "source": "pblendvb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pblendvb/",
+  "target": [
+   { "stderr": "pblendvb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

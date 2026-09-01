@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for INCSSPQ",
+  "id": "incsspq64",
+  "format": "bin",
+  "source": "incsspq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/incsspq/",
+  "target": [
+   { "output": "incsspq.bin64", "match": "incsspq.bin64.t" }
+  ]
+ }
+]

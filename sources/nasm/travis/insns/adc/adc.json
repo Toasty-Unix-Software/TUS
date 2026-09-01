@@ -1,0 +1,59 @@
+[
+ {
+  "description": "Pseudorandom test for ADC",
+  "id": "adc16",
+  "format": "bin",
+  "source": "adc_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adc/",
+  "target": [
+   { "output": "adc.bin16", "match": "adc.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADC",
+  "id": "adc32",
+  "format": "bin",
+  "source": "adc_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adc/",
+  "target": [
+   { "output": "adc.bin32", "match": "adc.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADC",
+  "id": "adc64",
+  "format": "bin",
+  "source": "adc.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adc/",
+  "target": [
+   { "output": "adc.bin64", "match": "adc.bin64.t" },
+   { "stderr": "adc.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADC",
+  "id": "adc16err",
+  "format": "bin",
+  "source": "adc_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adc/",
+  "target": [
+   { "stderr": "adc.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADC",
+  "id": "adc32err",
+  "format": "bin",
+  "source": "adc_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/adc/",
+  "target": [
+   { "stderr": "adc.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

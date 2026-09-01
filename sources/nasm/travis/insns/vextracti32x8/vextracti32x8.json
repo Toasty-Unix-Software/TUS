@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VEXTRACTI32X8",
+  "id": "vextracti32x816",
+  "format": "bin",
+  "source": "vextracti32x8_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vextracti32x8/",
+  "target": [
+   { "output": "vextracti32x8.bin16", "match": "vextracti32x8.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VEXTRACTI32X8",
+  "id": "vextracti32x832",
+  "format": "bin",
+  "source": "vextracti32x8_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vextracti32x8/",
+  "target": [
+   { "output": "vextracti32x8.bin32", "match": "vextracti32x8.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VEXTRACTI32X8",
+  "id": "vextracti32x864",
+  "format": "bin",
+  "source": "vextracti32x8.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vextracti32x8/",
+  "target": [
+   { "output": "vextracti32x8.bin64", "match": "vextracti32x8.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VEXTRACTI32X8",
+  "id": "vextracti32x816err",
+  "format": "bin",
+  "source": "vextracti32x8_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vextracti32x8/",
+  "target": [
+   { "stderr": "vextracti32x8.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VEXTRACTI32X8",
+  "id": "vextracti32x832err",
+  "format": "bin",
+  "source": "vextracti32x8_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vextracti32x8/",
+  "target": [
+   { "stderr": "vextracti32x8.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

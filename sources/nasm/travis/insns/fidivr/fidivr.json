@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FIDIVR",
+  "id": "fidivr16",
+  "format": "bin",
+  "source": "fidivr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fidivr/",
+  "target": [
+   { "output": "fidivr.bin16", "match": "fidivr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FIDIVR",
+  "id": "fidivr32",
+  "format": "bin",
+  "source": "fidivr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fidivr/",
+  "target": [
+   { "output": "fidivr.bin32", "match": "fidivr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FIDIVR",
+  "id": "fidivr64",
+  "format": "bin",
+  "source": "fidivr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fidivr/",
+  "target": [
+   { "output": "fidivr.bin64", "match": "fidivr.bin64.t" }
+  ]
+ }
+]

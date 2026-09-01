@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PMULHW",
+  "id": "pmulhw16",
+  "format": "bin",
+  "source": "pmulhw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmulhw/",
+  "target": [
+   { "output": "pmulhw.bin16", "match": "pmulhw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMULHW",
+  "id": "pmulhw32",
+  "format": "bin",
+  "source": "pmulhw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmulhw/",
+  "target": [
+   { "output": "pmulhw.bin32", "match": "pmulhw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMULHW",
+  "id": "pmulhw64",
+  "format": "bin",
+  "source": "pmulhw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmulhw/",
+  "target": [
+   { "output": "pmulhw.bin64", "match": "pmulhw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMULHW",
+  "id": "pmulhw16err",
+  "format": "bin",
+  "source": "pmulhw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmulhw/",
+  "target": [
+   { "stderr": "pmulhw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMULHW",
+  "id": "pmulhw32err",
+  "format": "bin",
+  "source": "pmulhw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmulhw/",
+  "target": [
+   { "stderr": "pmulhw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

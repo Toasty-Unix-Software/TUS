@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for WRMSR",
+  "id": "wrmsr16",
+  "format": "bin",
+  "source": "wrmsr.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrmsr/",
+  "target": [
+   { "output": "wrmsr.bin16", "match": "wrmsr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for WRMSR",
+  "id": "wrmsr32",
+  "format": "bin",
+  "source": "wrmsr.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrmsr/",
+  "target": [
+   { "output": "wrmsr.bin32", "match": "wrmsr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for WRMSR",
+  "id": "wrmsr64",
+  "format": "bin",
+  "source": "wrmsr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrmsr/",
+  "target": [
+   { "output": "wrmsr.bin64", "match": "wrmsr.bin64.t" }
+  ]
+ }
+]

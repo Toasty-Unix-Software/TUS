@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VREDUCESH",
+  "id": "vreducesh16",
+  "format": "bin",
+  "source": "vreducesh_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducesh/",
+  "target": [
+   { "output": "vreducesh.bin16", "match": "vreducesh.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VREDUCESH",
+  "id": "vreducesh32",
+  "format": "bin",
+  "source": "vreducesh_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducesh/",
+  "target": [
+   { "output": "vreducesh.bin32", "match": "vreducesh.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VREDUCESH",
+  "id": "vreducesh64",
+  "format": "bin",
+  "source": "vreducesh.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducesh/",
+  "target": [
+   { "output": "vreducesh.bin64", "match": "vreducesh.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VREDUCESH",
+  "id": "vreducesh16err",
+  "format": "bin",
+  "source": "vreducesh_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducesh/",
+  "target": [
+   { "stderr": "vreducesh.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VREDUCESH",
+  "id": "vreducesh32err",
+  "format": "bin",
+  "source": "vreducesh_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vreducesh/",
+  "target": [
+   { "stderr": "vreducesh.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

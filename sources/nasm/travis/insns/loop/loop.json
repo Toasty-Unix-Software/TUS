@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for LOOP",
+  "id": "loop16",
+  "format": "bin",
+  "source": "loop_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loop/",
+  "target": [
+   { "output": "loop.bin16", "match": "loop.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LOOP",
+  "id": "loop32",
+  "format": "bin",
+  "source": "loop_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loop/",
+  "target": [
+   { "output": "loop.bin32", "match": "loop.bin32.t" }
+  ]
+ }
+]

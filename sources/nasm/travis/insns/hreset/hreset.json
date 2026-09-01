@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for HRESET",
+  "id": "hreset16",
+  "format": "bin",
+  "source": "hreset.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/hreset/",
+  "target": [
+   { "output": "hreset.bin16", "match": "hreset.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for HRESET",
+  "id": "hreset32",
+  "format": "bin",
+  "source": "hreset.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/hreset/",
+  "target": [
+   { "output": "hreset.bin32", "match": "hreset.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for HRESET",
+  "id": "hreset64",
+  "format": "bin",
+  "source": "hreset.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/hreset/",
+  "target": [
+   { "output": "hreset.bin64", "match": "hreset.bin64.t" }
+  ]
+ }
+]

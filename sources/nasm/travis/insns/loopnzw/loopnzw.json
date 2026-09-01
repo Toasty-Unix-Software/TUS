@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for LOOPNZW",
+  "id": "loopnzw16",
+  "format": "bin",
+  "source": "loopnzw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopnzw/",
+  "target": [
+   { "output": "loopnzw.bin16", "match": "loopnzw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LOOPNZW",
+  "id": "loopnzw32",
+  "format": "bin",
+  "source": "loopnzw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopnzw/",
+  "target": [
+   { "output": "loopnzw.bin32", "match": "loopnzw.bin32.t" }
+  ]
+ }
+]

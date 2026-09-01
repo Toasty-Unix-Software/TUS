@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for PFRCP",
+  "id": "pfrcp16",
+  "format": "bin",
+  "source": "pfrcp_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pfrcp/",
+  "target": [
+   { "output": "pfrcp.bin16", "match": "pfrcp.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PFRCP",
+  "id": "pfrcp32",
+  "format": "bin",
+  "source": "pfrcp_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pfrcp/",
+  "target": [
+   { "output": "pfrcp.bin32", "match": "pfrcp.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PFRCP",
+  "id": "pfrcp64",
+  "format": "bin",
+  "source": "pfrcp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pfrcp/",
+  "target": [
+   { "output": "pfrcp.bin64", "match": "pfrcp.bin64.t" }
+  ]
+ }
+]

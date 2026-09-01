@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for TTRANSPOSED",
+  "id": "ttransposed16",
+  "format": "bin",
+  "source": "ttransposed.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ttransposed/",
+  "target": [
+   { "output": "ttransposed.bin16", "match": "ttransposed.bin16.t" },
+   { "stderr": "ttransposed.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TTRANSPOSED",
+  "id": "ttransposed32",
+  "format": "bin",
+  "source": "ttransposed.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ttransposed/",
+  "target": [
+   { "output": "ttransposed.bin32", "match": "ttransposed.bin32.t" },
+   { "stderr": "ttransposed.stderr32" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TTRANSPOSED",
+  "id": "ttransposed64",
+  "format": "bin",
+  "source": "ttransposed.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ttransposed/",
+  "target": [
+   { "output": "ttransposed.bin64", "match": "ttransposed.bin64.t" },
+   { "stderr": "ttransposed.stderr64" }
+  ]
+ }
+]

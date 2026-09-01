@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPLTUB",
+  "id": "vpcmpltub16",
+  "format": "bin",
+  "source": "vpcmpltub_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpltub/",
+  "target": [
+   { "output": "vpcmpltub.bin16", "match": "vpcmpltub.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPLTUB",
+  "id": "vpcmpltub32",
+  "format": "bin",
+  "source": "vpcmpltub_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpltub/",
+  "target": [
+   { "output": "vpcmpltub.bin32", "match": "vpcmpltub.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPLTUB",
+  "id": "vpcmpltub64",
+  "format": "bin",
+  "source": "vpcmpltub.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpltub/",
+  "target": [
+   { "output": "vpcmpltub.bin64", "match": "vpcmpltub.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPLTUB",
+  "id": "vpcmpltub16err",
+  "format": "bin",
+  "source": "vpcmpltub_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpltub/",
+  "target": [
+   { "stderr": "vpcmpltub.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPLTUB",
+  "id": "vpcmpltub32err",
+  "format": "bin",
+  "source": "vpcmpltub_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpltub/",
+  "target": [
+   { "stderr": "vpcmpltub.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

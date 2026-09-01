@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for PUSHFD",
+  "id": "pushfd16",
+  "format": "bin",
+  "source": "pushfd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pushfd/",
+  "target": [
+   { "output": "pushfd.bin16", "match": "pushfd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PUSHFD",
+  "id": "pushfd32",
+  "format": "bin",
+  "source": "pushfd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pushfd/",
+  "target": [
+   { "output": "pushfd.bin32", "match": "pushfd.bin32.t" }
+  ]
+ }
+]

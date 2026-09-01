@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPGE",
+  "id": "ccmpge64",
+  "format": "bin",
+  "source": "ccmpge.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpge/",
+  "target": [
+   { "output": "ccmpge.bin64", "match": "ccmpge.bin64.t" },
+   { "stderr": "ccmpge.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPGE",
+  "id": "ccmpge16err",
+  "format": "bin",
+  "source": "ccmpge_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpge/",
+  "target": [
+   { "stderr": "ccmpge.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPGE",
+  "id": "ccmpge32err",
+  "format": "bin",
+  "source": "ccmpge_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpge/",
+  "target": [
+   { "stderr": "ccmpge.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

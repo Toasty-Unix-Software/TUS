@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for XADD",
+  "id": "xadd16",
+  "format": "bin",
+  "source": "xadd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xadd/",
+  "target": [
+   { "output": "xadd.bin16", "match": "xadd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XADD",
+  "id": "xadd32",
+  "format": "bin",
+  "source": "xadd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xadd/",
+  "target": [
+   { "output": "xadd.bin32", "match": "xadd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XADD",
+  "id": "xadd64",
+  "format": "bin",
+  "source": "xadd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xadd/",
+  "target": [
+   { "output": "xadd.bin64", "match": "xadd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for XADD",
+  "id": "xadd16err",
+  "format": "bin",
+  "source": "xadd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xadd/",
+  "target": [
+   { "stderr": "xadd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for XADD",
+  "id": "xadd32err",
+  "format": "bin",
+  "source": "xadd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xadd/",
+  "target": [
+   { "stderr": "xadd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

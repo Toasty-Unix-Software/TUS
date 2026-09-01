@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for AESDEC",
+  "id": "aesdec16",
+  "format": "bin",
+  "source": "aesdec_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesdec/",
+  "target": [
+   { "output": "aesdec.bin16", "match": "aesdec.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AESDEC",
+  "id": "aesdec32",
+  "format": "bin",
+  "source": "aesdec_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesdec/",
+  "target": [
+   { "output": "aesdec.bin32", "match": "aesdec.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AESDEC",
+  "id": "aesdec64",
+  "format": "bin",
+  "source": "aesdec.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesdec/",
+  "target": [
+   { "output": "aesdec.bin64", "match": "aesdec.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AESDEC",
+  "id": "aesdec16err",
+  "format": "bin",
+  "source": "aesdec_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesdec/",
+  "target": [
+   { "stderr": "aesdec.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AESDEC",
+  "id": "aesdec32err",
+  "format": "bin",
+  "source": "aesdec_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesdec/",
+  "target": [
+   { "stderr": "aesdec.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

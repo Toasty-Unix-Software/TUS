@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPNO",
+  "id": "ccmpno64",
+  "format": "bin",
+  "source": "ccmpno.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpno/",
+  "target": [
+   { "output": "ccmpno.bin64", "match": "ccmpno.bin64.t" },
+   { "stderr": "ccmpno.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPNO",
+  "id": "ccmpno16err",
+  "format": "bin",
+  "source": "ccmpno_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpno/",
+  "target": [
+   { "stderr": "ccmpno.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPNO",
+  "id": "ccmpno32err",
+  "format": "bin",
+  "source": "ccmpno_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpno/",
+  "target": [
+   { "stderr": "ccmpno.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

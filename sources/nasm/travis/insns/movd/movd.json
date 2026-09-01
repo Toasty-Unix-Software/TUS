@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for MOVD",
+  "id": "movd64",
+  "format": "bin",
+  "source": "movd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movd/",
+  "target": [
+   { "output": "movd.bin64", "match": "movd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVD",
+  "id": "movd16err",
+  "format": "bin",
+  "source": "movd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movd/",
+  "target": [
+   { "stderr": "movd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVD",
+  "id": "movd32err",
+  "format": "bin",
+  "source": "movd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movd/",
+  "target": [
+   { "stderr": "movd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

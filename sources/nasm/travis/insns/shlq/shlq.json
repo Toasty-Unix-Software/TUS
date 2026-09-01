@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for SHLQ",
+  "id": "shlq16",
+  "format": "bin",
+  "source": "shlq.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shlq/",
+  "target": [
+   { "output": "shlq.bin16", "match": "shlq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHLQ",
+  "id": "shlq32",
+  "format": "bin",
+  "source": "shlq.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shlq/",
+  "target": [
+   { "output": "shlq.bin32", "match": "shlq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHLQ",
+  "id": "shlq64",
+  "format": "bin",
+  "source": "shlq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shlq/",
+  "target": [
+   { "output": "shlq.bin64", "match": "shlq.bin64.t" }
+  ]
+ }
+]

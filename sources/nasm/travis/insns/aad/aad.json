@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for AAD",
+  "id": "aad16",
+  "format": "bin",
+  "source": "aad.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aad/",
+  "target": [
+   { "output": "aad.bin16", "match": "aad.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AAD",
+  "id": "aad32",
+  "format": "bin",
+  "source": "aad.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aad/",
+  "target": [
+   { "output": "aad.bin32", "match": "aad.bin32.t" }
+  ]
+ }
+]

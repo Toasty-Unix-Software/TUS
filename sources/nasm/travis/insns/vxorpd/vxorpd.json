@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VXORPD",
+  "id": "vxorpd16",
+  "format": "bin",
+  "source": "vxorpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vxorpd/",
+  "target": [
+   { "output": "vxorpd.bin16", "match": "vxorpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VXORPD",
+  "id": "vxorpd32",
+  "format": "bin",
+  "source": "vxorpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vxorpd/",
+  "target": [
+   { "output": "vxorpd.bin32", "match": "vxorpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VXORPD",
+  "id": "vxorpd64",
+  "format": "bin",
+  "source": "vxorpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vxorpd/",
+  "target": [
+   { "output": "vxorpd.bin64", "match": "vxorpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VXORPD",
+  "id": "vxorpd16err",
+  "format": "bin",
+  "source": "vxorpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vxorpd/",
+  "target": [
+   { "stderr": "vxorpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VXORPD",
+  "id": "vxorpd32err",
+  "format": "bin",
+  "source": "vxorpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vxorpd/",
+  "target": [
+   { "stderr": "vxorpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

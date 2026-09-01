@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for POP",
+  "id": "pop16",
+  "format": "bin",
+  "source": "pop.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pop/",
+  "target": [
+   { "output": "pop.bin16", "match": "pop.bin16.t" },
+   { "stderr": "pop.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for POP",
+  "id": "pop32",
+  "format": "bin",
+  "source": "pop.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pop/",
+  "target": [
+   { "output": "pop.bin32", "match": "pop.bin32.t" },
+   { "stderr": "pop.stderr32" }
+  ]
+ }
+]

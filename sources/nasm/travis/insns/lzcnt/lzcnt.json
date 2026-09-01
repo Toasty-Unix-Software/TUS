@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for LZCNT",
+  "id": "lzcnt16",
+  "format": "bin",
+  "source": "lzcnt_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lzcnt/",
+  "target": [
+   { "output": "lzcnt.bin16", "match": "lzcnt.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LZCNT",
+  "id": "lzcnt32",
+  "format": "bin",
+  "source": "lzcnt_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lzcnt/",
+  "target": [
+   { "output": "lzcnt.bin32", "match": "lzcnt.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LZCNT",
+  "id": "lzcnt64",
+  "format": "bin",
+  "source": "lzcnt.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lzcnt/",
+  "target": [
+   { "output": "lzcnt.bin64", "match": "lzcnt.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LZCNT",
+  "id": "lzcnt16err",
+  "format": "bin",
+  "source": "lzcnt_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lzcnt/",
+  "target": [
+   { "stderr": "lzcnt.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LZCNT",
+  "id": "lzcnt32err",
+  "format": "bin",
+  "source": "lzcnt_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lzcnt/",
+  "target": [
+   { "stderr": "lzcnt.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

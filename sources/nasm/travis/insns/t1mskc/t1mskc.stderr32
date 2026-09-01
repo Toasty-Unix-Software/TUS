@@ -1,0 +1,2 @@
+./travis/insns/t1mskc/t1mskc_narrow.asm:1: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]
+./travis/insns/t1mskc/t1mskc_narrow.asm:2: warning: instruction obsolete and removed from the target CPU [-w+obsolete-removed]

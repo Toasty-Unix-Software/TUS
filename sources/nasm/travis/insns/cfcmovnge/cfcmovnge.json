@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CFCMOVNGE",
+  "id": "cfcmovnge64",
+  "format": "bin",
+  "source": "cfcmovnge.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovnge/",
+  "target": [
+   { "output": "cfcmovnge.bin64", "match": "cfcmovnge.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVNGE",
+  "id": "cfcmovnge16err",
+  "format": "bin",
+  "source": "cfcmovnge_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovnge/",
+  "target": [
+   { "stderr": "cfcmovnge.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVNGE",
+  "id": "cfcmovnge32err",
+  "format": "bin",
+  "source": "cfcmovnge_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovnge/",
+  "target": [
+   { "stderr": "cfcmovnge.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

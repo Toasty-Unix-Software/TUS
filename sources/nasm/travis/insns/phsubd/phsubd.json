@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PHSUBD",
+  "id": "phsubd16",
+  "format": "bin",
+  "source": "phsubd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/phsubd/",
+  "target": [
+   { "output": "phsubd.bin16", "match": "phsubd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PHSUBD",
+  "id": "phsubd32",
+  "format": "bin",
+  "source": "phsubd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/phsubd/",
+  "target": [
+   { "output": "phsubd.bin32", "match": "phsubd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PHSUBD",
+  "id": "phsubd64",
+  "format": "bin",
+  "source": "phsubd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/phsubd/",
+  "target": [
+   { "output": "phsubd.bin64", "match": "phsubd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PHSUBD",
+  "id": "phsubd16err",
+  "format": "bin",
+  "source": "phsubd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/phsubd/",
+  "target": [
+   { "stderr": "phsubd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PHSUBD",
+  "id": "phsubd32err",
+  "format": "bin",
+  "source": "phsubd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/phsubd/",
+  "target": [
+   { "stderr": "phsubd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETGE",
+  "id": "setge64",
+  "format": "bin",
+  "source": "setge.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setge/",
+  "target": [
+   { "output": "setge.bin64", "match": "setge.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETGE",
+  "id": "setge16err",
+  "format": "bin",
+  "source": "setge_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setge/",
+  "target": [
+   { "stderr": "setge.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETGE",
+  "id": "setge32err",
+  "format": "bin",
+  "source": "setge_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setge/",
+  "target": [
+   { "stderr": "setge.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

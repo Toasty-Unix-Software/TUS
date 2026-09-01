@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for ENTER",
+  "id": "enter16",
+  "format": "bin",
+  "source": "enter.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/enter/",
+  "target": [
+   { "output": "enter.bin16", "match": "enter.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ENTER",
+  "id": "enter32",
+  "format": "bin",
+  "source": "enter.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/enter/",
+  "target": [
+   { "output": "enter.bin32", "match": "enter.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ENTER",
+  "id": "enter64",
+  "format": "bin",
+  "source": "enter.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/enter/",
+  "target": [
+   { "output": "enter.bin64", "match": "enter.bin64.t" }
+  ]
+ }
+]

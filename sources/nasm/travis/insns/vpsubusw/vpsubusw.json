@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSUBUSW",
+  "id": "vpsubusw16",
+  "format": "bin",
+  "source": "vpsubusw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsubusw/",
+  "target": [
+   { "output": "vpsubusw.bin16", "match": "vpsubusw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSUBUSW",
+  "id": "vpsubusw32",
+  "format": "bin",
+  "source": "vpsubusw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsubusw/",
+  "target": [
+   { "output": "vpsubusw.bin32", "match": "vpsubusw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSUBUSW",
+  "id": "vpsubusw64",
+  "format": "bin",
+  "source": "vpsubusw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsubusw/",
+  "target": [
+   { "output": "vpsubusw.bin64", "match": "vpsubusw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSUBUSW",
+  "id": "vpsubusw16err",
+  "format": "bin",
+  "source": "vpsubusw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsubusw/",
+  "target": [
+   { "stderr": "vpsubusw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSUBUSW",
+  "id": "vpsubusw32err",
+  "format": "bin",
+  "source": "vpsubusw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsubusw/",
+  "target": [
+   { "stderr": "vpsubusw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

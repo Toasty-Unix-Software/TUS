@@ -1,0 +1,11 @@
+./travis/insns/lss/lss_narrow.asm:7: error: instruction not supported in 32-bit mode
+./travis/insns/lss/lss_narrow.asm:8: error: instruction not supported in 32-bit mode
+./travis/insns/lss/lss_narrow.asm:9: error: invalid operands in 32-bit mode
+./travis/insns/lss/lss_narrow.asm:10: error: invalid operands in 32-bit mode
+./travis/insns/lss/lss_narrow.asm:11: error: instruction not supported in 32-bit mode
+./travis/insns/lss/lss_narrow.asm:12: error: invalid operands in 32-bit mode
+./travis/insns/lss/lss_narrow.asm:13: error: invalid operands in 32-bit mode
+./travis/insns/lss/lss_narrow.asm:14: error: instruction not supported in 32-bit mode
+./travis/insns/lss/lss_narrow.asm:15: error: instruction not supported in 32-bit mode
+./travis/insns/lss/lss_narrow.asm:16: error: instruction not supported in 32-bit mode
+./travis/insns/lss/lss_narrow.asm:17: error: instruction not supported in 32-bit mode

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFNMSUBPD",
+  "id": "vfnmsubpd16",
+  "format": "bin",
+  "source": "vfnmsubpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsubpd/",
+  "target": [
+   { "output": "vfnmsubpd.bin16", "match": "vfnmsubpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMSUBPD",
+  "id": "vfnmsubpd32",
+  "format": "bin",
+  "source": "vfnmsubpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsubpd/",
+  "target": [
+   { "output": "vfnmsubpd.bin32", "match": "vfnmsubpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMSUBPD",
+  "id": "vfnmsubpd64",
+  "format": "bin",
+  "source": "vfnmsubpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsubpd/",
+  "target": [
+   { "output": "vfnmsubpd.bin64", "match": "vfnmsubpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMSUBPD",
+  "id": "vfnmsubpd16err",
+  "format": "bin",
+  "source": "vfnmsubpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsubpd/",
+  "target": [
+   { "stderr": "vfnmsubpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMSUBPD",
+  "id": "vfnmsubpd32err",
+  "format": "bin",
+  "source": "vfnmsubpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsubpd/",
+  "target": [
+   { "stderr": "vfnmsubpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

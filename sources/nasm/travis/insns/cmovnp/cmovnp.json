@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMOVNP",
+  "id": "cmovnp64",
+  "format": "bin",
+  "source": "cmovnp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovnp/",
+  "target": [
+   { "output": "cmovnp.bin64", "match": "cmovnp.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVNP",
+  "id": "cmovnp16err",
+  "format": "bin",
+  "source": "cmovnp_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovnp/",
+  "target": [
+   { "stderr": "cmovnp.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMOVNP",
+  "id": "cmovnp32err",
+  "format": "bin",
+  "source": "cmovnp_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmovnp/",
+  "target": [
+   { "stderr": "cmovnp.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

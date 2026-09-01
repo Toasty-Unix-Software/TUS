@@ -1,0 +1,46 @@
+[
+ {
+  "description": "Pseudorandom test for CALL",
+  "id": "call16",
+  "format": "bin",
+  "source": "call_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/call/",
+  "target": [
+   { "output": "call.bin16", "match": "call.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CALL",
+  "id": "call32",
+  "format": "bin",
+  "source": "call_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/call/",
+  "target": [
+   { "output": "call.bin32", "match": "call.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CALL",
+  "id": "call64",
+  "format": "bin",
+  "source": "call.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/call/",
+  "target": [
+   { "output": "call.bin64", "match": "call.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CALL",
+  "id": "call64err",
+  "format": "bin",
+  "source": "call.asm",
+  "option": "--bits 64 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/call/",
+  "target": [
+   { "stderr": "call.stderr64err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCVTPH2BF8",
+  "id": "vcvtph2bf816",
+  "format": "bin",
+  "source": "vcvtph2bf8_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvtph2bf8/",
+  "target": [
+   { "output": "vcvtph2bf8.bin16", "match": "vcvtph2bf8.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCVTPH2BF8",
+  "id": "vcvtph2bf832",
+  "format": "bin",
+  "source": "vcvtph2bf8_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvtph2bf8/",
+  "target": [
+   { "output": "vcvtph2bf8.bin32", "match": "vcvtph2bf8.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCVTPH2BF8",
+  "id": "vcvtph2bf864",
+  "format": "bin",
+  "source": "vcvtph2bf8.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvtph2bf8/",
+  "target": [
+   { "output": "vcvtph2bf8.bin64", "match": "vcvtph2bf8.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCVTPH2BF8",
+  "id": "vcvtph2bf816err",
+  "format": "bin",
+  "source": "vcvtph2bf8_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvtph2bf8/",
+  "target": [
+   { "stderr": "vcvtph2bf8.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCVTPH2BF8",
+  "id": "vcvtph2bf832err",
+  "format": "bin",
+  "source": "vcvtph2bf8_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcvtph2bf8/",
+  "target": [
+   { "stderr": "vcvtph2bf8.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

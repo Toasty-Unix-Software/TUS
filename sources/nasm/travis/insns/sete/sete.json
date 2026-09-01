@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETE",
+  "id": "sete64",
+  "format": "bin",
+  "source": "sete.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sete/",
+  "target": [
+   { "output": "sete.bin64", "match": "sete.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETE",
+  "id": "sete16err",
+  "format": "bin",
+  "source": "sete_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sete/",
+  "target": [
+   { "stderr": "sete.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETE",
+  "id": "sete32err",
+  "format": "bin",
+  "source": "sete_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sete/",
+  "target": [
+   { "stderr": "sete.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

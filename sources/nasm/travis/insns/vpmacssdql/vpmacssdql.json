@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMACSSDQL",
+  "id": "vpmacssdql16",
+  "format": "bin",
+  "source": "vpmacssdql_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacssdql/",
+  "target": [
+   { "output": "vpmacssdql.bin16", "match": "vpmacssdql.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMACSSDQL",
+  "id": "vpmacssdql32",
+  "format": "bin",
+  "source": "vpmacssdql_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacssdql/",
+  "target": [
+   { "output": "vpmacssdql.bin32", "match": "vpmacssdql.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMACSSDQL",
+  "id": "vpmacssdql64",
+  "format": "bin",
+  "source": "vpmacssdql.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacssdql/",
+  "target": [
+   { "output": "vpmacssdql.bin64", "match": "vpmacssdql.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMACSSDQL",
+  "id": "vpmacssdql16err",
+  "format": "bin",
+  "source": "vpmacssdql_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacssdql/",
+  "target": [
+   { "stderr": "vpmacssdql.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMACSSDQL",
+  "id": "vpmacssdql32err",
+  "format": "bin",
+  "source": "vpmacssdql_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacssdql/",
+  "target": [
+   { "stderr": "vpmacssdql.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

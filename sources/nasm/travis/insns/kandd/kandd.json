@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KANDD",
+  "id": "kandd16",
+  "format": "bin",
+  "source": "kandd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kandd/",
+  "target": [
+   { "output": "kandd.bin16", "match": "kandd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KANDD",
+  "id": "kandd32",
+  "format": "bin",
+  "source": "kandd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kandd/",
+  "target": [
+   { "output": "kandd.bin32", "match": "kandd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KANDD",
+  "id": "kandd64",
+  "format": "bin",
+  "source": "kandd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kandd/",
+  "target": [
+   { "output": "kandd.bin64", "match": "kandd.bin64.t" }
+  ]
+ }
+]

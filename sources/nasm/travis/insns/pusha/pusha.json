@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for PUSHA",
+  "id": "pusha16",
+  "format": "bin",
+  "source": "pusha.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pusha/",
+  "target": [
+   { "output": "pusha.bin16", "match": "pusha.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PUSHA",
+  "id": "pusha32",
+  "format": "bin",
+  "source": "pusha.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pusha/",
+  "target": [
+   { "output": "pusha.bin32", "match": "pusha.bin32.t" }
+  ]
+ }
+]

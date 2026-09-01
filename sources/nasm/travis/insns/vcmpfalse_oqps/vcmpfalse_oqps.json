@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPFALSE_OQPS",
+  "id": "vcmpfalse_oqps16",
+  "format": "bin",
+  "source": "vcmpfalse_oqps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalse_oqps/",
+  "target": [
+   { "output": "vcmpfalse_oqps.bin16", "match": "vcmpfalse_oqps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPFALSE_OQPS",
+  "id": "vcmpfalse_oqps32",
+  "format": "bin",
+  "source": "vcmpfalse_oqps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalse_oqps/",
+  "target": [
+   { "output": "vcmpfalse_oqps.bin32", "match": "vcmpfalse_oqps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPFALSE_OQPS",
+  "id": "vcmpfalse_oqps64",
+  "format": "bin",
+  "source": "vcmpfalse_oqps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalse_oqps/",
+  "target": [
+   { "output": "vcmpfalse_oqps.bin64", "match": "vcmpfalse_oqps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPFALSE_OQPS",
+  "id": "vcmpfalse_oqps16err",
+  "format": "bin",
+  "source": "vcmpfalse_oqps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalse_oqps/",
+  "target": [
+   { "stderr": "vcmpfalse_oqps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPFALSE_OQPS",
+  "id": "vcmpfalse_oqps32err",
+  "format": "bin",
+  "source": "vcmpfalse_oqps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpfalse_oqps/",
+  "target": [
+   { "stderr": "vcmpfalse_oqps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

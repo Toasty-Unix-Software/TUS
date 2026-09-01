@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for IRET",
+  "id": "iret16",
+  "format": "bin",
+  "source": "iret.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/iret/",
+  "target": [
+   { "output": "iret.bin16", "match": "iret.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for IRET",
+  "id": "iret32",
+  "format": "bin",
+  "source": "iret.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/iret/",
+  "target": [
+   { "output": "iret.bin32", "match": "iret.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for IRET",
+  "id": "iret64",
+  "format": "bin",
+  "source": "iret.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/iret/",
+  "target": [
+   { "output": "iret.bin64", "match": "iret.bin64.t" }
+  ]
+ }
+]

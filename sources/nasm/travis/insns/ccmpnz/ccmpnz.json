@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CCMPNZ",
+  "id": "ccmpnz64",
+  "format": "bin",
+  "source": "ccmpnz.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpnz/",
+  "target": [
+   { "output": "ccmpnz.bin64", "match": "ccmpnz.bin64.t" },
+   { "stderr": "ccmpnz.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPNZ",
+  "id": "ccmpnz16err",
+  "format": "bin",
+  "source": "ccmpnz_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpnz/",
+  "target": [
+   { "stderr": "ccmpnz.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CCMPNZ",
+  "id": "ccmpnz32err",
+  "format": "bin",
+  "source": "ccmpnz_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ccmpnz/",
+  "target": [
+   { "stderr": "ccmpnz.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

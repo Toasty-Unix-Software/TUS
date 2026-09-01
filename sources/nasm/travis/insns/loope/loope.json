@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for LOOPE",
+  "id": "loope16",
+  "format": "bin",
+  "source": "loope_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loope/",
+  "target": [
+   { "output": "loope.bin16", "match": "loope.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LOOPE",
+  "id": "loope32",
+  "format": "bin",
+  "source": "loope_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loope/",
+  "target": [
+   { "output": "loope.bin32", "match": "loope.bin32.t" }
+  ]
+ }
+]

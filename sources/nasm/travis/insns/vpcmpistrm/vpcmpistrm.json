@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPISTRM",
+  "id": "vpcmpistrm16",
+  "format": "bin",
+  "source": "vpcmpistrm_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpistrm/",
+  "target": [
+   { "output": "vpcmpistrm.bin16", "match": "vpcmpistrm.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPISTRM",
+  "id": "vpcmpistrm32",
+  "format": "bin",
+  "source": "vpcmpistrm_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpistrm/",
+  "target": [
+   { "output": "vpcmpistrm.bin32", "match": "vpcmpistrm.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPISTRM",
+  "id": "vpcmpistrm64",
+  "format": "bin",
+  "source": "vpcmpistrm.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpistrm/",
+  "target": [
+   { "output": "vpcmpistrm.bin64", "match": "vpcmpistrm.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPISTRM",
+  "id": "vpcmpistrm16err",
+  "format": "bin",
+  "source": "vpcmpistrm_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpistrm/",
+  "target": [
+   { "stderr": "vpcmpistrm.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPISTRM",
+  "id": "vpcmpistrm32err",
+  "format": "bin",
+  "source": "vpcmpistrm_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpistrm/",
+  "target": [
+   { "stderr": "vpcmpistrm.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

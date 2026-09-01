@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KANDNB",
+  "id": "kandnb16",
+  "format": "bin",
+  "source": "kandnb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kandnb/",
+  "target": [
+   { "output": "kandnb.bin16", "match": "kandnb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KANDNB",
+  "id": "kandnb32",
+  "format": "bin",
+  "source": "kandnb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kandnb/",
+  "target": [
+   { "output": "kandnb.bin32", "match": "kandnb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KANDNB",
+  "id": "kandnb64",
+  "format": "bin",
+  "source": "kandnb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kandnb/",
+  "target": [
+   { "output": "kandnb.bin64", "match": "kandnb.bin64.t" }
+  ]
+ }
+]

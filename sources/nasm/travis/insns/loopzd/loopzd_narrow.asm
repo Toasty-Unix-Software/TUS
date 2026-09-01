@@ -1,0 +1,9 @@
+	loopzd 0xfa01
+	loopzd 0xa8a9
+	loopzd 0x20d5247
+	loopzd 0x20f442f5
+
+%ifdef ERROR
+	loopzd 0x3df2129a
+	loopzd 0xb879c62
+%endif

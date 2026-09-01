@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCOMISS",
+  "id": "vcomiss16",
+  "format": "bin",
+  "source": "vcomiss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomiss/",
+  "target": [
+   { "output": "vcomiss.bin16", "match": "vcomiss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCOMISS",
+  "id": "vcomiss32",
+  "format": "bin",
+  "source": "vcomiss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomiss/",
+  "target": [
+   { "output": "vcomiss.bin32", "match": "vcomiss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCOMISS",
+  "id": "vcomiss64",
+  "format": "bin",
+  "source": "vcomiss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomiss/",
+  "target": [
+   { "output": "vcomiss.bin64", "match": "vcomiss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCOMISS",
+  "id": "vcomiss16err",
+  "format": "bin",
+  "source": "vcomiss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomiss/",
+  "target": [
+   { "stderr": "vcomiss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCOMISS",
+  "id": "vcomiss32err",
+  "format": "bin",
+  "source": "vcomiss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcomiss/",
+  "target": [
+   { "stderr": "vcomiss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

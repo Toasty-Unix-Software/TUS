@@ -1,0 +1,3 @@
+default rel
+	lodsq
+	lodsq

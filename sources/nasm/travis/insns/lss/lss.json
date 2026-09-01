@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for LSS",
+  "id": "lss16",
+  "format": "bin",
+  "source": "lss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lss/",
+  "target": [
+   { "output": "lss.bin16", "match": "lss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LSS",
+  "id": "lss32",
+  "format": "bin",
+  "source": "lss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lss/",
+  "target": [
+   { "output": "lss.bin32", "match": "lss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LSS",
+  "id": "lss64",
+  "format": "bin",
+  "source": "lss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lss/",
+  "target": [
+   { "output": "lss.bin64", "match": "lss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LSS",
+  "id": "lss16err",
+  "format": "bin",
+  "source": "lss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lss/",
+  "target": [
+   { "stderr": "lss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for LSS",
+  "id": "lss32err",
+  "format": "bin",
+  "source": "lss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lss/",
+  "target": [
+   { "stderr": "lss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for CMC",
+  "id": "cmc16",
+  "format": "bin",
+  "source": "cmc.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmc/",
+  "target": [
+   { "output": "cmc.bin16", "match": "cmc.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMC",
+  "id": "cmc32",
+  "format": "bin",
+  "source": "cmc.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmc/",
+  "target": [
+   { "output": "cmc.bin32", "match": "cmc.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMC",
+  "id": "cmc64",
+  "format": "bin",
+  "source": "cmc.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmc/",
+  "target": [
+   { "output": "cmc.bin64", "match": "cmc.bin64.t" }
+  ]
+ }
+]

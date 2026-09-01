@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPOPCNTD",
+  "id": "vpopcntd16",
+  "format": "bin",
+  "source": "vpopcntd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpopcntd/",
+  "target": [
+   { "output": "vpopcntd.bin16", "match": "vpopcntd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPOPCNTD",
+  "id": "vpopcntd32",
+  "format": "bin",
+  "source": "vpopcntd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpopcntd/",
+  "target": [
+   { "output": "vpopcntd.bin32", "match": "vpopcntd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPOPCNTD",
+  "id": "vpopcntd64",
+  "format": "bin",
+  "source": "vpopcntd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpopcntd/",
+  "target": [
+   { "output": "vpopcntd.bin64", "match": "vpopcntd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPOPCNTD",
+  "id": "vpopcntd16err",
+  "format": "bin",
+  "source": "vpopcntd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpopcntd/",
+  "target": [
+   { "stderr": "vpopcntd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPOPCNTD",
+  "id": "vpopcntd32err",
+  "format": "bin",
+  "source": "vpopcntd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpopcntd/",
+  "target": [
+   { "stderr": "vpopcntd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

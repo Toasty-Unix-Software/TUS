@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSRAQ",
+  "id": "vpsraq16",
+  "format": "bin",
+  "source": "vpsraq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsraq/",
+  "target": [
+   { "output": "vpsraq.bin16", "match": "vpsraq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSRAQ",
+  "id": "vpsraq32",
+  "format": "bin",
+  "source": "vpsraq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsraq/",
+  "target": [
+   { "output": "vpsraq.bin32", "match": "vpsraq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSRAQ",
+  "id": "vpsraq64",
+  "format": "bin",
+  "source": "vpsraq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsraq/",
+  "target": [
+   { "output": "vpsraq.bin64", "match": "vpsraq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSRAQ",
+  "id": "vpsraq16err",
+  "format": "bin",
+  "source": "vpsraq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsraq/",
+  "target": [
+   { "stderr": "vpsraq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSRAQ",
+  "id": "vpsraq32err",
+  "format": "bin",
+  "source": "vpsraq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpsraq/",
+  "target": [
+   { "stderr": "vpsraq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

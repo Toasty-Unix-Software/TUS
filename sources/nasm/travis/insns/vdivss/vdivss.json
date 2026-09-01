@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VDIVSS",
+  "id": "vdivss16",
+  "format": "bin",
+  "source": "vdivss_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdivss/",
+  "target": [
+   { "output": "vdivss.bin16", "match": "vdivss.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VDIVSS",
+  "id": "vdivss32",
+  "format": "bin",
+  "source": "vdivss_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdivss/",
+  "target": [
+   { "output": "vdivss.bin32", "match": "vdivss.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VDIVSS",
+  "id": "vdivss64",
+  "format": "bin",
+  "source": "vdivss.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdivss/",
+  "target": [
+   { "output": "vdivss.bin64", "match": "vdivss.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VDIVSS",
+  "id": "vdivss16err",
+  "format": "bin",
+  "source": "vdivss_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdivss/",
+  "target": [
+   { "stderr": "vdivss.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VDIVSS",
+  "id": "vdivss32err",
+  "format": "bin",
+  "source": "vdivss_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdivss/",
+  "target": [
+   { "stderr": "vdivss.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

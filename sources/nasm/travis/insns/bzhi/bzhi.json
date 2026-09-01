@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for BZHI",
+  "id": "bzhi16",
+  "format": "bin",
+  "source": "bzhi_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bzhi/",
+  "target": [
+   { "output": "bzhi.bin16", "match": "bzhi.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BZHI",
+  "id": "bzhi32",
+  "format": "bin",
+  "source": "bzhi_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bzhi/",
+  "target": [
+   { "output": "bzhi.bin32", "match": "bzhi.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BZHI",
+  "id": "bzhi64",
+  "format": "bin",
+  "source": "bzhi.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bzhi/",
+  "target": [
+   { "output": "bzhi.bin64", "match": "bzhi.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BZHI",
+  "id": "bzhi16err",
+  "format": "bin",
+  "source": "bzhi_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bzhi/",
+  "target": [
+   { "stderr": "bzhi.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for BZHI",
+  "id": "bzhi32err",
+  "format": "bin",
+  "source": "bzhi_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bzhi/",
+  "target": [
+   { "stderr": "bzhi.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

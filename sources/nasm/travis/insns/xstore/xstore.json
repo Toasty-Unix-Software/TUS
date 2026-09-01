@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XSTORE",
+  "id": "xstore16",
+  "format": "bin",
+  "source": "xstore.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xstore/",
+  "target": [
+   { "output": "xstore.bin16", "match": "xstore.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XSTORE",
+  "id": "xstore32",
+  "format": "bin",
+  "source": "xstore.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xstore/",
+  "target": [
+   { "output": "xstore.bin32", "match": "xstore.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XSTORE",
+  "id": "xstore64",
+  "format": "bin",
+  "source": "xstore.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xstore/",
+  "target": [
+   { "output": "xstore.bin64", "match": "xstore.bin64.t" }
+  ]
+ }
+]

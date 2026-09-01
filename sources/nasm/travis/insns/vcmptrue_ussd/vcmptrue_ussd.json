@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPTRUE_USSD",
+  "id": "vcmptrue_ussd16",
+  "format": "bin",
+  "source": "vcmptrue_ussd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptrue_ussd/",
+  "target": [
+   { "output": "vcmptrue_ussd.bin16", "match": "vcmptrue_ussd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPTRUE_USSD",
+  "id": "vcmptrue_ussd32",
+  "format": "bin",
+  "source": "vcmptrue_ussd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptrue_ussd/",
+  "target": [
+   { "output": "vcmptrue_ussd.bin32", "match": "vcmptrue_ussd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPTRUE_USSD",
+  "id": "vcmptrue_ussd64",
+  "format": "bin",
+  "source": "vcmptrue_ussd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptrue_ussd/",
+  "target": [
+   { "output": "vcmptrue_ussd.bin64", "match": "vcmptrue_ussd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPTRUE_USSD",
+  "id": "vcmptrue_ussd16err",
+  "format": "bin",
+  "source": "vcmptrue_ussd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptrue_ussd/",
+  "target": [
+   { "stderr": "vcmptrue_ussd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPTRUE_USSD",
+  "id": "vcmptrue_ussd32err",
+  "format": "bin",
+  "source": "vcmptrue_ussd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmptrue_ussd/",
+  "target": [
+   { "stderr": "vcmptrue_ussd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

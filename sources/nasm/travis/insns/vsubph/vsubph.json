@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VSUBPH",
+  "id": "vsubph16",
+  "format": "bin",
+  "source": "vsubph_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsubph/",
+  "target": [
+   { "output": "vsubph.bin16", "match": "vsubph.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSUBPH",
+  "id": "vsubph32",
+  "format": "bin",
+  "source": "vsubph_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsubph/",
+  "target": [
+   { "output": "vsubph.bin32", "match": "vsubph.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSUBPH",
+  "id": "vsubph64",
+  "format": "bin",
+  "source": "vsubph.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsubph/",
+  "target": [
+   { "output": "vsubph.bin64", "match": "vsubph.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSUBPH",
+  "id": "vsubph16err",
+  "format": "bin",
+  "source": "vsubph_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsubph/",
+  "target": [
+   { "stderr": "vsubph.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSUBPH",
+  "id": "vsubph32err",
+  "format": "bin",
+  "source": "vsubph_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsubph/",
+  "target": [
+   { "stderr": "vsubph.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

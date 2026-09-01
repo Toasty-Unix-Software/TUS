@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPBLENDMQ",
+  "id": "vpblendmq16",
+  "format": "bin",
+  "source": "vpblendmq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpblendmq/",
+  "target": [
+   { "output": "vpblendmq.bin16", "match": "vpblendmq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPBLENDMQ",
+  "id": "vpblendmq32",
+  "format": "bin",
+  "source": "vpblendmq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpblendmq/",
+  "target": [
+   { "output": "vpblendmq.bin32", "match": "vpblendmq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPBLENDMQ",
+  "id": "vpblendmq64",
+  "format": "bin",
+  "source": "vpblendmq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpblendmq/",
+  "target": [
+   { "output": "vpblendmq.bin64", "match": "vpblendmq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPBLENDMQ",
+  "id": "vpblendmq16err",
+  "format": "bin",
+  "source": "vpblendmq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpblendmq/",
+  "target": [
+   { "stderr": "vpblendmq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPBLENDMQ",
+  "id": "vpblendmq32err",
+  "format": "bin",
+  "source": "vpblendmq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpblendmq/",
+  "target": [
+   { "stderr": "vpblendmq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

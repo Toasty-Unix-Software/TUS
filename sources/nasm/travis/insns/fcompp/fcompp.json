@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FCOMPP",
+  "id": "fcompp16",
+  "format": "bin",
+  "source": "fcompp.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcompp/",
+  "target": [
+   { "output": "fcompp.bin16", "match": "fcompp.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FCOMPP",
+  "id": "fcompp32",
+  "format": "bin",
+  "source": "fcompp.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcompp/",
+  "target": [
+   { "output": "fcompp.bin32", "match": "fcompp.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FCOMPP",
+  "id": "fcompp64",
+  "format": "bin",
+  "source": "fcompp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcompp/",
+  "target": [
+   { "output": "fcompp.bin64", "match": "fcompp.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PSLLQ",
+  "id": "psllq16",
+  "format": "bin",
+  "source": "psllq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psllq/",
+  "target": [
+   { "output": "psllq.bin16", "match": "psllq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSLLQ",
+  "id": "psllq32",
+  "format": "bin",
+  "source": "psllq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psllq/",
+  "target": [
+   { "output": "psllq.bin32", "match": "psllq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSLLQ",
+  "id": "psllq64",
+  "format": "bin",
+  "source": "psllq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psllq/",
+  "target": [
+   { "output": "psllq.bin64", "match": "psllq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSLLQ",
+  "id": "psllq16err",
+  "format": "bin",
+  "source": "psllq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psllq/",
+  "target": [
+   { "stderr": "psllq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSLLQ",
+  "id": "psllq32err",
+  "format": "bin",
+  "source": "psllq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psllq/",
+  "target": [
+   { "stderr": "psllq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

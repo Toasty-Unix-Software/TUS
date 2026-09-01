@@ -1,0 +1,2 @@
+./travis/insns/vucomxss/vucomxss_narrow.asm:5: error: invalid operands in non-64-bit mode
+./travis/insns/vucomxss/vucomxss_narrow.asm:6: error: invalid operands in non-64-bit mode

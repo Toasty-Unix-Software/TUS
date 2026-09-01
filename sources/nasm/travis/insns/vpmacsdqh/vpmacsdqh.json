@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMACSDQH",
+  "id": "vpmacsdqh16",
+  "format": "bin",
+  "source": "vpmacsdqh_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacsdqh/",
+  "target": [
+   { "output": "vpmacsdqh.bin16", "match": "vpmacsdqh.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMACSDQH",
+  "id": "vpmacsdqh32",
+  "format": "bin",
+  "source": "vpmacsdqh_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacsdqh/",
+  "target": [
+   { "output": "vpmacsdqh.bin32", "match": "vpmacsdqh.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMACSDQH",
+  "id": "vpmacsdqh64",
+  "format": "bin",
+  "source": "vpmacsdqh.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacsdqh/",
+  "target": [
+   { "output": "vpmacsdqh.bin64", "match": "vpmacsdqh.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMACSDQH",
+  "id": "vpmacsdqh16err",
+  "format": "bin",
+  "source": "vpmacsdqh_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacsdqh/",
+  "target": [
+   { "stderr": "vpmacsdqh.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMACSDQH",
+  "id": "vpmacsdqh32err",
+  "format": "bin",
+  "source": "vpmacsdqh_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmacsdqh/",
+  "target": [
+   { "stderr": "vpmacsdqh.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,3 @@
+./travis/insns/ccmpae/ccmpae.asm:60: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/ccmpae/ccmpae.asm:61: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/ccmpae/ccmpae.asm:62: warning: byte exceeds bounds [-w+number-overflow]

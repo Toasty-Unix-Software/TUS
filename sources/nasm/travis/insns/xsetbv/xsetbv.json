@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XSETBV",
+  "id": "xsetbv16",
+  "format": "bin",
+  "source": "xsetbv.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsetbv/",
+  "target": [
+   { "output": "xsetbv.bin16", "match": "xsetbv.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XSETBV",
+  "id": "xsetbv32",
+  "format": "bin",
+  "source": "xsetbv.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsetbv/",
+  "target": [
+   { "output": "xsetbv.bin32", "match": "xsetbv.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XSETBV",
+  "id": "xsetbv64",
+  "format": "bin",
+  "source": "xsetbv.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsetbv/",
+  "target": [
+   { "output": "xsetbv.bin64", "match": "xsetbv.bin64.t" }
+  ]
+ }
+]

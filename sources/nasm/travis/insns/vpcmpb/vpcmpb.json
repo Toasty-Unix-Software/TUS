@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPCMPB",
+  "id": "vpcmpb16",
+  "format": "bin",
+  "source": "vpcmpb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpb/",
+  "target": [
+   { "output": "vpcmpb.bin16", "match": "vpcmpb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPB",
+  "id": "vpcmpb32",
+  "format": "bin",
+  "source": "vpcmpb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpb/",
+  "target": [
+   { "output": "vpcmpb.bin32", "match": "vpcmpb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPCMPB",
+  "id": "vpcmpb64",
+  "format": "bin",
+  "source": "vpcmpb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpb/",
+  "target": [
+   { "output": "vpcmpb.bin64", "match": "vpcmpb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPB",
+  "id": "vpcmpb16err",
+  "format": "bin",
+  "source": "vpcmpb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpb/",
+  "target": [
+   { "stderr": "vpcmpb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPCMPB",
+  "id": "vpcmpb32err",
+  "format": "bin",
+  "source": "vpcmpb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpcmpb/",
+  "target": [
+   { "stderr": "vpcmpb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSHUFLW",
+  "id": "vpshuflw16",
+  "format": "bin",
+  "source": "vpshuflw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshuflw/",
+  "target": [
+   { "output": "vpshuflw.bin16", "match": "vpshuflw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHUFLW",
+  "id": "vpshuflw32",
+  "format": "bin",
+  "source": "vpshuflw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshuflw/",
+  "target": [
+   { "output": "vpshuflw.bin32", "match": "vpshuflw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHUFLW",
+  "id": "vpshuflw64",
+  "format": "bin",
+  "source": "vpshuflw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshuflw/",
+  "target": [
+   { "output": "vpshuflw.bin64", "match": "vpshuflw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHUFLW",
+  "id": "vpshuflw16err",
+  "format": "bin",
+  "source": "vpshuflw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshuflw/",
+  "target": [
+   { "stderr": "vpshuflw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHUFLW",
+  "id": "vpshuflw32err",
+  "format": "bin",
+  "source": "vpshuflw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshuflw/",
+  "target": [
+   { "stderr": "vpshuflw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

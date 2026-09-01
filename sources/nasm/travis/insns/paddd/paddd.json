@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PADDD",
+  "id": "paddd16",
+  "format": "bin",
+  "source": "paddd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddd/",
+  "target": [
+   { "output": "paddd.bin16", "match": "paddd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PADDD",
+  "id": "paddd32",
+  "format": "bin",
+  "source": "paddd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddd/",
+  "target": [
+   { "output": "paddd.bin32", "match": "paddd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PADDD",
+  "id": "paddd64",
+  "format": "bin",
+  "source": "paddd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddd/",
+  "target": [
+   { "output": "paddd.bin64", "match": "paddd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PADDD",
+  "id": "paddd16err",
+  "format": "bin",
+  "source": "paddd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddd/",
+  "target": [
+   { "stderr": "paddd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PADDD",
+  "id": "paddd32err",
+  "format": "bin",
+  "source": "paddd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddd/",
+  "target": [
+   { "stderr": "paddd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

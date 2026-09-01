@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ADDSD",
+  "id": "addsd16",
+  "format": "bin",
+  "source": "addsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addsd/",
+  "target": [
+   { "output": "addsd.bin16", "match": "addsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDSD",
+  "id": "addsd32",
+  "format": "bin",
+  "source": "addsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addsd/",
+  "target": [
+   { "output": "addsd.bin32", "match": "addsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADDSD",
+  "id": "addsd64",
+  "format": "bin",
+  "source": "addsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addsd/",
+  "target": [
+   { "output": "addsd.bin64", "match": "addsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADDSD",
+  "id": "addsd16err",
+  "format": "bin",
+  "source": "addsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addsd/",
+  "target": [
+   { "stderr": "addsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADDSD",
+  "id": "addsd32err",
+  "format": "bin",
+  "source": "addsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/addsd/",
+  "target": [
+   { "stderr": "addsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

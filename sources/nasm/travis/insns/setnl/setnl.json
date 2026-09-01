@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETNL",
+  "id": "setnl64",
+  "format": "bin",
+  "source": "setnl.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnl/",
+  "target": [
+   { "output": "setnl.bin64", "match": "setnl.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNL",
+  "id": "setnl16err",
+  "format": "bin",
+  "source": "setnl_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnl/",
+  "target": [
+   { "stderr": "setnl.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNL",
+  "id": "setnl32err",
+  "format": "bin",
+  "source": "setnl_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnl/",
+  "target": [
+   { "stderr": "setnl.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

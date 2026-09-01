@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for SHA1NEXTE",
+  "id": "sha1nexte16",
+  "format": "bin",
+  "source": "sha1nexte_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sha1nexte/",
+  "target": [
+   { "output": "sha1nexte.bin16", "match": "sha1nexte.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHA1NEXTE",
+  "id": "sha1nexte32",
+  "format": "bin",
+  "source": "sha1nexte_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sha1nexte/",
+  "target": [
+   { "output": "sha1nexte.bin32", "match": "sha1nexte.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHA1NEXTE",
+  "id": "sha1nexte64",
+  "format": "bin",
+  "source": "sha1nexte.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sha1nexte/",
+  "target": [
+   { "output": "sha1nexte.bin64", "match": "sha1nexte.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHA1NEXTE",
+  "id": "sha1nexte16err",
+  "format": "bin",
+  "source": "sha1nexte_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sha1nexte/",
+  "target": [
+   { "stderr": "sha1nexte.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHA1NEXTE",
+  "id": "sha1nexte32err",
+  "format": "bin",
+  "source": "sha1nexte_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sha1nexte/",
+  "target": [
+   { "stderr": "sha1nexte.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

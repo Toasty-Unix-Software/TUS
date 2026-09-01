@@ -1,0 +1,2 @@
+	fldenv [0x585]
+	fldenv [0xf40]

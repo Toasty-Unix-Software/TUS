@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FDISI",
+  "id": "fdisi16",
+  "format": "bin",
+  "source": "fdisi.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fdisi/",
+  "target": [
+   { "output": "fdisi.bin16", "match": "fdisi.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FDISI",
+  "id": "fdisi32",
+  "format": "bin",
+  "source": "fdisi.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fdisi/",
+  "target": [
+   { "output": "fdisi.bin32", "match": "fdisi.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FDISI",
+  "id": "fdisi64",
+  "format": "bin",
+  "source": "fdisi.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fdisi/",
+  "target": [
+   { "output": "fdisi.bin64", "match": "fdisi.bin64.t" }
+  ]
+ }
+]

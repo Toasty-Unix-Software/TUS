@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for XSAVEC64",
+  "id": "xsavec6464",
+  "format": "bin",
+  "source": "xsavec64.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsavec64/",
+  "target": [
+   { "output": "xsavec64.bin64", "match": "xsavec64.bin64.t" }
+  ]
+ }
+]

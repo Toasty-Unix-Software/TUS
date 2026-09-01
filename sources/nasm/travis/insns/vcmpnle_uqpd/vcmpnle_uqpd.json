@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPNLE_UQPD",
+  "id": "vcmpnle_uqpd16",
+  "format": "bin",
+  "source": "vcmpnle_uqpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnle_uqpd/",
+  "target": [
+   { "output": "vcmpnle_uqpd.bin16", "match": "vcmpnle_uqpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNLE_UQPD",
+  "id": "vcmpnle_uqpd32",
+  "format": "bin",
+  "source": "vcmpnle_uqpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnle_uqpd/",
+  "target": [
+   { "output": "vcmpnle_uqpd.bin32", "match": "vcmpnle_uqpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNLE_UQPD",
+  "id": "vcmpnle_uqpd64",
+  "format": "bin",
+  "source": "vcmpnle_uqpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnle_uqpd/",
+  "target": [
+   { "output": "vcmpnle_uqpd.bin64", "match": "vcmpnle_uqpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNLE_UQPD",
+  "id": "vcmpnle_uqpd16err",
+  "format": "bin",
+  "source": "vcmpnle_uqpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnle_uqpd/",
+  "target": [
+   { "stderr": "vcmpnle_uqpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNLE_UQPD",
+  "id": "vcmpnle_uqpd32err",
+  "format": "bin",
+  "source": "vcmpnle_uqpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpnle_uqpd/",
+  "target": [
+   { "stderr": "vcmpnle_uqpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

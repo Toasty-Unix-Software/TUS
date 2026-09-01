@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for INT01",
+  "id": "int0116",
+  "format": "bin",
+  "source": "int01.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/int01/",
+  "target": [
+   { "output": "int01.bin16", "match": "int01.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for INT01",
+  "id": "int0132",
+  "format": "bin",
+  "source": "int01.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/int01/",
+  "target": [
+   { "output": "int01.bin32", "match": "int01.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for INT01",
+  "id": "int0164",
+  "format": "bin",
+  "source": "int01.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/int01/",
+  "target": [
+   { "output": "int01.bin64", "match": "int01.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPDPWUUDS",
+  "id": "vpdpwuuds16",
+  "format": "bin",
+  "source": "vpdpwuuds_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpdpwuuds/",
+  "target": [
+   { "output": "vpdpwuuds.bin16", "match": "vpdpwuuds.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPDPWUUDS",
+  "id": "vpdpwuuds32",
+  "format": "bin",
+  "source": "vpdpwuuds_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpdpwuuds/",
+  "target": [
+   { "output": "vpdpwuuds.bin32", "match": "vpdpwuuds.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPDPWUUDS",
+  "id": "vpdpwuuds64",
+  "format": "bin",
+  "source": "vpdpwuuds.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpdpwuuds/",
+  "target": [
+   { "output": "vpdpwuuds.bin64", "match": "vpdpwuuds.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPDPWUUDS",
+  "id": "vpdpwuuds16err",
+  "format": "bin",
+  "source": "vpdpwuuds_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpdpwuuds/",
+  "target": [
+   { "stderr": "vpdpwuuds.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPDPWUUDS",
+  "id": "vpdpwuuds32err",
+  "format": "bin",
+  "source": "vpdpwuuds_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpdpwuuds/",
+  "target": [
+   { "stderr": "vpdpwuuds.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

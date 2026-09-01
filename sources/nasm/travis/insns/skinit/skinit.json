@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for SKINIT",
+  "id": "skinit64",
+  "format": "bin",
+  "source": "skinit.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/skinit/",
+  "target": [
+   { "output": "skinit.bin64", "match": "skinit.bin64.t" }
+  ]
+ }
+]

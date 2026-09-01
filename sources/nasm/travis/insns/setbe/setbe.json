@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETBE",
+  "id": "setbe64",
+  "format": "bin",
+  "source": "setbe.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setbe/",
+  "target": [
+   { "output": "setbe.bin64", "match": "setbe.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETBE",
+  "id": "setbe16err",
+  "format": "bin",
+  "source": "setbe_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setbe/",
+  "target": [
+   { "stderr": "setbe.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETBE",
+  "id": "setbe32err",
+  "format": "bin",
+  "source": "setbe_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setbe/",
+  "target": [
+   { "stderr": "setbe.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CFCMOVNA",
+  "id": "cfcmovna64",
+  "format": "bin",
+  "source": "cfcmovna.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovna/",
+  "target": [
+   { "output": "cfcmovna.bin64", "match": "cfcmovna.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVNA",
+  "id": "cfcmovna16err",
+  "format": "bin",
+  "source": "cfcmovna_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovna/",
+  "target": [
+   { "stderr": "cfcmovna.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVNA",
+  "id": "cfcmovna32err",
+  "format": "bin",
+  "source": "cfcmovna_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmovna/",
+  "target": [
+   { "stderr": "cfcmovna.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FSQRT",
+  "id": "fsqrt16",
+  "format": "bin",
+  "source": "fsqrt.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fsqrt/",
+  "target": [
+   { "output": "fsqrt.bin16", "match": "fsqrt.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FSQRT",
+  "id": "fsqrt32",
+  "format": "bin",
+  "source": "fsqrt.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fsqrt/",
+  "target": [
+   { "output": "fsqrt.bin32", "match": "fsqrt.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FSQRT",
+  "id": "fsqrt64",
+  "format": "bin",
+  "source": "fsqrt.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fsqrt/",
+  "target": [
+   { "output": "fsqrt.bin64", "match": "fsqrt.bin64.t" }
+  ]
+ }
+]

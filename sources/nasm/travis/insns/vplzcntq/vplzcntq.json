@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPLZCNTQ",
+  "id": "vplzcntq16",
+  "format": "bin",
+  "source": "vplzcntq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vplzcntq/",
+  "target": [
+   { "output": "vplzcntq.bin16", "match": "vplzcntq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPLZCNTQ",
+  "id": "vplzcntq32",
+  "format": "bin",
+  "source": "vplzcntq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vplzcntq/",
+  "target": [
+   { "output": "vplzcntq.bin32", "match": "vplzcntq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPLZCNTQ",
+  "id": "vplzcntq64",
+  "format": "bin",
+  "source": "vplzcntq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vplzcntq/",
+  "target": [
+   { "output": "vplzcntq.bin64", "match": "vplzcntq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPLZCNTQ",
+  "id": "vplzcntq16err",
+  "format": "bin",
+  "source": "vplzcntq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vplzcntq/",
+  "target": [
+   { "stderr": "vplzcntq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPLZCNTQ",
+  "id": "vplzcntq32err",
+  "format": "bin",
+  "source": "vplzcntq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vplzcntq/",
+  "target": [
+   { "stderr": "vplzcntq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

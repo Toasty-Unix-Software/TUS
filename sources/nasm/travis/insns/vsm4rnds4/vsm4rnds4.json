@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VSM4RNDS4",
+  "id": "vsm4rnds416",
+  "format": "bin",
+  "source": "vsm4rnds4_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsm4rnds4/",
+  "target": [
+   { "output": "vsm4rnds4.bin16", "match": "vsm4rnds4.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSM4RNDS4",
+  "id": "vsm4rnds432",
+  "format": "bin",
+  "source": "vsm4rnds4_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsm4rnds4/",
+  "target": [
+   { "output": "vsm4rnds4.bin32", "match": "vsm4rnds4.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSM4RNDS4",
+  "id": "vsm4rnds464",
+  "format": "bin",
+  "source": "vsm4rnds4.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsm4rnds4/",
+  "target": [
+   { "output": "vsm4rnds4.bin64", "match": "vsm4rnds4.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSM4RNDS4",
+  "id": "vsm4rnds416err",
+  "format": "bin",
+  "source": "vsm4rnds4_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsm4rnds4/",
+  "target": [
+   { "stderr": "vsm4rnds4.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSM4RNDS4",
+  "id": "vsm4rnds432err",
+  "format": "bin",
+  "source": "vsm4rnds4_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsm4rnds4/",
+  "target": [
+   { "stderr": "vsm4rnds4.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

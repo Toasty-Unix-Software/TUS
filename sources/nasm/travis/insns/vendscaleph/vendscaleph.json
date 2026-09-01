@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VENDSCALEPH",
+  "id": "vendscaleph16",
+  "format": "bin",
+  "source": "vendscaleph_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vendscaleph/",
+  "target": [
+   { "output": "vendscaleph.bin16", "match": "vendscaleph.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VENDSCALEPH",
+  "id": "vendscaleph32",
+  "format": "bin",
+  "source": "vendscaleph_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vendscaleph/",
+  "target": [
+   { "output": "vendscaleph.bin32", "match": "vendscaleph.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VENDSCALEPH",
+  "id": "vendscaleph64",
+  "format": "bin",
+  "source": "vendscaleph.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vendscaleph/",
+  "target": [
+   { "output": "vendscaleph.bin64", "match": "vendscaleph.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VENDSCALEPH",
+  "id": "vendscaleph16err",
+  "format": "bin",
+  "source": "vendscaleph_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vendscaleph/",
+  "target": [
+   { "stderr": "vendscaleph.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VENDSCALEPH",
+  "id": "vendscaleph32err",
+  "format": "bin",
+  "source": "vendscaleph_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vendscaleph/",
+  "target": [
+   { "stderr": "vendscaleph.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

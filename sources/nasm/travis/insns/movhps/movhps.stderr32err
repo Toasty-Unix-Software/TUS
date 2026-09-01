@@ -1,0 +1,2 @@
+./travis/insns/movhps/movhps_narrow.asm:7: error: invalid operands in 32-bit mode
+./travis/insns/movhps/movhps_narrow.asm:8: error: invalid operands in 32-bit mode

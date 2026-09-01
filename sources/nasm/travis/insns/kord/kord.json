@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KORD",
+  "id": "kord16",
+  "format": "bin",
+  "source": "kord.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kord/",
+  "target": [
+   { "output": "kord.bin16", "match": "kord.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KORD",
+  "id": "kord32",
+  "format": "bin",
+  "source": "kord.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kord/",
+  "target": [
+   { "output": "kord.bin32", "match": "kord.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KORD",
+  "id": "kord64",
+  "format": "bin",
+  "source": "kord.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kord/",
+  "target": [
+   { "output": "kord.bin64", "match": "kord.bin64.t" }
+  ]
+ }
+]

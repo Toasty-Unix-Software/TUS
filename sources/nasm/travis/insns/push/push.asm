@@ -1,0 +1,9 @@
+default rel
+	push es
+	push es
+	push cs
+	push cs
+	push ss
+	push ss
+	push ds
+	push ds

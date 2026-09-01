@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for URDMSR",
+  "id": "urdmsr16",
+  "format": "bin",
+  "source": "urdmsr.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/urdmsr/",
+  "target": [
+   { "output": "urdmsr.bin16", "match": "urdmsr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for URDMSR",
+  "id": "urdmsr32",
+  "format": "bin",
+  "source": "urdmsr.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/urdmsr/",
+  "target": [
+   { "output": "urdmsr.bin32", "match": "urdmsr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for URDMSR",
+  "id": "urdmsr64",
+  "format": "bin",
+  "source": "urdmsr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/urdmsr/",
+  "target": [
+   { "output": "urdmsr.bin64", "match": "urdmsr.bin64.t" }
+  ]
+ }
+]

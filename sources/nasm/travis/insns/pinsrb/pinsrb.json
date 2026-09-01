@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PINSRB",
+  "id": "pinsrb16",
+  "format": "bin",
+  "source": "pinsrb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pinsrb/",
+  "target": [
+   { "output": "pinsrb.bin16", "match": "pinsrb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PINSRB",
+  "id": "pinsrb32",
+  "format": "bin",
+  "source": "pinsrb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pinsrb/",
+  "target": [
+   { "output": "pinsrb.bin32", "match": "pinsrb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PINSRB",
+  "id": "pinsrb64",
+  "format": "bin",
+  "source": "pinsrb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pinsrb/",
+  "target": [
+   { "output": "pinsrb.bin64", "match": "pinsrb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PINSRB",
+  "id": "pinsrb16err",
+  "format": "bin",
+  "source": "pinsrb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pinsrb/",
+  "target": [
+   { "stderr": "pinsrb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PINSRB",
+  "id": "pinsrb32err",
+  "format": "bin",
+  "source": "pinsrb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pinsrb/",
+  "target": [
+   { "stderr": "pinsrb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

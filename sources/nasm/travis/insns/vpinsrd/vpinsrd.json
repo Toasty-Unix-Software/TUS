@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPINSRD",
+  "id": "vpinsrd16",
+  "format": "bin",
+  "source": "vpinsrd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpinsrd/",
+  "target": [
+   { "output": "vpinsrd.bin16", "match": "vpinsrd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPINSRD",
+  "id": "vpinsrd32",
+  "format": "bin",
+  "source": "vpinsrd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpinsrd/",
+  "target": [
+   { "output": "vpinsrd.bin32", "match": "vpinsrd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPINSRD",
+  "id": "vpinsrd64",
+  "format": "bin",
+  "source": "vpinsrd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpinsrd/",
+  "target": [
+   { "output": "vpinsrd.bin64", "match": "vpinsrd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPINSRD",
+  "id": "vpinsrd16err",
+  "format": "bin",
+  "source": "vpinsrd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpinsrd/",
+  "target": [
+   { "stderr": "vpinsrd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPINSRD",
+  "id": "vpinsrd32err",
+  "format": "bin",
+  "source": "vpinsrd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpinsrd/",
+  "target": [
+   { "stderr": "vpinsrd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

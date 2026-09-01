@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSHRDVD",
+  "id": "vpshrdvd16",
+  "format": "bin",
+  "source": "vpshrdvd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshrdvd/",
+  "target": [
+   { "output": "vpshrdvd.bin16", "match": "vpshrdvd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHRDVD",
+  "id": "vpshrdvd32",
+  "format": "bin",
+  "source": "vpshrdvd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshrdvd/",
+  "target": [
+   { "output": "vpshrdvd.bin32", "match": "vpshrdvd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHRDVD",
+  "id": "vpshrdvd64",
+  "format": "bin",
+  "source": "vpshrdvd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshrdvd/",
+  "target": [
+   { "output": "vpshrdvd.bin64", "match": "vpshrdvd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHRDVD",
+  "id": "vpshrdvd16err",
+  "format": "bin",
+  "source": "vpshrdvd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshrdvd/",
+  "target": [
+   { "stderr": "vpshrdvd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHRDVD",
+  "id": "vpshrdvd32err",
+  "format": "bin",
+  "source": "vpshrdvd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshrdvd/",
+  "target": [
+   { "stderr": "vpshrdvd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

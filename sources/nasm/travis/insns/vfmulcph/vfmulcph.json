@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFMULCPH",
+  "id": "vfmulcph16",
+  "format": "bin",
+  "source": "vfmulcph_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmulcph/",
+  "target": [
+   { "output": "vfmulcph.bin16", "match": "vfmulcph.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMULCPH",
+  "id": "vfmulcph32",
+  "format": "bin",
+  "source": "vfmulcph_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmulcph/",
+  "target": [
+   { "output": "vfmulcph.bin32", "match": "vfmulcph.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFMULCPH",
+  "id": "vfmulcph64",
+  "format": "bin",
+  "source": "vfmulcph.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmulcph/",
+  "target": [
+   { "output": "vfmulcph.bin64", "match": "vfmulcph.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMULCPH",
+  "id": "vfmulcph16err",
+  "format": "bin",
+  "source": "vfmulcph_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmulcph/",
+  "target": [
+   { "stderr": "vfmulcph.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFMULCPH",
+  "id": "vfmulcph32err",
+  "format": "bin",
+  "source": "vfmulcph_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfmulcph/",
+  "target": [
+   { "stderr": "vfmulcph.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

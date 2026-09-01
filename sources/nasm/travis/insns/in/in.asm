@@ -1,0 +1,9 @@
+default rel
+	in al, 0x8f
+	in al, 0x5b
+	in ax, 0x19
+	in ax, 0xb9
+	in eax, 0xb5
+	in eax, 0xd0
+	in al, dx
+	in al, dx

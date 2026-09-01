@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMAXUQ",
+  "id": "vpmaxuq16",
+  "format": "bin",
+  "source": "vpmaxuq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmaxuq/",
+  "target": [
+   { "output": "vpmaxuq.bin16", "match": "vpmaxuq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMAXUQ",
+  "id": "vpmaxuq32",
+  "format": "bin",
+  "source": "vpmaxuq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmaxuq/",
+  "target": [
+   { "output": "vpmaxuq.bin32", "match": "vpmaxuq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMAXUQ",
+  "id": "vpmaxuq64",
+  "format": "bin",
+  "source": "vpmaxuq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmaxuq/",
+  "target": [
+   { "output": "vpmaxuq.bin64", "match": "vpmaxuq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMAXUQ",
+  "id": "vpmaxuq16err",
+  "format": "bin",
+  "source": "vpmaxuq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmaxuq/",
+  "target": [
+   { "stderr": "vpmaxuq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMAXUQ",
+  "id": "vpmaxuq32err",
+  "format": "bin",
+  "source": "vpmaxuq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmaxuq/",
+  "target": [
+   { "stderr": "vpmaxuq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

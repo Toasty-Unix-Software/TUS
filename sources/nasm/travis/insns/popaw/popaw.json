@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for POPAW",
+  "id": "popaw16",
+  "format": "bin",
+  "source": "popaw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popaw/",
+  "target": [
+   { "output": "popaw.bin16", "match": "popaw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for POPAW",
+  "id": "popaw32",
+  "format": "bin",
+  "source": "popaw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popaw/",
+  "target": [
+   { "output": "popaw.bin32", "match": "popaw.bin32.t" }
+  ]
+ }
+]

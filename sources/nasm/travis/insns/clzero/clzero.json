@@ -1,0 +1,47 @@
+[
+ {
+  "description": "Pseudorandom test for CLZERO",
+  "id": "clzero16",
+  "format": "bin",
+  "source": "clzero_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clzero/",
+  "target": [
+   { "output": "clzero.bin16", "match": "clzero.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLZERO",
+  "id": "clzero32",
+  "format": "bin",
+  "source": "clzero_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clzero/",
+  "target": [
+   { "output": "clzero.bin32", "match": "clzero.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CLZERO",
+  "id": "clzero16err",
+  "format": "bin",
+  "source": "clzero_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clzero/",
+  "target": [
+   { "stderr": "clzero.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CLZERO",
+  "id": "clzero32err",
+  "format": "bin",
+  "source": "clzero_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clzero/",
+  "target": [
+   { "stderr": "clzero.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

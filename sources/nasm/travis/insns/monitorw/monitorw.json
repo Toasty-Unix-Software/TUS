@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for MONITORW",
+  "id": "monitorw16",
+  "format": "bin",
+  "source": "monitorw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/monitorw/",
+  "target": [
+   { "output": "monitorw.bin16", "match": "monitorw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MONITORW",
+  "id": "monitorw32",
+  "format": "bin",
+  "source": "monitorw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/monitorw/",
+  "target": [
+   { "output": "monitorw.bin32", "match": "monitorw.bin32.t" }
+  ]
+ }
+]

@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for JCXZ",
+  "id": "jcxz16",
+  "format": "bin",
+  "source": "jcxz.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jcxz/",
+  "target": [
+   { "output": "jcxz.bin16", "match": "jcxz.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JCXZ",
+  "id": "jcxz32",
+  "format": "bin",
+  "source": "jcxz.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jcxz/",
+  "target": [
+   { "output": "jcxz.bin32", "match": "jcxz.bin32.t" }
+  ]
+ }
+]

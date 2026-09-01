@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FCMOVNE",
+  "id": "fcmovne16",
+  "format": "bin",
+  "source": "fcmovne.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcmovne/",
+  "target": [
+   { "output": "fcmovne.bin16", "match": "fcmovne.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FCMOVNE",
+  "id": "fcmovne32",
+  "format": "bin",
+  "source": "fcmovne.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcmovne/",
+  "target": [
+   { "output": "fcmovne.bin32", "match": "fcmovne.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FCMOVNE",
+  "id": "fcmovne64",
+  "format": "bin",
+  "source": "fcmovne.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fcmovne/",
+  "target": [
+   { "output": "fcmovne.bin64", "match": "fcmovne.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SAL",
+  "id": "sal64",
+  "format": "bin",
+  "source": "sal.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sal/",
+  "target": [
+   { "output": "sal.bin64", "match": "sal.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SAL",
+  "id": "sal16err",
+  "format": "bin",
+  "source": "sal_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sal/",
+  "target": [
+   { "stderr": "sal.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SAL",
+  "id": "sal32err",
+  "format": "bin",
+  "source": "sal_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sal/",
+  "target": [
+   { "stderr": "sal.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

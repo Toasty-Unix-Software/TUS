@@ -1,0 +1,10 @@
+default rel
+	vbroadcasti32x8 zmm4, yword [0x16a]
+	vbroadcasti32x8 zmm4, yword [0xfd0]
+	vbroadcasti32x8 zmm12, yword [0x265]
+	vbroadcasti32x8 zmm20, yword [0x848]
+	vbroadcasti32x8 zmm1{k2}, yword [0x1fd]
+	vbroadcasti32x8 zmm4{k6}{z}, yword [0xe7b]
+	vbroadcasti32x8 zmm3, yword [eax+1]
+	vbroadcasti32x8 zmm7, yword [eax+64]
+	vbroadcasti32x8 zmm1, [0xf78]

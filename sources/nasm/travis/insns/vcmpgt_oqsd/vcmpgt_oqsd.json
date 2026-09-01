@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPGT_OQSD",
+  "id": "vcmpgt_oqsd16",
+  "format": "bin",
+  "source": "vcmpgt_oqsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgt_oqsd/",
+  "target": [
+   { "output": "vcmpgt_oqsd.bin16", "match": "vcmpgt_oqsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPGT_OQSD",
+  "id": "vcmpgt_oqsd32",
+  "format": "bin",
+  "source": "vcmpgt_oqsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgt_oqsd/",
+  "target": [
+   { "output": "vcmpgt_oqsd.bin32", "match": "vcmpgt_oqsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPGT_OQSD",
+  "id": "vcmpgt_oqsd64",
+  "format": "bin",
+  "source": "vcmpgt_oqsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgt_oqsd/",
+  "target": [
+   { "output": "vcmpgt_oqsd.bin64", "match": "vcmpgt_oqsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPGT_OQSD",
+  "id": "vcmpgt_oqsd16err",
+  "format": "bin",
+  "source": "vcmpgt_oqsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgt_oqsd/",
+  "target": [
+   { "stderr": "vcmpgt_oqsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPGT_OQSD",
+  "id": "vcmpgt_oqsd32err",
+  "format": "bin",
+  "source": "vcmpgt_oqsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgt_oqsd/",
+  "target": [
+   { "stderr": "vcmpgt_oqsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

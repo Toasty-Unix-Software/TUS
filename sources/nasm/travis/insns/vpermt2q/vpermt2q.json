@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPERMT2Q",
+  "id": "vpermt2q16",
+  "format": "bin",
+  "source": "vpermt2q_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermt2q/",
+  "target": [
+   { "output": "vpermt2q.bin16", "match": "vpermt2q.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPERMT2Q",
+  "id": "vpermt2q32",
+  "format": "bin",
+  "source": "vpermt2q_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermt2q/",
+  "target": [
+   { "output": "vpermt2q.bin32", "match": "vpermt2q.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPERMT2Q",
+  "id": "vpermt2q64",
+  "format": "bin",
+  "source": "vpermt2q.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermt2q/",
+  "target": [
+   { "output": "vpermt2q.bin64", "match": "vpermt2q.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPERMT2Q",
+  "id": "vpermt2q16err",
+  "format": "bin",
+  "source": "vpermt2q_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermt2q/",
+  "target": [
+   { "stderr": "vpermt2q.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPERMT2Q",
+  "id": "vpermt2q32err",
+  "format": "bin",
+  "source": "vpermt2q_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermt2q/",
+  "target": [
+   { "stderr": "vpermt2q.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

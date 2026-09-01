@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FICOMP",
+  "id": "ficomp16",
+  "format": "bin",
+  "source": "ficomp_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ficomp/",
+  "target": [
+   { "output": "ficomp.bin16", "match": "ficomp.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FICOMP",
+  "id": "ficomp32",
+  "format": "bin",
+  "source": "ficomp_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ficomp/",
+  "target": [
+   { "output": "ficomp.bin32", "match": "ficomp.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FICOMP",
+  "id": "ficomp64",
+  "format": "bin",
+  "source": "ficomp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ficomp/",
+  "target": [
+   { "output": "ficomp.bin64", "match": "ficomp.bin64.t" }
+  ]
+ }
+]

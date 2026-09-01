@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for DAA",
+  "id": "daa16",
+  "format": "bin",
+  "source": "daa.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/daa/",
+  "target": [
+   { "output": "daa.bin16", "match": "daa.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DAA",
+  "id": "daa32",
+  "format": "bin",
+  "source": "daa.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/daa/",
+  "target": [
+   { "output": "daa.bin32", "match": "daa.bin32.t" }
+  ]
+ }
+]

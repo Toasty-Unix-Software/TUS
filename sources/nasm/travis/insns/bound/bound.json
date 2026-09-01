@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for BOUND",
+  "id": "bound16",
+  "format": "bin",
+  "source": "bound.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bound/",
+  "target": [
+   { "output": "bound.bin16", "match": "bound.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for BOUND",
+  "id": "bound32",
+  "format": "bin",
+  "source": "bound.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/bound/",
+  "target": [
+   { "output": "bound.bin32", "match": "bound.bin32.t" }
+  ]
+ }
+]

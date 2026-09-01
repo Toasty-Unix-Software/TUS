@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMINPD",
+  "id": "vminpd16",
+  "format": "bin",
+  "source": "vminpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminpd/",
+  "target": [
+   { "output": "vminpd.bin16", "match": "vminpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMINPD",
+  "id": "vminpd32",
+  "format": "bin",
+  "source": "vminpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminpd/",
+  "target": [
+   { "output": "vminpd.bin32", "match": "vminpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMINPD",
+  "id": "vminpd64",
+  "format": "bin",
+  "source": "vminpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminpd/",
+  "target": [
+   { "output": "vminpd.bin64", "match": "vminpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMINPD",
+  "id": "vminpd16err",
+  "format": "bin",
+  "source": "vminpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminpd/",
+  "target": [
+   { "stderr": "vminpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMINPD",
+  "id": "vminpd32err",
+  "format": "bin",
+  "source": "vminpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vminpd/",
+  "target": [
+   { "stderr": "vminpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

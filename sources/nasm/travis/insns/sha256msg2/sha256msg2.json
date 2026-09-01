@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for SHA256MSG2",
+  "id": "sha256msg216",
+  "format": "bin",
+  "source": "sha256msg2_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sha256msg2/",
+  "target": [
+   { "output": "sha256msg2.bin16", "match": "sha256msg2.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHA256MSG2",
+  "id": "sha256msg232",
+  "format": "bin",
+  "source": "sha256msg2_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sha256msg2/",
+  "target": [
+   { "output": "sha256msg2.bin32", "match": "sha256msg2.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHA256MSG2",
+  "id": "sha256msg264",
+  "format": "bin",
+  "source": "sha256msg2.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sha256msg2/",
+  "target": [
+   { "output": "sha256msg2.bin64", "match": "sha256msg2.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHA256MSG2",
+  "id": "sha256msg216err",
+  "format": "bin",
+  "source": "sha256msg2_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sha256msg2/",
+  "target": [
+   { "stderr": "sha256msg2.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SHA256MSG2",
+  "id": "sha256msg232err",
+  "format": "bin",
+  "source": "sha256msg2_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sha256msg2/",
+  "target": [
+   { "stderr": "sha256msg2.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

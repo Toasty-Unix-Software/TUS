@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for UDW",
+  "id": "udw16",
+  "format": "bin",
+  "source": "udw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/udw/",
+  "target": [
+   { "output": "udw.bin16", "match": "udw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UDW",
+  "id": "udw32",
+  "format": "bin",
+  "source": "udw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/udw/",
+  "target": [
+   { "output": "udw.bin32", "match": "udw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UDW",
+  "id": "udw64",
+  "format": "bin",
+  "source": "udw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/udw/",
+  "target": [
+   { "output": "udw.bin64", "match": "udw.bin64.t" }
+  ]
+ }
+]

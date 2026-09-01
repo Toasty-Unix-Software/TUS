@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for PTWRITE",
+  "id": "ptwrite64",
+  "format": "bin",
+  "source": "ptwrite.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ptwrite/",
+  "target": [
+   { "output": "ptwrite.bin64", "match": "ptwrite.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PTWRITE",
+  "id": "ptwrite16err",
+  "format": "bin",
+  "source": "ptwrite_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ptwrite/",
+  "target": [
+   { "stderr": "ptwrite.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PTWRITE",
+  "id": "ptwrite32err",
+  "format": "bin",
+  "source": "ptwrite_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ptwrite/",
+  "target": [
+   { "stderr": "ptwrite.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

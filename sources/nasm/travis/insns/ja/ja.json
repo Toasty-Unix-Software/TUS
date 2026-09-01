@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for JA",
+  "id": "ja16",
+  "format": "bin",
+  "source": "ja_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ja/",
+  "target": [
+   { "output": "ja.bin16", "match": "ja.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JA",
+  "id": "ja32",
+  "format": "bin",
+  "source": "ja_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ja/",
+  "target": [
+   { "output": "ja.bin32", "match": "ja.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JA",
+  "id": "ja64",
+  "format": "bin",
+  "source": "ja.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ja/",
+  "target": [
+   { "output": "ja.bin64", "match": "ja.bin64.t" }
+  ]
+ }
+]

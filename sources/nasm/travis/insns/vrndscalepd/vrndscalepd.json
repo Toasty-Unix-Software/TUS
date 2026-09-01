@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VRNDSCALEPD",
+  "id": "vrndscalepd16",
+  "format": "bin",
+  "source": "vrndscalepd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrndscalepd/",
+  "target": [
+   { "output": "vrndscalepd.bin16", "match": "vrndscalepd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRNDSCALEPD",
+  "id": "vrndscalepd32",
+  "format": "bin",
+  "source": "vrndscalepd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrndscalepd/",
+  "target": [
+   { "output": "vrndscalepd.bin32", "match": "vrndscalepd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VRNDSCALEPD",
+  "id": "vrndscalepd64",
+  "format": "bin",
+  "source": "vrndscalepd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrndscalepd/",
+  "target": [
+   { "output": "vrndscalepd.bin64", "match": "vrndscalepd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRNDSCALEPD",
+  "id": "vrndscalepd16err",
+  "format": "bin",
+  "source": "vrndscalepd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrndscalepd/",
+  "target": [
+   { "stderr": "vrndscalepd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VRNDSCALEPD",
+  "id": "vrndscalepd32err",
+  "format": "bin",
+  "source": "vrndscalepd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vrndscalepd/",
+  "target": [
+   { "stderr": "vrndscalepd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

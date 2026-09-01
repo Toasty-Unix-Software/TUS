@@ -1,0 +1,59 @@
+[
+ {
+  "description": "Pseudorandom test for CMP",
+  "id": "cmp16",
+  "format": "bin",
+  "source": "cmp_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmp/",
+  "target": [
+   { "output": "cmp.bin16", "match": "cmp.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMP",
+  "id": "cmp32",
+  "format": "bin",
+  "source": "cmp_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmp/",
+  "target": [
+   { "output": "cmp.bin32", "match": "cmp.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMP",
+  "id": "cmp64",
+  "format": "bin",
+  "source": "cmp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmp/",
+  "target": [
+   { "output": "cmp.bin64", "match": "cmp.bin64.t" },
+   { "stderr": "cmp.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMP",
+  "id": "cmp16err",
+  "format": "bin",
+  "source": "cmp_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmp/",
+  "target": [
+   { "stderr": "cmp.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMP",
+  "id": "cmp32err",
+  "format": "bin",
+  "source": "cmp_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmp/",
+  "target": [
+   { "stderr": "cmp.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

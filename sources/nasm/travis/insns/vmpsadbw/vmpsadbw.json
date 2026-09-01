@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMPSADBW",
+  "id": "vmpsadbw16",
+  "format": "bin",
+  "source": "vmpsadbw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmpsadbw/",
+  "target": [
+   { "output": "vmpsadbw.bin16", "match": "vmpsadbw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMPSADBW",
+  "id": "vmpsadbw32",
+  "format": "bin",
+  "source": "vmpsadbw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmpsadbw/",
+  "target": [
+   { "output": "vmpsadbw.bin32", "match": "vmpsadbw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMPSADBW",
+  "id": "vmpsadbw64",
+  "format": "bin",
+  "source": "vmpsadbw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmpsadbw/",
+  "target": [
+   { "output": "vmpsadbw.bin64", "match": "vmpsadbw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMPSADBW",
+  "id": "vmpsadbw16err",
+  "format": "bin",
+  "source": "vmpsadbw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmpsadbw/",
+  "target": [
+   { "stderr": "vmpsadbw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMPSADBW",
+  "id": "vmpsadbw32err",
+  "format": "bin",
+  "source": "vmpsadbw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmpsadbw/",
+  "target": [
+   { "stderr": "vmpsadbw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

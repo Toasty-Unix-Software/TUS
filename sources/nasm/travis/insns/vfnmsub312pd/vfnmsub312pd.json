@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFNMSUB312PD",
+  "id": "vfnmsub312pd16",
+  "format": "bin",
+  "source": "vfnmsub312pd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub312pd/",
+  "target": [
+   { "output": "vfnmsub312pd.bin16", "match": "vfnmsub312pd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMSUB312PD",
+  "id": "vfnmsub312pd32",
+  "format": "bin",
+  "source": "vfnmsub312pd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub312pd/",
+  "target": [
+   { "output": "vfnmsub312pd.bin32", "match": "vfnmsub312pd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFNMSUB312PD",
+  "id": "vfnmsub312pd64",
+  "format": "bin",
+  "source": "vfnmsub312pd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub312pd/",
+  "target": [
+   { "output": "vfnmsub312pd.bin64", "match": "vfnmsub312pd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMSUB312PD",
+  "id": "vfnmsub312pd16err",
+  "format": "bin",
+  "source": "vfnmsub312pd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub312pd/",
+  "target": [
+   { "stderr": "vfnmsub312pd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFNMSUB312PD",
+  "id": "vfnmsub312pd32err",
+  "format": "bin",
+  "source": "vfnmsub312pd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfnmsub312pd/",
+  "target": [
+   { "stderr": "vfnmsub312pd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPBROADCASTW",
+  "id": "vpbroadcastw16",
+  "format": "bin",
+  "source": "vpbroadcastw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpbroadcastw/",
+  "target": [
+   { "output": "vpbroadcastw.bin16", "match": "vpbroadcastw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPBROADCASTW",
+  "id": "vpbroadcastw32",
+  "format": "bin",
+  "source": "vpbroadcastw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpbroadcastw/",
+  "target": [
+   { "output": "vpbroadcastw.bin32", "match": "vpbroadcastw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPBROADCASTW",
+  "id": "vpbroadcastw64",
+  "format": "bin",
+  "source": "vpbroadcastw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpbroadcastw/",
+  "target": [
+   { "output": "vpbroadcastw.bin64", "match": "vpbroadcastw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPBROADCASTW",
+  "id": "vpbroadcastw16err",
+  "format": "bin",
+  "source": "vpbroadcastw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpbroadcastw/",
+  "target": [
+   { "stderr": "vpbroadcastw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPBROADCASTW",
+  "id": "vpbroadcastw32err",
+  "format": "bin",
+  "source": "vpbroadcastw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpbroadcastw/",
+  "target": [
+   { "stderr": "vpbroadcastw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMAXPS",
+  "id": "vmaxps16",
+  "format": "bin",
+  "source": "vmaxps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaxps/",
+  "target": [
+   { "output": "vmaxps.bin16", "match": "vmaxps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMAXPS",
+  "id": "vmaxps32",
+  "format": "bin",
+  "source": "vmaxps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaxps/",
+  "target": [
+   { "output": "vmaxps.bin32", "match": "vmaxps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMAXPS",
+  "id": "vmaxps64",
+  "format": "bin",
+  "source": "vmaxps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaxps/",
+  "target": [
+   { "output": "vmaxps.bin64", "match": "vmaxps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMAXPS",
+  "id": "vmaxps16err",
+  "format": "bin",
+  "source": "vmaxps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaxps/",
+  "target": [
+   { "stderr": "vmaxps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMAXPS",
+  "id": "vmaxps32err",
+  "format": "bin",
+  "source": "vmaxps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmaxps/",
+  "target": [
+   { "stderr": "vmaxps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

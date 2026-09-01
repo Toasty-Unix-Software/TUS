@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for JLE",
+  "id": "jle16",
+  "format": "bin",
+  "source": "jle_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jle/",
+  "target": [
+   { "output": "jle.bin16", "match": "jle.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JLE",
+  "id": "jle32",
+  "format": "bin",
+  "source": "jle_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jle/",
+  "target": [
+   { "output": "jle.bin32", "match": "jle.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JLE",
+  "id": "jle64",
+  "format": "bin",
+  "source": "jle.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jle/",
+  "target": [
+   { "output": "jle.bin64", "match": "jle.bin64.t" }
+  ]
+ }
+]

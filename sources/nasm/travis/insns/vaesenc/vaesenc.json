@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VAESENC",
+  "id": "vaesenc16",
+  "format": "bin",
+  "source": "vaesenc_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaesenc/",
+  "target": [
+   { "output": "vaesenc.bin16", "match": "vaesenc.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VAESENC",
+  "id": "vaesenc32",
+  "format": "bin",
+  "source": "vaesenc_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaesenc/",
+  "target": [
+   { "output": "vaesenc.bin32", "match": "vaesenc.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VAESENC",
+  "id": "vaesenc64",
+  "format": "bin",
+  "source": "vaesenc.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaesenc/",
+  "target": [
+   { "output": "vaesenc.bin64", "match": "vaesenc.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VAESENC",
+  "id": "vaesenc16err",
+  "format": "bin",
+  "source": "vaesenc_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaesenc/",
+  "target": [
+   { "stderr": "vaesenc.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VAESENC",
+  "id": "vaesenc32err",
+  "format": "bin",
+  "source": "vaesenc_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vaesenc/",
+  "target": [
+   { "stderr": "vaesenc.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

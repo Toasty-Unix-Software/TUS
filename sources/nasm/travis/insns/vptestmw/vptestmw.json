@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPTESTMW",
+  "id": "vptestmw16",
+  "format": "bin",
+  "source": "vptestmw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmw/",
+  "target": [
+   { "output": "vptestmw.bin16", "match": "vptestmw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPTESTMW",
+  "id": "vptestmw32",
+  "format": "bin",
+  "source": "vptestmw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmw/",
+  "target": [
+   { "output": "vptestmw.bin32", "match": "vptestmw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPTESTMW",
+  "id": "vptestmw64",
+  "format": "bin",
+  "source": "vptestmw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmw/",
+  "target": [
+   { "output": "vptestmw.bin64", "match": "vptestmw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPTESTMW",
+  "id": "vptestmw16err",
+  "format": "bin",
+  "source": "vptestmw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmw/",
+  "target": [
+   { "stderr": "vptestmw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPTESTMW",
+  "id": "vptestmw32err",
+  "format": "bin",
+  "source": "vptestmw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vptestmw/",
+  "target": [
+   { "stderr": "vptestmw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

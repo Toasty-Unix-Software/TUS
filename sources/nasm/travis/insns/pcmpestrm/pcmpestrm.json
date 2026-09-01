@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PCMPESTRM",
+  "id": "pcmpestrm16",
+  "format": "bin",
+  "source": "pcmpestrm_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpestrm/",
+  "target": [
+   { "output": "pcmpestrm.bin16", "match": "pcmpestrm.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCMPESTRM",
+  "id": "pcmpestrm32",
+  "format": "bin",
+  "source": "pcmpestrm_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpestrm/",
+  "target": [
+   { "output": "pcmpestrm.bin32", "match": "pcmpestrm.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PCMPESTRM",
+  "id": "pcmpestrm64",
+  "format": "bin",
+  "source": "pcmpestrm.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpestrm/",
+  "target": [
+   { "output": "pcmpestrm.bin64", "match": "pcmpestrm.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCMPESTRM",
+  "id": "pcmpestrm16err",
+  "format": "bin",
+  "source": "pcmpestrm_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpestrm/",
+  "target": [
+   { "stderr": "pcmpestrm.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PCMPESTRM",
+  "id": "pcmpestrm32err",
+  "format": "bin",
+  "source": "pcmpestrm_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pcmpestrm/",
+  "target": [
+   { "stderr": "pcmpestrm.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETNA",
+  "id": "setna64",
+  "format": "bin",
+  "source": "setna.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setna/",
+  "target": [
+   { "output": "setna.bin64", "match": "setna.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNA",
+  "id": "setna16err",
+  "format": "bin",
+  "source": "setna_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setna/",
+  "target": [
+   { "stderr": "setna.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNA",
+  "id": "setna32err",
+  "format": "bin",
+  "source": "setna_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setna/",
+  "target": [
+   { "stderr": "setna.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

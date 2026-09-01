@@ -1,0 +1,11 @@
+default rel
+	fidiv dword [0x74b]
+	fidiv dword [0x593]
+	fidiv word [0x9f3]
+	fidiv word [0x224]
+	fidiv dword [eax+1]
+	fidiv dword [eax+64]
+	fidiv word [eax+1]
+	fidiv word [eax+64]
+	fidiv [0x660]
+	fidiv [0x403]

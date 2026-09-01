@@ -1,0 +1,2 @@
+./travis/insns/movups/movups_narrow.asm:7: error: invalid operands in 32-bit mode
+./travis/insns/movups/movups_narrow.asm:8: error: invalid operands in 32-bit mode

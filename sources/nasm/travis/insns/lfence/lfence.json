@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for LFENCE",
+  "id": "lfence16",
+  "format": "bin",
+  "source": "lfence.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lfence/",
+  "target": [
+   { "output": "lfence.bin16", "match": "lfence.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LFENCE",
+  "id": "lfence32",
+  "format": "bin",
+  "source": "lfence.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lfence/",
+  "target": [
+   { "output": "lfence.bin32", "match": "lfence.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LFENCE",
+  "id": "lfence64",
+  "format": "bin",
+  "source": "lfence.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lfence/",
+  "target": [
+   { "output": "lfence.bin64", "match": "lfence.bin64.t" }
+  ]
+ }
+]

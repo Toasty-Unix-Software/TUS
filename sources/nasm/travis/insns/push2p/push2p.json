@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for PUSH2P",
+  "id": "push2p64",
+  "format": "bin",
+  "source": "push2p.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/push2p/",
+  "target": [
+   { "output": "push2p.bin64", "match": "push2p.bin64.t" }
+  ]
+ }
+]

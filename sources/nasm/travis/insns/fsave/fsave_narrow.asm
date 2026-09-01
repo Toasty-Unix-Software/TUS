@@ -1,0 +1,2 @@
+	fsave [0x49d]
+	fsave [0x7e1]

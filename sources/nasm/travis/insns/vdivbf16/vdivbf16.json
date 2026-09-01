@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VDIVBF16",
+  "id": "vdivbf1616",
+  "format": "bin",
+  "source": "vdivbf16_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdivbf16/",
+  "target": [
+   { "output": "vdivbf16.bin16", "match": "vdivbf16.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VDIVBF16",
+  "id": "vdivbf1632",
+  "format": "bin",
+  "source": "vdivbf16_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdivbf16/",
+  "target": [
+   { "output": "vdivbf16.bin32", "match": "vdivbf16.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VDIVBF16",
+  "id": "vdivbf1664",
+  "format": "bin",
+  "source": "vdivbf16.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdivbf16/",
+  "target": [
+   { "output": "vdivbf16.bin64", "match": "vdivbf16.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VDIVBF16",
+  "id": "vdivbf1616err",
+  "format": "bin",
+  "source": "vdivbf16_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdivbf16/",
+  "target": [
+   { "stderr": "vdivbf16.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VDIVBF16",
+  "id": "vdivbf1632err",
+  "format": "bin",
+  "source": "vdivbf16_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vdivbf16/",
+  "target": [
+   { "stderr": "vdivbf16.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

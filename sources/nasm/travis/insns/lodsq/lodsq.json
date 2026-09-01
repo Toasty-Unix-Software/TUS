@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for LODSQ",
+  "id": "lodsq64",
+  "format": "bin",
+  "source": "lodsq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lodsq/",
+  "target": [
+   { "output": "lodsq.bin64", "match": "lodsq.bin64.t" }
+  ]
+ }
+]

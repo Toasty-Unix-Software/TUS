@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PMINUD",
+  "id": "pminud16",
+  "format": "bin",
+  "source": "pminud_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pminud/",
+  "target": [
+   { "output": "pminud.bin16", "match": "pminud.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMINUD",
+  "id": "pminud32",
+  "format": "bin",
+  "source": "pminud_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pminud/",
+  "target": [
+   { "output": "pminud.bin32", "match": "pminud.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMINUD",
+  "id": "pminud64",
+  "format": "bin",
+  "source": "pminud.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pminud/",
+  "target": [
+   { "output": "pminud.bin64", "match": "pminud.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMINUD",
+  "id": "pminud16err",
+  "format": "bin",
+  "source": "pminud_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pminud/",
+  "target": [
+   { "stderr": "pminud.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMINUD",
+  "id": "pminud32err",
+  "format": "bin",
+  "source": "pminud_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pminud/",
+  "target": [
+   { "stderr": "pminud.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

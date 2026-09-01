@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for KMOVQ",
+  "id": "kmovq16",
+  "format": "bin",
+  "source": "kmovq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kmovq/",
+  "target": [
+   { "output": "kmovq.bin16", "match": "kmovq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KMOVQ",
+  "id": "kmovq32",
+  "format": "bin",
+  "source": "kmovq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kmovq/",
+  "target": [
+   { "output": "kmovq.bin32", "match": "kmovq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KMOVQ",
+  "id": "kmovq64",
+  "format": "bin",
+  "source": "kmovq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kmovq/",
+  "target": [
+   { "output": "kmovq.bin64", "match": "kmovq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for KMOVQ",
+  "id": "kmovq16err",
+  "format": "bin",
+  "source": "kmovq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kmovq/",
+  "target": [
+   { "stderr": "kmovq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for KMOVQ",
+  "id": "kmovq32err",
+  "format": "bin",
+  "source": "kmovq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kmovq/",
+  "target": [
+   { "stderr": "kmovq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

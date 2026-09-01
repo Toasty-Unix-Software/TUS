@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for STOSQ",
+  "id": "stosq64",
+  "format": "bin",
+  "source": "stosq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/stosq/",
+  "target": [
+   { "output": "stosq.bin64", "match": "stosq.bin64.t" }
+  ]
+ }
+]

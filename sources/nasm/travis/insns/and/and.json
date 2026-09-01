@@ -1,0 +1,59 @@
+[
+ {
+  "description": "Pseudorandom test for AND",
+  "id": "and16",
+  "format": "bin",
+  "source": "and_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/and/",
+  "target": [
+   { "output": "and.bin16", "match": "and.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AND",
+  "id": "and32",
+  "format": "bin",
+  "source": "and_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/and/",
+  "target": [
+   { "output": "and.bin32", "match": "and.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AND",
+  "id": "and64",
+  "format": "bin",
+  "source": "and.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/and/",
+  "target": [
+   { "output": "and.bin64", "match": "and.bin64.t" },
+   { "stderr": "and.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AND",
+  "id": "and16err",
+  "format": "bin",
+  "source": "and_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/and/",
+  "target": [
+   { "stderr": "and.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AND",
+  "id": "and32err",
+  "format": "bin",
+  "source": "and_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/and/",
+  "target": [
+   { "stderr": "and.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

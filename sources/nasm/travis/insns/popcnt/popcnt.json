@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for POPCNT",
+  "id": "popcnt16",
+  "format": "bin",
+  "source": "popcnt_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popcnt/",
+  "target": [
+   { "output": "popcnt.bin16", "match": "popcnt.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for POPCNT",
+  "id": "popcnt32",
+  "format": "bin",
+  "source": "popcnt_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popcnt/",
+  "target": [
+   { "output": "popcnt.bin32", "match": "popcnt.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for POPCNT",
+  "id": "popcnt64",
+  "format": "bin",
+  "source": "popcnt.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popcnt/",
+  "target": [
+   { "output": "popcnt.bin64", "match": "popcnt.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for POPCNT",
+  "id": "popcnt16err",
+  "format": "bin",
+  "source": "popcnt_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popcnt/",
+  "target": [
+   { "stderr": "popcnt.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for POPCNT",
+  "id": "popcnt32err",
+  "format": "bin",
+  "source": "popcnt_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popcnt/",
+  "target": [
+   { "stderr": "popcnt.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

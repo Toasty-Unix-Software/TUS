@@ -1,0 +1,2 @@
+./travis/insns/incsspd/incsspd_narrow.asm:5: error: invalid operands in 32-bit mode
+./travis/insns/incsspd/incsspd_narrow.asm:6: error: invalid operands in 32-bit mode

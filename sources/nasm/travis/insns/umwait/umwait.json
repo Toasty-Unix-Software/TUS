@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for UMWAIT",
+  "id": "umwait16",
+  "format": "bin",
+  "source": "umwait_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/umwait/",
+  "target": [
+   { "output": "umwait.bin16", "match": "umwait.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UMWAIT",
+  "id": "umwait32",
+  "format": "bin",
+  "source": "umwait_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/umwait/",
+  "target": [
+   { "output": "umwait.bin32", "match": "umwait.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UMWAIT",
+  "id": "umwait64",
+  "format": "bin",
+  "source": "umwait.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/umwait/",
+  "target": [
+   { "output": "umwait.bin64", "match": "umwait.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for UMWAIT",
+  "id": "umwait16err",
+  "format": "bin",
+  "source": "umwait_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/umwait/",
+  "target": [
+   { "stderr": "umwait.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for UMWAIT",
+  "id": "umwait32err",
+  "format": "bin",
+  "source": "umwait_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/umwait/",
+  "target": [
+   { "stderr": "umwait.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

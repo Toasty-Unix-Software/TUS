@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CRC32",
+  "id": "crc3264",
+  "format": "bin",
+  "source": "crc32.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/crc32/",
+  "target": [
+   { "output": "crc32.bin64", "match": "crc32.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CRC32",
+  "id": "crc3216err",
+  "format": "bin",
+  "source": "crc32_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/crc32/",
+  "target": [
+   { "stderr": "crc32.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CRC32",
+  "id": "crc3232err",
+  "format": "bin",
+  "source": "crc32_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/crc32/",
+  "target": [
+   { "stderr": "crc32.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MOVNTPS",
+  "id": "movntps16",
+  "format": "bin",
+  "source": "movntps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movntps/",
+  "target": [
+   { "output": "movntps.bin16", "match": "movntps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVNTPS",
+  "id": "movntps32",
+  "format": "bin",
+  "source": "movntps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movntps/",
+  "target": [
+   { "output": "movntps.bin32", "match": "movntps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVNTPS",
+  "id": "movntps64",
+  "format": "bin",
+  "source": "movntps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movntps/",
+  "target": [
+   { "output": "movntps.bin64", "match": "movntps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVNTPS",
+  "id": "movntps16err",
+  "format": "bin",
+  "source": "movntps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movntps/",
+  "target": [
+   { "stderr": "movntps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVNTPS",
+  "id": "movntps32err",
+  "format": "bin",
+  "source": "movntps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movntps/",
+  "target": [
+   { "stderr": "movntps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

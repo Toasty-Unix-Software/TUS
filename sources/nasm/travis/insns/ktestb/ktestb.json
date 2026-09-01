@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KTESTB",
+  "id": "ktestb16",
+  "format": "bin",
+  "source": "ktestb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ktestb/",
+  "target": [
+   { "output": "ktestb.bin16", "match": "ktestb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KTESTB",
+  "id": "ktestb32",
+  "format": "bin",
+  "source": "ktestb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ktestb/",
+  "target": [
+   { "output": "ktestb.bin32", "match": "ktestb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KTESTB",
+  "id": "ktestb64",
+  "format": "bin",
+  "source": "ktestb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ktestb/",
+  "target": [
+   { "output": "ktestb.bin64", "match": "ktestb.bin64.t" }
+  ]
+ }
+]

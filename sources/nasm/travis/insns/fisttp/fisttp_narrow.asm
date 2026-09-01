@@ -1,0 +1,6 @@
+	fisttp word [0x35f]
+	fisttp word [0x8eb]
+	fisttp dword [0xde8]
+	fisttp dword [0x292]
+	fisttp qword [0xa55]
+	fisttp qword [0x449]

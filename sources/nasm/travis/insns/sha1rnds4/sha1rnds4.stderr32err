@@ -1,0 +1,1 @@
+./travis/insns/sha1rnds4/sha1rnds4_narrow.asm:5: error: invalid operands in 32-bit mode

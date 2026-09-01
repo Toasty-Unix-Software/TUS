@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for MOVSXD",
+  "id": "movsxd64",
+  "format": "bin",
+  "source": "movsxd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movsxd/",
+  "target": [
+   { "output": "movsxd.bin64", "match": "movsxd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVSXD",
+  "id": "movsxd16err",
+  "format": "bin",
+  "source": "movsxd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movsxd/",
+  "target": [
+   { "stderr": "movsxd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVSXD",
+  "id": "movsxd32err",
+  "format": "bin",
+  "source": "movsxd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movsxd/",
+  "target": [
+   { "stderr": "movsxd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

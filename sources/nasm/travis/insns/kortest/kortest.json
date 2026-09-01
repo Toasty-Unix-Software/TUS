@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for KORTEST",
+  "id": "kortest16",
+  "format": "bin",
+  "source": "kortest.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kortest/",
+  "target": [
+   { "output": "kortest.bin16", "match": "kortest.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KORTEST",
+  "id": "kortest32",
+  "format": "bin",
+  "source": "kortest.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kortest/",
+  "target": [
+   { "output": "kortest.bin32", "match": "kortest.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for KORTEST",
+  "id": "kortest64",
+  "format": "bin",
+  "source": "kortest.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/kortest/",
+  "target": [
+   { "output": "kortest.bin64", "match": "kortest.bin64.t" }
+  ]
+ }
+]

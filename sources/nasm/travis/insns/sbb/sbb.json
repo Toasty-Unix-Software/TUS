@@ -1,0 +1,59 @@
+[
+ {
+  "description": "Pseudorandom test for SBB",
+  "id": "sbb16",
+  "format": "bin",
+  "source": "sbb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sbb/",
+  "target": [
+   { "output": "sbb.bin16", "match": "sbb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SBB",
+  "id": "sbb32",
+  "format": "bin",
+  "source": "sbb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sbb/",
+  "target": [
+   { "output": "sbb.bin32", "match": "sbb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SBB",
+  "id": "sbb64",
+  "format": "bin",
+  "source": "sbb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sbb/",
+  "target": [
+   { "output": "sbb.bin64", "match": "sbb.bin64.t" },
+   { "stderr": "sbb.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SBB",
+  "id": "sbb16err",
+  "format": "bin",
+  "source": "sbb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sbb/",
+  "target": [
+   { "stderr": "sbb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SBB",
+  "id": "sbb32err",
+  "format": "bin",
+  "source": "sbb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sbb/",
+  "target": [
+   { "stderr": "sbb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

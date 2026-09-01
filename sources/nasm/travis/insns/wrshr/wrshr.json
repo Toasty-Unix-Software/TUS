@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for WRSHR",
+  "id": "wrshr16",
+  "format": "bin",
+  "source": "wrshr.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrshr/",
+  "target": [
+   { "output": "wrshr.bin16", "match": "wrshr.bin16.t" },
+   { "stderr": "wrshr.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for WRSHR",
+  "id": "wrshr32",
+  "format": "bin",
+  "source": "wrshr.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrshr/",
+  "target": [
+   { "output": "wrshr.bin32", "match": "wrshr.bin32.t" },
+   { "stderr": "wrshr.stderr32" }
+  ]
+ }
+]

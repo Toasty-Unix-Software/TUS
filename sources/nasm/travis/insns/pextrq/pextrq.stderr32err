@@ -1,0 +1,3 @@
+./travis/insns/pextrq/pextrq_narrow.asm:1: error: instruction not supported in 32-bit mode
+./travis/insns/pextrq/pextrq_narrow.asm:2: error: instruction not supported in 32-bit mode
+./travis/insns/pextrq/pextrq_narrow.asm:5: error: instruction not supported in 32-bit mode

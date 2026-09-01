@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for ORTESTB",
+  "id": "ortestb16",
+  "format": "bin",
+  "source": "ortestb.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ortestb/",
+  "target": [
+   { "output": "ortestb.bin16", "match": "ortestb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ORTESTB",
+  "id": "ortestb32",
+  "format": "bin",
+  "source": "ortestb.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ortestb/",
+  "target": [
+   { "output": "ortestb.bin32", "match": "ortestb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ORTESTB",
+  "id": "ortestb64",
+  "format": "bin",
+  "source": "ortestb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ortestb/",
+  "target": [
+   { "output": "ortestb.bin64", "match": "ortestb.bin64.t" }
+  ]
+ }
+]

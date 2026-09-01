@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for JNO",
+  "id": "jno16",
+  "format": "bin",
+  "source": "jno_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jno/",
+  "target": [
+   { "output": "jno.bin16", "match": "jno.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JNO",
+  "id": "jno32",
+  "format": "bin",
+  "source": "jno_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jno/",
+  "target": [
+   { "output": "jno.bin32", "match": "jno.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for JNO",
+  "id": "jno64",
+  "format": "bin",
+  "source": "jno.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/jno/",
+  "target": [
+   { "output": "jno.bin64", "match": "jno.bin64.t" }
+  ]
+ }
+]

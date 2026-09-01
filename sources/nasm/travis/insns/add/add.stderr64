@@ -1,0 +1,3 @@
+./travis/insns/add/add.asm:88: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/add/add.asm:90: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/add/add.asm:92: warning: byte exceeds bounds [-w+number-overflow]

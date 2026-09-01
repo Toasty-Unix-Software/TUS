@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VSHA512RNDS2",
+  "id": "vsha512rnds216",
+  "format": "bin",
+  "source": "vsha512rnds2_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsha512rnds2/",
+  "target": [
+   { "output": "vsha512rnds2.bin16", "match": "vsha512rnds2.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSHA512RNDS2",
+  "id": "vsha512rnds232",
+  "format": "bin",
+  "source": "vsha512rnds2_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsha512rnds2/",
+  "target": [
+   { "output": "vsha512rnds2.bin32", "match": "vsha512rnds2.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSHA512RNDS2",
+  "id": "vsha512rnds264",
+  "format": "bin",
+  "source": "vsha512rnds2.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsha512rnds2/",
+  "target": [
+   { "output": "vsha512rnds2.bin64", "match": "vsha512rnds2.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSHA512RNDS2",
+  "id": "vsha512rnds216err",
+  "format": "bin",
+  "source": "vsha512rnds2_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsha512rnds2/",
+  "target": [
+   { "stderr": "vsha512rnds2.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSHA512RNDS2",
+  "id": "vsha512rnds232err",
+  "format": "bin",
+  "source": "vsha512rnds2_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vsha512rnds2/",
+  "target": [
+   { "stderr": "vsha512rnds2.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

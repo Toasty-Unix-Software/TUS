@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XRESLDTRK",
+  "id": "xresldtrk16",
+  "format": "bin",
+  "source": "xresldtrk.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xresldtrk/",
+  "target": [
+   { "output": "xresldtrk.bin16", "match": "xresldtrk.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XRESLDTRK",
+  "id": "xresldtrk32",
+  "format": "bin",
+  "source": "xresldtrk.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xresldtrk/",
+  "target": [
+   { "output": "xresldtrk.bin32", "match": "xresldtrk.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XRESLDTRK",
+  "id": "xresldtrk64",
+  "format": "bin",
+  "source": "xresldtrk.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xresldtrk/",
+  "target": [
+   { "output": "xresldtrk.bin64", "match": "xresldtrk.bin64.t" }
+  ]
+ }
+]

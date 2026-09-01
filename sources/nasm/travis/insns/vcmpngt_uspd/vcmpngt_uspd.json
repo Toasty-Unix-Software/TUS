@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPNGT_USPD",
+  "id": "vcmpngt_uspd16",
+  "format": "bin",
+  "source": "vcmpngt_uspd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpngt_uspd/",
+  "target": [
+   { "output": "vcmpngt_uspd.bin16", "match": "vcmpngt_uspd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNGT_USPD",
+  "id": "vcmpngt_uspd32",
+  "format": "bin",
+  "source": "vcmpngt_uspd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpngt_uspd/",
+  "target": [
+   { "output": "vcmpngt_uspd.bin32", "match": "vcmpngt_uspd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNGT_USPD",
+  "id": "vcmpngt_uspd64",
+  "format": "bin",
+  "source": "vcmpngt_uspd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpngt_uspd/",
+  "target": [
+   { "output": "vcmpngt_uspd.bin64", "match": "vcmpngt_uspd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNGT_USPD",
+  "id": "vcmpngt_uspd16err",
+  "format": "bin",
+  "source": "vcmpngt_uspd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpngt_uspd/",
+  "target": [
+   { "stderr": "vcmpngt_uspd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNGT_USPD",
+  "id": "vcmpngt_uspd32err",
+  "format": "bin",
+  "source": "vcmpngt_uspd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpngt_uspd/",
+  "target": [
+   { "stderr": "vcmpngt_uspd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPNGEPS",
+  "id": "vcmpngeps16",
+  "format": "bin",
+  "source": "vcmpngeps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpngeps/",
+  "target": [
+   { "output": "vcmpngeps.bin16", "match": "vcmpngeps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNGEPS",
+  "id": "vcmpngeps32",
+  "format": "bin",
+  "source": "vcmpngeps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpngeps/",
+  "target": [
+   { "output": "vcmpngeps.bin32", "match": "vcmpngeps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPNGEPS",
+  "id": "vcmpngeps64",
+  "format": "bin",
+  "source": "vcmpngeps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpngeps/",
+  "target": [
+   { "output": "vcmpngeps.bin64", "match": "vcmpngeps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNGEPS",
+  "id": "vcmpngeps16err",
+  "format": "bin",
+  "source": "vcmpngeps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpngeps/",
+  "target": [
+   { "stderr": "vcmpngeps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPNGEPS",
+  "id": "vcmpngeps32err",
+  "format": "bin",
+  "source": "vcmpngeps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpngeps/",
+  "target": [
+   { "stderr": "vcmpngeps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

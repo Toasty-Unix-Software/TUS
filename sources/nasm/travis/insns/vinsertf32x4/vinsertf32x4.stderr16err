@@ -1,0 +1,4 @@
+./travis/insns/vinsertf32x4/vinsertf32x4_narrow.asm:9: error: invalid operands in non-64-bit mode
+./travis/insns/vinsertf32x4/vinsertf32x4_narrow.asm:10: error: invalid operands in non-64-bit mode
+./travis/insns/vinsertf32x4/vinsertf32x4_narrow.asm:11: error: invalid operands in non-64-bit mode
+./travis/insns/vinsertf32x4/vinsertf32x4_narrow.asm:12: error: invalid operands in non-64-bit mode

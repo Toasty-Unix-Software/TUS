@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PUNPCKLDQ",
+  "id": "punpckldq16",
+  "format": "bin",
+  "source": "punpckldq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/punpckldq/",
+  "target": [
+   { "output": "punpckldq.bin16", "match": "punpckldq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PUNPCKLDQ",
+  "id": "punpckldq32",
+  "format": "bin",
+  "source": "punpckldq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/punpckldq/",
+  "target": [
+   { "output": "punpckldq.bin32", "match": "punpckldq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PUNPCKLDQ",
+  "id": "punpckldq64",
+  "format": "bin",
+  "source": "punpckldq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/punpckldq/",
+  "target": [
+   { "output": "punpckldq.bin64", "match": "punpckldq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PUNPCKLDQ",
+  "id": "punpckldq16err",
+  "format": "bin",
+  "source": "punpckldq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/punpckldq/",
+  "target": [
+   { "stderr": "punpckldq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PUNPCKLDQ",
+  "id": "punpckldq32err",
+  "format": "bin",
+  "source": "punpckldq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/punpckldq/",
+  "target": [
+   { "stderr": "punpckldq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

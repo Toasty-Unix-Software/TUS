@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VORPD",
+  "id": "vorpd16",
+  "format": "bin",
+  "source": "vorpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vorpd/",
+  "target": [
+   { "output": "vorpd.bin16", "match": "vorpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VORPD",
+  "id": "vorpd32",
+  "format": "bin",
+  "source": "vorpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vorpd/",
+  "target": [
+   { "output": "vorpd.bin32", "match": "vorpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VORPD",
+  "id": "vorpd64",
+  "format": "bin",
+  "source": "vorpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vorpd/",
+  "target": [
+   { "output": "vorpd.bin64", "match": "vorpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VORPD",
+  "id": "vorpd16err",
+  "format": "bin",
+  "source": "vorpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vorpd/",
+  "target": [
+   { "stderr": "vorpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VORPD",
+  "id": "vorpd32err",
+  "format": "bin",
+  "source": "vorpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vorpd/",
+  "target": [
+   { "stderr": "vorpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for IRETQ",
+  "id": "iretq64",
+  "format": "bin",
+  "source": "iretq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/iretq/",
+  "target": [
+   { "output": "iretq.bin64", "match": "iretq.bin64.t" }
+  ]
+ }
+]

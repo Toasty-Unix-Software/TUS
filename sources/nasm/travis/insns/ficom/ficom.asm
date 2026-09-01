@@ -1,0 +1,11 @@
+default rel
+	ficom dword [0x423]
+	ficom dword [0x4ab]
+	ficom word [0xd31]
+	ficom word [0x94c]
+	ficom dword [eax+1]
+	ficom dword [eax+64]
+	ficom word [eax+1]
+	ficom word [eax+64]
+	ficom [0xce7]
+	ficom [0x751]

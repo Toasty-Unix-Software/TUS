@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETCZU",
+  "id": "setczu64",
+  "format": "bin",
+  "source": "setczu.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setczu/",
+  "target": [
+   { "output": "setczu.bin64", "match": "setczu.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETCZU",
+  "id": "setczu16err",
+  "format": "bin",
+  "source": "setczu_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setczu/",
+  "target": [
+   { "stderr": "setczu.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETCZU",
+  "id": "setczu32err",
+  "format": "bin",
+  "source": "setczu_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setczu/",
+  "target": [
+   { "stderr": "setczu.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

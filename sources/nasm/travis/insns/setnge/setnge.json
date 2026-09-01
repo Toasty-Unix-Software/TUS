@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETNGE",
+  "id": "setnge64",
+  "format": "bin",
+  "source": "setnge.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnge/",
+  "target": [
+   { "output": "setnge.bin64", "match": "setnge.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNGE",
+  "id": "setnge16err",
+  "format": "bin",
+  "source": "setnge_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnge/",
+  "target": [
+   { "stderr": "setnge.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNGE",
+  "id": "setnge32err",
+  "format": "bin",
+  "source": "setnge_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnge/",
+  "target": [
+   { "stderr": "setnge.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

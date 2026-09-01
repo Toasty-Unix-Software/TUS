@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MOVLPS",
+  "id": "movlps16",
+  "format": "bin",
+  "source": "movlps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movlps/",
+  "target": [
+   { "output": "movlps.bin16", "match": "movlps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVLPS",
+  "id": "movlps32",
+  "format": "bin",
+  "source": "movlps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movlps/",
+  "target": [
+   { "output": "movlps.bin32", "match": "movlps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVLPS",
+  "id": "movlps64",
+  "format": "bin",
+  "source": "movlps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movlps/",
+  "target": [
+   { "output": "movlps.bin64", "match": "movlps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVLPS",
+  "id": "movlps16err",
+  "format": "bin",
+  "source": "movlps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movlps/",
+  "target": [
+   { "stderr": "movlps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVLPS",
+  "id": "movlps32err",
+  "format": "bin",
+  "source": "movlps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movlps/",
+  "target": [
+   { "stderr": "movlps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

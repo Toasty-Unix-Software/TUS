@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPGESS",
+  "id": "vcmpgess16",
+  "format": "bin",
+  "source": "vcmpgess_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgess/",
+  "target": [
+   { "output": "vcmpgess.bin16", "match": "vcmpgess.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPGESS",
+  "id": "vcmpgess32",
+  "format": "bin",
+  "source": "vcmpgess_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgess/",
+  "target": [
+   { "output": "vcmpgess.bin32", "match": "vcmpgess.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPGESS",
+  "id": "vcmpgess64",
+  "format": "bin",
+  "source": "vcmpgess.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgess/",
+  "target": [
+   { "output": "vcmpgess.bin64", "match": "vcmpgess.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPGESS",
+  "id": "vcmpgess16err",
+  "format": "bin",
+  "source": "vcmpgess_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgess/",
+  "target": [
+   { "stderr": "vcmpgess.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPGESS",
+  "id": "vcmpgess32err",
+  "format": "bin",
+  "source": "vcmpgess_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpgess/",
+  "target": [
+   { "stderr": "vcmpgess.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

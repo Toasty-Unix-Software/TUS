@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPRORVD",
+  "id": "vprorvd16",
+  "format": "bin",
+  "source": "vprorvd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprorvd/",
+  "target": [
+   { "output": "vprorvd.bin16", "match": "vprorvd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPRORVD",
+  "id": "vprorvd32",
+  "format": "bin",
+  "source": "vprorvd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprorvd/",
+  "target": [
+   { "output": "vprorvd.bin32", "match": "vprorvd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPRORVD",
+  "id": "vprorvd64",
+  "format": "bin",
+  "source": "vprorvd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprorvd/",
+  "target": [
+   { "output": "vprorvd.bin64", "match": "vprorvd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPRORVD",
+  "id": "vprorvd16err",
+  "format": "bin",
+  "source": "vprorvd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprorvd/",
+  "target": [
+   { "stderr": "vprorvd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPRORVD",
+  "id": "vprorvd32err",
+  "format": "bin",
+  "source": "vprorvd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vprorvd/",
+  "target": [
+   { "stderr": "vprorvd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

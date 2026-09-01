@@ -1,0 +1,3 @@
+./travis/insns/ccmpc/ccmpc.asm:60: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/ccmpc/ccmpc.asm:61: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/ccmpc/ccmpc.asm:62: warning: byte exceeds bounds [-w+number-overflow]

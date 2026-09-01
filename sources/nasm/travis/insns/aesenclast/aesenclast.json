@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for AESENCLAST",
+  "id": "aesenclast16",
+  "format": "bin",
+  "source": "aesenclast_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesenclast/",
+  "target": [
+   { "output": "aesenclast.bin16", "match": "aesenclast.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AESENCLAST",
+  "id": "aesenclast32",
+  "format": "bin",
+  "source": "aesenclast_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesenclast/",
+  "target": [
+   { "output": "aesenclast.bin32", "match": "aesenclast.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AESENCLAST",
+  "id": "aesenclast64",
+  "format": "bin",
+  "source": "aesenclast.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesenclast/",
+  "target": [
+   { "output": "aesenclast.bin64", "match": "aesenclast.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AESENCLAST",
+  "id": "aesenclast16err",
+  "format": "bin",
+  "source": "aesenclast_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesenclast/",
+  "target": [
+   { "stderr": "aesenclast.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AESENCLAST",
+  "id": "aesenclast32err",
+  "format": "bin",
+  "source": "aesenclast_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesenclast/",
+  "target": [
+   { "stderr": "aesenclast.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

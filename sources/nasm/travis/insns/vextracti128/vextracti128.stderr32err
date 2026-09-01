@@ -1,0 +1,1 @@
+./travis/insns/vextracti128/vextracti128_narrow.asm:5: error: invalid operands in non-64-bit mode

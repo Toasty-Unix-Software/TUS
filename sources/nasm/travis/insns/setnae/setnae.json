@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETNAE",
+  "id": "setnae64",
+  "format": "bin",
+  "source": "setnae.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnae/",
+  "target": [
+   { "output": "setnae.bin64", "match": "setnae.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNAE",
+  "id": "setnae16err",
+  "format": "bin",
+  "source": "setnae_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnae/",
+  "target": [
+   { "stderr": "setnae.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNAE",
+  "id": "setnae32err",
+  "format": "bin",
+  "source": "setnae_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnae/",
+  "target": [
+   { "stderr": "setnae.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

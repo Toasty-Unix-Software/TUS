@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for CLGI",
+  "id": "clgi16",
+  "format": "bin",
+  "source": "clgi.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clgi/",
+  "target": [
+   { "output": "clgi.bin16", "match": "clgi.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLGI",
+  "id": "clgi32",
+  "format": "bin",
+  "source": "clgi.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clgi/",
+  "target": [
+   { "output": "clgi.bin32", "match": "clgi.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLGI",
+  "id": "clgi64",
+  "format": "bin",
+  "source": "clgi.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/clgi/",
+  "target": [
+   { "output": "clgi.bin64", "match": "clgi.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PALIGNR",
+  "id": "palignr16",
+  "format": "bin",
+  "source": "palignr_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/palignr/",
+  "target": [
+   { "output": "palignr.bin16", "match": "palignr.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PALIGNR",
+  "id": "palignr32",
+  "format": "bin",
+  "source": "palignr_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/palignr/",
+  "target": [
+   { "output": "palignr.bin32", "match": "palignr.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PALIGNR",
+  "id": "palignr64",
+  "format": "bin",
+  "source": "palignr.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/palignr/",
+  "target": [
+   { "output": "palignr.bin64", "match": "palignr.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PALIGNR",
+  "id": "palignr16err",
+  "format": "bin",
+  "source": "palignr_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/palignr/",
+  "target": [
+   { "stderr": "palignr.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PALIGNR",
+  "id": "palignr32err",
+  "format": "bin",
+  "source": "palignr_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/palignr/",
+  "target": [
+   { "stderr": "palignr.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

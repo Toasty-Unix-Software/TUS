@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for ENTERQ",
+  "id": "enterq64",
+  "format": "bin",
+  "source": "enterq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/enterq/",
+  "target": [
+   { "output": "enterq.bin64", "match": "enterq.bin64.t" }
+  ]
+ }
+]

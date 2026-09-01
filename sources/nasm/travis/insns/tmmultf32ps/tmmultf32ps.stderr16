@@ -1,0 +1,2 @@
+./travis/insns/tmmultf32ps/tmmultf32ps.asm:2: warning: instruction never implemented and invalid on the target CPU [-w+obsolete-removed]
+./travis/insns/tmmultf32ps/tmmultf32ps.asm:3: warning: instruction never implemented and invalid on the target CPU [-w+obsolete-removed]

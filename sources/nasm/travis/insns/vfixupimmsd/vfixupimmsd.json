@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VFIXUPIMMSD",
+  "id": "vfixupimmsd16",
+  "format": "bin",
+  "source": "vfixupimmsd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfixupimmsd/",
+  "target": [
+   { "output": "vfixupimmsd.bin16", "match": "vfixupimmsd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFIXUPIMMSD",
+  "id": "vfixupimmsd32",
+  "format": "bin",
+  "source": "vfixupimmsd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfixupimmsd/",
+  "target": [
+   { "output": "vfixupimmsd.bin32", "match": "vfixupimmsd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VFIXUPIMMSD",
+  "id": "vfixupimmsd64",
+  "format": "bin",
+  "source": "vfixupimmsd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfixupimmsd/",
+  "target": [
+   { "output": "vfixupimmsd.bin64", "match": "vfixupimmsd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFIXUPIMMSD",
+  "id": "vfixupimmsd16err",
+  "format": "bin",
+  "source": "vfixupimmsd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfixupimmsd/",
+  "target": [
+   { "stderr": "vfixupimmsd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VFIXUPIMMSD",
+  "id": "vfixupimmsd32err",
+  "format": "bin",
+  "source": "vfixupimmsd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vfixupimmsd/",
+  "target": [
+   { "stderr": "vfixupimmsd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

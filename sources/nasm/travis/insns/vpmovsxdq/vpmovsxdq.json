@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMOVSXDQ",
+  "id": "vpmovsxdq16",
+  "format": "bin",
+  "source": "vpmovsxdq_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovsxdq/",
+  "target": [
+   { "output": "vpmovsxdq.bin16", "match": "vpmovsxdq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMOVSXDQ",
+  "id": "vpmovsxdq32",
+  "format": "bin",
+  "source": "vpmovsxdq_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovsxdq/",
+  "target": [
+   { "output": "vpmovsxdq.bin32", "match": "vpmovsxdq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMOVSXDQ",
+  "id": "vpmovsxdq64",
+  "format": "bin",
+  "source": "vpmovsxdq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovsxdq/",
+  "target": [
+   { "output": "vpmovsxdq.bin64", "match": "vpmovsxdq.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMOVSXDQ",
+  "id": "vpmovsxdq16err",
+  "format": "bin",
+  "source": "vpmovsxdq_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovsxdq/",
+  "target": [
+   { "stderr": "vpmovsxdq.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMOVSXDQ",
+  "id": "vpmovsxdq32err",
+  "format": "bin",
+  "source": "vpmovsxdq_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmovsxdq/",
+  "target": [
+   { "stderr": "vpmovsxdq.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

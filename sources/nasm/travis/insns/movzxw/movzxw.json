@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MOVZXW",
+  "id": "movzxw16",
+  "format": "bin",
+  "source": "movzxw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movzxw/",
+  "target": [
+   { "output": "movzxw.bin16", "match": "movzxw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVZXW",
+  "id": "movzxw32",
+  "format": "bin",
+  "source": "movzxw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movzxw/",
+  "target": [
+   { "output": "movzxw.bin32", "match": "movzxw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVZXW",
+  "id": "movzxw64",
+  "format": "bin",
+  "source": "movzxw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movzxw/",
+  "target": [
+   { "output": "movzxw.bin64", "match": "movzxw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVZXW",
+  "id": "movzxw16err",
+  "format": "bin",
+  "source": "movzxw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movzxw/",
+  "target": [
+   { "stderr": "movzxw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVZXW",
+  "id": "movzxw32err",
+  "format": "bin",
+  "source": "movzxw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movzxw/",
+  "target": [
+   { "stderr": "movzxw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

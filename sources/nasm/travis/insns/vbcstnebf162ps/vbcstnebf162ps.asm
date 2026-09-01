@@ -1,0 +1,13 @@
+default rel
+	vbcstnebf162ps xmm4, word [0xe2a]
+	vbcstnebf162ps xmm4, word [0x889]
+	vbcstnebf162ps ymm0, word [0xf00]
+	vbcstnebf162ps ymm2, word [0x671]
+	vbcstnebf162ps xmm9, word [0xb07]
+	vbcstnebf162ps ymm10, word [0xea0]
+	vbcstnebf162ps xmm5, word [eax+1]
+	vbcstnebf162ps xmm6, word [eax+64]
+	vbcstnebf162ps ymm0, word [eax+1]
+	vbcstnebf162ps ymm6, word [eax+64]
+	vbcstnebf162ps xmm6, [0x40e]
+	vbcstnebf162ps ymm6, [0x5fe]

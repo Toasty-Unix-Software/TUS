@@ -1,0 +1,3 @@
+default rel
+	cqo
+	cqo

@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CTESTZ",
+  "id": "ctestz64",
+  "format": "bin",
+  "source": "ctestz.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestz/",
+  "target": [
+   { "output": "ctestz.bin64", "match": "ctestz.bin64.t" },
+   { "stderr": "ctestz.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTZ",
+  "id": "ctestz16err",
+  "format": "bin",
+  "source": "ctestz_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestz/",
+  "target": [
+   { "stderr": "ctestz.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTZ",
+  "id": "ctestz32err",
+  "format": "bin",
+  "source": "ctestz_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestz/",
+  "target": [
+   { "stderr": "ctestz.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

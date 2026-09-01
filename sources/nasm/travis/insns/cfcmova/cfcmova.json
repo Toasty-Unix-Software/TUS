@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CFCMOVA",
+  "id": "cfcmova64",
+  "format": "bin",
+  "source": "cfcmova.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmova/",
+  "target": [
+   { "output": "cfcmova.bin64", "match": "cfcmova.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVA",
+  "id": "cfcmova16err",
+  "format": "bin",
+  "source": "cfcmova_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmova/",
+  "target": [
+   { "stderr": "cfcmova.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CFCMOVA",
+  "id": "cfcmova32err",
+  "format": "bin",
+  "source": "cfcmova_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cfcmova/",
+  "target": [
+   { "stderr": "cfcmova.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

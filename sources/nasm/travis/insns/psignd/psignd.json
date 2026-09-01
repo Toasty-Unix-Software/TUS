@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PSIGND",
+  "id": "psignd16",
+  "format": "bin",
+  "source": "psignd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psignd/",
+  "target": [
+   { "output": "psignd.bin16", "match": "psignd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSIGND",
+  "id": "psignd32",
+  "format": "bin",
+  "source": "psignd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psignd/",
+  "target": [
+   { "output": "psignd.bin32", "match": "psignd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSIGND",
+  "id": "psignd64",
+  "format": "bin",
+  "source": "psignd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psignd/",
+  "target": [
+   { "output": "psignd.bin64", "match": "psignd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSIGND",
+  "id": "psignd16err",
+  "format": "bin",
+  "source": "psignd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psignd/",
+  "target": [
+   { "stderr": "psignd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSIGND",
+  "id": "psignd32err",
+  "format": "bin",
+  "source": "psignd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/psignd/",
+  "target": [
+   { "stderr": "psignd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

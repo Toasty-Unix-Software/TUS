@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FPTAN",
+  "id": "fptan16",
+  "format": "bin",
+  "source": "fptan.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fptan/",
+  "target": [
+   { "output": "fptan.bin16", "match": "fptan.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FPTAN",
+  "id": "fptan32",
+  "format": "bin",
+  "source": "fptan.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fptan/",
+  "target": [
+   { "output": "fptan.bin32", "match": "fptan.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FPTAN",
+  "id": "fptan64",
+  "format": "bin",
+  "source": "fptan.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fptan/",
+  "target": [
+   { "output": "fptan.bin64", "match": "fptan.bin64.t" }
+  ]
+ }
+]

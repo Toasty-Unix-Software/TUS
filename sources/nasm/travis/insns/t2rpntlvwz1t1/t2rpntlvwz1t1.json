@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for T2RPNTLVWZ1T1",
+  "id": "t2rpntlvwz1t116",
+  "format": "bin",
+  "source": "t2rpntlvwz1t1.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/t2rpntlvwz1t1/",
+  "target": [
+   { "output": "t2rpntlvwz1t1.bin16", "match": "t2rpntlvwz1t1.bin16.t" },
+   { "stderr": "t2rpntlvwz1t1.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for T2RPNTLVWZ1T1",
+  "id": "t2rpntlvwz1t132",
+  "format": "bin",
+  "source": "t2rpntlvwz1t1.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/t2rpntlvwz1t1/",
+  "target": [
+   { "output": "t2rpntlvwz1t1.bin32", "match": "t2rpntlvwz1t1.bin32.t" },
+   { "stderr": "t2rpntlvwz1t1.stderr32" }
+  ]
+ }
+]

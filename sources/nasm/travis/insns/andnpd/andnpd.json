@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ANDNPD",
+  "id": "andnpd16",
+  "format": "bin",
+  "source": "andnpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnpd/",
+  "target": [
+   { "output": "andnpd.bin16", "match": "andnpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDNPD",
+  "id": "andnpd32",
+  "format": "bin",
+  "source": "andnpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnpd/",
+  "target": [
+   { "output": "andnpd.bin32", "match": "andnpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDNPD",
+  "id": "andnpd64",
+  "format": "bin",
+  "source": "andnpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnpd/",
+  "target": [
+   { "output": "andnpd.bin64", "match": "andnpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ANDNPD",
+  "id": "andnpd16err",
+  "format": "bin",
+  "source": "andnpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnpd/",
+  "target": [
+   { "stderr": "andnpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ANDNPD",
+  "id": "andnpd32err",
+  "format": "bin",
+  "source": "andnpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andnpd/",
+  "target": [
+   { "stderr": "andnpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,59 @@
+[
+ {
+  "description": "Pseudorandom test for ADD",
+  "id": "add16",
+  "format": "bin",
+  "source": "add_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/add/",
+  "target": [
+   { "output": "add.bin16", "match": "add.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADD",
+  "id": "add32",
+  "format": "bin",
+  "source": "add_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/add/",
+  "target": [
+   { "output": "add.bin32", "match": "add.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ADD",
+  "id": "add64",
+  "format": "bin",
+  "source": "add.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/add/",
+  "target": [
+   { "output": "add.bin64", "match": "add.bin64.t" },
+   { "stderr": "add.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADD",
+  "id": "add16err",
+  "format": "bin",
+  "source": "add_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/add/",
+  "target": [
+   { "stderr": "add.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ADD",
+  "id": "add32err",
+  "format": "bin",
+  "source": "add_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/add/",
+  "target": [
+   { "stderr": "add.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

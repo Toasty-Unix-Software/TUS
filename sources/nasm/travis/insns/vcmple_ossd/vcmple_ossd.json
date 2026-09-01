@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPLE_OSSD",
+  "id": "vcmple_ossd16",
+  "format": "bin",
+  "source": "vcmple_ossd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmple_ossd/",
+  "target": [
+   { "output": "vcmple_ossd.bin16", "match": "vcmple_ossd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPLE_OSSD",
+  "id": "vcmple_ossd32",
+  "format": "bin",
+  "source": "vcmple_ossd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmple_ossd/",
+  "target": [
+   { "output": "vcmple_ossd.bin32", "match": "vcmple_ossd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPLE_OSSD",
+  "id": "vcmple_ossd64",
+  "format": "bin",
+  "source": "vcmple_ossd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmple_ossd/",
+  "target": [
+   { "output": "vcmple_ossd.bin64", "match": "vcmple_ossd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPLE_OSSD",
+  "id": "vcmple_ossd16err",
+  "format": "bin",
+  "source": "vcmple_ossd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmple_ossd/",
+  "target": [
+   { "stderr": "vcmple_ossd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPLE_OSSD",
+  "id": "vcmple_ossd32err",
+  "format": "bin",
+  "source": "vcmple_ossd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmple_ossd/",
+  "target": [
+   { "stderr": "vcmple_ossd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

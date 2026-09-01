@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for MOVB",
+  "id": "movb16",
+  "format": "bin",
+  "source": "movb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movb/",
+  "target": [
+   { "output": "movb.bin16", "match": "movb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVB",
+  "id": "movb32",
+  "format": "bin",
+  "source": "movb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movb/",
+  "target": [
+   { "output": "movb.bin32", "match": "movb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for MOVB",
+  "id": "movb64",
+  "format": "bin",
+  "source": "movb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movb/",
+  "target": [
+   { "output": "movb.bin64", "match": "movb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVB",
+  "id": "movb16err",
+  "format": "bin",
+  "source": "movb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movb/",
+  "target": [
+   { "stderr": "movb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for MOVB",
+  "id": "movb32err",
+  "format": "bin",
+  "source": "movb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/movb/",
+  "target": [
+   { "stderr": "movb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

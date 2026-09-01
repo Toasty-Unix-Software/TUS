@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for LDS",
+  "id": "lds16",
+  "format": "bin",
+  "source": "lds.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lds/",
+  "target": [
+   { "output": "lds.bin16", "match": "lds.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LDS",
+  "id": "lds32",
+  "format": "bin",
+  "source": "lds.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/lds/",
+  "target": [
+   { "output": "lds.bin32", "match": "lds.bin32.t" }
+  ]
+ }
+]

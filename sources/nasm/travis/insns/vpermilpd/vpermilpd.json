@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPERMILPD",
+  "id": "vpermilpd16",
+  "format": "bin",
+  "source": "vpermilpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermilpd/",
+  "target": [
+   { "output": "vpermilpd.bin16", "match": "vpermilpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPERMILPD",
+  "id": "vpermilpd32",
+  "format": "bin",
+  "source": "vpermilpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermilpd/",
+  "target": [
+   { "output": "vpermilpd.bin32", "match": "vpermilpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPERMILPD",
+  "id": "vpermilpd64",
+  "format": "bin",
+  "source": "vpermilpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermilpd/",
+  "target": [
+   { "output": "vpermilpd.bin64", "match": "vpermilpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPERMILPD",
+  "id": "vpermilpd16err",
+  "format": "bin",
+  "source": "vpermilpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermilpd/",
+  "target": [
+   { "stderr": "vpermilpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPERMILPD",
+  "id": "vpermilpd32err",
+  "format": "bin",
+  "source": "vpermilpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermilpd/",
+  "target": [
+   { "stderr": "vpermilpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

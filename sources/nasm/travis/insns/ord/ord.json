@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for ORD",
+  "id": "ord16",
+  "format": "bin",
+  "source": "ord.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ord/",
+  "target": [
+   { "output": "ord.bin16", "match": "ord.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ORD",
+  "id": "ord32",
+  "format": "bin",
+  "source": "ord.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ord/",
+  "target": [
+   { "output": "ord.bin32", "match": "ord.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ORD",
+  "id": "ord64",
+  "format": "bin",
+  "source": "ord.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ord/",
+  "target": [
+   { "output": "ord.bin64", "match": "ord.bin64.t" }
+  ]
+ }
+]

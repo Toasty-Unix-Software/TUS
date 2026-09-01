@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VGETMANTBF16",
+  "id": "vgetmantbf1616",
+  "format": "bin",
+  "source": "vgetmantbf16_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantbf16/",
+  "target": [
+   { "output": "vgetmantbf16.bin16", "match": "vgetmantbf16.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETMANTBF16",
+  "id": "vgetmantbf1632",
+  "format": "bin",
+  "source": "vgetmantbf16_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantbf16/",
+  "target": [
+   { "output": "vgetmantbf16.bin32", "match": "vgetmantbf16.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VGETMANTBF16",
+  "id": "vgetmantbf1664",
+  "format": "bin",
+  "source": "vgetmantbf16.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantbf16/",
+  "target": [
+   { "output": "vgetmantbf16.bin64", "match": "vgetmantbf16.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETMANTBF16",
+  "id": "vgetmantbf1616err",
+  "format": "bin",
+  "source": "vgetmantbf16_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantbf16/",
+  "target": [
+   { "stderr": "vgetmantbf16.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VGETMANTBF16",
+  "id": "vgetmantbf1632err",
+  "format": "bin",
+  "source": "vgetmantbf16_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vgetmantbf16/",
+  "target": [
+   { "stderr": "vgetmantbf16.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

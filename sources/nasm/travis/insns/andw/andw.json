@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for ANDW",
+  "id": "andw16",
+  "format": "bin",
+  "source": "andw.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andw/",
+  "target": [
+   { "output": "andw.bin16", "match": "andw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDW",
+  "id": "andw32",
+  "format": "bin",
+  "source": "andw.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andw/",
+  "target": [
+   { "output": "andw.bin32", "match": "andw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ANDW",
+  "id": "andw64",
+  "format": "bin",
+  "source": "andw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/andw/",
+  "target": [
+   { "output": "andw.bin64", "match": "andw.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for VMLOAD",
+  "id": "vmload16",
+  "format": "bin",
+  "source": "vmload.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmload/",
+  "target": [
+   { "output": "vmload.bin16", "match": "vmload.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMLOAD",
+  "id": "vmload32",
+  "format": "bin",
+  "source": "vmload.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmload/",
+  "target": [
+   { "output": "vmload.bin32", "match": "vmload.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMLOAD",
+  "id": "vmload64",
+  "format": "bin",
+  "source": "vmload.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmload/",
+  "target": [
+   { "output": "vmload.bin64", "match": "vmload.bin64.t" }
+  ]
+ }
+]

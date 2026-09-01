@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for TCONJTCMMIMFP16PS",
+  "id": "tconjtcmmimfp16ps16",
+  "format": "bin",
+  "source": "tconjtcmmimfp16ps.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tconjtcmmimfp16ps/",
+  "target": [
+   { "output": "tconjtcmmimfp16ps.bin16", "match": "tconjtcmmimfp16ps.bin16.t" },
+   { "stderr": "tconjtcmmimfp16ps.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TCONJTCMMIMFP16PS",
+  "id": "tconjtcmmimfp16ps32",
+  "format": "bin",
+  "source": "tconjtcmmimfp16ps.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tconjtcmmimfp16ps/",
+  "target": [
+   { "output": "tconjtcmmimfp16ps.bin32", "match": "tconjtcmmimfp16ps.bin32.t" },
+   { "stderr": "tconjtcmmimfp16ps.stderr32" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for TCONJTCMMIMFP16PS",
+  "id": "tconjtcmmimfp16ps64",
+  "format": "bin",
+  "source": "tconjtcmmimfp16ps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/tconjtcmmimfp16ps/",
+  "target": [
+   { "output": "tconjtcmmimfp16ps.bin64", "match": "tconjtcmmimfp16ps.bin64.t" },
+   { "stderr": "tconjtcmmimfp16ps.stderr64" }
+  ]
+ }
+]

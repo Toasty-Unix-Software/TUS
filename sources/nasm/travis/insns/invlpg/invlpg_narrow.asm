@@ -1,0 +1,2 @@
+	invlpg [0x75b]
+	invlpg [0xdae]

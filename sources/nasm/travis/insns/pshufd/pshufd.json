@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PSHUFD",
+  "id": "pshufd16",
+  "format": "bin",
+  "source": "pshufd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pshufd/",
+  "target": [
+   { "output": "pshufd.bin16", "match": "pshufd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSHUFD",
+  "id": "pshufd32",
+  "format": "bin",
+  "source": "pshufd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pshufd/",
+  "target": [
+   { "output": "pshufd.bin32", "match": "pshufd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PSHUFD",
+  "id": "pshufd64",
+  "format": "bin",
+  "source": "pshufd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pshufd/",
+  "target": [
+   { "output": "pshufd.bin64", "match": "pshufd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSHUFD",
+  "id": "pshufd16err",
+  "format": "bin",
+  "source": "pshufd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pshufd/",
+  "target": [
+   { "stderr": "pshufd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PSHUFD",
+  "id": "pshufd32err",
+  "format": "bin",
+  "source": "pshufd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pshufd/",
+  "target": [
+   { "stderr": "pshufd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

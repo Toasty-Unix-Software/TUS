@@ -1,0 +1,11 @@
+default rel
+	fisub dword [0xc21]
+	fisub dword [0x4aa]
+	fisub word [0xaf2]
+	fisub word [0xf57]
+	fisub dword [eax+1]
+	fisub dword [eax+64]
+	fisub word [eax+1]
+	fisub word [eax+64]
+	fisub [0x529]
+	fisub [0x6d0]

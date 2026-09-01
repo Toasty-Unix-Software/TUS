@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for SHIFTRQ",
+  "id": "shiftrq16",
+  "format": "bin",
+  "source": "shiftrq.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shiftrq/",
+  "target": [
+   { "output": "shiftrq.bin16", "match": "shiftrq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHIFTRQ",
+  "id": "shiftrq32",
+  "format": "bin",
+  "source": "shiftrq.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shiftrq/",
+  "target": [
+   { "output": "shiftrq.bin32", "match": "shiftrq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SHIFTRQ",
+  "id": "shiftrq64",
+  "format": "bin",
+  "source": "shiftrq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/shiftrq/",
+  "target": [
+   { "output": "shiftrq.bin64", "match": "shiftrq.bin64.t" }
+  ]
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPMULHUW",
+  "id": "vpmulhuw16",
+  "format": "bin",
+  "source": "vpmulhuw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulhuw/",
+  "target": [
+   { "output": "vpmulhuw.bin16", "match": "vpmulhuw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMULHUW",
+  "id": "vpmulhuw32",
+  "format": "bin",
+  "source": "vpmulhuw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulhuw/",
+  "target": [
+   { "output": "vpmulhuw.bin32", "match": "vpmulhuw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPMULHUW",
+  "id": "vpmulhuw64",
+  "format": "bin",
+  "source": "vpmulhuw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulhuw/",
+  "target": [
+   { "output": "vpmulhuw.bin64", "match": "vpmulhuw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMULHUW",
+  "id": "vpmulhuw16err",
+  "format": "bin",
+  "source": "vpmulhuw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulhuw/",
+  "target": [
+   { "stderr": "vpmulhuw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPMULHUW",
+  "id": "vpmulhuw32err",
+  "format": "bin",
+  "source": "vpmulhuw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpmulhuw/",
+  "target": [
+   { "stderr": "vpmulhuw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

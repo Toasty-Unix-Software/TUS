@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCOMPRESSPS",
+  "id": "vcompressps16",
+  "format": "bin",
+  "source": "vcompressps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcompressps/",
+  "target": [
+   { "output": "vcompressps.bin16", "match": "vcompressps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCOMPRESSPS",
+  "id": "vcompressps32",
+  "format": "bin",
+  "source": "vcompressps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcompressps/",
+  "target": [
+   { "output": "vcompressps.bin32", "match": "vcompressps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCOMPRESSPS",
+  "id": "vcompressps64",
+  "format": "bin",
+  "source": "vcompressps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcompressps/",
+  "target": [
+   { "output": "vcompressps.bin64", "match": "vcompressps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCOMPRESSPS",
+  "id": "vcompressps16err",
+  "format": "bin",
+  "source": "vcompressps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcompressps/",
+  "target": [
+   { "stderr": "vcompressps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCOMPRESSPS",
+  "id": "vcompressps32err",
+  "format": "bin",
+  "source": "vcompressps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcompressps/",
+  "target": [
+   { "stderr": "vcompressps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

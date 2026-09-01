@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for DMINT",
+  "id": "dmint16",
+  "format": "bin",
+  "source": "dmint.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dmint/",
+  "target": [
+   { "output": "dmint.bin16", "match": "dmint.bin16.t" },
+   { "stderr": "dmint.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for DMINT",
+  "id": "dmint32",
+  "format": "bin",
+  "source": "dmint.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/dmint/",
+  "target": [
+   { "output": "dmint.bin32", "match": "dmint.bin32.t" },
+   { "stderr": "dmint.stderr32" }
+  ]
+ }
+]

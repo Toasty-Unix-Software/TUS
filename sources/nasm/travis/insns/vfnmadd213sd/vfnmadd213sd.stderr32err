@@ -1,0 +1,4 @@
+./travis/insns/vfnmadd213sd/vfnmadd213sd_narrow.asm:7: error: invalid operands in non-64-bit mode
+./travis/insns/vfnmadd213sd/vfnmadd213sd_narrow.asm:8: error: invalid operands in non-64-bit mode
+./travis/insns/vfnmadd213sd/vfnmadd213sd_narrow.asm:9: error: invalid operands in non-64-bit mode
+./travis/insns/vfnmadd213sd/vfnmadd213sd_narrow.asm:10: error: invalid operands in non-64-bit mode

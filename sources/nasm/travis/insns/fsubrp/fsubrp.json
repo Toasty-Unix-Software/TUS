@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for FSUBRP",
+  "id": "fsubrp16",
+  "format": "bin",
+  "source": "fsubrp.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fsubrp/",
+  "target": [
+   { "output": "fsubrp.bin16", "match": "fsubrp.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FSUBRP",
+  "id": "fsubrp32",
+  "format": "bin",
+  "source": "fsubrp.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fsubrp/",
+  "target": [
+   { "output": "fsubrp.bin32", "match": "fsubrp.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for FSUBRP",
+  "id": "fsubrp64",
+  "format": "bin",
+  "source": "fsubrp.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fsubrp/",
+  "target": [
+   { "output": "fsubrp.bin64", "match": "fsubrp.bin64.t" }
+  ]
+ }
+]

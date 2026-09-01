@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PMOVMSKB",
+  "id": "pmovmskb16",
+  "format": "bin",
+  "source": "pmovmskb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmovmskb/",
+  "target": [
+   { "output": "pmovmskb.bin16", "match": "pmovmskb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMOVMSKB",
+  "id": "pmovmskb32",
+  "format": "bin",
+  "source": "pmovmskb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmovmskb/",
+  "target": [
+   { "output": "pmovmskb.bin32", "match": "pmovmskb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PMOVMSKB",
+  "id": "pmovmskb64",
+  "format": "bin",
+  "source": "pmovmskb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmovmskb/",
+  "target": [
+   { "output": "pmovmskb.bin64", "match": "pmovmskb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMOVMSKB",
+  "id": "pmovmskb16err",
+  "format": "bin",
+  "source": "pmovmskb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmovmskb/",
+  "target": [
+   { "stderr": "pmovmskb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PMOVMSKB",
+  "id": "pmovmskb32err",
+  "format": "bin",
+  "source": "pmovmskb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pmovmskb/",
+  "target": [
+   { "stderr": "pmovmskb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

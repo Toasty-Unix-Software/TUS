@@ -1,0 +1,2 @@
+	xrstor64 [0xbbb]
+	xrstor64 [0xf15]

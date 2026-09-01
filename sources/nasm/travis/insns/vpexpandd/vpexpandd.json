@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPEXPANDD",
+  "id": "vpexpandd16",
+  "format": "bin",
+  "source": "vpexpandd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpexpandd/",
+  "target": [
+   { "output": "vpexpandd.bin16", "match": "vpexpandd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPEXPANDD",
+  "id": "vpexpandd32",
+  "format": "bin",
+  "source": "vpexpandd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpexpandd/",
+  "target": [
+   { "output": "vpexpandd.bin32", "match": "vpexpandd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPEXPANDD",
+  "id": "vpexpandd64",
+  "format": "bin",
+  "source": "vpexpandd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpexpandd/",
+  "target": [
+   { "output": "vpexpandd.bin64", "match": "vpexpandd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPEXPANDD",
+  "id": "vpexpandd16err",
+  "format": "bin",
+  "source": "vpexpandd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpexpandd/",
+  "target": [
+   { "stderr": "vpexpandd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPEXPANDD",
+  "id": "vpexpandd32err",
+  "format": "bin",
+  "source": "vpexpandd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpexpandd/",
+  "target": [
+   { "stderr": "vpexpandd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for PADDW",
+  "id": "paddw16",
+  "format": "bin",
+  "source": "paddw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddw/",
+  "target": [
+   { "output": "paddw.bin16", "match": "paddw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PADDW",
+  "id": "paddw32",
+  "format": "bin",
+  "source": "paddw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddw/",
+  "target": [
+   { "output": "paddw.bin32", "match": "paddw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PADDW",
+  "id": "paddw64",
+  "format": "bin",
+  "source": "paddw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddw/",
+  "target": [
+   { "output": "paddw.bin64", "match": "paddw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PADDW",
+  "id": "paddw16err",
+  "format": "bin",
+  "source": "paddw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddw/",
+  "target": [
+   { "stderr": "paddw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for PADDW",
+  "id": "paddw32err",
+  "format": "bin",
+  "source": "paddw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/paddw/",
+  "target": [
+   { "stderr": "paddw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

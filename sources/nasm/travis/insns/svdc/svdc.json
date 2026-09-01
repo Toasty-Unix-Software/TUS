@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for SVDC",
+  "id": "svdc16",
+  "format": "bin",
+  "source": "svdc.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/svdc/",
+  "target": [
+   { "output": "svdc.bin16", "match": "svdc.bin16.t" },
+   { "stderr": "svdc.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for SVDC",
+  "id": "svdc32",
+  "format": "bin",
+  "source": "svdc.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/svdc/",
+  "target": [
+   { "output": "svdc.bin32", "match": "svdc.bin32.t" },
+   { "stderr": "svdc.stderr32" }
+  ]
+ }
+]

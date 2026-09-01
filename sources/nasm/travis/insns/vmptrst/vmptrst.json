@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for VMPTRST",
+  "id": "vmptrst16",
+  "format": "bin",
+  "source": "vmptrst_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmptrst/",
+  "target": [
+   { "output": "vmptrst.bin16", "match": "vmptrst.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMPTRST",
+  "id": "vmptrst32",
+  "format": "bin",
+  "source": "vmptrst_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmptrst/",
+  "target": [
+   { "output": "vmptrst.bin32", "match": "vmptrst.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMPTRST",
+  "id": "vmptrst64",
+  "format": "bin",
+  "source": "vmptrst.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmptrst/",
+  "target": [
+   { "output": "vmptrst.bin64", "match": "vmptrst.bin64.t" }
+  ]
+ }
+]

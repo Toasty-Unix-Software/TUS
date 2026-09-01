@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for CMPXCHG486",
+  "id": "cmpxchg48616",
+  "format": "bin",
+  "source": "cmpxchg486.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpxchg486/",
+  "target": [
+   { "output": "cmpxchg486.bin16", "match": "cmpxchg486.bin16.t" },
+   { "stderr": "cmpxchg486.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CMPXCHG486",
+  "id": "cmpxchg48632",
+  "format": "bin",
+  "source": "cmpxchg486.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpxchg486/",
+  "target": [
+   { "output": "cmpxchg486.bin32", "match": "cmpxchg486.bin32.t" },
+   { "stderr": "cmpxchg486.stderr32" }
+  ]
+ }
+]

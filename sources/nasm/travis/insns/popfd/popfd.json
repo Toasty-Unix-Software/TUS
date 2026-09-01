@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for POPFD",
+  "id": "popfd16",
+  "format": "bin",
+  "source": "popfd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popfd/",
+  "target": [
+   { "output": "popfd.bin16", "match": "popfd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for POPFD",
+  "id": "popfd32",
+  "format": "bin",
+  "source": "popfd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/popfd/",
+  "target": [
+   { "output": "popfd.bin32", "match": "popfd.bin32.t" }
+  ]
+ }
+]

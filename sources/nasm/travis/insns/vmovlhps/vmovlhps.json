@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMOVLHPS",
+  "id": "vmovlhps16",
+  "format": "bin",
+  "source": "vmovlhps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovlhps/",
+  "target": [
+   { "output": "vmovlhps.bin16", "match": "vmovlhps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVLHPS",
+  "id": "vmovlhps32",
+  "format": "bin",
+  "source": "vmovlhps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovlhps/",
+  "target": [
+   { "output": "vmovlhps.bin32", "match": "vmovlhps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVLHPS",
+  "id": "vmovlhps64",
+  "format": "bin",
+  "source": "vmovlhps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovlhps/",
+  "target": [
+   { "output": "vmovlhps.bin64", "match": "vmovlhps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVLHPS",
+  "id": "vmovlhps16err",
+  "format": "bin",
+  "source": "vmovlhps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovlhps/",
+  "target": [
+   { "stderr": "vmovlhps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVLHPS",
+  "id": "vmovlhps32err",
+  "format": "bin",
+  "source": "vmovlhps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovlhps/",
+  "target": [
+   { "stderr": "vmovlhps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

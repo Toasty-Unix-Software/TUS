@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for CLD",
+  "id": "cld16",
+  "format": "bin",
+  "source": "cld.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cld/",
+  "target": [
+   { "output": "cld.bin16", "match": "cld.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLD",
+  "id": "cld32",
+  "format": "bin",
+  "source": "cld.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cld/",
+  "target": [
+   { "output": "cld.bin32", "match": "cld.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for CLD",
+  "id": "cld64",
+  "format": "bin",
+  "source": "cld.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cld/",
+  "target": [
+   { "output": "cld.bin64", "match": "cld.bin64.t" }
+  ]
+ }
+]

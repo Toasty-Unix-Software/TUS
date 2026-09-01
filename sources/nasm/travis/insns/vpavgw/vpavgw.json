@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPAVGW",
+  "id": "vpavgw16",
+  "format": "bin",
+  "source": "vpavgw_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpavgw/",
+  "target": [
+   { "output": "vpavgw.bin16", "match": "vpavgw.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPAVGW",
+  "id": "vpavgw32",
+  "format": "bin",
+  "source": "vpavgw_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpavgw/",
+  "target": [
+   { "output": "vpavgw.bin32", "match": "vpavgw.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPAVGW",
+  "id": "vpavgw64",
+  "format": "bin",
+  "source": "vpavgw.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpavgw/",
+  "target": [
+   { "output": "vpavgw.bin64", "match": "vpavgw.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPAVGW",
+  "id": "vpavgw16err",
+  "format": "bin",
+  "source": "vpavgw_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpavgw/",
+  "target": [
+   { "stderr": "vpavgw.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPAVGW",
+  "id": "vpavgw32err",
+  "format": "bin",
+  "source": "vpavgw_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpavgw/",
+  "target": [
+   { "stderr": "vpavgw.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

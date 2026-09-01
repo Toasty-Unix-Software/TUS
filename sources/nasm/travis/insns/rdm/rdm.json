@@ -1,0 +1,25 @@
+[
+ {
+  "description": "Pseudorandom test for RDM",
+  "id": "rdm16",
+  "format": "bin",
+  "source": "rdm.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdm/",
+  "target": [
+   { "output": "rdm.bin16", "match": "rdm.bin16.t" },
+   { "stderr": "rdm.stderr16" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RDM",
+  "id": "rdm32",
+  "format": "bin",
+  "source": "rdm.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rdm/",
+  "target": [
+   { "output": "rdm.bin32", "match": "rdm.bin32.t" },
+   { "stderr": "rdm.stderr32" }
+  ]
+ }
+]

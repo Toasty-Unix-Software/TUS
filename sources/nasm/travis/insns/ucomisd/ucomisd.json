@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for UCOMISD",
+  "id": "ucomisd16",
+  "format": "bin",
+  "source": "ucomisd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ucomisd/",
+  "target": [
+   { "output": "ucomisd.bin16", "match": "ucomisd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UCOMISD",
+  "id": "ucomisd32",
+  "format": "bin",
+  "source": "ucomisd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ucomisd/",
+  "target": [
+   { "output": "ucomisd.bin32", "match": "ucomisd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for UCOMISD",
+  "id": "ucomisd64",
+  "format": "bin",
+  "source": "ucomisd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ucomisd/",
+  "target": [
+   { "output": "ucomisd.bin64", "match": "ucomisd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for UCOMISD",
+  "id": "ucomisd16err",
+  "format": "bin",
+  "source": "ucomisd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ucomisd/",
+  "target": [
+   { "stderr": "ucomisd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for UCOMISD",
+  "id": "ucomisd32err",
+  "format": "bin",
+  "source": "ucomisd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ucomisd/",
+  "target": [
+   { "stderr": "ucomisd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for PUSHAD",
+  "id": "pushad16",
+  "format": "bin",
+  "source": "pushad.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pushad/",
+  "target": [
+   { "output": "pushad.bin16", "match": "pushad.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for PUSHAD",
+  "id": "pushad32",
+  "format": "bin",
+  "source": "pushad.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/pushad/",
+  "target": [
+   { "output": "pushad.bin32", "match": "pushad.bin32.t" }
+  ]
+ }
+]

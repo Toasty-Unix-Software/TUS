@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XEND",
+  "id": "xend16",
+  "format": "bin",
+  "source": "xend.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xend/",
+  "target": [
+   { "output": "xend.bin16", "match": "xend.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XEND",
+  "id": "xend32",
+  "format": "bin",
+  "source": "xend.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xend/",
+  "target": [
+   { "output": "xend.bin32", "match": "xend.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XEND",
+  "id": "xend64",
+  "format": "bin",
+  "source": "xend.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xend/",
+  "target": [
+   { "output": "xend.bin64", "match": "xend.bin64.t" }
+  ]
+ }
+]

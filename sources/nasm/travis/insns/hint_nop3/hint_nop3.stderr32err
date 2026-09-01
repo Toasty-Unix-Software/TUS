@@ -1,0 +1,8 @@
+./travis/insns/hint_nop3/hint_nop3_narrow.asm:5: error: instruction not supported in 32-bit mode
+./travis/insns/hint_nop3/hint_nop3_narrow.asm:6: error: instruction not supported in 32-bit mode
+./travis/insns/hint_nop3/hint_nop3_narrow.asm:9: error: invalid operands in 32-bit mode
+./travis/insns/hint_nop3/hint_nop3_narrow.asm:10: error: invalid operands in 32-bit mode
+./travis/insns/hint_nop3/hint_nop3_narrow.asm:11: error: instruction not supported in 32-bit mode
+./travis/insns/hint_nop3/hint_nop3_narrow.asm:12: error: invalid operands in 32-bit mode
+./travis/insns/hint_nop3/hint_nop3_narrow.asm:13: error: invalid operands in 32-bit mode
+./travis/insns/hint_nop3/hint_nop3_narrow.asm:14: error: instruction not supported in 32-bit mode

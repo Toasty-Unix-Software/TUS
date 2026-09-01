@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VCMPUNORDPD",
+  "id": "vcmpunordpd16",
+  "format": "bin",
+  "source": "vcmpunordpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordpd/",
+  "target": [
+   { "output": "vcmpunordpd.bin16", "match": "vcmpunordpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPUNORDPD",
+  "id": "vcmpunordpd32",
+  "format": "bin",
+  "source": "vcmpunordpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordpd/",
+  "target": [
+   { "output": "vcmpunordpd.bin32", "match": "vcmpunordpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VCMPUNORDPD",
+  "id": "vcmpunordpd64",
+  "format": "bin",
+  "source": "vcmpunordpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordpd/",
+  "target": [
+   { "output": "vcmpunordpd.bin64", "match": "vcmpunordpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPUNORDPD",
+  "id": "vcmpunordpd16err",
+  "format": "bin",
+  "source": "vcmpunordpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordpd/",
+  "target": [
+   { "stderr": "vcmpunordpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VCMPUNORDPD",
+  "id": "vcmpunordpd32err",
+  "format": "bin",
+  "source": "vcmpunordpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vcmpunordpd/",
+  "target": [
+   { "stderr": "vcmpunordpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

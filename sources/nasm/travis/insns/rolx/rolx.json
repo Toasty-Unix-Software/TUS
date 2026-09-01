@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for ROLX",
+  "id": "rolx16",
+  "format": "bin",
+  "source": "rolx_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rolx/",
+  "target": [
+   { "output": "rolx.bin16", "match": "rolx.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ROLX",
+  "id": "rolx32",
+  "format": "bin",
+  "source": "rolx_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rolx/",
+  "target": [
+   { "output": "rolx.bin32", "match": "rolx.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for ROLX",
+  "id": "rolx64",
+  "format": "bin",
+  "source": "rolx.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rolx/",
+  "target": [
+   { "output": "rolx.bin64", "match": "rolx.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ROLX",
+  "id": "rolx16err",
+  "format": "bin",
+  "source": "rolx_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rolx/",
+  "target": [
+   { "stderr": "rolx.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for ROLX",
+  "id": "rolx32err",
+  "format": "bin",
+  "source": "rolx_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/rolx/",
+  "target": [
+   { "stderr": "rolx.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

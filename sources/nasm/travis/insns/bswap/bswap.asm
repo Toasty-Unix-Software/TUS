@@ -1,0 +1,13 @@
+default rel
+	bswap edx
+	bswap esi
+	bswap rcx
+	bswap rbx
+	bswap ax
+	bswap ax
+	bswap cx
+	bswap cx
+	bswap r10d
+	bswap r10
+	bswap r23d
+	bswap r18

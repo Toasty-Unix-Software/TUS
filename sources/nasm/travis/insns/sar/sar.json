@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SAR",
+  "id": "sar64",
+  "format": "bin",
+  "source": "sar.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sar/",
+  "target": [
+   { "output": "sar.bin64", "match": "sar.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SAR",
+  "id": "sar16err",
+  "format": "bin",
+  "source": "sar_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sar/",
+  "target": [
+   { "stderr": "sar.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SAR",
+  "id": "sar32err",
+  "format": "bin",
+  "source": "sar_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/sar/",
+  "target": [
+   { "stderr": "sar.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

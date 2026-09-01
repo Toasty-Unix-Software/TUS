@@ -1,0 +1,37 @@
+[
+ {
+  "description": "Pseudorandom test for CTESTAE",
+  "id": "ctestae64",
+  "format": "bin",
+  "source": "ctestae.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestae/",
+  "target": [
+   { "output": "ctestae.bin64", "match": "ctestae.bin64.t" },
+   { "stderr": "ctestae.stderr64" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTAE",
+  "id": "ctestae16err",
+  "format": "bin",
+  "source": "ctestae_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestae/",
+  "target": [
+   { "stderr": "ctestae.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CTESTAE",
+  "id": "ctestae32err",
+  "format": "bin",
+  "source": "ctestae_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/ctestae/",
+  "target": [
+   { "stderr": "ctestae.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

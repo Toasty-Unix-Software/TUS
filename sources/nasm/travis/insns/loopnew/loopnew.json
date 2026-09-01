@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for LOOPNEW",
+  "id": "loopnew16",
+  "format": "bin",
+  "source": "loopnew.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopnew/",
+  "target": [
+   { "output": "loopnew.bin16", "match": "loopnew.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for LOOPNEW",
+  "id": "loopnew32",
+  "format": "bin",
+  "source": "loopnew.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/loopnew/",
+  "target": [
+   { "output": "loopnew.bin32", "match": "loopnew.bin32.t" }
+  ]
+ }
+]

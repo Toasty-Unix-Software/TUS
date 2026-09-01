@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VSCALEFPH",
+  "id": "vscalefph16",
+  "format": "bin",
+  "source": "vscalefph_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefph/",
+  "target": [
+   { "output": "vscalefph.bin16", "match": "vscalefph.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSCALEFPH",
+  "id": "vscalefph32",
+  "format": "bin",
+  "source": "vscalefph_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefph/",
+  "target": [
+   { "output": "vscalefph.bin32", "match": "vscalefph.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VSCALEFPH",
+  "id": "vscalefph64",
+  "format": "bin",
+  "source": "vscalefph.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefph/",
+  "target": [
+   { "output": "vscalefph.bin64", "match": "vscalefph.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSCALEFPH",
+  "id": "vscalefph16err",
+  "format": "bin",
+  "source": "vscalefph_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefph/",
+  "target": [
+   { "stderr": "vscalefph.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VSCALEFPH",
+  "id": "vscalefph32err",
+  "format": "bin",
+  "source": "vscalefph_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vscalefph/",
+  "target": [
+   { "stderr": "vscalefph.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

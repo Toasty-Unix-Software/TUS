@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for WRSSQ",
+  "id": "wrssq64",
+  "format": "bin",
+  "source": "wrssq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/wrssq/",
+  "target": [
+   { "output": "wrssq.bin64", "match": "wrssq.bin64.t" }
+  ]
+ }
+]

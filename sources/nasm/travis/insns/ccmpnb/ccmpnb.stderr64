@@ -1,0 +1,3 @@
+./travis/insns/ccmpnb/ccmpnb.asm:60: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/ccmpnb/ccmpnb.asm:61: warning: byte exceeds bounds [-w+number-overflow]
+./travis/insns/ccmpnb/ccmpnb.asm:62: warning: byte exceeds bounds [-w+number-overflow]

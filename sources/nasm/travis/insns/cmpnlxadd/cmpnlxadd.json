@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for CMPNLXADD",
+  "id": "cmpnlxadd64",
+  "format": "bin",
+  "source": "cmpnlxadd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlxadd/",
+  "target": [
+   { "output": "cmpnlxadd.bin64", "match": "cmpnlxadd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPNLXADD",
+  "id": "cmpnlxadd16err",
+  "format": "bin",
+  "source": "cmpnlxadd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlxadd/",
+  "target": [
+   { "stderr": "cmpnlxadd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for CMPNLXADD",
+  "id": "cmpnlxadd32err",
+  "format": "bin",
+  "source": "cmpnlxadd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/cmpnlxadd/",
+  "target": [
+   { "stderr": "cmpnlxadd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for DIV",
+  "id": "div64",
+  "format": "bin",
+  "source": "div.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/div/",
+  "target": [
+   { "output": "div.bin64", "match": "div.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for DIV",
+  "id": "div16err",
+  "format": "bin",
+  "source": "div_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/div/",
+  "target": [
+   { "stderr": "div.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for DIV",
+  "id": "div32err",
+  "format": "bin",
+  "source": "div_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/div/",
+  "target": [
+   { "stderr": "div.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

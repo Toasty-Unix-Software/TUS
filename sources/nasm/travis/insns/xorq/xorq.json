@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XORQ",
+  "id": "xorq16",
+  "format": "bin",
+  "source": "xorq.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xorq/",
+  "target": [
+   { "output": "xorq.bin16", "match": "xorq.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XORQ",
+  "id": "xorq32",
+  "format": "bin",
+  "source": "xorq.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xorq/",
+  "target": [
+   { "output": "xorq.bin32", "match": "xorq.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XORQ",
+  "id": "xorq64",
+  "format": "bin",
+  "source": "xorq.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xorq/",
+  "target": [
+   { "output": "xorq.bin64", "match": "xorq.bin64.t" }
+  ]
+ }
+]

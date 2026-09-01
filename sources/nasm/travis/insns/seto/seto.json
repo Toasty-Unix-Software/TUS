@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETO",
+  "id": "seto64",
+  "format": "bin",
+  "source": "seto.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/seto/",
+  "target": [
+   { "output": "seto.bin64", "match": "seto.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETO",
+  "id": "seto16err",
+  "format": "bin",
+  "source": "seto_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/seto/",
+  "target": [
+   { "stderr": "seto.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETO",
+  "id": "seto32err",
+  "format": "bin",
+  "source": "seto_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/seto/",
+  "target": [
+   { "stderr": "seto.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

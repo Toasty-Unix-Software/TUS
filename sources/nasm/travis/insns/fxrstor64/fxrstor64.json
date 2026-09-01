@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for FXRSTOR64",
+  "id": "fxrstor6464",
+  "format": "bin",
+  "source": "fxrstor64.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/fxrstor64/",
+  "target": [
+   { "output": "fxrstor64.bin64", "match": "fxrstor64.bin64.t" }
+  ]
+ }
+]

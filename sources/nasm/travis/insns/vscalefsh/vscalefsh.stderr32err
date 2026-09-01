@@ -1,0 +1,2 @@
+./travis/insns/vscalefsh/vscalefsh_narrow.asm:6: error: invalid operands in non-64-bit mode
+./travis/insns/vscalefsh/vscalefsh_narrow.asm:7: error: invalid operands in non-64-bit mode

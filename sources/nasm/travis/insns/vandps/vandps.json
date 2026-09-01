@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VANDPS",
+  "id": "vandps16",
+  "format": "bin",
+  "source": "vandps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vandps/",
+  "target": [
+   { "output": "vandps.bin16", "match": "vandps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VANDPS",
+  "id": "vandps32",
+  "format": "bin",
+  "source": "vandps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vandps/",
+  "target": [
+   { "output": "vandps.bin32", "match": "vandps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VANDPS",
+  "id": "vandps64",
+  "format": "bin",
+  "source": "vandps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vandps/",
+  "target": [
+   { "output": "vandps.bin64", "match": "vandps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VANDPS",
+  "id": "vandps16err",
+  "format": "bin",
+  "source": "vandps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vandps/",
+  "target": [
+   { "stderr": "vandps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VANDPS",
+  "id": "vandps32err",
+  "format": "bin",
+  "source": "vandps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vandps/",
+  "target": [
+   { "stderr": "vandps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

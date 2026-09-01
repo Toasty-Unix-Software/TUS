@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VMOVNTPD",
+  "id": "vmovntpd16",
+  "format": "bin",
+  "source": "vmovntpd_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovntpd/",
+  "target": [
+   { "output": "vmovntpd.bin16", "match": "vmovntpd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVNTPD",
+  "id": "vmovntpd32",
+  "format": "bin",
+  "source": "vmovntpd_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovntpd/",
+  "target": [
+   { "output": "vmovntpd.bin32", "match": "vmovntpd.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VMOVNTPD",
+  "id": "vmovntpd64",
+  "format": "bin",
+  "source": "vmovntpd.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovntpd/",
+  "target": [
+   { "output": "vmovntpd.bin64", "match": "vmovntpd.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVNTPD",
+  "id": "vmovntpd16err",
+  "format": "bin",
+  "source": "vmovntpd_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovntpd/",
+  "target": [
+   { "stderr": "vmovntpd.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VMOVNTPD",
+  "id": "vmovntpd32err",
+  "format": "bin",
+  "source": "vmovntpd_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vmovntpd/",
+  "target": [
+   { "stderr": "vmovntpd.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

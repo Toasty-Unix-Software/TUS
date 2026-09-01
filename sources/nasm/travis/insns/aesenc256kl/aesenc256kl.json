@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for AESENC256KL",
+  "id": "aesenc256kl16",
+  "format": "bin",
+  "source": "aesenc256kl_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesenc256kl/",
+  "target": [
+   { "output": "aesenc256kl.bin16", "match": "aesenc256kl.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AESENC256KL",
+  "id": "aesenc256kl32",
+  "format": "bin",
+  "source": "aesenc256kl_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesenc256kl/",
+  "target": [
+   { "output": "aesenc256kl.bin32", "match": "aesenc256kl.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for AESENC256KL",
+  "id": "aesenc256kl64",
+  "format": "bin",
+  "source": "aesenc256kl.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesenc256kl/",
+  "target": [
+   { "output": "aesenc256kl.bin64", "match": "aesenc256kl.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AESENC256KL",
+  "id": "aesenc256kl16err",
+  "format": "bin",
+  "source": "aesenc256kl_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesenc256kl/",
+  "target": [
+   { "stderr": "aesenc256kl.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for AESENC256KL",
+  "id": "aesenc256kl32err",
+  "format": "bin",
+  "source": "aesenc256kl_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/aesenc256kl/",
+  "target": [
+   { "stderr": "aesenc256kl.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

@@ -1,0 +1,12 @@
+[
+ {
+  "description": "Pseudorandom test for TESTUI",
+  "id": "testui64",
+  "format": "bin",
+  "source": "testui.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/testui/",
+  "target": [
+   { "output": "testui.bin64", "match": "testui.bin64.t" }
+  ]
+ }
+]

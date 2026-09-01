@@ -1,0 +1,34 @@
+[
+ {
+  "description": "Pseudorandom test for XSHA1",
+  "id": "xsha116",
+  "format": "bin",
+  "source": "xsha1.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsha1/",
+  "target": [
+   { "output": "xsha1.bin16", "match": "xsha1.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XSHA1",
+  "id": "xsha132",
+  "format": "bin",
+  "source": "xsha1.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsha1/",
+  "target": [
+   { "output": "xsha1.bin32", "match": "xsha1.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for XSHA1",
+  "id": "xsha164",
+  "format": "bin",
+  "source": "xsha1.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/xsha1/",
+  "target": [
+   { "output": "xsha1.bin64", "match": "xsha1.bin64.t" }
+  ]
+ }
+]

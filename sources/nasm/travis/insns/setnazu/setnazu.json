@@ -1,0 +1,36 @@
+[
+ {
+  "description": "Pseudorandom test for SETNAZU",
+  "id": "setnazu64",
+  "format": "bin",
+  "source": "setnazu.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnazu/",
+  "target": [
+   { "output": "setnazu.bin64", "match": "setnazu.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNAZU",
+  "id": "setnazu16err",
+  "format": "bin",
+  "source": "setnazu_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnazu/",
+  "target": [
+   { "stderr": "setnazu.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for SETNAZU",
+  "id": "setnazu32err",
+  "format": "bin",
+  "source": "setnazu_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/setnazu/",
+  "target": [
+   { "stderr": "setnazu.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

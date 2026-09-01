@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPSHLB",
+  "id": "vpshlb16",
+  "format": "bin",
+  "source": "vpshlb_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshlb/",
+  "target": [
+   { "output": "vpshlb.bin16", "match": "vpshlb.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHLB",
+  "id": "vpshlb32",
+  "format": "bin",
+  "source": "vpshlb_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshlb/",
+  "target": [
+   { "output": "vpshlb.bin32", "match": "vpshlb.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPSHLB",
+  "id": "vpshlb64",
+  "format": "bin",
+  "source": "vpshlb.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshlb/",
+  "target": [
+   { "output": "vpshlb.bin64", "match": "vpshlb.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHLB",
+  "id": "vpshlb16err",
+  "format": "bin",
+  "source": "vpshlb_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshlb/",
+  "target": [
+   { "stderr": "vpshlb.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPSHLB",
+  "id": "vpshlb32err",
+  "format": "bin",
+  "source": "vpshlb_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpshlb/",
+  "target": [
+   { "stderr": "vpshlb.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

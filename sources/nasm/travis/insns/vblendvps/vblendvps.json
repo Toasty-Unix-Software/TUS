@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VBLENDVPS",
+  "id": "vblendvps16",
+  "format": "bin",
+  "source": "vblendvps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendvps/",
+  "target": [
+   { "output": "vblendvps.bin16", "match": "vblendvps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBLENDVPS",
+  "id": "vblendvps32",
+  "format": "bin",
+  "source": "vblendvps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendvps/",
+  "target": [
+   { "output": "vblendvps.bin32", "match": "vblendvps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VBLENDVPS",
+  "id": "vblendvps64",
+  "format": "bin",
+  "source": "vblendvps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendvps/",
+  "target": [
+   { "output": "vblendvps.bin64", "match": "vblendvps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBLENDVPS",
+  "id": "vblendvps16err",
+  "format": "bin",
+  "source": "vblendvps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendvps/",
+  "target": [
+   { "stderr": "vblendvps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VBLENDVPS",
+  "id": "vblendvps32err",
+  "format": "bin",
+  "source": "vblendvps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vblendvps/",
+  "target": [
+   { "stderr": "vblendvps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

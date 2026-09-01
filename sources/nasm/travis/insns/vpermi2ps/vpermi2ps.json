@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPERMI2PS",
+  "id": "vpermi2ps16",
+  "format": "bin",
+  "source": "vpermi2ps_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermi2ps/",
+  "target": [
+   { "output": "vpermi2ps.bin16", "match": "vpermi2ps.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPERMI2PS",
+  "id": "vpermi2ps32",
+  "format": "bin",
+  "source": "vpermi2ps_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermi2ps/",
+  "target": [
+   { "output": "vpermi2ps.bin32", "match": "vpermi2ps.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPERMI2PS",
+  "id": "vpermi2ps64",
+  "format": "bin",
+  "source": "vpermi2ps.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermi2ps/",
+  "target": [
+   { "output": "vpermi2ps.bin64", "match": "vpermi2ps.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPERMI2PS",
+  "id": "vpermi2ps16err",
+  "format": "bin",
+  "source": "vpermi2ps_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermi2ps/",
+  "target": [
+   { "stderr": "vpermi2ps.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPERMI2PS",
+  "id": "vpermi2ps32err",
+  "format": "bin",
+  "source": "vpermi2ps_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpermi2ps/",
+  "target": [
+   { "stderr": "vpermi2ps.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

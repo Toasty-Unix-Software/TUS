@@ -1,0 +1,58 @@
+[
+ {
+  "description": "Pseudorandom test for VPBROADCASTMB2Q",
+  "id": "vpbroadcastmb2q16",
+  "format": "bin",
+  "source": "vpbroadcastmb2q_narrow.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpbroadcastmb2q/",
+  "target": [
+   { "output": "vpbroadcastmb2q.bin16", "match": "vpbroadcastmb2q.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPBROADCASTMB2Q",
+  "id": "vpbroadcastmb2q32",
+  "format": "bin",
+  "source": "vpbroadcastmb2q_narrow.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpbroadcastmb2q/",
+  "target": [
+   { "output": "vpbroadcastmb2q.bin32", "match": "vpbroadcastmb2q.bin32.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for VPBROADCASTMB2Q",
+  "id": "vpbroadcastmb2q64",
+  "format": "bin",
+  "source": "vpbroadcastmb2q.asm",
+  "option": "--bits 64 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpbroadcastmb2q/",
+  "target": [
+   { "output": "vpbroadcastmb2q.bin64", "match": "vpbroadcastmb2q.bin64.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPBROADCASTMB2Q",
+  "id": "vpbroadcastmb2q16err",
+  "format": "bin",
+  "source": "vpbroadcastmb2q_narrow.asm",
+  "option": "--bits 16 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpbroadcastmb2q/",
+  "target": [
+   { "stderr": "vpbroadcastmb2q.stderr16err" }
+  ],
+  "error": "expected"
+ }
+,
+ {
+  "description": "Pseudorandom error-case test for VPBROADCASTMB2Q",
+  "id": "vpbroadcastmb2q32err",
+  "format": "bin",
+  "source": "vpbroadcastmb2q_narrow.asm",
+  "option": "--bits 32 -DERROR -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/vpbroadcastmb2q/",
+  "target": [
+   { "stderr": "vpbroadcastmb2q.stderr32err" }
+  ],
+  "error": "expected"
+ }
+]

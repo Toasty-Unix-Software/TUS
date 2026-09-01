@@ -1,0 +1,23 @@
+[
+ {
+  "description": "Pseudorandom test for RETD",
+  "id": "retd16",
+  "format": "bin",
+  "source": "retd.asm",
+  "option": "--bits 16 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retd/",
+  "target": [
+   { "output": "retd.bin16", "match": "retd.bin16.t" }
+  ]
+ }
+,
+ {
+  "description": "Pseudorandom test for RETD",
+  "id": "retd32",
+  "format": "bin",
+  "source": "retd.asm",
+  "option": "--bits 32 -w-ea-absolute -w-implicit-abs-deprecated -I./travis/insns/retd/",
+  "target": [
+   { "output": "retd.bin32", "match": "retd.bin32.t" }
+  ]
+ }
+]
