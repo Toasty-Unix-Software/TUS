@@ -1,6 +1,0 @@
-[submodule "sources/lvgl"]
-	path = sources/lvgl
-	url = https://github.com/lvgl/lvgl.git
-[submodule "sources/mbedtls"]
-	path = sources/mbedtls
-	url = https://github.com/Mbed-TLS/mbedtls.git
