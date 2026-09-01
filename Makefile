@@ -166,7 +166,6 @@ USER_TOOLS := $(ROOTFS_DIR)/bin/doas \
               $(ROOTFS_DIR)/bin/shcomp \
               $(ROOTFS_DIR)/bin/pty \
               $(ROOTFS_DIR)/bin/tpm \
-              $(ROOTFS_DIR)/bin/tree \
               $(ROOTFS_DIR)/bin/mkfs.wrf
 
 # ---- Mbed TLS ----
@@ -528,13 +527,6 @@ $(ROOTFS_DIR)/bin/tpm: $(BUILD)/userspace/tpm.o $(CLINT_NET_OBJS) \
                 $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o \
                 $(BUILD)/userspace/tpm.o $(CLINT_NET_OBJS) \
                 $(MBEDTLS_LIBS) $(MUSL_LINK) $(LIBGCC)
-
-$(ROOTFS_DIR)/bin/tree: userspace/tree.c $(MUSL_LIB)/libc.a
-	$(QUIET_LD)
-	$(Q)mkdir -p $(ROOTFS_DIR)/bin $(BUILD)/userspace
-	$(Q)$(CC) $(USER_CFLAGS) -nostdinc -I$(MUSL_INC) -c $< -o $(BUILD)/userspace/tree.o
-	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
-                $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/tree.o $(MUSL_LINK)
 
 $(ROOTFS_DIR)/bin/mkfs.wrf: userspace/mkfs_wrf.c $(MUSL_LIB)/libc.a
 	$(QUIET_LD)
@@ -1786,7 +1778,7 @@ $(ROOTFS_IMG): $(USER_ELFS) $(USER_TOOLS) $(ROOTFS_FILES) limine.conf \
                   $(ROOTFS_DIR)/bin/clear \
                   $(ROOTFS_DIR)/bin/ksh $(ROOTFS_DIR)/bin/shcomp \
                   $(ROOTFS_DIR)/bin/pty $(ROOTFS_DIR)/bin/tpm \
-                  $(ROOTFS_DIR)/bin/tree $(ROOTFS_DIR)/bin/mkfs.wrf \
+                  $(ROOTFS_DIR)/bin/mkfs.wrf \
                   $(ROOTFS_DIR)/bin/tussm $(ROOTFS_DIR)/bin/errord \
                   $(ROOTFS_DIR)/bin/bootd
 	$(Q)chmod 4555 $(ROOTFS_DIR)/bin/doas $(ROOTFS_DIR)/bin/passwd
