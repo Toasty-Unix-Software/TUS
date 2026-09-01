@@ -25,3 +25,5 @@ musl-1.2.6.tar.gz
 # highX tests
 tests/highx/test_compositor
 tests/__pycache__/
+.git.broken-1788276105/
+.claude/
