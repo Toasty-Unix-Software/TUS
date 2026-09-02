@@ -108,7 +108,8 @@ USER_ELFS := $(ROOTFS_DIR)/bin/hello \
              $(ROOTFS_DIR)/bin/fault \
              $(ROOTFS_DIR)/bin/musl_hello \
              $(ROOTFS_DIR)/bin/socktest \
-             $(ROOTFS_DIR)/bin/kilo
+             $(ROOTFS_DIR)/bin/kilo \
+             $(ROOTFS_DIR)/bin/clonetest
 
 # TUS system tools (userspace/), all linked against musl.
 USER_TOOLS := $(ROOTFS_DIR)/bin/doas \
@@ -427,6 +428,18 @@ $(ROOTFS_DIR)/bin/musl_hello: tests/musl_hello.c $(MUSL_LIB)/libc.a
 	$(Q)$(CC) $(USER_CFLAGS) -nostdinc -I$(MUSL_INC) -c $< -o $(BUILD)/tests/musl_hello.o
 	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
                 $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/tests/musl_hello.o $(MUSL_LINK)
+
+# clonetest: exercises posix_spawn() -> musl's __clone(), the path
+# that crashed ksh's `clear` with Invalid Opcode (raw `syscall`
+# instruction in clone.s/vfork.s, unimplemented on TUS - see
+# sources/musl-1.2.6/src/thread/x86_64/clone.s). Regression coverage
+# for that fix without needing a full ksh93 rebuild for every check.
+$(ROOTFS_DIR)/bin/clonetest: tests/test_clone_fix.c $(MUSL_LIB)/libc.a
+	$(QUIET_LD)
+	$(Q)mkdir -p $(ROOTFS_DIR)/bin $(BUILD)/tests
+	$(Q)$(CC) $(USER_CFLAGS) -nostdinc -I$(MUSL_INC) -c $< -o $(BUILD)/tests/test_clone_fix.o
+	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
+                $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/tests/test_clone_fix.o $(MUSL_LINK)
 
 # socktest: AF_UNIX sockets + poll/select, exercised from ring 3
 # through the real libc entry points (socket/bind/accept/poll/select).
