@@ -102,6 +102,13 @@ struct task {
     uint32_t gid;
     uint32_t egid;
 
+    /* POSIX-capabilities-style bitmask (see cap.h). A non-root task
+     * (euid != 0) has exactly these bits; euid == 0 implicitly has
+     * every capability regardless of this field (has_cap() encodes
+     * that). Inherited by children (sched_fork), unaffected by
+     * setuid/setgid. Settable only by a root task via SYS_CAPSET. */
+    uint32_t caps;
+
     /* Next address for anonymous mmap allocations (see SYS_MMAP). */
     uint64_t mmap_cur;
 

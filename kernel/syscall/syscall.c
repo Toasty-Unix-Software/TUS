@@ -49,6 +49,7 @@
 #include "../drivers/vbe/vbe.h"
 #include "../vfs/devices.h"
 #include "../sched/sched.h"
+#include "../sched/cap.h"
 #include "../term/term.h"
 #include "../vfs/vfs.h"
 #include "../core/klib.h"
@@ -1195,8 +1196,8 @@ static long sys_netctl(long op, void *arg, long len, bool from_user) {
         if ((size_t)len < sizeof(struct tus_ifinfo)) return -EINVAL;
 
         struct task *cur = sched_current();
-        if (from_user && cur != NULL && cur->euid != 0) {
-            return -EPERM; /* reconfiguring the interface is root's job */
+        if (from_user && !has_cap(cur, CAP_NET_ADMIN)) {
+            return -EPERM; /* reconfiguring the interface needs root or CAP_NET_ADMIN */
         }
 
         const struct tus_ifinfo *info = (const struct tus_ifinfo *)arg;
@@ -2254,6 +2255,24 @@ long syscall_dispatch(struct syscall_regs *r, uint64_t cs, uint64_t frame_rsp) {
             cli();
             hlt();
         }
+    }
+
+    case SYS_CAPSET: {
+        struct task *cur = sched_current();
+        if (from_user && !has_cap(cur, ~0u)) {
+            /* Only euid == 0 may grant capabilities - has_cap() with
+             * an all-bits mask is true only for that implicit-root
+             * case, never via a previously granted subset. */
+            return -EPERM;
+        }
+        uint32_t pid = (uint32_t)r->rdi;
+        uint32_t caps = (uint32_t)r->rsi & CAP_ALL_KNOWN;
+        struct task *target = (pid == 0) ? cur : sched_find_pid(pid);
+        if (target == NULL) {
+            return -ESRCH;
+        }
+        target->caps = caps;
+        return 0;
     }
 
     default:

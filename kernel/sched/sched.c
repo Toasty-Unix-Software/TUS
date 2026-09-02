@@ -728,6 +728,7 @@ int task_create_user(uint64_t entry, const char *name, uint64_t cr3,
     t->euid = 0;
     t->gid = 0;
     t->egid = 0;
+    t->caps = 0;
 
     /* Process identity and working directory are inherited from the
      * spawning task, exactly like a real fork()+exec() would leave
@@ -829,6 +830,7 @@ int task_create_kernel(void (*entry)(void *), void *arg, const char *name) {
     t->fs_base = 0;
     t->mmap_cur = MMAP_CURSOR_START;
     t->uid = t->euid = t->gid = t->egid = 0;
+    t->caps = 0;
     t->term = NULL;
 
     /* A terminal session's shell is still a real task in the table
@@ -1191,6 +1193,7 @@ long sched_fork(uint64_t frame_rsp) {
     t->euid = parent->euid;
     t->gid = parent->gid;
     t->egid = parent->egid;
+    t->caps = parent->caps;
     t->term = parent->term;
     t->pending_kill = false;
 

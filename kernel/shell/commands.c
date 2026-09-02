@@ -16,6 +16,7 @@
 #include "arch/x86_64/lapic.h"
 #include "arch/x86_64/pic.h"
 #include "arch/x86_64/smp.h"
+#include "sched/cap.h"
 #include "core/bootinfo.h"
 #include "core/console.h"
 #include "core/klib.h"
@@ -45,6 +46,7 @@ static int cmd_ver(int argc, char **argv);
 static int cmd_about(int argc, char **argv);
 static int cmd_sysinfo(int argc, char **argv);
 static int cmd_cpuinfo(int argc, char **argv);
+static int cmd_caps(int argc, char **argv);
 static int cmd_reboot(int argc, char **argv);
 static int cmd_shutdown(int argc, char **argv);
 static int cmd_crash(int argc, char **argv);
@@ -65,6 +67,7 @@ static const struct shell_command g_core_commands[] = {
     { "about",      "show TUS information",              cmd_about },
     { "sysinfo",    "show system information",           cmd_sysinfo },
     { "cpuinfo",    "show detected CPUs (ACPI/MADT)",    cmd_cpuinfo },
+    { "caps",       "show current task's capability bits",    cmd_caps },
     { "reboot",     "restart the machine",               cmd_reboot },
     { "shutdown",   "halt the machine",                  cmd_shutdown },
     { "halt",       "halt the machine",                  cmd_shutdown },
@@ -225,6 +228,24 @@ static int cmd_cpuinfo(int argc, char **argv) {
                 c->acpi_processor_id, c->enabled ? "enabled" : "disabled",
                 c->is_bsp ? " (BSP, running)" : "");
     }
+    return 0;
+}
+
+static int cmd_caps(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+
+    struct task *cur = sched_current();
+    if (cur == NULL) {
+        console_write("caps: no current task\n");
+        return 1;
+    }
+
+    kprintf("pid=%u uid=%u euid=%u caps=0x%x%s\n", cur->pid, cur->uid,
+            cur->euid, cur->caps, cur->euid == 0 ? " (root: all implied)" : "");
+    kprintf("  CAP_NET_ADMIN : %s\n", has_cap(cur, CAP_NET_ADMIN) ? "yes" : "no");
+    kprintf("  CAP_NET_RAW   : %s\n", has_cap(cur, CAP_NET_RAW) ? "yes" : "no");
+    kprintf("  CAP_SETUID    : %s\n", has_cap(cur, CAP_SETUID) ? "yes" : "no");
     return 0;
 }
 

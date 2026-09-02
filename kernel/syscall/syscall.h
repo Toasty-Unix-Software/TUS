@@ -223,6 +223,9 @@
  * logging the failure. No musl wrapper - same raw int $0x80 pattern
  * as SYS_GETPROCS/SYS_READDIR above. */
 #define SYS_PANIC       84
+#define SYS_CAPSET      85 /* capset(pid, uint32_t caps) - root only;
+                             * grants exactly `caps` (see kernel/sched/cap.h)
+                             * to task `pid` (0 = self) */
 #define TUS_PANIC_BSOD   0
 #define TUS_PANIC_GSOD   1
 #define TUS_PANIC_RSOD   2
