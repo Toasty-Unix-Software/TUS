@@ -15,8 +15,20 @@
 #include <stdint.h>
 
 #define ACPI_MAX_OVERRIDES 16
+#define ACPI_MAX_CPUS 32
 
 struct acpi_madt_info {
+    /* Processor Local APIC entries (MADT type 0): one per logical CPU
+     * the firmware knows about. `enabled` is the entry's flags bit 0 -
+     * a disabled entry describes a socket that is physically present
+     * but not usable (e.g. not populated, or disabled in firmware). */
+    struct {
+        uint8_t acpi_processor_id;
+        uint8_t apic_id;
+        int enabled;
+    } cpu[ACPI_MAX_CPUS];
+    int n_cpu;
+
     uint32_t ioapic_phys;     /* 0 if the MADT has no I/O APIC entry */
     uint32_t ioapic_gsi_base; /* almost always 0: GSI n == IRQ n */
 

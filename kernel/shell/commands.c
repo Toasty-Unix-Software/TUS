@@ -15,6 +15,7 @@
 #include "arch/x86_64/ioapic.h"
 #include "arch/x86_64/lapic.h"
 #include "arch/x86_64/pic.h"
+#include "arch/x86_64/smp.h"
 #include "core/bootinfo.h"
 #include "core/console.h"
 #include "core/klib.h"
@@ -43,6 +44,7 @@ static int cmd_clear(int argc, char **argv);
 static int cmd_ver(int argc, char **argv);
 static int cmd_about(int argc, char **argv);
 static int cmd_sysinfo(int argc, char **argv);
+static int cmd_cpuinfo(int argc, char **argv);
 static int cmd_reboot(int argc, char **argv);
 static int cmd_shutdown(int argc, char **argv);
 static int cmd_crash(int argc, char **argv);
@@ -62,6 +64,7 @@ static const struct shell_command g_core_commands[] = {
     { "ver",        "show the kernel version",           cmd_ver },
     { "about",      "show TUS information",              cmd_about },
     { "sysinfo",    "show system information",           cmd_sysinfo },
+    { "cpuinfo",    "show detected CPUs (ACPI/MADT)",    cmd_cpuinfo },
     { "reboot",     "restart the machine",               cmd_reboot },
     { "shutdown",   "halt the machine",                  cmd_shutdown },
     { "halt",       "halt the machine",                  cmd_shutdown },
@@ -202,6 +205,25 @@ static int cmd_sysinfo(int argc, char **argv) {
                 width, height, bpp, (unsigned long long)pitch, address);
     } else {
         console_write("Framebuffer : none (serial console only)\n");
+    }
+    return 0;
+}
+
+static int cmd_cpuinfo(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+
+    int n = smp_cpu_count();
+    kprintf("CPUs        : %d detected (%d enabled), 1 running (no SMP scheduling)\n",
+            n, smp_cpu_enabled_count());
+    for (int i = 0; i < n; i++) {
+        const struct cpu_state *c = smp_cpu_get(i);
+        if (c == NULL) {
+            break;
+        }
+        kprintf("  cpu%-2d apic_id=%-3u acpi_id=%-3u %s%s\n", i, c->apic_id,
+                c->acpi_processor_id, c->enabled ? "enabled" : "disabled",
+                c->is_bsp ? " (BSP, running)" : "");
     }
     return 0;
 }

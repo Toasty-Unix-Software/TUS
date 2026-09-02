@@ -21,6 +21,7 @@
 #include "arch/x86_64/io.h"
 #include "arch/x86_64/lapic.h"
 #include "arch/x86_64/pic.h"
+#include "arch/x86_64/smp.h"
 #include "boot/splash.h"
 #include "core/bootinfo.h"
 #include "core/console.h"
@@ -551,6 +552,15 @@ void _start(void) {
      * globally either way until sti() far below, so nothing in
      * between depends on the ordering. */
     pic_init();
+
+    /* smp_init() reads the same MADT pic_init() just consulted for the
+     * I/O APIC, this time for Processor Local APIC entries - i.e. the
+     * CPU list. Must run after pic_init() so lapic_available()/
+     * lapic_id() (used to identify which entry is the BSP) are already
+     * set up; TUS still only executes on this one core (no AP
+     * trampoline), so this is topology discovery, not a core count the
+     * scheduler acts on yet. */
+    smp_init();
 
     /* ACPI PM Timer and HPET: two more clock sources than the PIT,
      * neither needed for interrupt routing (that is pic_init() above),

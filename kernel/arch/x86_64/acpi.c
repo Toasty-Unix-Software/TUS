@@ -121,6 +121,7 @@ int acpi_parse_madt(void *rsdp_virt, struct acpi_madt_info *out) {
     out->has_lapic_override = 0;
     out->lapic_phys = 0;
     out->n_override = 0;
+    out->n_cpu = 0;
 
     const uint8_t *p = (const uint8_t *)madt + sizeof(*madt);
     const uint8_t *end = (const uint8_t *)madt + madt->hdr.length;
@@ -132,7 +133,16 @@ int acpi_parse_madt(void *rsdp_virt, struct acpi_madt_info *out) {
             break; /* truncated or corrupt entry: stop, keep what we have */
         }
 
-        if (type == 1 && len >= 12 && out->ioapic_phys == 0) {
+        if (type == 0 && len >= 8 && out->n_cpu < ACPI_MAX_CPUS) {
+            /* Processor Local APIC: acpi_processor_id(1) apic_id(1)
+             * flags(4, bit0 = enabled) */
+            uint32_t flags;
+            __builtin_memcpy(&flags, p + 4, 4);
+            out->cpu[out->n_cpu].acpi_processor_id = p[2];
+            out->cpu[out->n_cpu].apic_id = p[3];
+            out->cpu[out->n_cpu].enabled = (flags & 1) ? 1 : 0;
+            out->n_cpu++;
+        } else if (type == 1 && len >= 12 && out->ioapic_phys == 0) {
             /* I/O APIC: id(1) reserved(1) address(4) gsi_base(4) */
             uint32_t addr;
             uint32_t gsi_base;
