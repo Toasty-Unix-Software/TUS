@@ -353,6 +353,7 @@ USER_TOOLS += $(ROOTFS_DIR)/bin/tuswm \
               $(ROOTFS_DIR)/bin/mail \
               $(ROOTFS_DIR)/bin/hxmenu \
               $(ROOTFS_DIR)/bin/hxdemo \
+              $(ROOTFS_DIR)/bin/hxcube \
               $(ROOTFS_DIR)/bin/hxclock
 
 .PHONY: all iso run run-smp test test-highx test-de test-res test-usb test-keymap test-layouts test-font test-highgl test-shell test-term \
@@ -1026,6 +1027,16 @@ $(ROOTFS_DIR)/bin/hxdemo: userspace/hxdemo.c $(HIGHAPI_OBJ) $(MUSL_LIB)/libc.a
 	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
                 $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/hxdemo.o \
                 $(HIGHAPI_OBJ) $(MUSL_LINK)
+
+# hxcube: a rotating cube rendered with HighGL (float pipeline, like
+# hglui/LVGL) and blitted into a highX window like hxdemo's gradient.
+$(ROOTFS_DIR)/bin/hxcube: userspace/hxcube.c $(HIGHAPI_OBJ) $(HIGHGL_OBJS) $(MUSL_LIB)/libc.a
+	$(QUIET_LD)
+	$(Q)mkdir -p $(ROOTFS_DIR)/bin $(BUILD)/userspace
+	$(Q)$(CC) $(HIGHGL_CFLAGS) -Iuserspace -c $< -o $(BUILD)/userspace/hxcube.o
+	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
+                $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/hxcube.o \
+                $(HIGHAPI_OBJ) $(HIGHGL_OBJS) $(MUSL_LINK_M)
 
 # The H.264 decoder is compiled once into build/h264bsd/ and linked
 # into hxvideo; nothing else needs it.
@@ -1755,7 +1766,7 @@ $(ROOTFS_IMG): $(USER_ELFS) $(USER_TOOLS) $(ROOTFS_FILES) limine.conf \
                   $(ROOTFS_DIR)/bin/readelf $(ROOTFS_DIR)/bin/nm $(ROOTFS_DIR)/bin/ld \
                   $(ROOTFS_DIR)/bin/fastfetch $(ROOTFS_DIR)/bin/flashfetch \
                   $(ROOTFS_DIR)/bin/tuswm $(ROOTFS_DIR)/bin/tusde \
-                  $(ROOTFS_DIR)/bin/hxdemo $(ROOTFS_DIR)/bin/hxfont \
+                  $(ROOTFS_DIR)/bin/hxdemo $(ROOTFS_DIR)/bin/hxcube $(ROOTFS_DIR)/bin/hxfont \
                   $(ROOTFS_DIR)/bin/lvgldemo \
                   $(ROOTFS_DIR)/bin/hxclock $(ROOTFS_DIR)/bin/hxterm \
                   $(ROOTFS_DIR)/bin/hxtsh $(ROOTFS_DIR)/bin/hxfiles \

@@ -8,6 +8,7 @@ Shell (hxterm):/bin/hxterm
 Video:/bin/hxvideo
 Clock:/bin/hxclock
 Demo:/bin/hxdemo
+Cube:/bin/hxcube
 Fonts:/bin/hxfont
 LVGL:/bin/lvgldemo
 Menu:/bin/hxmenu
