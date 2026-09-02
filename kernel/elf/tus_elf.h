@@ -18,6 +18,14 @@
  * (the shell uses the pid to wait for the program to exit). */
 long elf_exec(const char *path, int argc, char **argv);
 
+/* Same as elf_exec(), but the new task starts at the given uid/gid
+ * (both real and effective) instead of always root. Used by the
+ * shell to run a typed command as whoever is actually logged into
+ * that session, rather than as root regardless of who is "logged
+ * in" - see g_session_uid in kernel/shell/commands.c. */
+long elf_exec_as(const char *path, int argc, char **argv,
+                 uint32_t uid, uint32_t gid);
+
 /* execve: replace the CURRENT task's image with the ELF at `path`.
  * `path`/`argv` must be kernel pointers; `frame_rsp` is the address
  * of the live interrupt frame on the calling task's kernel stack

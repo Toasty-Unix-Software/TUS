@@ -1887,10 +1887,18 @@ long syscall_dispatch(struct syscall_regs *r, uint64_t cs, uint64_t frame_rsp) {
         if (cur == NULL) {
             return -EPERM;
         }
-        /* TUS has no privilege separation: any task may change its
-         * ids (everything runs as root by default). */
-        cur->uid = (uint32_t)r->rdi;
-        cur->euid = (uint32_t)r->rdi;
+        uint32_t target = (uint32_t)r->rdi;
+        /* POSIX semantics: a privileged (euid 0) caller may become
+         * any uid; an unprivileged one may only set its real, saved
+         * or effective uid to its own real uid (a no-op here, since
+         * TUS tracks no saved-uid) - never to an arbitrary account,
+         * root included. Without this check any process could
+         * escalate itself with a bare setuid(0). */
+        if (cur->euid != 0 && target != cur->uid) {
+            return -EPERM;
+        }
+        cur->uid = target;
+        cur->euid = target;
         return 0;
     }
     case SYS_GETGID: {
@@ -1902,8 +1910,12 @@ long syscall_dispatch(struct syscall_regs *r, uint64_t cs, uint64_t frame_rsp) {
         if (cur == NULL) {
             return -EPERM;
         }
-        cur->gid = (uint32_t)r->rdi;
-        cur->egid = (uint32_t)r->rdi;
+        uint32_t target = (uint32_t)r->rdi;
+        if (cur->euid != 0 && target != cur->gid) {
+            return -EPERM;
+        }
+        cur->gid = target;
+        cur->egid = target;
         return 0;
     }
 

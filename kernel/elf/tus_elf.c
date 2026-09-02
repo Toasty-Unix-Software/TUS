@@ -101,6 +101,12 @@ static void elf_error(const char *what, el_status st) {
  * kernel half is shared, so running kernel code there is safe.
  */
 long elf_exec(const char *path, int argc, char **argv) {
+    return elf_exec_as(path, argc, argv, 0, 0);
+}
+
+
+long elf_exec_as(const char *path, int argc, char **argv,
+                 uint32_t uid, uint32_t gid) {
     if (path == NULL) {
         return -EINVAL;
     }
@@ -118,6 +124,23 @@ long elf_exec(const char *path, int argc, char **argv) {
         kprintf("exec: permission denied: %s\n", path);
         vfs_close(g_elf_fd);
         return -EACCES;
+    }
+
+    /* setuid/setgid-on-exec: real uid/gid stay whoever called us, but
+     * the EFFECTIVE ones become the file's owner when its 04000/02000
+     * bits are set - the actual mechanism the "4555, rws-r-xr-x" mode
+     * on /bin/doas and /bin/passwd (see the mode field's comment in
+     * vfs.h, and the ISO build step that sets it) was always meant to
+     * provide, and which nothing implemented until now: doas/passwd
+     * need to read /etc/shadow, which is root-only, on behalf of a
+     * non-root caller. */
+    uint32_t euid = uid;
+    uint32_t egid = gid;
+    if (node->mode & 04000) {
+        euid = node->uid;
+    }
+    if (node->mode & 02000) {
+        egid = node->gid;
     }
 
     el_ctx ctx;
@@ -160,7 +183,8 @@ long elf_exec(const char *path, int argc, char **argv) {
     /* ET_EXEC images need no relocations: skip el_relocate().
      * Spawn a ring-3 task that starts at the entry point inside this
      * address space; the scheduler runs it alongside the shell. */
-    int pid = task_create_user(ctx.ehdr.e_entry, path, cr3, argc, argv);
+    int pid = task_create_user(ctx.ehdr.e_entry, path, cr3, argc, argv,
+                               uid, gid, euid, egid);
 
     /* Back to the caller's space; the new task's space is only entered
      * by the scheduler (CR3 switch on its first time slice). */
@@ -337,10 +361,15 @@ long elf_exec_current(const char *path, int argc, char **argv,
     cur->ustack_top = EXEC_USER_STACK + EXEC_STACK_SIZE;
     cur->fs_base = 0;          /* new program sets up its own TLS */
     cur->mmap_cur = 0x40000000ull;
-    cur->uid = 0;              /* execve resets to root (no model yet) */
-    cur->euid = 0;
-    cur->gid = 0;
-    cur->egid = 0;
+    /* Real uid/gid survive execve (POSIX); only the effective ones
+     * move, and only for a setuid/setgid target - to the file's
+     * owner if the bit is set, back to the real id otherwise. This
+     * used to hardcode uid 0 unconditionally, which stomped on
+     * whatever setuid()/setgid() the caller had just done to itself
+     * (doas does exactly that immediately before this execve, to run
+     * the target command as the identity it authenticated). */
+    cur->euid = (node->mode & 04000) ? node->uid : cur->uid;
+    cur->egid = (node->mode & 02000) ? node->gid : cur->gid;
     const char *base = path;
     for (const char *p = path; *p != '\0'; p++) {
         if (*p == '/') {

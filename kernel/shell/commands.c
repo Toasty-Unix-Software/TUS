@@ -934,6 +934,18 @@ static int cmd_highx(int argc, char **argv) {
     return 0;
 }
 
+/* Identity of whoever is logged into this shell session, adopted
+ * from /bin/login's own post-authentication setuid()/setgid() (see
+ * sched_task_ids()) once it exits. Every ordinary external command
+ * this session spawns afterwards runs as this identity rather than
+ * always as root - without it, every fresh exec restarted at uid 0
+ * regardless of who "logged in", which is what silently defeated
+ * doas's password prompt (its "already root, skip the password"
+ * fast path was always true). Starts at root/0, matching the
+ * console's default session before any login happens. */
+static uint32_t g_session_uid = 0;
+static uint32_t g_session_gid = 0;
+
 /* Run one pipeline. Every external stage is spawned as a task; the
  * shell waits (hlt) until all pids have exited. See the comment at
  * the top of this section for the fd choreography. */
@@ -961,6 +973,8 @@ static void exec_pipeline(struct pipeline_seg *segs, int nseg) {
     }
 
     int pids[MAX_PIPE_SEGS];
+    int pid_is_login[MAX_PIPE_SEGS]; /* parallel to pids[], not segs[] -
+                                       * builtin stages never get a pid */
     int npids = 0;
     int prev_r = -1; /* read end of the pipe between the last two stages */
     int failed = 0;
@@ -1009,12 +1023,22 @@ static void exec_pipeline(struct pipeline_seg *segs, int nseg) {
                 if (s->builtin != 0) {
                     builtin_run(s->builtin, s->argc, s->argv);
                 } else {
-                    int pid = (int)elf_exec(resolved[i], s->argc - 1,
-                                            &s->argv[1]);
+                    int pid = (int)elf_exec_as(resolved[i], s->argc - 1,
+                                               &s->argv[1],
+                                               g_session_uid, g_session_gid);
                     if (pid < 0) {
                         kprintf("tsh: %s: cannot execute\n", s->argv[0]);
                         failed = 1;
                     } else {
+                        /* Only bare "login" (no path, no pipeline
+                         * partner) is treated as a session login -
+                         * `login` piped into/out of something else
+                         * is presumably scripted, not an interactive
+                         * session change, and matching on the
+                         * resolved path alone would also fire for
+                         * anyone's own program merely named login. */
+                        pid_is_login[npids] = (nseg == 1 &&
+                            strcmp(s->argv[0], "login") == 0) ? 1 : 0;
                         pids[npids++] = pid;
                     }
                 }
@@ -1079,6 +1103,13 @@ static void exec_pipeline(struct pipeline_seg *segs, int nseg) {
     for (int k = 0; k < npids; k++) {
         while (sched_task_alive((uint32_t)pids[k])) {
             hlt();
+        }
+        if (pid_is_login[k]) {
+            uint32_t uid, gid;
+            if (sched_task_ids((uint32_t)pids[k], &uid, &gid)) {
+                g_session_uid = uid;
+                g_session_gid = gid;
+            }
         }
     }
     sched_clear_foreground();

@@ -134,8 +134,23 @@ int main(int argc, char **argv) {
         user = NULL;
     }
 
-    /* Successful login: account information. */
+    /* Successful login: drop from root to the authenticated account
+     * before doing anything else. The session (this same tsh, per
+     * the file comment) inherits whatever ids we leave it with, so
+     * skipping this step would leave every login running as euid 0
+     * for the rest of the session - among other things it is what
+     * silently defeated doas's password prompt, since doas treats
+     * "caller is already euid 0" as "nothing to elevate". Order
+     * matters: setgid before setuid, since dropping uid first would
+     * leave us unable to still change gid. */
     struct passwd *pw = getpwnam(user);
+    if (pw != NULL) {
+        if (setgid(pw->pw_gid) != 0 || setuid(pw->pw_uid) != 0) {
+            fprintf(stderr, "login: failed to drop privileges: %s\n",
+                    strerror(errno));
+            return 1;
+        }
+    }
     printf("Welcome to TUS, %s!\n", user);
     printf("  uid=%u  gid=%u  home=%s  shell=%s\n",
            pw != NULL ? pw->pw_uid : 0,

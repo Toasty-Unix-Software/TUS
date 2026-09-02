@@ -1646,6 +1646,26 @@ void vfs_devices_init(void) {
     ensure_dir("/etc");
     ensure_dir("/boot");
 
+    /* /tmp is the one directory every account, not just root, is
+     * expected to create and remove its own files in - real Unix
+     * ships it 01777 (world rwx + the sticky bit, so nobody can
+     * delete someone else's file there) for exactly that reason.
+     * Every OTHER directory gets the generic 0755 a fresh vfs_node
+     * starts at (see vfs_create_dir()), owned by root, which is
+     * correct there but wrong for /tmp specifically - and since /tmp
+     * is normally populated from the rootfs.img tar rather than
+     * ensure_dir() above, whatever mode happened to survive tar
+     * packing (a plain `mkdir -p` on the build host, with no
+     * guaranteed umask) is not something to rely on. Fix it up here,
+     * unconditionally, regardless of which path created the node.
+     * Nothing enforced this at all until vfs_access_ok() started
+     * actually gating non-root writes - before that every session
+     * ran as root and a wrong mode on /tmp was invisible. */
+    struct vfs_node *tmp_dir = vfs_lookup("/tmp");
+    if (tmp_dir != NULL) {
+        tmp_dir->mode = 01777;
+    }
+
     /* Populate /dev with the built-in devices. */
     devices_init();
 

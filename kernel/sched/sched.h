@@ -232,10 +232,15 @@ long sched_fork(uint64_t frame_rsp);
  * that space, and the fake interrupt frame is pre-built so the first
  * switch IRETQs straight into ring 3. `argc`/`argv` (argv[0] is
  * conventionally the program path) are copied onto the user stack in
- * the standard SysV layout so a C runtime sees real arguments.
- * Returns the new PID or -1. */
+ * the standard SysV layout so a C runtime sees real arguments. The
+ * task's real uid/gid start at `uid`/`gid`; its effective ones start
+ * at `euid`/`egid`, which elf_exec_as() sets to the executable's
+ * owner when its setuid/setgid bit is set, and to `uid`/`gid`
+ * otherwise (elf_exec() passes 0 for all four, keeping every existing
+ * caller's old always-root behavior). Returns the new PID or -1. */
 int task_create_user(uint64_t entry, const char *name, uint64_t cr3,
-                     int argc, char **argv);
+                     int argc, char **argv, uint32_t uid, uint32_t gid,
+                     uint32_t euid, uint32_t egid);
 
 /* Create a ring-0 task: `entry(arg)` runs in the kernel's own address
  * space with a stack of its own, scheduled like any other task. This
@@ -353,6 +358,17 @@ int sched_task_reap(uint32_t pid, int *status);
  * it), so call it before or after reaping, not after the pid is
  * gone. */
 bool sched_task_was_signaled(uint32_t pid);
+
+/* Another sched_task_reap() companion: the uid/gid a finished task
+ * ended with (i.e. whatever it last set via setuid()/setgid(), or 0
+ * if it never called either). Returns true and fills `uid`/`gid` if
+ * `pid` is a zombie, false otherwise. Same "call before reaping"
+ * lifetime as sched_task_was_signaled(). This is what lets the shell
+ * adopt /bin/login's post-authentication identity as its own session
+ * identity even though login runs as a completely separate task/
+ * address space - there is no other channel for that information to
+ * cross back to the shell. */
+bool sched_task_ids(uint32_t pid, uint32_t *uid, uint32_t *gid);
 
 /* Mark the CURRENT task's eventual exit as signal-caused - called
  * from a ring-3 fault handler (kernel/arch/x86_64/idt.c) right before

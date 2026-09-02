@@ -291,8 +291,17 @@ int main(int argc, char **argv) {
     /* Identity of the invoker. */
     uid_t uid = getuid();
     struct passwd *pw = getpwuid(uid);
-    const char *user = target_user != NULL
-        ? target_user : (pw != NULL ? pw->pw_name : "root");
+    const char *user = pw != NULL ? pw->pw_name : "root";
+    /* Like OpenBSD doas: absent an explicit "as" clause (we have no
+     * such config directive yet) or -u, the *target* identity to run
+     * as defaults to root, not to the invoker - doas without -u is
+     * meant to escalate. Getting this backwards is silent as long as
+     * every session already runs at euid 0 (which TUS did until
+     * login started dropping privileges), since "become root" and
+     * "stay as you are" are indistinguishable there; once a session
+     * can be a genuine non-root uid this line is what makes doas
+     * actually elevate instead of quietly no-op'ing the switch. */
+    const char *run_as = target_user != NULL ? target_user : "root";
 
     parse_conf(conf);
     if (g_parse_errors > 0) {
@@ -322,15 +331,21 @@ int main(int argc, char **argv) {
     }
 
     const char *cmd = argv[0];
-    struct rule *r = match_rule(user, target_user != NULL ? target_user : user,
-                                cmd);
+    struct rule *r = match_rule(user, run_as, cmd);
     if (r == NULL || r->action == DENY) {
         fprintf(stderr, "doas: permission denied\n");
         return 1;
     }
 
-    /* Password, unless the rule says nopass or we are root. */
-    if (!(r->options & NOPASS) && geteuid() != 0) {
+    /* Password, unless the rule says nopass or the actual invoking
+     * human is already root. This must check the REAL uid (`uid`,
+     * already captured above via getuid()), not geteuid(): doas is
+     * installed setuid-root so it can read /etc/shadow and switch
+     * identity on behalf of a non-root caller, which means its own
+     * effective uid is unconditionally 0 the moment it starts - using
+     * geteuid() here would make this check always false and skip the
+     * password for literally everyone, defeating the entire point. */
+    if (!(r->options & NOPASS) && uid != 0) {
         if (noninteractive) {
             fprintf(stderr, "doas: no password allowed for non-interactive use\n");
             return 1;
@@ -345,16 +360,20 @@ int main(int argc, char **argv) {
         }
     }
 
-    /* Switch to the target identity (everything starts as root, so a
-     * setuid is allowed) and run the command. */
-    if (target_user != NULL) {
-        struct passwd *tpw = getpwnam(target_user);
-        if (tpw == NULL) {
-            fprintf(stderr, "doas: unknown user %s\n", target_user);
-            return 1;
-        }
-        setgid(tpw->pw_gid);
-        setuid(tpw->pw_uid);
+    /* Switch to the target identity and run the command. doas itself
+     * must already be privileged enough to do this - it relies on
+     * the SUID root bit set on /bin/doas at image build time (see
+     * the Makefile's ISO step), the same way the real OpenBSD tool
+     * relies on setuid installation. */
+    struct passwd *tpw = getpwnam(run_as);
+    if (tpw == NULL) {
+        fprintf(stderr, "doas: unknown user %s\n", run_as);
+        return 1;
+    }
+    if (setgid(tpw->pw_gid) != 0 || setuid(tpw->pw_uid) != 0) {
+        fprintf(stderr, "doas: unable to change identity to %s: %s\n",
+                run_as, strerror(errno));
+        return 1;
     }
 
     /* Resolve the command: a bare name is searched in PATH (TUS uses

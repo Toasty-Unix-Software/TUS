@@ -242,7 +242,18 @@ int main(int argc, char **argv) {
         return 19;
     }
 
-    struct lines pw, sh, gr;
+    /* lines_load() only ever APPENDS onto ls->n (so a second call can
+     * accumulate onto an already-loaded set); it never resets it, and
+     * a failed load (file genuinely missing) also leaves it whatever
+     * it already was. These three were previously left uninitialized
+     * here, so ->n started as whatever garbage the stack already had
+     * rather than reliably 0 - on a stack page that was not freshly
+     * zeroed by the loader (any run after the very first program in
+     * a reused task slot) that silently dropped every existing
+     * account (including root's own /etc/passwd line) the moment
+     * useradd ran, since the "loaded" set looked empty and the save
+     * below wrote out only the new line. */
+    struct lines pw = { .n = 0 }, sh = { .n = 0 }, gr = { .n = 0 };
     lines_load(&pw, _PATH_PASSWD);
     lines_load(&sh, _PATH_SHADOW);
     lines_load(&gr, _PATH_GROUP);

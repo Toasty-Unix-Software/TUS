@@ -178,6 +178,21 @@ bool sched_task_was_signaled(uint32_t pid) {
     return false;
 }
 
+bool sched_task_ids(uint32_t pid, uint32_t *uid, uint32_t *gid) {
+    for (int i = 0; i < TASK_MAX; i++) {
+        if (g_tasks[i].pid == pid && g_tasks[i].state == TASK_ZOMBIE) {
+            if (uid != NULL) {
+                *uid = g_tasks[i].uid;
+            }
+            if (gid != NULL) {
+                *gid = g_tasks[i].gid;
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
 void sched_mark_exit_signaled(void) {
     if (g_current != NULL) {
         g_current->exit_signaled = true;
@@ -610,7 +625,8 @@ void sched_init(void) {
 }
 
 int task_create_user(uint64_t entry, const char *name, uint64_t cr3,
-                     int argc, char **argv) {
+                     int argc, char **argv, uint32_t uid, uint32_t gid,
+                     uint32_t euid, uint32_t egid) {
     struct task *t = task_find_slot();
     if (t == NULL) {
         return -1;
@@ -724,10 +740,10 @@ int task_create_user(uint64_t entry, const char *name, uint64_t cr3,
     t->cr3 = cr3;
     t->fs_base = 0;
     t->mmap_cur = MMAP_CURSOR_START;
-    t->uid = 0;   /* every task starts as root (no privilege model yet) */
-    t->euid = 0;
-    t->gid = 0;
-    t->egid = 0;
+    t->uid = uid;
+    t->euid = euid;
+    t->gid = gid;
+    t->egid = egid;
     t->caps = 0;
 
     /* Process identity and working directory are inherited from the
