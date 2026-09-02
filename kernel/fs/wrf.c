@@ -536,7 +536,7 @@ static bool try_mount_at(struct vfs_node *mnt, int disk, uint32_t start_lba) {
     g_inode_bitmap = kmalloc(ib_bytes);
     g_block_bitmap = kmalloc(bb_bytes);
     if (g_inode_bitmap == NULL || g_block_bitmap == NULL) {
-        kprintf("wrf: out of memory loading bitmaps, /mnt not mounted\n");
+        kprintf("wrf: out of memory loading bitmaps, /home not mounted\n");
         g_disk = -1;
         return false;
     }
@@ -554,7 +554,7 @@ static bool try_mount_at(struct vfs_node *mnt, int disk, uint32_t start_lba) {
     mnt->mode = root_di.mode & 07777u;
     wrf_walk_dir(mnt, g_sb.root_ino);
 
-    kprintf("wrf          : mounted /mnt from disk %d, LBA %u (%u inodes, %u KiB data)\n",
+    kprintf("wrf          : mounted /home from disk %d, LBA %u (%u inodes, %u KiB data)\n",
             disk, start_lba, g_sb.inode_count, g_sb.total_blocks / 2);
     return true;
 }
@@ -586,17 +586,17 @@ static bool try_mount_disk(struct vfs_node *mnt, int disk) {
 }
 
 void wrf_boot_mount(void) {
-    struct vfs_node *mnt = vfs_lookup("/mnt");
+    struct vfs_node *mnt = vfs_lookup("/home");
     if (mnt == NULL) {
-        mnt = vfs_create_dir("/mnt");
+        mnt = vfs_create_dir("/home");
     }
     if (mnt == NULL) {
-        kprintf("wrf: could not create /mnt, persistent storage unavailable\n");
+        kprintf("wrf: could not create /home, persistent storage unavailable\n");
         return;
     }
 
     if (ata_disk_count() == 0) {
-        kprintf("wrf: no ATA disk present, /mnt not mounted\n");
+        kprintf("wrf: no ATA disk present, /home not mounted\n");
         return;
     }
     /* ata_disk_count() is a COUNT, not a bound on valid indices - the
@@ -615,5 +615,5 @@ void wrf_boot_mount(void) {
         }
     }
     kprintf("wrf: no WRF filesystem found on any disk (run mkfs.wrf, or "
-            "install with tusinstall, to create one) - /mnt not mounted\n");
+            "install with tusinstall, to create one) - /home not mounted\n");
 }

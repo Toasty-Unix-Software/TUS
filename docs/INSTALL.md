@@ -18,11 +18,11 @@ Specifically, `tusinstall` lays down **two partitions**:
   boots from; it is only ever read again after this install, never
   written to.
 - A **WRF partition** - TUS's own on-disk filesystem, mounted
-  read-write at `/mnt` on every boot from here on
+  read-write at `/home` on every boot from here on
   (`kernel/fs/wrf.c`). Unlike `/`, which is still `rootfs.img` read
   fresh into RAM every boot (so a file created at the shell, or a
   package installed with `tpm`, is normally gone on reboot exactly
-  like it is running from the CD), anything created under `/mnt`
+  like it is running from the CD), anything created under `/home`
   genuinely persists - it is read live off the disk on every access.
 
 ## 1. Build the ISO
@@ -41,11 +41,11 @@ project root.
 ## 2. Create a target disk
 
 Any raw disk image works. 512 MiB is comfortably enough for the
-current image with room left over for `/mnt` too - `tusinstall` sizes
+current image with room left over for `/home` too - `tusinstall` sizes
 the EFI partition itself (generous headroom over the kernel and
 rootfs it's about to copy, floored at 64 MiB) and gives everything
 else on the disk to WRF, only falling back to one plain, unpartitioned
-disk (no `/mnt`) if there truly isn't room to spare:
+disk (no `/home`) if there truly isn't room to spare:
 
 ```bash
 qemu-img create -f raw tus-disk.img 512M
@@ -123,11 +123,11 @@ On the boot log (serial output, or scroll back at the console) you
 should see:
 
 ```
-wrf          : mounted /mnt from disk 0, LBA <N> (... inodes, ... KiB data)
+wrf          : mounted /home from disk 0, LBA <N> (... inodes, ... KiB data)
 ```
 
-confirming `/mnt` is the WRF partition `tusinstall` just wrote, not a
-fallback. From here, anything under `/mnt` - `mkdir`, writing a file,
+confirming `/home` is the WRF partition `tusinstall` just wrote, not a
+fallback. From here, anything under `/home` - `mkdir`, writing a file,
 `tpm install`ing a package there - is real, persistent storage that
 survives every future reboot.
 
@@ -137,7 +137,7 @@ If a target disk doesn't have room for a sensibly-sized WRF partition
 on top of the EFI System Partition, `tusinstall` just gives the whole
 disk to the ESP and skips WRF - exactly what it always did before WRF
 existed. The install still succeeds and the system still boots; there
-is simply no `/mnt` (the boot log has no `wrf : mounted ...` line, and
+is simply no `/home` (the boot log has no `wrf : mounted ...` line, and
 writes everywhere on the system stay non-persistent, same as running
 from the CD). A 512 MiB disk, the size used above, is comfortably
 enough for both.
@@ -167,7 +167,7 @@ tus:/> mkfs.wrf /dev/hdb
 
 (Check `ls /dev` or the `disk :` line the kernel prints at boot if
 you're not sure which name is which disk.) Reboot, and the kernel
-mounts it at `/mnt` exactly the same way - though if the boot disk
+mounts it at `/home` exactly the same way - though if the boot disk
 *also* has its own `tusinstall`-written WRF partition, that one is
 found first and mounted instead; only one WRF volume is mounted at a
 time in v1.

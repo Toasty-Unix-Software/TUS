@@ -297,7 +297,7 @@ struct vfs_node *vfs_create_dir(const char *path) {
     dir_attach(parent, node);
     /* WRF (kernel/fs/wrf.c): a directory created under a WRF-backed
      * parent gets its own on-disk inode and directory entry, so a
-     * `mkdir` under /mnt survives a reboot. A no-op for every ramfs
+     * `mkdir` under /home survives a reboot. A no-op for every ramfs
      * directory (parent->wrf_ino == 0), which is every directory
      * outside a WRF mount. */
     if (parent->wrf_ino != 0) {

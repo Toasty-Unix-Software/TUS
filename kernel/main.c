@@ -597,11 +597,11 @@ void _start(void) {
      * - unlike rootfs.img above, this one is not read back into
      * memory from a Limine module, it is read live off a real disk
      * every time a WRF-backed file or directory is touched, so a
-     * write survives a reboot. Mounted at /mnt from the first ATA
+     * write survives a reboot. Mounted at /home from the first ATA
      * disk that carries a valid WRF superblock (format one first with
      * mkfs.wrf); harmless no-op with nothing but rootfs.img's ramfs
      * if no such disk is attached. Must run after vfs_init()/the
-     * rootfs mount (it needs "/" to exist so it can create /mnt) and
+     * rootfs mount (it needs "/" to exist so it can create /home) and
      * can run before the scheduler: it talks to the disk directly via
      * ata_read()/ata_write(), not through vfs_open()'s fd table. */
     wrf_boot_mount();

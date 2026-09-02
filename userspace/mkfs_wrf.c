@@ -5,7 +5,7 @@
  * block bitmap, a zeroed inode table, and one inode: the empty root
  * directory. Everything else - every other file and directory a WRF
  * volume will ever hold - is created later, by the kernel, the first
- * time something is written under /mnt (kernel/fs/wrf.c mounts this
+ * time something is written under /home (kernel/fs/wrf.c mounts this
  * volume at boot; see its wrf_notify_create()).
  *
  * Writes through the ordinary byte-stream device node (/dev/hdX),

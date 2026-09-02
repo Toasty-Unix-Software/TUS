@@ -125,7 +125,7 @@ loaded as a module, as a read only tree. This is the point where `/bin`,
 `/etc`, `/dev` (empty for now) and everything else in the shipped root
 filesystem becomes visible to the kernel.
 
-`wrf_boot_mount()` looks for a WRF formatted disk to mount at `/mnt`. WRF
+`wrf_boot_mount()` looks for a WRF formatted disk to mount at `/home`. WRF
 is TUS's own simple on disk filesystem, separate from the tar based
 rootfs, meant for persistent user data on an actual disk rather than the
 read only image that ships in the ISO.

@@ -23,10 +23,10 @@
  *      /boot/kernel.elf           the kernel  - copied from /dev/kernel
  *      /boot/rootfs.img           the system  - copied from /dev/rootfs
  *   4. a WRF filesystem (include/wrf.h) in the second partition -
- *      empty, formatted and ready: the kernel mounts it at /mnt on
+ *      empty, formatted and ready: the kernel mounts it at /home on
  *      every boot from here on (kernel/fs/wrf.c), so unlike the FAT32
  *      partition above - which is only ever read from again, never
- *      written to after this install - anything created under /mnt
+ *      written to after this install - anything created under /home
  *      genuinely persists across a reboot. The installed OS itself
  *      still boots from a fresh copy of rootfs.img in RAM every time
  *      (see kernel/vfs/rootfs.c); WRF is what makes a write anywhere
@@ -1397,7 +1397,7 @@ static int hash_password(const char *plain, char *out, size_t outsz) {
  * wrf_start..wrf_start+wrf_sectors. A disk too small to spare room
  * for WRF (see main()) gets wrf_sectors == 0 and only the one
  * partition, exactly as before WRF existed - the installed system
- * still boots fine, it just has no /mnt to persist anything in. */
+ * still boots fine, it just has no /home to persist anything in. */
 static int write_mbr(uint32_t part_sectors, uint32_t wrf_start, uint32_t wrf_sectors) {
     uint8_t mbr[SECTOR];
     memset(mbr, 0, sizeof(mbr));
@@ -1696,7 +1696,7 @@ int main(int argc, char **argv) {
     printf("It will put a bootable copy of the running system on a disk:\n");
     printf("an EFI system partition with the bootloader, this kernel and\n");
     printf("this root filesystem in it, plus a WRF partition (see wrf.h) for\n");
-    printf("everything else - /mnt, where a write actually persists across a\n");
+    printf("everything else - /home, where a write actually persists across a\n");
     printf("reboot, unlike the rest of the system. Everything on that disk is\n");
     printf("lost.\n\n");
 
@@ -1835,7 +1835,7 @@ int main(int argc, char **argv) {
      * gets sensible slack. Whatever's left over on the disk, if
      * enough to be worth it, becomes the WRF partition; a disk too
      * tight for both keeps the old behavior exactly - one partition,
-     * the ESP gets everything, no /mnt. */
+     * the ESP gets everything, no /home. */
     long kernel_bytes = 0;
     int kf = open(SRC_KERNEL, O_RDONLY);
     if (kf >= 0) {
@@ -1913,14 +1913,14 @@ int main(int argc, char **argv) {
     printf("   ok\n");
 
     if (wrf_sectors != 0) {
-        printf("  %-28s", "persistent storage (/mnt)");
+        printf("  %-28s", "persistent storage (/home)");
         fflush(stdout);
         if (format_wrf_partition(wrf_start, wrf_sectors) != 0) {
             /* Not fatal: the boot partition is already written and
              * verified above, so the system installed is still fully
-             * bootable - it just starts with no /mnt, same as an
+             * bootable - it just starts with no /home, same as an
              * install on a disk too small to spare room for one. */
-            printf("   FAILED (the system will still boot; /mnt will "
+            printf("   FAILED (the system will still boot; /home will "
                    "be empty)\n");
         } else {
             printf("   ok\n");
@@ -1932,7 +1932,7 @@ int main(int argc, char **argv) {
 
     printf("%s", CONGRATS);
     if (wrf_sectors != 0) {
-        printf("A persistent /mnt is ready too - anything created there\n"
+        printf("A persistent /home is ready too - anything created there\n"
                "(unlike the rest of the system) survives a reboot.\n\n");
     }
 
