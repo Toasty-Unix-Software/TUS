@@ -364,8 +364,16 @@ USER_TOOLS += $(ROOTFS_DIR)/bin/tuswm \
 
 all: kernel.elf
 
+# `clean` and `iso` are two separate $(MAKE) invocations, not one
+# `clean iso` command line: with -j passed down (e.g. `make clang
+# -j4`), GNU make is free to run multiple command-line goals of the
+# same submake in parallel, so `iso`'s compiles could start before
+# `clean`'s rm -rf finished, intermittently failing with "Directory
+# not empty". Splitting into two invocations forces `clean` to fully
+# complete first while still letting each one use -j internally.
 gcc:
-	$(Q)$(MAKE) CC=gcc EXTRA_CFLAGS="" EXTRA_LDFLAGS="" clean iso
+	$(Q)$(MAKE) CC=gcc EXTRA_CFLAGS="" EXTRA_LDFLAGS="" clean
+	$(Q)$(MAKE) CC=gcc EXTRA_CFLAGS="" EXTRA_LDFLAGS="" iso
 
 clang:
 	$(Q)$(MAKE) CC=clang \
@@ -374,7 +382,14 @@ clang:
                 LIBGCC="$(shell x86_64-linux-gnu-gcc -print-libgcc-file-name)" \
                 EXTRA_CFLAGS="-target x86_64-linux-gnu" \
                 EXTRA_LDFLAGS="-m elf_x86_64" \
-                clean iso
+                clean
+	$(Q)$(MAKE) CC=clang \
+                LD=x86_64-linux-gnu-ld \
+                AS=x86_64-linux-gnu-as \
+                LIBGCC="$(shell x86_64-linux-gnu-gcc -print-libgcc-file-name)" \
+                EXTRA_CFLAGS="-target x86_64-linux-gnu" \
+                EXTRA_LDFLAGS="-m elf_x86_64" \
+                iso
 
 musl: $(MUSL_LIB)/libc.a
 
