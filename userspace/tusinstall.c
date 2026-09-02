@@ -1457,16 +1457,22 @@ static int format_wrf_partition(uint32_t start_lba, uint32_t part_sectors) {
     if (dev_write(base, &sb, sizeof(sb)) != 0) {
         return -1;
     }
+    /* Backup superblock at the partition's last sector - see the v2
+     * integrity comment in wrf.h; mkfs.wrf writes the same pair. */
+    if (dev_write(base + (uint64_t)(part_sectors - 1) * SECTOR, &sb, sizeof(sb)) != 0) {
+        return -1;
+    }
 
     /* Zero every metadata sector: see mkfs_wrf.c's matching comment -
      * an all-zero inode bitmap and block bitmap mean "everything
-     * free," and an all-zero inode table means "every inode's mode is
-     * 0," inert for both the reserved inode 0 and every inode not yet
-     * allocated. */
+     * free," an all-zero inode table means "every inode's mode is 0,"
+     * inert for both the reserved inode 0 and every inode not yet
+     * allocated, and an all-zero checksum table is harmless (nothing
+     * reads a free block's checksum entry before it is allocated). */
     uint8_t zero[SECTOR];
     memset(zero, 0, sizeof(zero));
     uint32_t meta_sectors = sb.inode_bitmap_blocks + sb.inode_table_blocks +
-                             sb.block_bitmap_blocks;
+                             sb.block_bitmap_blocks + sb.checksum_table_blocks;
     for (uint32_t i = 0; i < meta_sectors; i++) {
         if (dev_write(base + (uint64_t)(1 + i) * SECTOR, zero, SECTOR) != 0) {
             return -1;

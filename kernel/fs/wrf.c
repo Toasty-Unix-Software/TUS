@@ -37,6 +37,7 @@ static int g_disk = -1;
 static struct wrf_superblock g_sb;
 static uint8_t *g_inode_bitmap; /* g_sb.inode_bitmap_blocks * 512 bytes */
 static uint8_t *g_block_bitmap; /* g_sb.block_bitmap_blocks * 512 bytes */
+static uint32_t g_csum_errors = 0; /* corrupt blocks caught since boot - see `wrfscrub` */
 
 /* ---- bit twiddling ---- */
 
@@ -56,6 +57,65 @@ static void bit_clear(uint8_t *bm, uint32_t i) {
 static void flush_bitmap_sector(const uint8_t *bm, uint32_t bit, uint32_t bitmap_lba) {
     uint32_t sector = (bit / 8) / WRF_BLOCK_SIZE;
     ata_write(g_disk, bitmap_lba + sector, 1, bm + (size_t)sector * WRF_BLOCK_SIZE);
+}
+
+/* ---- per-block checksums (v2) ----
+ *
+ * One CRC32 per block in the data address space, read-modify-write
+ * like an inode (128 entries/sector, not cached - see the file header
+ * comment for why nothing but the two small bitmaps is kept in RAM).
+ * wrf_data_write()/wrf_data_read() are the ONLY place any code in this
+ * file should touch a data-region sector directly; every call site
+ * that used to say `ata_read/ata_write(g_disk, g_sb.data_start_lba +
+ * blk, ...)` goes through these instead, so file data and every
+ * indirect/dindirect index block are checksummed uniformly with no
+ * spot that can quietly forget to. */
+static uint32_t wrf_csum_read_entry(uint32_t blk) {
+    uint8_t sector[WRF_BLOCK_SIZE];
+    uint32_t per_sector = WRF_BLOCK_SIZE / (uint32_t)sizeof(uint32_t);
+    ata_read(g_disk, g_sb.checksum_table_lba + blk / per_sector, 1, sector);
+    uint32_t val;
+    memcpy(&val, sector + (blk % per_sector) * sizeof(uint32_t), sizeof(val));
+    return val;
+}
+
+static void wrf_csum_write_entry(uint32_t blk, uint32_t csum) {
+    uint8_t sector[WRF_BLOCK_SIZE];
+    uint32_t per_sector = WRF_BLOCK_SIZE / (uint32_t)sizeof(uint32_t);
+    ata_read(g_disk, g_sb.checksum_table_lba + blk / per_sector, 1, sector);
+    memcpy(sector + (blk % per_sector) * sizeof(uint32_t), &csum, sizeof(csum));
+    ata_write(g_disk, g_sb.checksum_table_lba + blk / per_sector, 1, sector);
+}
+
+/* Writes one 512-byte data-region block and its checksum. The
+ * checksum write happens strictly after the data write returns -
+ * exactly the ordering the block comment above wrf_crc32() (wrf.h)
+ * explains is the whole point: a crash between the two leaves a
+ * block whose checksum simply hasn't been updated yet (caught as
+ * corruption on the next read, the safe failure mode), never a block
+ * whose checksum was updated for data that didn't actually land. */
+static void wrf_data_write(uint32_t blk, const void *sector) {
+    ata_write(g_disk, g_sb.data_start_lba + blk, 1, sector);
+    wrf_csum_write_entry(blk, wrf_crc32(sector, WRF_BLOCK_SIZE));
+}
+
+/* Reads one 512-byte data-region block and verifies it against its
+ * stored checksum. Always fills `sector` (callers that don't check
+ * the return value still get the disk's actual bytes, same as before
+ * v2 existed - this is detection, not recovery, WRF has no redundant
+ * copy of data blocks to repair from); returns false and bumps
+ * g_csum_errors on a mismatch. */
+static bool wrf_data_read(uint32_t blk, void *sector) {
+    ata_read(g_disk, g_sb.data_start_lba + blk, 1, sector);
+    uint32_t stored = wrf_csum_read_entry(blk);
+    uint32_t actual = wrf_crc32(sector, WRF_BLOCK_SIZE);
+    if (stored != actual) {
+        g_csum_errors++;
+        kprintf("wrf: CHECKSUM MISMATCH at block %u (stored=%08x actual=%08x) - "
+                "data corrupted\n", blk, stored, actual);
+        return false;
+    }
+    return true;
 }
 
 /* Inode 0 is reserved (see include/wrf.h); the allocator never hands
@@ -88,7 +148,7 @@ static int32_t wrf_block_alloc(void) {
             flush_bitmap_sector(g_block_bitmap, i, g_sb.block_bitmap_lba);
             uint8_t zero[WRF_BLOCK_SIZE];
             memset(zero, 0, sizeof(zero));
-            ata_write(g_disk, g_sb.data_start_lba + i, 1, zero);
+            wrf_data_write(i, zero);
             return (int32_t)i;
         }
     }
@@ -164,14 +224,14 @@ static uint32_t wrf_bmap(uint32_t ino, struct wrf_inode *inode, uint32_t lblk, b
             wrf_inode_write(ino, inode);
         }
         uint32_t table[128];
-        ata_read(g_disk, g_sb.data_start_lba + (inode->indirect - 1), 1, table);
+        wrf_data_read(inode->indirect - 1, table);
         if (table[lblk] == 0 && alloc) {
             int32_t blk = wrf_block_alloc();
             if (blk < 0) {
                 return 0;
             }
             table[lblk] = (uint32_t)(blk + 1);
-            ata_write(g_disk, g_sb.data_start_lba + (inode->indirect - 1), 1, table);
+            wrf_data_write(inode->indirect - 1, table);
         }
         return table[lblk];
     }
@@ -195,7 +255,7 @@ static uint32_t wrf_bmap(uint32_t ino, struct wrf_inode *inode, uint32_t lblk, b
         wrf_inode_write(ino, inode);
     }
     uint32_t outer[128];
-    ata_read(g_disk, g_sb.data_start_lba + (inode->dindirect - 1), 1, outer);
+    wrf_data_read(inode->dindirect - 1, outer);
     if (outer[outer_idx] == 0) {
         if (!alloc) {
             return 0;
@@ -205,17 +265,17 @@ static uint32_t wrf_bmap(uint32_t ino, struct wrf_inode *inode, uint32_t lblk, b
             return 0;
         }
         outer[outer_idx] = (uint32_t)(blk + 1);
-        ata_write(g_disk, g_sb.data_start_lba + (inode->dindirect - 1), 1, outer);
+        wrf_data_write(inode->dindirect - 1, outer);
     }
     uint32_t inner[128];
-    ata_read(g_disk, g_sb.data_start_lba + (outer[outer_idx] - 1), 1, inner);
+    wrf_data_read(outer[outer_idx] - 1, inner);
     if (inner[inner_idx] == 0 && alloc) {
         int32_t blk = wrf_block_alloc();
         if (blk < 0) {
             return 0;
         }
         inner[inner_idx] = (uint32_t)(blk + 1);
-        ata_write(g_disk, g_sb.data_start_lba + (outer[outer_idx] - 1), 1, inner);
+        wrf_data_write(outer[outer_idx] - 1, inner);
     }
     return inner[inner_idx];
 }
@@ -246,17 +306,17 @@ static long wrf_raw_io(uint32_t ino, struct wrf_inode *inode, void *buf_, size_t
             uint32_t blk = biased - 1;
             uint8_t sector[WRF_BLOCK_SIZE];
             if (chunk != WRF_BLOCK_SIZE) {
-                ata_read(g_disk, g_sb.data_start_lba + blk, 1, sector);
+                wrf_data_read(blk, sector);
             }
             memcpy(sector + off, buf + done, chunk);
-            ata_write(g_disk, g_sb.data_start_lba + blk, 1, sector);
+            wrf_data_write(blk, sector);
         } else {
             uint32_t biased = wrf_bmap(ino, inode, lblk, false);
             if (biased == 0) {
                 memset(buf + done, 0, chunk); /* a hole reads as zero */
             } else {
                 uint8_t sector[WRF_BLOCK_SIZE];
-                ata_read(g_disk, g_sb.data_start_lba + (biased - 1), 1, sector);
+                wrf_data_read(biased - 1, sector);
                 memcpy(buf + done, sector + off, chunk);
             }
         }
@@ -389,7 +449,7 @@ void wrf_notify_free(struct vfs_node *node) {
     }
     if (di.indirect) {
         uint32_t table[128];
-        ata_read(g_disk, g_sb.data_start_lba + (di.indirect - 1), 1, table);
+        wrf_data_read(di.indirect - 1, table);
         for (int i = 0; i < 128; i++) {
             if (table[i]) {
                 wrf_block_free(table[i] - 1);
@@ -399,13 +459,13 @@ void wrf_notify_free(struct vfs_node *node) {
     }
     if (di.dindirect) {
         uint32_t outer[128];
-        ata_read(g_disk, g_sb.data_start_lba + (di.dindirect - 1), 1, outer);
+        wrf_data_read(di.dindirect - 1, outer);
         for (int i = 0; i < 128; i++) {
             if (!outer[i]) {
                 continue;
             }
             uint32_t inner[128];
-            ata_read(g_disk, g_sb.data_start_lba + (outer[i] - 1), 1, inner);
+            wrf_data_read(outer[i] - 1, inner);
             for (int j = 0; j < 128; j++) {
                 if (inner[j]) {
                     wrf_block_free(inner[j] - 1);
@@ -507,15 +567,14 @@ static uint32_t get_le32(const uint8_t *p) {
            ((uint32_t)p[3] << 24);
 }
 
-/* Tries to read a valid WRF superblock starting at `start_lba` on
- * `disk` and, if found, finishes mounting it there. Returns true on
- * success. On success every subsequent wrf.c function can go on
- * treating g_sb's LBA fields as plain disk-absolute sector numbers
- * without knowing anything about partitions - that's what folding
- * `start_lba` into them once, right here, buys the rest of the file. */
-static bool try_mount_at(struct vfs_node *mnt, int disk, uint32_t start_lba) {
+/* Reads one candidate superblock sector and accepts it only if its
+ * magic, version AND checksum (see wrf_sb_checksum(), wrf.h) all
+ * check out - the checksum is what tells a bit-flipped-but-otherwise-
+ * plausible superblock apart from a real one, which magic/version
+ * alone can't. */
+static bool read_valid_sb(int disk, uint32_t lba, struct wrf_superblock *out) {
     uint8_t buf[WRF_BLOCK_SIZE];
-    if (ata_read(disk, start_lba, 1, buf) != 0) {
+    if (ata_read(disk, lba, 1, buf) != 0) {
         return false;
     }
     struct wrf_superblock sb;
@@ -523,12 +582,53 @@ static bool try_mount_at(struct vfs_node *mnt, int disk, uint32_t start_lba) {
     if (sb.magic != WRF_MAGIC || sb.version != WRF_VERSION) {
         return false;
     }
+    if (wrf_sb_checksum(&sb) != sb.sb_checksum) {
+        return false;
+    }
+    *out = sb;
+    return true;
+}
+
+/* Tries to mount the WRF volume starting at `start_lba` on `disk`,
+ * `volume_sectors` long (0 if unknown - see call sites). Returns true
+ * on success. On success every subsequent wrf.c function can go on
+ * treating g_sb's LBA fields as plain disk-absolute sector numbers
+ * without knowing anything about partitions - that's what folding
+ * `start_lba` into them once, right here, buys the rest of the file.
+ *
+ * Reads BOTH superblock copies (primary at `start_lba`, backup at the
+ * volume's last sector - see the v2 integrity comment in wrf.h) and
+ * accepts whichever passed its checksum, preferring the higher
+ * `generation` if both did; this is the actual point of having two
+ * copies - a corrupt or unreadable primary no longer means /home
+ * fails to mount at all. */
+static bool try_mount_at(struct vfs_node *mnt, int disk, uint32_t start_lba,
+                          uint32_t volume_sectors) {
+    struct wrf_superblock primary, backup;
+    bool have_primary = read_valid_sb(disk, start_lba, &primary);
+    bool have_backup = volume_sectors > 1 &&
+                        read_valid_sb(disk, start_lba + volume_sectors - 1, &backup);
+    if (!have_primary && !have_backup) {
+        return false;
+    }
+
+    struct wrf_superblock sb;
+    if (have_primary && have_backup) {
+        sb = (backup.generation > primary.generation) ? backup : primary;
+    } else if (have_primary) {
+        sb = primary;
+    } else {
+        kprintf("wrf: primary superblock at LBA %u failed its checksum - "
+                "mounting from the backup copy instead\n", start_lba);
+        sb = backup;
+    }
 
     g_disk = disk;
     g_sb = sb;
     g_sb.inode_bitmap_lba += start_lba;
     g_sb.block_bitmap_lba += start_lba;
     g_sb.inode_table_lba += start_lba;
+    g_sb.checksum_table_lba += start_lba;
     g_sb.data_start_lba += start_lba;
 
     size_t ib_bytes = (size_t)g_sb.inode_bitmap_blocks * WRF_BLOCK_SIZE;
@@ -576,13 +676,16 @@ static bool try_mount_disk(struct vfs_node *mnt, int disk) {
             const uint8_t *e = mbr + 446 + i * 16;
             if (e[4] == WRF_PART_TYPE) {
                 uint32_t start = get_le32(e + 8);
-                if (try_mount_at(mnt, disk, start)) {
+                uint32_t count = get_le32(e + 12);
+                if (try_mount_at(mnt, disk, start, count)) {
                     return true;
                 }
             }
         }
     }
-    return try_mount_at(mnt, disk, 0);
+    const struct ata_disk *d = ata_disk(disk);
+    uint32_t whole_disk_sectors = d != NULL ? d->sectors : 0;
+    return try_mount_at(mnt, disk, 0, whole_disk_sectors);
 }
 
 void wrf_boot_mount(void) {
@@ -616,4 +719,25 @@ void wrf_boot_mount(void) {
     }
     kprintf("wrf: no WRF filesystem found on any disk (run mkfs.wrf, or "
             "install with tusinstall, to create one) - /home not mounted\n");
+}
+
+int wrf_scrub(void) {
+    if (!g_mounted) {
+        kprintf("wrf: /home is not WRF-mounted, nothing to scrub\n");
+        return 0;
+    }
+    uint32_t checked = 0, bad = 0;
+    for (uint32_t blk = 0; blk < g_sb.total_blocks; blk++) {
+        if (!bit_test(g_block_bitmap, blk)) {
+            continue; /* free block: its checksum entry is stale/unused, not a fault */
+        }
+        checked++;
+        uint8_t sector[WRF_BLOCK_SIZE];
+        if (!wrf_data_read(blk, sector)) {
+            bad++; /* wrf_data_read() already logged the mismatch */
+        }
+    }
+    kprintf("wrf: scrub complete - %u block%s checked, %u corrupt\n",
+            checked, checked == 1 ? "" : "s", bad);
+    return (int)bad;
 }

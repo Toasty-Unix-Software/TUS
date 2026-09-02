@@ -78,13 +78,26 @@ int main(int argc, char **argv) {
         close(fd);
         return 1;
     }
+    /* The backup superblock (see the v2 integrity comment in wrf.h):
+     * an identical copy at the volume's last sector, so a dead or
+     * corrupted LBA 0 doesn't take the whole filesystem down with it. */
+    if (lseek(fd, (long)(total_sectors - 1) * WRF_BLOCK_SIZE, SEEK_SET) < 0 ||
+        write_all(fd, &sb, sizeof(sb)) != 0) {
+        perror("mkfs.wrf: write backup superblock");
+        close(fd);
+        return 1;
+    }
     /* Zero every metadata sector: an all-zero inode bitmap and block
-     * bitmap mean "everything free," and an all-zero inode table
-     * means "every inode's mode is 0" - neither WRF_IFDIR nor
-     * WRF_IFREG, which is exactly what makes inode 0 (reserved) and
-     * every other not-yet-allocated inode inert. */
-    if (write_zero_sectors(fd, sb.inode_bitmap_blocks + sb.inode_table_blocks +
-                                    sb.block_bitmap_blocks) != 0) {
+     * bitmap mean "everything free," an all-zero inode table means
+     * "every inode's mode is 0" - neither WRF_IFDIR nor WRF_IFREG,
+     * which is exactly what makes inode 0 (reserved) and every other
+     * not-yet-allocated inode inert - and an all-zero checksum table
+     * is harmless too: every entry in it belongs to a block the block
+     * bitmap says is free, so nothing ever reads it before
+     * wrf_block_alloc() (kernel/fs/wrf.c) overwrites it for real. */
+    if (lseek(fd, (long)WRF_BLOCK_SIZE, SEEK_SET) < 0 ||
+        write_zero_sectors(fd, sb.inode_bitmap_blocks + sb.inode_table_blocks +
+                                    sb.block_bitmap_blocks + sb.checksum_table_blocks) != 0) {
         perror("mkfs.wrf: zero metadata");
         close(fd);
         return 1;

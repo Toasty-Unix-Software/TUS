@@ -76,4 +76,14 @@ long wrf_file_write(struct vfs_node *node, const void *buf, size_t count, size_t
  * have. Returns 0 (WRF never fails a truncate a real disk fits). */
 long wrf_truncate(struct vfs_node *node, size_t length);
 
+/* Walks every block the block bitmap marks allocated and re-checks it
+ * against its stored checksum table entry (see the v2 integrity
+ * comment in include/wrf.h) - the "wrfscrub" shell command's
+ * implementation. Prints one line per mismatch found (a scrub is a
+ * detector, not a repair tool: WRF keeps no redundant copy of file
+ * data to reconstruct from) plus a one-line summary, and returns the
+ * number of mismatches found (0 if /home is not WRF-mounted or the
+ * volume is perfectly healthy). */
+int wrf_scrub(void);
+
 #endif /* TUS_FS_WRF_H */

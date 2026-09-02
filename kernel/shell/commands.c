@@ -32,6 +32,7 @@
 #include "drivers/xhci/xhci.h"
 #include "drivers/usbhid/usbhid.h"
 #include "elf/tus_elf.h"
+#include "fs/wrf.h"
 #include "highx/highx.h"
 #include "mm/pmm.h"
 #include "mm/swap.h"
@@ -51,6 +52,7 @@ static int cmd_sysinfo(int argc, char **argv);
 static int cmd_cpuinfo(int argc, char **argv);
 static int cmd_caps(int argc, char **argv);
 static int cmd_swaptest(int argc, char **argv);
+static int cmd_wrfscrub(int argc, char **argv);
 static int cmd_reboot(int argc, char **argv);
 static int cmd_shutdown(int argc, char **argv);
 static int cmd_crash(int argc, char **argv);
@@ -74,6 +76,7 @@ static const struct shell_command g_core_commands[] = {
     { "cpuinfo",    "show detected CPUs (ACPI/MADT)",    cmd_cpuinfo },
     { "caps",       "show current task's capability bits",    cmd_caps },
     { "swaptest",   "exercise the disk-backed swap path end to end",  cmd_swaptest },
+    { "wrfscrub",   "verify every /home block against its stored checksum", cmd_wrfscrub },
     { "reboot",     "restart the machine",               cmd_reboot },
     { "shutdown",   "halt the machine",                  cmd_shutdown },
     { "halt",       "halt the machine",                  cmd_shutdown },
@@ -254,6 +257,13 @@ static int cmd_caps(int argc, char **argv) {
     kprintf("  CAP_NET_RAW   : %s\n", has_cap(cur, CAP_NET_RAW) ? "yes" : "no");
     kprintf("  CAP_SETUID    : %s\n", has_cap(cur, CAP_SETUID) ? "yes" : "no");
     return 0;
+}
+
+static int cmd_wrfscrub(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+    int bad = wrf_scrub();
+    return bad == 0 ? 0 : 1;
 }
 
 /* Exercises kernel/mm/swap.c end to end against a real disk: map a
