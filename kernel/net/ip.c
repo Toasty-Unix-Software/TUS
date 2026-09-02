@@ -13,6 +13,7 @@
 
 #include "ip.h"
 
+#include "ipv6.h"
 #include "netif.h"
 #include "tcp.h"
 #include "udp.h"
@@ -419,5 +420,7 @@ void eth_input(const uint8_t *frame, uint16_t len) {
         }
     } else if (type == ETH_TYPE_IP) {
         ip_input(payload, payload_len);
+    } else if (type == ETH_TYPE_IPV6) {
+        ipv6_input(payload, payload_len);
     }
 }

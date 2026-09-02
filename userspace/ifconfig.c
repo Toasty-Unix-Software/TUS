@@ -33,6 +33,19 @@ static void print_if(const struct tus_ifinfo *info) {
     printf("          TX packets:%llu dropped:%llu\n",
            (unsigned long long)info->tx_packets,
            (unsigned long long)info->tx_dropped);
+
+    struct tus_if6info info6;
+    char buf6[40];
+    if (netctl(NETCTL_GET_IF6, &info6, sizeof(info6)) == 0) {
+        if (info6.have_link_local) {
+            printf("          inet6 addr: %s/64 Scope:Link\n",
+                   ipv6_str(info6.link_local, buf6));
+        }
+        if (info6.have_global) {
+            printf("          inet6 addr: %s/64 Scope:Global\n",
+                   ipv6_str(info6.global, buf6));
+        }
+    }
 }
 
 int main(int argc, char **argv) {

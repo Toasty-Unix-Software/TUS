@@ -51,9 +51,11 @@
 #include "elf/tus_elf.h"
 #include "mm/kmalloc.h"
 #include "mm/pmm.h"
+#include "mm/swap.h"
 #include "mm/vmm.h"
 #include "net/dns.h"
 #include "net/ip.h"
+#include "net/ipv6.h"
 #include "net/netif.h"
 #include "sched/sched.h"
 #include "shell/tsh.h"
@@ -616,6 +618,14 @@ void _start(void) {
      * ata_read()/ata_write(), not through vfs_open()'s fd table. */
     wrf_boot_mount();
 
+    /* Disk-backed swap (kernel/mm/swap.c): claims the first attached
+     * ATA disk carrying a SWAP_MAGIC header (written by the `mkswap`
+     * userspace tool) as raw page storage. No-op if none is found -
+     * same "harmless without the disk" shape as wrf_boot_mount()
+     * above. Must run after ata_init(); before the scheduler is fine
+     * since it only touches the disk directly, not the fd table. */
+    swap_init();
+
     /* The scheduler: tsh becomes task 0; the PIT (IRQ0) drives
      * round-robin switching. This runs BEFORE the device nodes are
      * registered so the standard descriptors land in task 0's own
@@ -662,6 +672,7 @@ void _start(void) {
 
     /* Network stack initialization (optional, may fail silently). */
     net_init();
+    ipv6_init();
     load_resolv_conf();
     load_boot_services();
 

@@ -32,6 +32,7 @@
 #include "../net/socket.h"
 #include "../net/dns.h"
 #include "../net/ip.h"
+#include "../net/ipv6.h"
 #include "../net/netif.h"
 #include "../net/tcp.h"
 #include "../core/random.h"
@@ -1276,6 +1277,50 @@ static long sys_netctl(long op, void *arg, long len, bool from_user) {
             return n;
         }
         req->count = n;
+        return n;
+    }
+
+    case NETCTL_GET_IF6: {
+        if ((size_t)len < sizeof(struct tus_if6info)) return -EINVAL;
+        struct tus_if6info *info = (struct tus_if6info *)arg;
+        info->have_link_local = ipv6_get_link_local(info->link_local) ? 1 : 0;
+        info->have_global = ipv6_get_global(info->global) ? 1 : 0;
+        return 0;
+    }
+
+    case NETCTL_PING6: {
+        if ((size_t)len < sizeof(struct tus_ping6)) return -EINVAL;
+        struct tus_ping6 *p = (struct tus_ping6 *)arg;
+
+        uint8_t payload[64];
+        uint32_t plen = p->payload_len > sizeof(payload) ? sizeof(payload)
+                                                         : p->payload_len;
+        for (uint32_t i = 0; i < plen; i++) payload[i] = (uint8_t)('a' + i % 26);
+
+        if (icmpv6_send_echo(p->dst, p->id, p->seq, payload,
+                             (uint16_t)plen) < 0) {
+            p->rtt_ms = -1;
+            return -EHOSTUNREACH;
+        }
+        long rtt = icmpv6_wait_reply(p->dst, p->id, p->seq,
+                                     p->timeout_ms ? p->timeout_ms : 1000);
+        p->rtt_ms = (int32_t)rtt;
+        return rtt < 0 ? -ETIMEDOUT : 0;
+    }
+
+    case NETCTL_NDP_DUMP: {
+        int max = (int)((size_t)len / sizeof(struct tus_ndp_row));
+        if (max <= 0) return -EINVAL;
+
+        struct ndp_entry_info rows[16];
+        if (max > 16) max = 16;
+        int n = ndp_cache_dump(rows, max);
+
+        struct tus_ndp_row *out = (struct tus_ndp_row *)arg;
+        for (int i = 0; i < n; i++) {
+            memcpy(out[i].addr, rows[i].addr, 16);
+            memcpy(out[i].mac, rows[i].mac, 6);
+        }
         return n;
     }
 

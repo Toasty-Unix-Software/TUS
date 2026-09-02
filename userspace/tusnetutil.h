@@ -99,4 +99,85 @@ static inline int netmask_bits(uint32_t netmask) {
     return bits;
 }
 
+/* ---- IPv6 (ping6/ifconfig -6): mirrors kernel/net/ipv6.c's
+ * ipv6_format()/ipv6_parse() - duplicated rather than shared, same as
+ * ip_str()/ip_parse() above are userspace's own copy of ip.c's
+ * addressing, since a userspace tool cannot call kernel-only code and
+ * this is a handful of lines, not worth a shared library for. */
+
+static inline const char *ipv6_str(const uint8_t addr[16], char *buf) {
+    char *p = buf;
+    for (int i = 0; i < 8; i++) {
+        p += sprintf(p, "%x", (addr[i * 2] << 8) | addr[i * 2 + 1]);
+        if (i != 7) *p++ = ':';
+    }
+    *p = '\0';
+    return buf;
+}
+
+/* Parses standard IPv6 text, including one "::" run. Returns 0 on
+ * success, -1 on a malformed address. */
+static inline int ipv6_parse(const char *s, uint8_t out[16]) {
+    uint16_t groups[8];
+    int ngroups = 0, compress_at = -1;
+    const char *p = s;
+
+    if (p[0] == ':' && p[1] == ':') {
+        compress_at = 0;
+        p += 2;
+        if (*p == '\0') { memset(out, 0, 16); return 0; }
+    }
+
+    while (*p != '\0' && ngroups < 8) {
+        uint32_t value = 0;
+        int digits = 0;
+        while (digits < 4) {
+            char c = *p;
+            int nibble;
+            if (c >= '0' && c <= '9') nibble = c - '0';
+            else if (c >= 'a' && c <= 'f') nibble = c - 'a' + 10;
+            else if (c >= 'A' && c <= 'F') nibble = c - 'A' + 10;
+            else break;
+            value = (value << 4) | (uint32_t)nibble;
+            p++; digits++;
+        }
+        if (digits == 0) return -1;
+        groups[ngroups++] = (uint16_t)value;
+
+        if (*p == ':') {
+            p++;
+            if (*p == ':') {
+                if (compress_at >= 0) return -1;
+                compress_at = ngroups;
+                p++;
+                if (*p == '\0') break;
+            }
+        } else if (*p != '\0') {
+            return -1;
+        }
+    }
+    if (*p != '\0') return -1;
+
+    memset(out, 0, 16);
+    if (compress_at < 0) {
+        if (ngroups != 8) return -1;
+        for (int i = 0; i < 8; i++) {
+            out[i * 2] = (uint8_t)(groups[i] >> 8);
+            out[i * 2 + 1] = (uint8_t)groups[i];
+        }
+        return 0;
+    }
+    int tail = ngroups - compress_at;
+    for (int i = 0; i < compress_at; i++) {
+        out[i * 2] = (uint8_t)(groups[i] >> 8);
+        out[i * 2 + 1] = (uint8_t)groups[i];
+    }
+    for (int i = 0; i < tail; i++) {
+        int dst_group = 8 - tail + i;
+        out[dst_group * 2] = (uint8_t)(groups[compress_at + i] >> 8);
+        out[dst_group * 2 + 1] = (uint8_t)groups[compress_at + i];
+    }
+    return 0;
+}
+
 #endif /* TUS_NETUTIL_H */

@@ -6,6 +6,7 @@
 SRCS_NET := \
   kernel/net/dns.c \
   kernel/net/ip.c \
+  kernel/net/ipv6.c \
   kernel/net/netif.c \
   kernel/net/socket.c \
   kernel/net/tcp.c \

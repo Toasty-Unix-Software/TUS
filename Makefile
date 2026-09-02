@@ -119,6 +119,7 @@ USER_TOOLS := $(ROOTFS_DIR)/bin/doas \
               $(ROOTFS_DIR)/bin/sed \
               $(ROOTFS_DIR)/bin/echo \
               $(ROOTFS_DIR)/bin/ping \
+              $(ROOTFS_DIR)/bin/ping6 \
               $(ROOTFS_DIR)/bin/nc \
               $(ROOTFS_DIR)/bin/ifconfig \
               $(ROOTFS_DIR)/bin/netstat \
@@ -166,7 +167,8 @@ USER_TOOLS := $(ROOTFS_DIR)/bin/doas \
               $(ROOTFS_DIR)/bin/shcomp \
               $(ROOTFS_DIR)/bin/pty \
               $(ROOTFS_DIR)/bin/tpm \
-              $(ROOTFS_DIR)/bin/mkfs.wrf
+              $(ROOTFS_DIR)/bin/mkfs.wrf \
+              $(ROOTFS_DIR)/bin/mkswap
 
 # ---- Mbed TLS ----
 #
@@ -536,6 +538,13 @@ $(ROOTFS_DIR)/bin/mkfs.wrf: userspace/mkfs_wrf.c $(MUSL_LIB)/libc.a
 	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
                 $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/mkfs_wrf.o $(MUSL_LINK)
 
+$(ROOTFS_DIR)/bin/mkswap: userspace/mkswap.c $(MUSL_LIB)/libc.a
+	$(QUIET_LD)
+	$(Q)mkdir -p $(ROOTFS_DIR)/bin $(BUILD)/userspace
+	$(Q)$(CC) $(USER_CFLAGS) -nostdinc -I$(MUSL_INC) -Iinclude -c $< -o $(BUILD)/userspace/mkswap.o
+	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
+                $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/mkswap.o $(MUSL_LINK)
+
 $(ROOTFS_DIR)/bin/mkdir: userspace/mkdir.c $(MUSL_LIB)/libc.a
 	$(QUIET_LD)
 	$(Q)mkdir -p $(ROOTFS_DIR)/bin $(BUILD)/userspace
@@ -767,6 +776,13 @@ $(ROOTFS_DIR)/bin/ping: userspace/ping.c userspace/tusnetutil.h include/tusnet.h
 	$(Q)$(CC) $(NET_CFLAGS) -c $< -o $(BUILD)/userspace/ping.o
 	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
                 $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/ping.o $(MUSL_LINK)
+
+$(ROOTFS_DIR)/bin/ping6: userspace/ping6.c userspace/tusnetutil.h include/tusnet.h $(MUSL_LIB)/libc.a
+	$(QUIET_LD)
+	$(Q)mkdir -p $(ROOTFS_DIR)/bin $(BUILD)/userspace
+	$(Q)$(CC) $(NET_CFLAGS) -c $< -o $(BUILD)/userspace/ping6.o
+	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
+                $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/ping6.o $(MUSL_LINK)
 
 $(ROOTFS_DIR)/bin/nc: userspace/nc.c userspace/tusnetutil.h include/tusnet.h $(MUSL_LIB)/libc.a
 	$(QUIET_LD)
@@ -1756,6 +1772,7 @@ $(ROOTFS_IMG): $(USER_ELFS) $(USER_TOOLS) $(ROOTFS_FILES) limine.conf \
                   $(ROOTFS_DIR)/bin/useradd $(ROOTFS_DIR)/bin/login \
                   $(ROOTFS_DIR)/bin/grep $(ROOTFS_DIR)/bin/sed \
                   $(ROOTFS_DIR)/bin/echo $(ROOTFS_DIR)/bin/ping \
+                  $(ROOTFS_DIR)/bin/ping6 \
                   $(ROOTFS_DIR)/bin/nc \
                   $(ROOTFS_DIR)/bin/ifconfig $(ROOTFS_DIR)/bin/netstat \
                   $(ROOTFS_DIR)/bin/arp $(ROOTFS_DIR)/bin/route \
@@ -1789,7 +1806,7 @@ $(ROOTFS_IMG): $(USER_ELFS) $(USER_TOOLS) $(ROOTFS_FILES) limine.conf \
                   $(ROOTFS_DIR)/bin/clear \
                   $(ROOTFS_DIR)/bin/ksh $(ROOTFS_DIR)/bin/shcomp \
                   $(ROOTFS_DIR)/bin/pty $(ROOTFS_DIR)/bin/tpm \
-                  $(ROOTFS_DIR)/bin/mkfs.wrf \
+                  $(ROOTFS_DIR)/bin/mkfs.wrf $(ROOTFS_DIR)/bin/mkswap \
                   $(ROOTFS_DIR)/bin/tussm $(ROOTFS_DIR)/bin/errord \
                   $(ROOTFS_DIR)/bin/bootd
 	$(Q)chmod 4555 $(ROOTFS_DIR)/bin/doas $(ROOTFS_DIR)/bin/passwd

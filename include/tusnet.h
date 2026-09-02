@@ -19,6 +19,9 @@
 #define NETCTL_ARP_DUMP   4  /* arg: struct tus_arp_row[] */
 #define NETCTL_TCP_DUMP   5  /* arg: struct tus_tcp_row[] */
 #define NETCTL_RESOLVE    6  /* arg: struct tus_resolve   */
+#define NETCTL_GET_IF6    7  /* arg: struct tus_if6info   */
+#define NETCTL_PING6      8  /* arg: struct tus_ping6     */
+#define NETCTL_NDP_DUMP   9  /* arg: struct tus_ndp_row[] */
 
 struct tus_ifinfo {
     char name[8];
@@ -59,6 +62,29 @@ struct tus_tcp_row {
     uint16_t remote_port;
     uint32_t rx_queued;
     uint32_t tx_queued;
+};
+
+struct tus_if6info {
+    uint8_t have_link_local;
+    uint8_t have_global;
+    uint8_t _pad[6];
+    uint8_t link_local[16];
+    uint8_t global[16];
+};
+
+struct tus_ping6 {
+    uint8_t dst[16];
+    uint32_t timeout_ms;
+    uint16_t id;
+    uint16_t seq;
+    int32_t rtt_ms;      /* filled in; -1 on timeout */
+    uint32_t payload_len;
+};
+
+struct tus_ndp_row {
+    uint8_t addr[16];
+    uint8_t mac[6];
+    uint8_t _pad[2];
 };
 
 /* DNS lives in the kernel because every tool needs it and none of them
