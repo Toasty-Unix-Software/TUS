@@ -81,6 +81,10 @@ struct file_ops {
     long (*write)(void *priv, const void *buf, size_t count, size_t pos);
     int  (*ioctl)(void *priv, uint64_t request, void *arg);
     short (*poll)(void *priv);
+    /* Optional: the last fd referencing this device node just closed.
+     * Only pty.c uses this today, to free a master/slave slot back to
+     * the pool; every other device leaves it NULL. */
+    void (*close)(void *priv);
 };
 
 struct vfs_node {

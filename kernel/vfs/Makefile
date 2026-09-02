@@ -6,6 +6,7 @@
 SRCS_VFS := \
   kernel/vfs/devices.c \
   kernel/vfs/procfs.c \
+  kernel/vfs/pty.c \
   kernel/vfs/rootfs.c \
   kernel/vfs/vfs.c
 

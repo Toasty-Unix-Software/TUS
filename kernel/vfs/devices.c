@@ -12,6 +12,7 @@
 #include "devices.h"
 
 #include "vfs.h"
+#include "pty.h"
 
 #include "../core/random.h"
 #include "../core/console.h"
@@ -642,6 +643,7 @@ void devices_init(void) {
     vfs_create_device("/dev/zero", &zero_ops, NULL);
     vfs_create_device("/dev/random", &random_ops, NULL);
     vfs_create_device("/dev/urandom", &random_ops, NULL);
+    pty_init();
 
     /* One node per ATA disk the driver found, named after its slot
      * (hda .. hdd). The node's size is the disk's, so `ls -l /dev`

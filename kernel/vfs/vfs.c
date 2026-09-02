@@ -16,6 +16,7 @@
 
 #include "devices.h"
 #include "procfs.h"
+#include "pty.h"
 #include "../fs/wrf.h"
 #include "../arch/x86_64/io.h"
 #include "../arch/x86_64/spectre.h"
@@ -459,16 +460,22 @@ static void file_unref(struct vfs_file *f) {
         if (f->pipe != NULL && f->pipe->refs_r == 0 && f->pipe->refs_w == 0) {
             kfree(f->pipe);
         }
-        if (f->node != NULL && --f->node->open_refs == 0 && f->node->unlinked) {
+        if (f->node != NULL && --f->node->open_refs == 0) {
+            if (f->node->type == VFS_DEVICE && f->node->ops != NULL &&
+                f->node->ops->close != NULL) {
+                f->node->ops->close(f->node->priv);
+            }
+            if (f->node->unlinked) {
             /* Last fd on a node vfs_remove() already detached from
              * the tree (see there): free it now, like a real unlink
              * of an open file does on close. wrf_notify_free() is the
              * deferred half of the WRF cleanup vfs_remove() started
              * (its dirent removal already ran); a no-op if the node
              * was never WRF-backed. */
-            wrf_notify_free(f->node);
-            kfree(f->node->data);
-            kfree(f->node);
+                wrf_notify_free(f->node);
+                kfree(f->node->data);
+                kfree(f->node);
+            }
         }
         kfree(f);
     }
@@ -570,6 +577,29 @@ long vfs_open_mode(const char *path, int flags, uint32_t mode) {
     if (path == NULL) {
         return -EINVAL;
     }
+    if (strcmp(path, "/dev/ptmx") == 0) {
+        struct vfs_node *m = pty_alloc_master();
+        if (m == NULL) {
+            return -EMFILE; /* all PTY_COUNT slots taken */
+        }
+        struct vfs_file *f = kmalloc(sizeof(*f));
+        if (f == NULL) {
+            return -ENOMEM;
+        }
+        f->node = m;
+        f->pipe = NULL;
+        f->sock = NULL;
+        f->inet_sock = NULL;
+        f->socket_domain = 0;
+        f->pos = 0;
+        f->readdir_node = NULL;
+        f->readdir_index = 0;
+        f->flags = flags;
+        f->refs = 1;
+        m->open_refs++;
+        return fd_alloc(f);
+    }
+
     struct vfs_node *node = vfs_lookup(path);
 
     if (node == NULL) {
