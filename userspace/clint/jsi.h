@@ -50,6 +50,11 @@ enum {
 
 struct js_prop {
     char *name;
+    uint32_t hash;      /* of name, so prop_find() can skip a strcmp on a
+                         * mismatch instead of paying for one - env chains
+                         * and object property lists are both plain linked
+                         * lists walked on every lookup, so this is the one
+                         * cheap win that doesn't touch that data layout. */
     struct js_value value;
     struct js_prop *next;
 };

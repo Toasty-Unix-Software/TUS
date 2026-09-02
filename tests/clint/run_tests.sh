@@ -249,4 +249,38 @@ out=$(run '<p>&#9731;</p>')
 echo "$out" | grep -q '"?"'
 check "a character with no glyph becomes one that has" $?
 
+echo "flexbox and grid"
+
+out=$(run '<div style="display:flex;width:300px"><div style="width:100px">a</div><div>b</div><div>c</div></div>' 400)
+xa=$(echo "$out" | grep '"a"' | awk -F'[ ,]+' '{print $3}')
+xb=$(echo "$out" | grep '"b"' | awk -F'[ ,]+' '{print $3}')
+xc=$(echo "$out" | grep '"c"' | awk -F'[ ,]+' '{print $3}')
+[ "$xa" = 0 ] && [ "$xb" = 100 ] && [ "$xc" = 200 ]
+check "flex row: an explicit-width child leaves the rest to split evenly" $?
+
+out=$(run '<div style="display:flex;width:300px;justify-content:center"><div style="width:50px">a</div><div style="width:50px">b</div></div>' 400)
+xa=$(echo "$out" | grep '"a"' | awk -F'[ ,]+' '{print $3}')
+[ "$xa" = 100 ]
+check "justify-content:center centers the row in the leftover space" $?
+
+out=$(run '<div style="display:flex;width:200px;justify-content:flex-end"><div style="width:50px">a</div></div>' 400)
+xa=$(echo "$out" | grep '"a"' | awk -F'[ ,]+' '{print $3}')
+[ "$xa" = 150 ]
+check "justify-content:flex-end pushes the row to the right edge" $?
+
+out=$(run '<div style="display:flex;flex-direction:column"><div>a</div><div>b</div></div>' 400)
+ya=$(echo "$out" | grep '"a"' | awk -F'[ ,]+' '{print $4}')
+yb=$(echo "$out" | grep '"b"' | awk -F'[ ,]+' '{print $4}')
+[ "$ya" = 0 ] && [ "$yb" != "$ya" ]
+check "flex-direction:column stacks children top to bottom" $?
+
+out=$(run '<div style="display:grid;grid-template-columns:100px 100px 100px"><div>a</div><div>b</div><div>c</div><div>d</div></div>' 400)
+xa=$(echo "$out" | grep '"a"' | awk -F'[ ,]+' '{print $3}')
+xb=$(echo "$out" | grep '"b"' | awk -F'[ ,]+' '{print $3}')
+xc=$(echo "$out" | grep '"c"' | awk -F'[ ,]+' '{print $3}')
+xd=$(echo "$out" | grep '"d"' | awk -F'[ ,]+' '{print $3}')
+yd=$(echo "$out" | grep '"d"' | awk -F'[ ,]+' '{print $4}')
+[ "$xa" = 0 ] && [ "$xb" = 100 ] && [ "$xc" = 200 ] && [ "$xd" = 0 ] && [ "$yd" != 0 ]
+check "grid-template-columns places three per row, then wraps" $?
+
 exit $fail

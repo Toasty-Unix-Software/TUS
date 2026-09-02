@@ -670,7 +670,53 @@ static void apply_decl(struct style *st, const char *name, const char *value) {
             st->display = DISP_INLINE_BLOCK;
         }
         else if (ci_eq(value, "list-item")) st->display = DISP_LIST_ITEM;
-        else st->display = DISP_BLOCK; /* block, flex, grid, table... */
+        else if (ci_eq(value, "flex")) st->display = DISP_FLEX;
+        else if (ci_eq(value, "grid")) st->display = DISP_GRID;
+        else st->display = DISP_BLOCK; /* block, table... */
+        return;
+    }
+    if (ci_eq(name, "flex-direction")) {
+        st->flex_direction = ci_eq(value, "column") ? FLEX_COLUMN : FLEX_ROW;
+        return;
+    }
+    if (ci_eq(name, "justify-content")) {
+        if (ci_eq(value, "center")) st->justify_content = JUSTIFY_CENTER;
+        else if (ci_eq(value, "flex-end") || ci_eq(value, "end")) {
+            st->justify_content = JUSTIFY_END;
+        } else if (ci_eq(value, "space-between") ||
+                   ci_eq(value, "space-around") ||
+                   ci_eq(value, "space-evenly")) {
+            st->justify_content = JUSTIFY_BETWEEN;
+        } else {
+            st->justify_content = JUSTIFY_START;
+        }
+        return;
+    }
+    if (ci_eq(name, "align-items")) {
+        if (ci_eq(value, "center")) st->align_items = ALIGN_ITEMS_CENTER;
+        else if (ci_eq(value, "flex-end") || ci_eq(value, "end")) {
+            st->align_items = ALIGN_ITEMS_END;
+        } else if (ci_eq(value, "stretch")) st->align_items = ALIGN_ITEMS_STRETCH;
+        else st->align_items = ALIGN_ITEMS_START;
+        return;
+    }
+    if (ci_eq(name, "flex-grow") || ci_eq(name, "flex")) {
+        /* `flex: 1` (or `flex: 1 1 auto`, etc.) and `flex-grow: 1`
+         * both boil down to "how much of the free space" - only the
+         * leading number is read. */
+        st->flex_grow = css_length(value, st->flex_grow > 0 ? st->flex_grow : 1);
+        return;
+    }
+    if (ci_eq(name, "grid-template-columns")) {
+        int n = 0;
+        const char *p = value;
+        while (*p != '\0' && n < 16) {
+            while (is_space(*p) || *p == ',') p++;
+            if (*p == '\0') break;
+            st->grid_columns[n++] = css_length(p, 100);
+            while (*p != '\0' && !is_space(*p) && *p != ',') p++;
+        }
+        if (n > 0) st->grid_column_count = n;
         return;
     }
     if (ci_eq(name, "color")) {
@@ -817,6 +863,12 @@ static void style_init_root(struct style *st) {
     st->font_scale = 1;
     st->width = -1;
     st->align = ALIGN_LEFT;
+    st->flex_direction = FLEX_ROW;
+    st->justify_content = JUSTIFY_START;
+    st->align_items = ALIGN_ITEMS_START; /* real default is `stretch`; not
+                                          * implemented (needs a second
+                                          * layout pass), START avoids
+                                          * silently mis-sizing content */
 }
 
 /* Apply every rule that matches, in cascade order. The list is

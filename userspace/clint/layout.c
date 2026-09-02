@@ -871,6 +871,12 @@ struct ctx {
 static void layout_block(struct ctx *c, struct dom_node *node, int left,
                          int right, const char *href, struct dom_node *click,
                          int depth);
+static void layout_flex(struct ctx *c, struct dom_node *node, int left,
+                        int right, const char *href, struct dom_node *click,
+                        int depth);
+static void layout_grid(struct ctx *c, struct dom_node *node, int left,
+                        int right, const char *href, struct dom_node *click,
+                        int depth);
 
 /*
  * Measuring an inline-block means laying it out twice, so a document
@@ -1071,6 +1077,143 @@ static int has_block_child(const struct dom_node *n) {
     return 0;
 }
 
+/*
+ * Flexbox, scoped to what a fixed-width single-pass layout can do
+ * honestly: row or column direction, justify-content along the main
+ * axis, and flex-grow-weighted sizing when a child has no explicit
+ * width. Not implemented: flex-wrap, flex-shrink/basis, align-items
+ * beyond the default (start), and order - each would need either a
+ * second measurement pass or a wrap-tracking line builder this engine
+ * does not have. `display: flex` with plain divs (the common case)
+ * gets even columns/rows; explicit widths and flex-grow are both
+ * honoured.
+ */
+static void layout_flex(struct ctx *c, struct dom_node *node, int left,
+                        int right, const char *href, struct dom_node *click,
+                        int depth) {
+    if (depth > 64) return;
+    struct style *pst = node->style;
+
+    struct dom_node *kids[64];
+    int nkids = 0;
+    for (struct dom_node *n = node->first; n != NULL && nkids < 64; n = n->next) {
+        if (n->style == NULL || n->style->display == DISP_NONE) continue;
+        kids[nkids++] = n;
+    }
+    if (nkids == 0) return;
+
+    if (pst->flex_direction == FLEX_COLUMN) {
+        /* The cross axis is horizontal, the main axis vertical - that
+         * is exactly how ordinary block stacking already works. */
+        for (int i = 0; i < nkids; i++) {
+            const char *child_href = href;
+            if (kids[i]->style->is_link) child_href = dom_attr(kids[i], "href");
+            layout_block(c, kids[i], left, right, child_href,
+                        click_target(kids[i], click), depth + 1);
+        }
+        return;
+    }
+
+    int total = right - left;
+    int used = 0, weight_sum = 0;
+    int width[64];
+    for (int i = 0; i < nkids; i++) {
+        struct style *kst = kids[i]->style;
+        if (kst->width > 0) {
+            width[i] = kst->width;
+            used += width[i];
+        } else {
+            width[i] = -1; /* filled in below */
+            weight_sum += kst->flex_grow > 0 ? kst->flex_grow : 1;
+        }
+    }
+    int free_space = total - used;
+    if (free_space < 0) free_space = 0;
+    for (int i = 0; i < nkids; i++) {
+        if (width[i] < 0) {
+            struct style *kst = kids[i]->style;
+            int w = kst->flex_grow > 0 ? kst->flex_grow : 1;
+            width[i] = weight_sum > 0 ? (free_space * w) / weight_sum : 0;
+            used += width[i];
+        }
+    }
+
+    int leftover = total - used;
+    if (leftover < 0) leftover = 0;
+    int start_x = left;
+    int gap = 0;
+    switch (pst->justify_content) {
+    case JUSTIFY_CENTER: start_x = left + leftover / 2; break;
+    case JUSTIFY_END:    start_x = left + leftover; break;
+    case JUSTIFY_BETWEEN:
+        if (nkids > 1) gap = leftover / (nkids - 1);
+        break;
+    default: break; /* JUSTIFY_START: pack at the left */
+    }
+
+    int row_top = c->y;
+    int row_bottom = row_top;
+    int x = start_x;
+    for (int i = 0; i < nkids; i++) {
+        struct ctx child_ctx = { c->out, row_top };
+        const char *child_href = href;
+        if (kids[i]->style->is_link) child_href = dom_attr(kids[i], "href");
+        layout_block(&child_ctx, kids[i], x, x + width[i], child_href,
+                    click_target(kids[i], click), depth + 1);
+        if (child_ctx.y > row_bottom) row_bottom = child_ctx.y;
+        x += width[i] + gap;
+    }
+    c->y = row_bottom;
+}
+
+/*
+ * CSS Grid, scoped to the one form that is actually tractable without
+ * a full grid-placement algorithm: an explicit `grid-template-
+ * columns` track list, items placed in document order, wrapping to a
+ * new row once a row's columns are full. No grid-template-areas, no
+ * auto-placement spanning, no implicit row sizing beyond "as tall as
+ * its tallest occupant" - the same honest subset flexbox above takes.
+ */
+static void layout_grid(struct ctx *c, struct dom_node *node, int left,
+                        int right, const char *href, struct dom_node *click,
+                        int depth) {
+    if (depth > 64) return;
+    struct style *pst = node->style;
+    (void)right;
+
+    struct dom_node *kids[64];
+    int nkids = 0;
+    for (struct dom_node *n = node->first; n != NULL && nkids < 64; n = n->next) {
+        if (n->style == NULL || n->style->display == DISP_NONE) continue;
+        kids[nkids++] = n;
+    }
+
+    int ncols = pst->grid_column_count;
+    int row_top = c->y;
+    int row_bottom = row_top;
+    int col = 0;
+    int x = left;
+
+    for (int i = 0; i < nkids; i++) {
+        if (col == ncols) {
+            c->y = row_bottom;
+            row_top = row_bottom;
+            col = 0;
+            x = left;
+        }
+        struct ctx child_ctx = { c->out, row_top };
+        const char *child_href = href;
+        if (kids[i]->style->is_link) child_href = dom_attr(kids[i], "href");
+        int col_w = pst->grid_columns[col];
+        layout_block(&child_ctx, kids[i], x, x + col_w, child_href,
+                    click_target(kids[i], click), depth + 1);
+        if (child_ctx.y > row_bottom) row_bottom = child_ctx.y;
+        x += col_w;
+        col++;
+    }
+    c->y = row_bottom;
+}
+
 static void layout_block(struct ctx *c, struct dom_node *node, int left,
                          int right, const char *href, struct dom_node *click,
                          int depth) {
@@ -1136,6 +1279,10 @@ static void layout_block(struct ctx *c, struct dom_node *node, int left,
         layout_inline(c, &ln, node, href, click, depth + 1);
         line_break(&ln);
         c->y = ln.y;
+    } else if (st->display == DISP_FLEX) {
+        layout_flex(c, node, content_left, content_right, href, click, depth);
+    } else if (st->display == DISP_GRID && st->grid_column_count > 0) {
+        layout_grid(c, node, content_left, content_right, href, click, depth);
     } else if (has_block_child(node)) {
         /* Mixed content: inline runs between blocks each get their
          * own line builder, opened lazily. */

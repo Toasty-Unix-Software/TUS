@@ -349,9 +349,21 @@ void js_array_push(struct js *J, struct js_obj *arr, struct js_value v) {
     arr->items[arr->len++] = v;
 }
 
+/* FNV-1a: cheap, well-distributed for short identifier-length strings,
+ * which is all a property or variable name ever is here. */
+static uint32_t name_hash(const char *s) {
+    uint32_t h = 2166136261u;
+    while (*s) {
+        h ^= (uint8_t)*s++;
+        h *= 16777619u;
+    }
+    return h;
+}
+
 static struct js_prop *prop_find(struct js_prop *list, const char *name) {
+    uint32_t h = name_hash(name);
     for (struct js_prop *p = list; p != NULL; p = p->next) {
-        if (strcmp(p->name, name) == 0) return p;
+        if (p->hash == h && strcmp(p->name, name) == 0) return p;
     }
     return NULL;
 }
@@ -367,6 +379,7 @@ void js_def(struct js *J, struct js_obj *obj, const char *name,
     p = js_alloc(J, sizeof(*p));
     if (p == NULL) return;
     p->name = js_strdup(J, name);
+    p->hash = name_hash(name);
     p->value = v;
     p->next = obj->props;
     obj->props = p;
@@ -1771,6 +1784,7 @@ static void env_define(struct js *J, struct js_env *env, const char *name,
     p = js_alloc(J, sizeof(*p));
     if (p == NULL) return;
     p->name = js_strdup(J, name);
+    p->hash = name_hash(name);
     p->value = v;
     p->next = env->vars;
     env->vars = p;
