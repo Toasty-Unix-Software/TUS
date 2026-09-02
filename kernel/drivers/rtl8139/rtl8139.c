@@ -150,6 +150,7 @@ void rtl8139_drain_rx(void) {
 
         netif_rx(entry + 4, (uint16_t)(length - 4)); /* drop the CRC */
         rtl8139.rx_packets++;
+        rtl8139.rx_bytes += (uint64_t)(length - 4);
 
         /* Advance past the entry, keeping the read pointer 4-byte
          * aligned as the card requires, and wrap by hand. */
@@ -222,6 +223,7 @@ int rtl8139_send_packet(const uint8_t *data, uint16_t len) {
 
     rtl8139.tx_next = (uint8_t)((desc + 1) % RTL8139_TX_DESCS);
     rtl8139.tx_packets++;
+    rtl8139.tx_bytes += (uint64_t)len;
     return len;
 }
 

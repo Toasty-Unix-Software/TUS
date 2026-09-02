@@ -1198,6 +1198,9 @@ static long sys_netctl(long op, void *arg, long len, bool from_user) {
         info->tx_packets = dev.tx_packets;
         info->rx_errors = dev.rx_errors;
         info->tx_dropped = dev.tx_dropped;
+        info->rx_bytes = dev.rx_bytes;
+        info->tx_bytes = dev.tx_bytes;
+        info->mtu = 1500;
         netif_get_stats(NULL, &info->rx_dropped);
         return 0;
     }

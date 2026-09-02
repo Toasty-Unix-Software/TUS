@@ -24,15 +24,18 @@ static void print_if(const struct tus_ifinfo *info) {
     printf("  Bcast:%s\n", ip_str(info->ip | ~info->netmask, buf));
     printf("          gateway:%s", ip_str(info->gateway, buf));
     printf("  dns:%s\n", ip_str(info->dns, buf));
-    printf("          %s  MTU:1500\n",
-           info->up ? "UP BROADCAST RUNNING" : "DOWN");
-    printf("          RX packets:%llu dropped:%llu errors:%llu\n",
+    printf("          %s  MTU:%u\n",
+           info->up ? "UP BROADCAST RUNNING" : "DOWN",
+           info->mtu ? info->mtu : 1500);
+    printf("          RX packets:%llu dropped:%llu errors:%llu  RX bytes:%llu\n",
            (unsigned long long)info->rx_packets,
            (unsigned long long)info->rx_dropped,
-           (unsigned long long)info->rx_errors);
-    printf("          TX packets:%llu dropped:%llu\n",
+           (unsigned long long)info->rx_errors,
+           (unsigned long long)info->rx_bytes);
+    printf("          TX packets:%llu dropped:%llu  TX bytes:%llu\n",
            (unsigned long long)info->tx_packets,
-           (unsigned long long)info->tx_dropped);
+           (unsigned long long)info->tx_dropped,
+           (unsigned long long)info->tx_bytes);
 
     struct tus_if6info info6;
     char buf6[40];

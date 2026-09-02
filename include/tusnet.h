@@ -38,6 +38,9 @@ struct tus_ifinfo {
     uint64_t rx_dropped;
     uint64_t rx_errors;
     uint64_t tx_dropped;
+    uint64_t rx_bytes;
+    uint64_t tx_bytes;
+    uint32_t mtu;
 };
 
 struct tus_ping {

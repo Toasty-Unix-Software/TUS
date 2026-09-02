@@ -96,6 +96,7 @@ struct rtl8139_device {
     uint8_t tx_next;        /* descriptor to hand the next frame to */
 
     uint64_t rx_packets, tx_packets, rx_dropped, tx_dropped, rx_errors;
+    uint64_t rx_bytes, tx_bytes;
 };
 
 /* Find the card on PCI and bring it up. 0 on success, -1 when absent. */
