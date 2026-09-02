@@ -118,12 +118,15 @@ static void elf_error(const char *what, el_status st) {
  * kernel half is shared, so running kernel code there is safe.
  */
 long elf_exec(const char *path, int argc, char **argv) {
-    return elf_exec_as(path, argc, argv, 0, 0);
+    /* uid 0 already bypasses the CAP_LINUX_EXEC gate below on its
+     * own (root implicitly holds every capability, same rule as
+     * has_cap()), so the caps bitmask itself doesn't matter here. */
+    return elf_exec_as(path, argc, argv, 0, 0, CAP_ALL_KNOWN);
 }
 
 
 long elf_exec_as(const char *path, int argc, char **argv,
-                 uint32_t uid, uint32_t gid) {
+                 uint32_t uid, uint32_t gid, uint32_t caps) {
     if (path == NULL) {
         return -EINVAL;
     }
@@ -177,25 +180,26 @@ long elf_exec_as(const char *path, int argc, char **argv,
      * something any exec can reach by default. See
      * kernel/syscall/linux_syscall.c for what actually runs it.
      *
-     * The check is against `uid` (the caller's real identity, before
-     * any setuid-bit override below) rather than sched_current(): the
-     * kernel's own tsh is a ring-0 task and always has euid 0
-     * regardless of who is logged into the *session* it is running
-     * (see commands.c's g_session_uid/g_session_gid, threaded through
-     * exactly this `uid`/`gid` parameter - the doas/login identity
-     * fix from an earlier pass). has_cap()'s per-task caps bitmask
-     * genuinely cannot apply here either: every freshly spawned
-     * command starts a brand-new task with caps=0 (task_create_user),
-     * so there is no live task carrying a previously-SYS_CAPSET'd
-     * grant to check between one command and the next in the same
-     * login session. CAP_LINUX_EXEC therefore reduces to "root only"
-     * until TUS gains a session-level (not just task-level) capability
-     * grant - documented here rather than silently pretending
-     * per-user grants already work. */
+     * The check is against `uid`/`caps` (the caller's real session
+     * identity, before any setuid-bit override below) rather than
+     * sched_current(): the kernel's own tsh is a ring-0 task and
+     * always has euid 0 regardless of who is logged into the
+     * *session* it is running (see commands.c's g_session_uid/
+     * g_session_gid/g_session_caps, threaded through exactly these
+     * `uid`/`gid`/`caps` parameters - the doas/login identity fix
+     * from an earlier pass, extended to capabilities here). `caps`
+     * is resolved once at login from /etc/capabilities (see
+     * commands.c's load_session_caps()) and carried across every
+     * command in that session, since a freshly spawned task's own
+     * task->caps always starts at 0 (task_create_user) and has
+     * nowhere to persist a grant between one command and the next -
+     * this parameter IS that persistence. Root (uid 0) still
+     * implicitly bypasses, matching has_cap()'s rule that euid 0
+     * holds every capability. */
     bool is_linux = elf_is_foreign_linux(&ctx);
-    if (is_linux && uid != 0) {
+    if (is_linux && uid != 0 && (caps & CAP_LINUX_EXEC) == 0) {
         kprintf("exec: %s: Linux-ABI binary, CAP_LINUX_EXEC required "
-                "(root only for now - see the comment above this check)\n",
+                "(grant via /etc/capabilities, see the `caps` command)\n",
                 path);
         vfs_close(g_elf_fd);
         return -EPERM;
@@ -375,6 +379,17 @@ long elf_exec_current(const char *path, int argc, char **argv,
     if (el_init(&ctx) != EL_OK) {
         vfs_close(g_elf_fd);
         return -ENOEXEC;
+    }
+
+    /* Same CAP_LINUX_EXEC gate as elf_exec_as(), for execve() -
+     * without it a task could sidestep the exec-time check entirely
+     * by calling execve() on itself. `cur` is a live task here (this
+     * replaces its own image in place), so its real euid/caps are
+     * exactly the identity to check, no session plumbing needed. */
+    if (elf_is_foreign_linux(&ctx) && cur->euid != 0 &&
+        !has_cap(cur, CAP_LINUX_EXEC)) {
+        vfs_close(g_elf_fd);
+        return -EPERM;
     }
 
     uint64_t cr3 = vmm_space_clone();

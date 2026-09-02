@@ -19,12 +19,16 @@
 long elf_exec(const char *path, int argc, char **argv);
 
 /* Same as elf_exec(), but the new task starts at the given uid/gid
- * (both real and effective) instead of always root. Used by the
- * shell to run a typed command as whoever is actually logged into
- * that session, rather than as root regardless of who is "logged
- * in" - see g_session_uid in kernel/shell/commands.c. */
+ * (both real and effective) instead of always root, and `caps` is
+ * the capability bitmask (see kernel/sched/cap.h) actually granted
+ * to that session - used to gate exec of a foreign Linux-ABI binary
+ * (CAP_LINUX_EXEC) by real per-session identity instead of a
+ * uid==0 shortcut. Used by the shell to run a typed command as
+ * whoever is actually logged into that session, rather than as
+ * root regardless of who is "logged in" - see g_session_uid/
+ * g_session_caps in kernel/shell/commands.c. */
 long elf_exec_as(const char *path, int argc, char **argv,
-                 uint32_t uid, uint32_t gid);
+                 uint32_t uid, uint32_t gid, uint32_t caps);
 
 /* execve: replace the CURRENT task's image with the ELF at `path`.
  * `path`/`argv` must be kernel pointers; `frame_rsp` is the address

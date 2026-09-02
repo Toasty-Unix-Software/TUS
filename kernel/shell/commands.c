@@ -45,6 +45,89 @@
 
 #define MAX_ARGS 16
 
+/* Identity of whoever is logged into this shell session, adopted
+ * from /bin/login's own post-authentication setuid()/setgid() (see
+ * sched_task_ids()) once it exits. Every ordinary external command
+ * this session spawns afterwards runs as this identity rather than
+ * always as root - without it, every fresh exec restarted at uid 0
+ * regardless of who "logged in", which is what silently defeated
+ * doas's password prompt (its "already root, skip the password"
+ * fast path was always true). Starts at root/0, matching the
+ * console's default session before any login happens. Declared up
+ * here (rather than beside exec_pipeline(), where they used to live)
+ * so cmd_caps(), defined earlier in this file, can read them. */
+static uint32_t g_session_uid = 0;
+static uint32_t g_session_gid = 0;
+
+/* Capability bitmask (kernel/sched/cap.h) actually granted to
+ * whoever is logged into this session - resolved once at login and
+ * threaded through every command the same way g_session_uid/gid
+ * (declared with the rest of the session-identity state, further
+ * down this file) are, because a freshly spawned task's own
+ * task->caps always starts at 0 (task_create_user) and has nothing
+ * to carry a SYS_CAPSET grant from one command to the next
+ * otherwise. Currently the only consumer is CAP_LINUX_EXEC (see
+ * elf_exec_as()'s gate), but this is a real bitmask, not a
+ * single-purpose flag - any future capability that needs
+ * session-lifetime persistence goes through the same path. Starts
+ * at 0; uid 0 (root) bypasses the check that reads this regardless,
+ * matching has_cap()'s rule that euid 0 implicitly holds every
+ * capability. Declared up here (rather than beside g_session_uid/
+ * gid) so cmd_caps(), which is defined earlier in this file, can
+ * read it. */
+static uint32_t g_session_caps = 0;
+
+/* Look up the capability grant for `uid` in /etc/capabilities - a
+ * plain-text, root-editable file (one line per grant: "uid:caps",
+ * caps as a "0x"-prefixed hex bitmask or decimal, matching
+ * kernel/sched/cap.h's CAP_* bits) that is the actual persistence
+ * store this whole mechanism was missing. Root needs no entry (the
+ * gate checking this always bypasses for uid 0 separately) - this
+ * exists purely so a NON-root user can be handed one specific
+ * capability without full root, the entire point of a capabilities
+ * model over an all-or-nothing one. Missing file or no matching line
+ * means "no grants", which is the safe default: a fresh install
+ * behaves exactly like the old root-only gate until an admin
+ * explicitly opts a user in (e.g. `echo "1000:0x8" >> /etc/capabilities`
+ * as root, or a fuller admin tool built on top of this format
+ * later). */
+static uint32_t load_session_caps(uint32_t uid) {
+    if (uid == 0) {
+        return CAP_ALL_KNOWN; /* for display only - has_cap()/the
+                                * uid==0 checks bypass independently */
+    }
+    long fd = vfs_open("/etc/capabilities", O_RDONLY);
+    if (fd < 0) {
+        return 0;
+    }
+    char buf[2048];
+    long n = vfs_read(fd, buf, sizeof(buf) - 1);
+    vfs_close(fd);
+    if (n <= 0) {
+        return 0;
+    }
+    buf[n] = '\0';
+
+    uint32_t result = 0;
+    char *line = buf;
+    while (line != NULL && *line != '\0') {
+        char *nl = strchr(line, '\n');
+        if (nl != NULL) {
+            *nl = '\0';
+        }
+        char *colon = strchr(line, ':');
+        if (colon != NULL) {
+            *colon = '\0';
+            if ((uint32_t)strtoul(line, NULL, 10) == uid) {
+                result = (uint32_t)strtoul(colon + 1, NULL, 0) & CAP_ALL_KNOWN;
+                break;
+            }
+        }
+        line = (nl != NULL) ? nl + 1 : NULL;
+    }
+    return result;
+}
+
 static int cmd_help(int argc, char **argv);
 static int cmd_clear(int argc, char **argv);
 static int cmd_ver(int argc, char **argv);
@@ -256,9 +339,22 @@ static int cmd_caps(int argc, char **argv) {
 
     kprintf("pid=%u uid=%u euid=%u caps=0x%x%s\n", cur->pid, cur->uid,
             cur->euid, cur->caps, cur->euid == 0 ? " (root: all implied)" : "");
-    kprintf("  CAP_NET_ADMIN : %s\n", has_cap(cur, CAP_NET_ADMIN) ? "yes" : "no");
-    kprintf("  CAP_NET_RAW   : %s\n", has_cap(cur, CAP_NET_RAW) ? "yes" : "no");
-    kprintf("  CAP_SETUID    : %s\n", has_cap(cur, CAP_SETUID) ? "yes" : "no");
+    kprintf("  CAP_NET_ADMIN  : %s\n", has_cap(cur, CAP_NET_ADMIN) ? "yes" : "no");
+    kprintf("  CAP_NET_RAW    : %s\n", has_cap(cur, CAP_NET_RAW) ? "yes" : "no");
+    kprintf("  CAP_SETUID     : %s\n", has_cap(cur, CAP_SETUID) ? "yes" : "no");
+    kprintf("  CAP_LINUX_EXEC : %s\n", has_cap(cur, CAP_LINUX_EXEC) ? "yes" : "no");
+
+    /* `cur` above is tsh itself - a ring-0 task that is always
+     * euid 0, regardless of who is logged into the session it is
+     * running (see g_session_uid/g_session_caps' own comment). Show
+     * that separately so `caps` actually answers "what can I do"
+     * for whoever typed the command. */
+    kprintf("session: uid=%u gid=%u caps=0x%x%s (from /etc/capabilities "
+            "at login)\n", g_session_uid, g_session_gid, g_session_caps,
+            g_session_uid == 0 ? " (root: all implied)" : "");
+    kprintf("  CAP_LINUX_EXEC : %s\n",
+            (g_session_uid == 0 || (g_session_caps & CAP_LINUX_EXEC))
+                ? "yes" : "no");
     return 0;
 }
 
@@ -943,18 +1039,6 @@ static int cmd_highx(int argc, char **argv) {
     return 0;
 }
 
-/* Identity of whoever is logged into this shell session, adopted
- * from /bin/login's own post-authentication setuid()/setgid() (see
- * sched_task_ids()) once it exits. Every ordinary external command
- * this session spawns afterwards runs as this identity rather than
- * always as root - without it, every fresh exec restarted at uid 0
- * regardless of who "logged in", which is what silently defeated
- * doas's password prompt (its "already root, skip the password"
- * fast path was always true). Starts at root/0, matching the
- * console's default session before any login happens. */
-static uint32_t g_session_uid = 0;
-static uint32_t g_session_gid = 0;
-
 /* Run one pipeline. Every external stage is spawned as a task; the
  * shell waits (hlt) until all pids have exited. See the comment at
  * the top of this section for the fd choreography. */
@@ -1034,7 +1118,8 @@ static void exec_pipeline(struct pipeline_seg *segs, int nseg) {
                 } else {
                     int pid = (int)elf_exec_as(resolved[i], s->argc - 1,
                                                &s->argv[1],
-                                               g_session_uid, g_session_gid);
+                                               g_session_uid, g_session_gid,
+                                               g_session_caps);
                     if (pid < 0) {
                         kprintf("tsh: %s: cannot execute\n", s->argv[0]);
                         failed = 1;
@@ -1118,6 +1203,7 @@ static void exec_pipeline(struct pipeline_seg *segs, int nseg) {
             if (sched_task_ids((uint32_t)pids[k], &uid, &gid)) {
                 g_session_uid = uid;
                 g_session_gid = gid;
+                g_session_caps = load_session_caps(uid);
             }
         }
     }
