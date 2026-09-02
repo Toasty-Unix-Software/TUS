@@ -110,7 +110,8 @@ USER_ELFS := $(ROOTFS_DIR)/bin/hello \
              $(ROOTFS_DIR)/bin/socktest \
              $(ROOTFS_DIR)/bin/kilo \
              $(ROOTFS_DIR)/bin/clonetest \
-             $(ROOTFS_DIR)/bin/lxhello
+             $(ROOTFS_DIR)/bin/lxhello \
+             $(ROOTFS_DIR)/bin/nxtest
 
 # TUS system tools (userspace/), all linked against musl.
 USER_TOOLS := $(ROOTFS_DIR)/bin/doas \
@@ -467,6 +468,15 @@ $(ROOTFS_DIR)/bin/clonetest: tests/test_clone_fix.c $(MUSL_LIB)/libc.a
 	$(Q)$(CC) $(USER_CFLAGS) -nostdinc -I$(MUSL_INC) -c $< -o $(BUILD)/tests/test_clone_fix.o
 	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
                 $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/tests/test_clone_fix.o $(MUSL_LINK)
+
+# nxtest: proves anonymous mmap() pages are non-executable (NX/W^X
+# hardening pass). See tests/test_nx.c.
+$(ROOTFS_DIR)/bin/nxtest: tests/test_nx.c $(MUSL_LIB)/libc.a
+	$(QUIET_LD)
+	$(Q)mkdir -p $(ROOTFS_DIR)/bin $(BUILD)/tests
+	$(Q)$(CC) $(USER_CFLAGS) -nostdinc -I$(MUSL_INC) -c $< -o $(BUILD)/tests/test_nx.o
+	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
+                $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/tests/test_nx.o $(MUSL_LINK)
 
 # socktest: AF_UNIX sockets + poll/select, exercised from ring 3
 # through the real libc entry points (socket/bind/accept/poll/select).

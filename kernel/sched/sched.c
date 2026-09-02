@@ -649,8 +649,11 @@ int task_create_user(uint64_t entry, const char *name, uint64_t cr3,
             return -1;
         }
         memset((void *)pmm_phys_to_virt(frame), 0, 4096);
+        /* Stacks are data, never code: NX closes the classic
+         * stack-smashing-to-shellcode path even if a future bug lets
+         * an overflow overwrite the return address. */
         if (vmm_map_page_in(cr3, ustack + i * 4096, frame,
-                            VMM_PRESENT | VMM_WRITE | VMM_USER) != 0) {
+                            VMM_PRESENT | VMM_WRITE | VMM_USER | VMM_NX) != 0) {
             return -1;
         }
     }

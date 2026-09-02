@@ -74,11 +74,17 @@ typedef struct el_ctx {
 el_status el_pread(el_ctx *ctx, void *def, size_t nb, size_t offset);
 
 el_status el_init(el_ctx *ctx);
+/* p_flags bits (standard ELF, not TUS-specific). */
+#define PF_X 0x1
+#define PF_W 0x2
+#define PF_R 0x4
+
 typedef void* (*el_alloc_cb)(
     el_ctx *ctx,
     Elf_Addr phys,
     Elf_Addr virt,
-    Elf_Addr size);
+    Elf_Addr size,
+    uint32_t flags);
 
 el_status el_load(el_ctx *ctx, el_alloc_cb alloccb);
 

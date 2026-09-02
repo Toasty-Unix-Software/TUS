@@ -57,16 +57,28 @@ static uint64_t ctx_cr3(el_ctx *ctx) {
 }
 
 static void *tus_alloc(el_ctx *ctx, Elf_Addr phys, Elf_Addr virt,
-                       Elf_Addr size) {
+                       Elf_Addr size, uint32_t flags) {
     (void)ctx;
     (void)phys;
 
     uint64_t cr3 = ctx_cr3(ctx);
 
+    /* NX hardening: a segment without PF_X is data (rodata/.data/.bss)
+     * and can never legitimately hold code, so it is mapped VMM_NX -
+     * a stack/heap/bss overflow that lands attacker bytes there can
+     * no longer jump into them. Segments stay VMM_WRITE regardless
+     * (el_load's el_pread writes the file contents into `dest` right
+     * after this call returns, through this same mapping - dropping
+     * WRITE from executable segments too, for full W^X, would need a
+     * second pass after the whole image is loaded to reprotect them;
+     * left as a known follow-up rather than done unsafely here). */
+    uint64_t page_flags = VMM_PRESENT | VMM_WRITE | VMM_USER;
+    if (!(flags & PF_X)) {
+        page_flags |= VMM_NX;
+    }
+
     /* Map every 4 KiB page the segment touches with a fresh frame,
-     * inside the new task's private address space. Pages are
-     * user-accessible (VMM_USER) and the upper levels are marked USER
-     * by the VMM so ring 3 can actually execute them. */
+     * inside the new task's private address space. */
     uint64_t first = virt & ~0xFFFull;
     uint64_t last = (virt + size + 0xFFF) & ~0xFFFull;
     for (uint64_t page = first; page < last; page += 0x1000) {
@@ -77,8 +89,7 @@ static void *tus_alloc(el_ctx *ctx, Elf_Addr phys, Elf_Addr virt,
                 return NULL;
             }
         }
-        if (vmm_map_page_in(cr3, page, frame & ~0xFFFull,
-                            VMM_PRESENT | VMM_WRITE | VMM_USER) != 0) {
+        if (vmm_map_page_in(cr3, page, frame & ~0xFFFull, page_flags) != 0) {
             return NULL;
         }
     }
@@ -289,7 +300,7 @@ static uint64_t exec_build_stack(uint64_t cr3, const char *name,
         }
         memset((void *)pmm_phys_to_virt(frame), 0, 4096);
         if (vmm_map_page_in(cr3, ustack + i * 4096, frame,
-                            VMM_PRESENT | VMM_WRITE | VMM_USER) != 0) {
+                            VMM_PRESENT | VMM_WRITE | VMM_USER | VMM_NX) != 0) {
             return 0;
         }
     }

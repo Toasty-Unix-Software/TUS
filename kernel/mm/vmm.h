@@ -24,6 +24,11 @@
  * a write may sit in the cache while the driver waits for the device
  * to react to it. Every MMIO mapping needs this. */
 #define VMM_NOCACHE (1ull << 4)
+/* No-execute (requires EFER.NXE, enabled unconditionally by vmm_init).
+ * Set on every mapping that is data, not code: user stacks, heaps,
+ * ELF segments without PF_X, and swapped/mmap'd pages. Never set on a
+ * PT_LOAD segment that carries PF_X - see tus_elf.c. */
+#define VMM_NX      (1ull << 63)
 
 /* Virtual address of the kernel heap arena (reserved address space). */
 #define VMM_KHEAP_BASE 0xffffffff81000000ull

@@ -156,7 +156,7 @@ el_status el_load(el_ctx *ctx, el_alloc_cb alloc)
         Elf_Addr vload = ph.p_vaddr + vdelta;
 
         /* allocate mem */
-        char *dest = alloc(ctx, pload, vload, ph.p_memsz);
+        char *dest = alloc(ctx, pload, vload, ph.p_memsz, ph.p_flags);
         if (!dest)
             return EL_ENOMEM;
 

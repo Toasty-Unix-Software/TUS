@@ -317,8 +317,9 @@ __attribute__((noreturn)) static long sys_exit(int status) {
  * (syscall #9) reuses this directly - Linux's MAP_ANONYMOUS is the
  * same bit value (0x20) and the anonymous-only restriction already
  * matches what a Linux-compat task needs. */
+#define TUS_PROT_EXEC 0x4 /* matches Linux PROT_EXEC, kept in sync for linux_syscall.c's passthrough */
+
 long sys_mmap(long addr, long len, long prot, long flags) {
-    (void)prot;
     struct task *cur = sched_current();
     if (cur == NULL || len <= 0) {
         return -EINVAL;
@@ -349,8 +350,15 @@ long sys_mmap(long addr, long len, long prot, long flags) {
         }
         /* Fresh anonymous pages must read as zeros. */
         memset((void *)pmm_phys_to_virt(frame), 0, 4096);
-        if (vmm_map_page_in(cur->cr3, page, frame,
-                            VMM_PRESENT | VMM_WRITE | VMM_USER) != 0) {
+        /* Anonymous mmap is data unless the caller explicitly asked
+         * for PROT_EXEC (a real JIT/trampoline use case) - default to
+         * NX so an unrelated caller's mmap'd buffer can't be used as
+         * a landing pad for injected code. */
+        uint64_t map_flags = VMM_PRESENT | VMM_WRITE | VMM_USER;
+        if (!(prot & TUS_PROT_EXEC)) {
+            map_flags |= VMM_NX;
+        }
+        if (vmm_map_page_in(cur->cr3, page, frame, map_flags) != 0) {
             pmm_free_frame(frame);
             sys_munmap(start, (long)(page - start));
             return -ENOMEM;

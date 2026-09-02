@@ -28,6 +28,7 @@
 #include <stdbool.h>
 
 #include "pmm.h"
+#include "../arch/x86_64/io.h"
 #include "../core/klib.h"
 
 #define PAGE_SIZE   4096
@@ -189,6 +190,17 @@ static uint64_t *walk_pt(uint64_t cr3, uint64_t virt, bool allocate,
 void vmm_init(void) {
     g_cr3 = read_cr3();
     g_root_cr3 = g_cr3;
+
+    /* EFER.NXE (bit 11): without it, bit 63 in a PTE is just a
+     * reserved bit a CPU would #GP on, not "no execute". Long mode is
+     * already active by this point (Limine put us here), and NXE has
+     * no side effect on existing mappings that don't set the bit, so
+     * this is safe to turn on unconditionally, this early, before any
+     * VMM_NX mapping is ever created. */
+    #define MSR_EFER  0xC0000080ull
+    #define EFER_NXE  (1ull << 11)
+    uint64_t efer = rdmsr(MSR_EFER);
+    wrmsr(MSR_EFER, efer | EFER_NXE);
 }
 
 uint64_t vmm_root_cr3(void) {
