@@ -90,7 +90,8 @@ static int lines_find(const struct lines *ls, const char *name) {
 }
 
 static int max_field(const struct lines *ls, int field) {
-    /* field 0 = uid (passwd), 1 = gid (group) */
+    /* Returns the max integer value of the given colon-separated field
+     * index across all lines (e.g. field 2 for passwd's uid column). */
     int max = 0;
     for (int i = 0; i < ls->n; i++) {
         char *p = ls->l[i];
@@ -298,7 +299,9 @@ int main(int argc, char **argv) {
         lines_free(&all);
     } else {
         int min = system_acct ? 101 : 1000;
-        uid = max_field(&pw, 0) + 1;
+        /* passwd fields are name:x:uid:gid:comment:home:shell -
+         * uid is field 2, not field 0 (that's the username). */
+        uid = max_field(&pw, 2) + 1;
         if (uid < min) {
             uid = min;
         }

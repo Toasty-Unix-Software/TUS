@@ -626,7 +626,7 @@ def main():
         type_text(sock, "doas useradd -m veli\r")
         offset = wait_for("user veli added", offset=offset)
         type_text(sock, "cat /etc/passwd\r")
-        offset = wait_for("veli:x:1000:1000::/home/veli", offset=offset)
+        offset = wait_for("veli:x:1001:1001::/home/veli", offset=offset)
         ok("doas runs a command as root (execve + /bin PATH)")
 
         # 12k. passwd: crypt() hashing into /etc/shadow, then login
