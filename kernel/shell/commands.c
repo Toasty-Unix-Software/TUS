@@ -34,6 +34,8 @@
 #include "elf/tus_elf.h"
 #include "highx/highx.h"
 #include "mm/pmm.h"
+#include "mm/swap.h"
+#include "mm/vmm.h"
 #include "net/wpa_crypto.h"
 #include "sched/sched.h"
 #include "term/term.h"
@@ -48,6 +50,7 @@ static int cmd_about(int argc, char **argv);
 static int cmd_sysinfo(int argc, char **argv);
 static int cmd_cpuinfo(int argc, char **argv);
 static int cmd_caps(int argc, char **argv);
+static int cmd_swaptest(int argc, char **argv);
 static int cmd_reboot(int argc, char **argv);
 static int cmd_shutdown(int argc, char **argv);
 static int cmd_crash(int argc, char **argv);
@@ -70,6 +73,7 @@ static const struct shell_command g_core_commands[] = {
     { "sysinfo",    "show system information",           cmd_sysinfo },
     { "cpuinfo",    "show detected CPUs (ACPI/MADT)",    cmd_cpuinfo },
     { "caps",       "show current task's capability bits",    cmd_caps },
+    { "swaptest",   "exercise the disk-backed swap path end to end",  cmd_swaptest },
     { "reboot",     "restart the machine",               cmd_reboot },
     { "shutdown",   "halt the machine",                  cmd_shutdown },
     { "halt",       "halt the machine",                  cmd_shutdown },
@@ -250,6 +254,87 @@ static int cmd_caps(int argc, char **argv) {
     kprintf("  CAP_NET_RAW   : %s\n", has_cap(cur, CAP_NET_RAW) ? "yes" : "no");
     kprintf("  CAP_SETUID    : %s\n", has_cap(cur, CAP_SETUID) ? "yes" : "no");
     return 0;
+}
+
+/* Exercises kernel/mm/swap.c end to end against a real disk: map a
+ * scratch page, write a pattern, evict it (a real disk write + the
+ * frame is actually freed), confirm the PTE is gone, then just READ
+ * the address - the resulting #PF is handled transparently by
+ * swap_fault() in idt.c, which reads the page back from disk into a
+ * fresh frame and restores the mapping. If the pattern still matches
+ * afterwards, the whole eviction/fault-in round trip is real, not
+ * simulated. */
+static int cmd_swaptest(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+
+    if (!swap_available()) {
+        console_write("swaptest: no swap disk (run `mkswap /dev/hdX` on a "
+                       "second disk and reboot)\n");
+        return 1;
+    }
+
+    uint64_t phys = pmm_alloc_frame();
+    if (phys == 0) {
+        console_write("swaptest: out of memory\n");
+        return 1;
+    }
+    uint64_t cr3 = vmm_current_cr3();
+    if (vmm_map_page_in(cr3, VMM_SWAPTEST_VA, phys,
+                        VMM_PRESENT | VMM_WRITE) != 0) {
+        pmm_free_frame(phys);
+        console_write("swaptest: could not map the scratch page\n");
+        return 1;
+    }
+
+    volatile uint32_t *page = (volatile uint32_t *)VMM_SWAPTEST_VA;
+    for (int i = 0; i < 1024; i++) {
+        page[i] = 0xdeadbe00u + (uint32_t)i;
+    }
+
+    uint32_t before_total, before_used;
+    swap_get_stats(&before_total, &before_used);
+
+    uint32_t slot = swap_out_page(cr3, VMM_SWAPTEST_VA);
+    if (slot == 0) {
+        vmm_unmap_page(VMM_SWAPTEST_VA);
+        pmm_free_frame(phys);
+        console_write("swaptest: swap_out_page failed\n");
+        return 1;
+    }
+    bool now_absent = vmm_translate(VMM_SWAPTEST_VA) == 0;
+
+    /* Just touching the address faults - swap_fault() in idt.c does
+     * the rest and this read proceeds normally once it has. */
+    uint32_t readback_first = page[0];
+    bool ok = now_absent && readback_first == 0xdeadbe00u;
+    for (int i = 0; ok && i < 1024; i++) {
+        if (page[i] != 0xdeadbe00u + (uint32_t)i) {
+            ok = false;
+        }
+    }
+
+    uint32_t after_total, after_used;
+    swap_get_stats(&after_total, &after_used);
+
+    kprintf("swaptest: slot %u used during eviction (swap %u/%u -> %u/%u "
+            "slots busy)\n", slot, before_used, before_total, after_used,
+            after_total);
+    kprintf("swaptest: PTE not-present immediately after eviction: %s\n",
+            now_absent ? "yes" : "no");
+    kprintf("swaptest: page fault transparently restored the pattern: %s\n",
+            ok ? "yes" : "no");
+    console_write(ok ? "swaptest: PASS\n" : "swaptest: FAIL\n");
+
+    /* The frame backing this address now is a fresh one swap_fault()
+     * allocated on the way back in - not the `phys` from above, which
+     * swap_out_page() already returned to the allocator. */
+    uint64_t final_phys = vmm_translate(VMM_SWAPTEST_VA);
+    vmm_unmap_page(VMM_SWAPTEST_VA);
+    if (final_phys != 0) {
+        pmm_free_frame(final_phys);
+    }
+    return ok ? 0 : 1;
 }
 
 static int cmd_reboot(int argc, char **argv) {

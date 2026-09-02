@@ -21,6 +21,7 @@
 #include "core/console.h"
 #include "drivers/serial/serial.h"
 #include "core/klib.h"
+#include "mm/swap.h"
 #include "mm/vmm.h"
 #include "sched/sched.h"
 #include "syscall/syscall.h"
@@ -179,6 +180,22 @@ struct pf_regs {
 
 static void exc_page_fault_c(struct pf_regs *r) __attribute__((used));
 static void exc_page_fault_c(struct pf_regs *r) {
+    /* Swap-in check runs before anything else, for every ring: a page
+     * kernel/mm/swap.c evicted carries a not-present PTE with a
+     * software marker bit, and the fault it produces is not a real
+     * fault at all - read the page back from disk, restore the PTE,
+     * and return so the faulting instruction just retries. Only a
+     * genuine fault (never evicted, or a real bug) falls through to
+     * the kill/panic paths below. */
+    {
+        uint64_t cr2;
+        __asm__ volatile("mov %%cr2, %0" : "=r"(cr2));
+        uint64_t cr3 = vmm_current_cr3();
+        if (swap_fault(cr3, cr2)) {
+            return;
+        }
+    }
+
     if (fault_from_user_task(r->cs, 14)) {
         fault_kill_task(14, r->error_code, true, r->rip);
     }
@@ -239,7 +256,30 @@ __attribute__((naked)) static void exc_page_fault(void) {
         "push %rbx\n\t"
         "push %rax\n\t"
         "mov %rsp, %rdi\n\t"
-        "call exc_page_fault_c\n");
+        "call exc_page_fault_c\n\t"
+        /* Only reached when exc_page_fault_c returned - the swap-in
+         * case above. Every other path it takes ends in task_exit()
+         * or the panic loop, neither of which comes back here. Undo
+         * the pushes in reverse order, drop the hardware error code
+         * (vector 14 pushes one), then IRETQ back to the faulting
+         * instruction to retry it against the now-present page. */
+        "pop %rax\n\t"
+        "pop %rbx\n\t"
+        "pop %rcx\n\t"
+        "pop %rdx\n\t"
+        "pop %rsi\n\t"
+        "pop %rdi\n\t"
+        "pop %rbp\n\t"
+        "pop %r8\n\t"
+        "pop %r9\n\t"
+        "pop %r10\n\t"
+        "pop %r11\n\t"
+        "pop %r12\n\t"
+        "pop %r13\n\t"
+        "pop %r14\n\t"
+        "pop %r15\n\t"
+        "add $8, %rsp\n\t"
+        "iretq\n");
 }
 
 /*

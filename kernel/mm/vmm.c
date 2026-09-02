@@ -405,6 +405,10 @@ uint64_t vmm_pte(uint64_t virt) {
     return pte != NULL ? *pte : 0;
 }
 
+uint64_t *vmm_walk_pte(uint64_t cr3, uint64_t virt, bool allocate) {
+    return walk_pt(cr3, virt, allocate, false, NULL);
+}
+
 uint64_t vmm_level_nx(uint64_t virt) {
     uint64_t *pml4 = (uint64_t *)pmm_phys_to_virt(g_cr3);
     uint64_t pml4_idx = (virt >> 39) & 0x1FF;

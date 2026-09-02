@@ -11,6 +11,7 @@
 #ifndef TUS_MM_VMM_H
 #define TUS_MM_VMM_H
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -54,6 +55,13 @@
  * image, for the same reason the framebuffer window is. */
 #define VMM_MMIO_BASE 0xffffffff8c000000ull
 #define VMM_MMIO_SIZE (16ull * 1024 * 1024)
+
+/* One scratch page for the `swaptest` shell command (kernel/mm/swap.c):
+ * a real page to write a pattern into, evict, and fault back in. Sits
+ * in the gap between the framebuffer and MMIO windows above, so it
+ * needs no reservation of its own - same PDPT slot as the kernel
+ * image, shared by reference like the other two. */
+#define VMM_SWAPTEST_VA 0xffffffff8affe000ull
 
 /* Initialize: record the active page tables (CR3). */
 void vmm_init(void);
@@ -144,5 +152,13 @@ uint64_t vmm_level_nx(uint64_t virt);
 /* Return the raw page-table entry at `level` (1=PD, 2=PDPT, 3=PML4).
  * Debug helper to inspect Limine's large-page mappings. */
 uint64_t vmm_level_entry(uint64_t virt, int level);
+
+/* Pointer to the raw 4 KiB leaf PTE for `virt` in `cr3` (HHDM
+ * address, safe to read AND write through). Creates missing
+ * intermediate tables when `allocate` is set, same as the internal
+ * mapping paths. NULL if `allocate` is false and a level is missing.
+ * For advanced callers that need to encode software-only state in a
+ * not-present entry - kernel/mm/swap.c's evicted-page marker. */
+uint64_t *vmm_walk_pte(uint64_t cr3, uint64_t virt, bool allocate);
 
 #endif /* TUS_MM_VMM_H */

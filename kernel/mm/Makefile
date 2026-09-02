@@ -7,5 +7,6 @@ SRCS_MM := \
   kernel/mm/dma.c \
   kernel/mm/kmalloc.c \
   kernel/mm/pmm.c \
+  kernel/mm/swap.c \
   kernel/mm/vmm.c
 
