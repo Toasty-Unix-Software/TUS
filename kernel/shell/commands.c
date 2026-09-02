@@ -34,6 +34,7 @@
 #include "elf/tus_elf.h"
 #include "highx/highx.h"
 #include "mm/pmm.h"
+#include "net/wpa_crypto.h"
 #include "sched/sched.h"
 #include "term/term.h"
 #include "vfs/vfs.h"
@@ -51,6 +52,7 @@ static int cmd_reboot(int argc, char **argv);
 static int cmd_shutdown(int argc, char **argv);
 static int cmd_crash(int argc, char **argv);
 static int cmd_ath9k_test(int argc, char **argv);
+static int cmd_wpa_selftest(int argc, char **argv);
 static int cmd_usb(int argc, char **argv);
 static int cmd_apic(int argc, char **argv);
 static int cmd_msi(int argc, char **argv);
@@ -74,6 +76,7 @@ static const struct shell_command g_core_commands[] = {
     { "poweroff",   "halt the machine",                  cmd_shutdown },
     { "crash",      "raise a CPU exception (demo)",      cmd_crash },
     { "ath9k_test", "run ath9k-htc driver unit tests",   cmd_ath9k_test },
+    { "wpaselftest", "check the WPA2-PSK crypto core against known test vectors", cmd_wpa_selftest },
     { "usb",        "show USB device information",       cmd_usb },
     { "apic",       "show Local APIC / I/O APIC status",  cmd_apic },
     { "msi",        "list/enable PCI Message Signaled Interrupts", cmd_msi },
@@ -291,6 +294,12 @@ static int cmd_ath9k_test(int argc, char **argv) {
     kprintf("Running ath9k-htc driver unit tests...\n");
     ath9k_run_tests();
     return 0;
+}
+
+static int cmd_wpa_selftest(int argc, char **argv) {
+    (void)argc;
+    (void)argv;
+    return wpa_selftest() == 0 ? 0 : 1;
 }
 
 static int cmd_apic(int argc, char **argv) {
