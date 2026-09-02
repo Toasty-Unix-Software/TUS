@@ -164,8 +164,6 @@ USER_TOOLS := $(ROOTFS_DIR)/bin/doas \
               $(ROOTFS_DIR)/bin/errord \
               $(ROOTFS_DIR)/bin/bootd \
               $(ROOTFS_DIR)/bin/clear \
-              $(ROOTFS_DIR)/bin/ksh \
-              $(ROOTFS_DIR)/bin/shcomp \
               $(ROOTFS_DIR)/bin/pty \
               $(ROOTFS_DIR)/bin/tpm \
               $(ROOTFS_DIR)/bin/mkfs.wrf \
@@ -1273,7 +1271,7 @@ $(ROOTFS_DIR)/bin/ccom: $(PCC_CCOM_OBJS) $(MUSL_LIB)/libc.a
                 $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o \
                 $(PCC_CCOM_OBJS) $(MUSL_LINK)
 
-USER_TOOLS += $(ROOTFS_DIR)/bin/cc $(ROOTFS_DIR)/bin/cpp $(ROOTFS_DIR)/bin/ccom
+# cc/cpp/ccom moved out of the base image, install via `tpm install pcc`
 
 # ---- NASM: a native x86 assembler for TUS ----
 #
@@ -1359,7 +1357,7 @@ $(ROOTFS_DIR)/bin/nasm: $(NASM_OBJS) $(MUSL_LIB)/libc.a
                 $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o \
                 $(NASM_OBJS) $(MUSL_LINK)
 
-USER_TOOLS += $(ROOTFS_DIR)/bin/nasm
+# nasm moved out of the base image, install via `tpm install nasm`
 
 # ---- elftoolchain: readelf and nm for TUS ----
 #
@@ -1751,7 +1749,7 @@ $(ROOTFS_DIR)/bin/flashfetch: sources/fastfetch/prebuilt/flashfetch
 	$(Q)mkdir -p $(ROOTFS_DIR)/bin
 	$(Q)cp $< $@
 
-USER_TOOLS += $(ROOTFS_DIR)/bin/fastfetch $(ROOTFS_DIR)/bin/flashfetch
+# fastfetch/flashfetch moved out of the base image, install via `tpm install fastfetch`
 
 # ---- rootfs image ----
 
@@ -1786,10 +1784,7 @@ $(ROOTFS_IMG): $(USER_ELFS) $(USER_TOOLS) $(ROOTFS_FILES) limine.conf \
                   $(ROOTFS_DIR)/bin/arp $(ROOTFS_DIR)/bin/route \
                   $(ROOTFS_DIR)/bin/hostname $(ROOTFS_DIR)/bin/host \
                   $(ROOTFS_DIR)/bin/res_set $(ROOTFS_DIR)/bin/keymap \
-                  $(ROOTFS_DIR)/bin/cc $(ROOTFS_DIR)/bin/cpp $(ROOTFS_DIR)/bin/ccom \
-                  $(ROOTFS_DIR)/bin/nasm \
                   $(ROOTFS_DIR)/bin/readelf $(ROOTFS_DIR)/bin/nm $(ROOTFS_DIR)/bin/ld \
-                  $(ROOTFS_DIR)/bin/fastfetch $(ROOTFS_DIR)/bin/flashfetch \
                   $(ROOTFS_DIR)/bin/tuswm $(ROOTFS_DIR)/bin/tusde \
                   $(ROOTFS_DIR)/bin/hxdemo $(ROOTFS_DIR)/bin/hxcube $(ROOTFS_DIR)/bin/hxfont \
                   $(ROOTFS_DIR)/bin/lvgldemo \
@@ -1812,7 +1807,6 @@ $(ROOTFS_IMG): $(USER_ELFS) $(USER_TOOLS) $(ROOTFS_FILES) limine.conf \
                   $(ROOTFS_DIR)/bin/df $(ROOTFS_DIR)/bin/kill \
                   $(ROOTFS_DIR)/bin/ps $(ROOTFS_DIR)/bin/pkill \
                   $(ROOTFS_DIR)/bin/clear \
-                  $(ROOTFS_DIR)/bin/ksh $(ROOTFS_DIR)/bin/shcomp \
                   $(ROOTFS_DIR)/bin/pty $(ROOTFS_DIR)/bin/tpm \
                   $(ROOTFS_DIR)/bin/mkfs.wrf $(ROOTFS_DIR)/bin/mkswap \
                   $(ROOTFS_DIR)/bin/tussm $(ROOTFS_DIR)/bin/errord \

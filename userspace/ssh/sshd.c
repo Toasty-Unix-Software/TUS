@@ -444,9 +444,16 @@ static int spawn_shell(int listen_fd, int client_fd, int to_shell_r,
     close(to_shell_r);
     close(from_shell_w);
 
+    /* ksh is a tpm-installed package, not part of the base image;
+     * fall back to the kernel's own tsh if it was never installed. */
+    const char *shell = "/bin/ksh";
+    if (access(shell, X_OK) != 0) {
+        shell = "/bin/tsh";
+    }
+
     char *argv[8];
     int n = 0;
-    argv[n++] = "/bin/ksh";
+    argv[n++] = (char *)shell;
     if (is_exec) {
         argv[n++] = "-c";
         argv[n++] = (char *)command;
@@ -454,7 +461,7 @@ static int spawn_shell(int listen_fd, int client_fd, int to_shell_r,
     argv[n] = NULL;
     static char *const envp[] = { "PATH=/bin:/usr/bin", "HOME=/",
                                   "USER=root", NULL };
-    execve("/bin/ksh", argv, envp);
+    execve(shell, argv, envp);
     _exit(127);
 }
 
