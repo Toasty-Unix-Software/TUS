@@ -4,6 +4,7 @@
 # top-level Makefile.
 
 SRCS_NET := \
+  kernel/net/dhcp.c \
   kernel/net/dns.c \
   kernel/net/ip.c \
   kernel/net/ipv6.c \

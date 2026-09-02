@@ -22,6 +22,7 @@
 #define NETCTL_GET_IF6    7  /* arg: struct tus_if6info   */
 #define NETCTL_PING6      8  /* arg: struct tus_ping6     */
 #define NETCTL_NDP_DUMP   9  /* arg: struct tus_ndp_row[] */
+#define NETCTL_DHCP       10 /* arg: NULL, len 0 (root only) - blocks until lease/timeout */
 
 struct tus_ifinfo {
     char name[8];

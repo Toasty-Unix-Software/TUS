@@ -30,6 +30,7 @@
 #include "../mm/vmm.h"
 #include "../highx/highx.h"
 #include "../net/socket.h"
+#include "../net/dhcp.h"
 #include "../net/dns.h"
 #include "../net/ip.h"
 #include "../net/ipv6.h"
@@ -1165,6 +1166,14 @@ static long sys_waitpid(long pid, void *ustatus, long options,
 /* ---- netctl ---- */
 
 static long sys_netctl(long op, void *arg, long len, bool from_user) {
+    if (op == NETCTL_DHCP) {
+        struct task *cur = sched_current();
+        if (from_user && !has_cap(cur, CAP_NET_ADMIN)) {
+            return -EPERM;
+        }
+        return dhcp_configure() == 0 ? 0 : -ETIMEDOUT;
+    }
+
     if (arg == NULL || !access_ok(from_user, arg, (size_t)len)) {
         return -EFAULT;
     }

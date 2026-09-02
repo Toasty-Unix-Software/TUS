@@ -122,6 +122,7 @@ USER_TOOLS := $(ROOTFS_DIR)/bin/doas \
               $(ROOTFS_DIR)/bin/ping6 \
               $(ROOTFS_DIR)/bin/nc \
               $(ROOTFS_DIR)/bin/ifconfig \
+              $(ROOTFS_DIR)/bin/dhcp \
               $(ROOTFS_DIR)/bin/netstat \
               $(ROOTFS_DIR)/bin/arp \
               $(ROOTFS_DIR)/bin/route \
@@ -797,6 +798,13 @@ $(ROOTFS_DIR)/bin/ifconfig: userspace/ifconfig.c userspace/tusnetutil.h include/
 	$(Q)$(CC) $(NET_CFLAGS) -c $< -o $(BUILD)/userspace/ifconfig.o
 	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
                 $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/ifconfig.o $(MUSL_LINK)
+
+$(ROOTFS_DIR)/bin/dhcp: userspace/dhcp.c userspace/tusnetutil.h include/tusnet.h $(MUSL_LIB)/libc.a
+	$(QUIET_LD)
+	$(Q)mkdir -p $(ROOTFS_DIR)/bin $(BUILD)/userspace
+	$(Q)$(CC) $(NET_CFLAGS) -c $< -o $(BUILD)/userspace/dhcp.o
+	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
+                $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/dhcp.o $(MUSL_LINK)
 
 $(ROOTFS_DIR)/bin/host: userspace/host.c userspace/tusnetutil.h include/tusnet.h $(MUSL_LIB)/libc.a
 	$(QUIET_LD)
@@ -1774,7 +1782,7 @@ $(ROOTFS_IMG): $(USER_ELFS) $(USER_TOOLS) $(ROOTFS_FILES) limine.conf \
                   $(ROOTFS_DIR)/bin/echo $(ROOTFS_DIR)/bin/ping \
                   $(ROOTFS_DIR)/bin/ping6 \
                   $(ROOTFS_DIR)/bin/nc \
-                  $(ROOTFS_DIR)/bin/ifconfig $(ROOTFS_DIR)/bin/netstat \
+                  $(ROOTFS_DIR)/bin/ifconfig $(ROOTFS_DIR)/bin/dhcp $(ROOTFS_DIR)/bin/netstat \
                   $(ROOTFS_DIR)/bin/arp $(ROOTFS_DIR)/bin/route \
                   $(ROOTFS_DIR)/bin/hostname $(ROOTFS_DIR)/bin/host \
                   $(ROOTFS_DIR)/bin/res_set $(ROOTFS_DIR)/bin/keymap \
