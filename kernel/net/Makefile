@@ -8,6 +8,7 @@ SRCS_NET := \
   kernel/net/dns.c \
   kernel/net/ip.c \
   kernel/net/wpa_crypto.c \
+  kernel/net/wifi_mgmt.c \
   kernel/net/ipv6.c \
   kernel/net/netif.c \
   kernel/net/socket.c \
