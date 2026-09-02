@@ -313,7 +313,11 @@ __attribute__((noreturn)) static long sys_exit(int status) {
  * region is chosen (per-task cursor); file-backed mappings are not
  * supported yet and return -ENODEV. Returns the mapping address or a
  * negative errno. */
-static long sys_mmap(long addr, long len, long prot, long flags) {
+/* Not static: kernel/syscall/linux_syscall.c's Linux-compat mmap(2)
+ * (syscall #9) reuses this directly - Linux's MAP_ANONYMOUS is the
+ * same bit value (0x20) and the anonymous-only restriction already
+ * matches what a Linux-compat task needs. */
+long sys_mmap(long addr, long len, long prot, long flags) {
     (void)prot;
     struct task *cur = sched_current();
     if (cur == NULL || len <= 0) {

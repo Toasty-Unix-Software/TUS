@@ -21,9 +21,26 @@
 #include "../mm/kmalloc.h"
 #include "../mm/pmm.h"
 #include "../mm/vmm.h"
+#include "../sched/cap.h"
 #include "../sched/sched.h"
 #include "../vfs/vfs.h"
 #include "tus_elf.h"
+
+/* TUS binaries are always linked at a fixed base (-Ttext 0x10000000,
+ * see the userspace build flags) - anything below that is not one of
+ * ours. A real static Linux x86_64 binary from a normal toolchain
+ * links well under that (0x400000-ish with lld's default non-PIE
+ * base; verified empirically with `clang -target x86_64-linux-gnu
+ * -static`). el_init() has already rejected anything that isn't a
+ * valid 64-bit little-endian x86_64 ET_EXEC image by the time this
+ * runs, so this is purely "which of the two conventions this
+ * otherwise-valid image uses" - not a security check by itself (the
+ * actual gate is the CAP_LINUX_EXEC check at the call site). */
+#define TUS_LOAD_BASE 0x10000000ull
+
+static bool elf_is_foreign_linux(const el_ctx *ctx) {
+    return ctx->ehdr.e_entry < TUS_LOAD_BASE;
+}
 
 /* File descriptor of the binary being loaded (single-threaded; the
  * whole load runs with preemption disabled). */
@@ -154,6 +171,36 @@ long elf_exec_as(const char *path, int argc, char **argv,
         return -ENOEXEC;
     }
 
+    /* A foreign (Linux-ABI) binary needs CAP_LINUX_EXEC: it is new,
+     * less-audited attack surface (a second syscall entry point, a
+     * second instruction-decode path), so it stays opt-in rather than
+     * something any exec can reach by default. See
+     * kernel/syscall/linux_syscall.c for what actually runs it.
+     *
+     * The check is against `uid` (the caller's real identity, before
+     * any setuid-bit override below) rather than sched_current(): the
+     * kernel's own tsh is a ring-0 task and always has euid 0
+     * regardless of who is logged into the *session* it is running
+     * (see commands.c's g_session_uid/g_session_gid, threaded through
+     * exactly this `uid`/`gid` parameter - the doas/login identity
+     * fix from an earlier pass). has_cap()'s per-task caps bitmask
+     * genuinely cannot apply here either: every freshly spawned
+     * command starts a brand-new task with caps=0 (task_create_user),
+     * so there is no live task carrying a previously-SYS_CAPSET'd
+     * grant to check between one command and the next in the same
+     * login session. CAP_LINUX_EXEC therefore reduces to "root only"
+     * until TUS gains a session-level (not just task-level) capability
+     * grant - documented here rather than silently pretending
+     * per-user grants already work. */
+    bool is_linux = elf_is_foreign_linux(&ctx);
+    if (is_linux && uid != 0) {
+        kprintf("exec: %s: Linux-ABI binary, CAP_LINUX_EXEC required "
+                "(root only for now - see the comment above this check)\n",
+                path);
+        vfs_close(g_elf_fd);
+        return -EPERM;
+    }
+
     /* Private address space for the new task. */
     uint64_t cr3 = vmm_space_clone();
     if (cr3 == 0) {
@@ -195,6 +242,12 @@ long elf_exec_as(const char *path, int argc, char **argv,
         kprintf("exec: cannot create task for %s\n", path);
         vfs_close(g_elf_fd);
         return -ENOMEM;
+    }
+    if (is_linux) {
+        struct task *t = sched_find_pid((uint32_t)pid);
+        if (t != NULL) {
+            t->linux_abi = true;
+        }
     }
     /* The binary's fd is no longer needed once the task is spawned -
      * without this close every exec leaked one fd (the table is only

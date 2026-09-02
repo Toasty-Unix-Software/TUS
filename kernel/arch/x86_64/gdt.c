@@ -12,6 +12,15 @@
  *     0x28  TSS          (task state segment for ring-3->ring-0
  *                         stack switching; RSP0 points at the
  *                         current task's kernel stack)
+ *     0x40  user data (SYSRET)   \ identical flat ring-3 segments to
+ *     0x48  user code (SYSRET)   / 0x20/0x18, just placed data-then-
+ *           code so SYSRETQ's fixed formula (CS=(STAR63:48+16)|3,
+ *           SS=(STAR63:48+8)|3) can land on them. TUS's normal user
+ *           order is code-then-data (0x18/0x20), which no STAR value
+ *           can produce via that formula - see linux_syscall.c. Only
+ *           used as the return path out of the Linux-compat SYSCALL
+ *           handler; every other ring-3 entry (IRETQ, this file's
+ *           normal 0x18/0x20) is unaffected.
  *
  * After loading the GDT the code segment is changed to 0x08 with a
  * far return, and the data segments are reloaded to 0x10. The TSS is
@@ -60,7 +69,7 @@ struct tss {
     uint16_t iomap_base;
 } __attribute__((packed));
 
-static struct gdt_entry g_gdt[8];
+static struct gdt_entry g_gdt[10];
 static struct gdt_ptr g_gdt_ptr;
 static struct tss g_tss;
 
@@ -126,6 +135,13 @@ void gdt_init(void) {
     gdt_set_entry(3, 0, 0xFFFFF, 0xFA, 0xA);            /* user code */
     gdt_set_entry(4, 0, 0xFFFFF, 0xF2, 0xA);            /* user data */
     gdt_set_tss(5, (uint64_t)(uintptr_t)&g_tss, sizeof(g_tss) - 1);
+    /* Slot 7 (0x38) is unused (the TSS descriptor occupies slots 5-6,
+     * i.e. 0x28/0x30) - which is exactly why 0x38 is safe to use as
+     * the pure arithmetic STAR base for SYSRETQ below: it never
+     * needs a real descriptor, only the two selectors 8 and 16 bytes
+     * above it (0x40/0x48, set up next). */
+    gdt_set_entry(8, 0, 0xFFFFF, 0xF2, 0xA);            /* SYSRET user data (0x40) */
+    gdt_set_entry(9, 0, 0xFFFFF, 0xFA, 0xA);            /* SYSRET user code (0x48) */
 
     g_gdt_ptr.limit = (uint16_t)(sizeof(g_gdt) - 1);
     g_gdt_ptr.base  = (uint64_t)(uintptr_t)g_gdt;

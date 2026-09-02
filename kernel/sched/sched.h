@@ -109,6 +109,16 @@ struct task {
      * setuid/setgid. Settable only by a root task via SYS_CAPSET. */
     uint32_t caps;
 
+    /* True for a task exec'd from a foreign Linux-ABI binary (see
+     * kernel/elf/tus_elf.c's flavor detection and
+     * kernel/syscall/linux_syscall.c). Gates the Linux SYSCALL
+     * (0f 05) handler: only a task exec'd this way may use it, so a
+     * native TUS binary that somehow executes the raw `syscall`
+     * instruction (it never should - musl's own copy uses int
+     * 0x80/0x81) gets rejected rather than silently handled. Zeroed
+     * by task_find_slot()'s memset like every other fresh-task field. */
+    bool linux_abi;
+
     /* Next address for anonymous mmap allocations (see SYS_MMAP). */
     uint64_t mmap_cur;
 

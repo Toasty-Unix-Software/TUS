@@ -109,7 +109,8 @@ USER_ELFS := $(ROOTFS_DIR)/bin/hello \
              $(ROOTFS_DIR)/bin/musl_hello \
              $(ROOTFS_DIR)/bin/socktest \
              $(ROOTFS_DIR)/bin/kilo \
-             $(ROOTFS_DIR)/bin/clonetest
+             $(ROOTFS_DIR)/bin/clonetest \
+             $(ROOTFS_DIR)/bin/lxhello
 
 # TUS system tools (userspace/), all linked against musl.
 USER_TOOLS := $(ROOTFS_DIR)/bin/doas \
@@ -434,6 +435,17 @@ $(ROOTFS_DIR)/bin/fault: tests/fault.c
 	$(Q)mkdir -p $(ROOTFS_DIR)/bin $(BUILD)/tests
 	$(Q)$(CC) $(USER_CFLAGS) -c $< -o $(BUILD)/tests/fault.o
 	$(Q)$(LD) $(USER_LDFLAGS) -o $@ $(BUILD)/tests/fault.o
+
+# lxhello: a genuine Linux x86_64 binary, NOT built with $(CC)/
+# $(USER_CFLAGS) (those target TUS's own ABI) - built for real Linux
+# instead, to boot-verify kernel/syscall/linux_syscall.c against an
+# unmodified foreign binary rather than something TUS-flavored that
+# merely happens to execute `syscall`. See tests/lxhello.c.
+$(ROOTFS_DIR)/bin/lxhello: tests/lxhello.c
+	$(QUIET_LD)
+	$(Q)mkdir -p $(ROOTFS_DIR)/bin
+	$(Q)clang -target x86_64-linux-gnu -static -nostdlib \
+                -fno-stack-protector -Wl,-e,_start -o $@ $<
 
 # Programs linked against the ported musl libc (crt1.o + libc.a).
 # Compiles against the musl headers (-nostdinc), like musl_hello.

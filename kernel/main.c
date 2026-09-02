@@ -18,6 +18,7 @@
 #include "arch/x86_64/spectre.h"
 #include "arch/x86_64/gdt.h"
 #include "arch/x86_64/idt.h"
+#include "syscall/linux_syscall.h"
 #include "arch/x86_64/io.h"
 #include "arch/x86_64/lapic.h"
 #include "arch/x86_64/pic.h"
@@ -532,6 +533,7 @@ void _start(void) {
      * can fire; IDT selectors point at 0x08. */
     gdt_init();
     idt_init();
+    linux_syscall_init(); /* SYSCALL/SYSRET MSRs for Linux-ABI tasks */
 
     /* Memory: physical frames, page tables, kernel heap. */
     pmm_init(memmap_request.response, g_bootinfo.hhdm_offset);

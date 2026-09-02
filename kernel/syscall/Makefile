@@ -4,5 +4,6 @@
 # top-level Makefile.
 
 SRCS_SYSCALL := \
-  kernel/syscall/syscall.c
+  kernel/syscall/syscall.c \
+  kernel/syscall/linux_syscall.c
 

@@ -25,8 +25,14 @@
                                     * without actually being root
                                     * (reserved for a future
                                     * fine-grained setuid policy) */
+#define CAP_LINUX_EXEC  (1u << 3) /* exec a foreign Linux-ABI binary
+                                    * (see kernel/syscall/linux_syscall.c) -
+                                    * a new instruction-decode path and
+                                    * syscall surface, so it is opt-in
+                                    * per task rather than available to
+                                    * every exec by default */
 
-#define CAP_ALL_KNOWN   (CAP_NET_ADMIN | CAP_NET_RAW | CAP_SETUID)
+#define CAP_ALL_KNOWN   (CAP_NET_ADMIN | CAP_NET_RAW | CAP_SETUID | CAP_LINUX_EXEC)
 
 static inline int has_cap(const struct task *t, uint32_t cap) {
     if (t == NULL) {
