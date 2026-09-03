@@ -13,5 +13,7 @@ SRCS_NET := \
   kernel/net/netif.c \
   kernel/net/socket.c \
   kernel/net/tcp.c \
-  kernel/net/udp.c
+  kernel/net/tcp6.c \
+  kernel/net/udp.c \
+  kernel/net/udp6.c
 

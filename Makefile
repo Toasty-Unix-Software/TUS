@@ -124,6 +124,7 @@ USER_TOOLS := $(ROOTFS_DIR)/bin/doas \
               $(ROOTFS_DIR)/bin/ping \
               $(ROOTFS_DIR)/bin/ping6 \
               $(ROOTFS_DIR)/bin/nc \
+              $(ROOTFS_DIR)/bin/nc6 \
               $(ROOTFS_DIR)/bin/ifconfig \
               $(ROOTFS_DIR)/bin/dhcp \
               $(ROOTFS_DIR)/bin/netstat \
@@ -839,6 +840,13 @@ $(ROOTFS_DIR)/bin/nc: userspace/nc.c userspace/tusnetutil.h include/tusnet.h $(M
 	$(Q)$(CC) $(NET_CFLAGS) -c $< -o $(BUILD)/userspace/nc.o
 	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
                 $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/nc.o $(MUSL_LINK)
+
+$(ROOTFS_DIR)/bin/nc6: userspace/nc6.c $(MUSL_LIB)/libc.a
+	$(QUIET_LD)
+	$(Q)mkdir -p $(ROOTFS_DIR)/bin $(BUILD)/userspace
+	$(Q)$(CC) $(NET_CFLAGS) -c $< -o $(BUILD)/userspace/nc6.o
+	$(Q)$(LD) $(USER_LDFLAGS) -o $@ \
+                $(MUSL_LIB)/crt1.o $(MUSL_LIB)/crti.o $(BUILD)/userspace/nc6.o $(MUSL_LINK)
 
 $(ROOTFS_DIR)/bin/ifconfig: userspace/ifconfig.c userspace/tusnetutil.h include/tusnet.h $(MUSL_LIB)/libc.a
 	$(QUIET_LD)

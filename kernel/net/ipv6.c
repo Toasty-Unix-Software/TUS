@@ -6,6 +6,8 @@
 
 #include "ip.h"
 #include "netif.h"
+#include "udp6.h"
+#include "tcp6.h"
 
 #include "../core/klib.h"
 #include "../drivers/pit/pit.h"
@@ -148,21 +150,28 @@ int ipv6_parse(const char *s, uint8_t out[16]) {
 
 /* ---- checksum ---- */
 
-static uint16_t icmpv6_checksum(const uint8_t src[16], const uint8_t dst[16],
-                                uint16_t upper_len, const void *h, uint16_t hlen,
-                                const void *d, uint16_t dlen) {
+uint16_t transport_checksum6(const uint8_t src[16], const uint8_t dst[16],
+                             uint8_t next_header, const void *h, uint32_t hlen,
+                             const void *d, uint32_t dlen) {
     uint8_t buf[1024];
-    if ((uint32_t)(40 + hlen + dlen) > sizeof(buf)) {
+    if (40 + hlen + dlen > sizeof(buf)) {
         return 0; /* caller-sized payloads never hit this */
     }
     uint8_t *p = buf;
     memcpy(p, src, 16); p += 16;
     memcpy(p, dst, 16); p += 16;
-    *(uint32_t *)p = htonl(upper_len); p += 4;
-    p[0] = 0; p[1] = 0; p[2] = 0; p[3] = IPV6_NEXT_ICMPV6; p += 4;
+    *(uint32_t *)p = htonl(hlen + dlen); p += 4;
+    p[0] = 0; p[1] = 0; p[2] = 0; p[3] = next_header; p += 4;
     memcpy(p, h, hlen); p += hlen;
     if (dlen > 0) { memcpy(p, d, dlen); p += dlen; }
     return net_checksum(buf, (uint32_t)(p - buf));
+}
+
+static uint16_t icmpv6_checksum(const uint8_t src[16], const uint8_t dst[16],
+                                uint16_t upper_len, const void *h, uint16_t hlen,
+                                const void *d, uint16_t dlen) {
+    (void)upper_len; /* == hlen+dlen; kept as a documented parameter */
+    return transport_checksum6(src, dst, IPV6_NEXT_ICMPV6, h, hlen, d, dlen);
 }
 
 /* ---- neighbor cache ---- */
@@ -500,10 +509,14 @@ void ipv6_input(const uint8_t *packet, uint16_t len) {
                   (g_have_global && addr_eq(ip6->dst, g_global));
     if (!for_us) return;
 
+    const uint8_t *payload = packet + IPV6_HDR_LEN;
     if (ip6->next_header == IPV6_NEXT_ICMPV6) {
-        icmpv6_input(ip6->src, packet + IPV6_HDR_LEN, payload_len);
+        icmpv6_input(ip6->src, payload, payload_len);
+    } else if (ip6->next_header == IPV6_NEXT_UDP) {
+        udp6_input(ip6->src, ip6->dst, payload, payload_len);
+    } else if (ip6->next_header == IPV6_NEXT_TCP) {
+        tcp6_input(ip6->src, ip6->dst, payload, payload_len);
     }
-    /* UDP6/TCP6 are out of scope - see the file header comment. */
 }
 
 void ipv6_init(void) {
@@ -562,4 +575,22 @@ bool ipv6_get_global(uint8_t out[16]) {
     if (!g_have_global) return false;
     memcpy(out, g_global, 16);
     return true;
+}
+
+bool ipv6_pick_source(uint8_t out[16]) {
+    if (g_have_global) { memcpy(out, g_global, 16); return true; }
+    if (g_have_link_local) { memcpy(out, g_link_local, 16); return true; }
+    return false;
+}
+
+int ipv6_output(const uint8_t dst[16], uint8_t next_header,
+                const void *h, uint32_t hlen, const void *d, uint32_t dlen) {
+    uint8_t src[16];
+    if (!ipv6_pick_source(src)) return -1;
+
+    uint8_t mac[6];
+    if (resolve_dst_mac(dst, mac) != 0) return -1;
+
+    return ipv6_send(mac, src, dst, next_header, 64, h, (uint16_t)hlen, d,
+                     (uint16_t)dlen);
 }

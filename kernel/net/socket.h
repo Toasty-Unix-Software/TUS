@@ -32,6 +32,7 @@
 #define AF_UNIX     1
 #define AF_LOCAL    1
 #define AF_INET     2
+#define AF_INET6    10
 #define SOCK_STREAM 1
 #define SOCK_DGRAM  2
 
@@ -65,6 +66,16 @@ struct sockaddr_in {
     uint8_t sin_zero[8];
 };
 
+/* sockaddr_in6, byte-identical to musl's (Linux ABI): family, port,
+ * flowinfo, 16-byte address, scope id. */
+struct sockaddr_in6 {
+    uint16_t sin6_family;
+    uint16_t sin6_port;
+    uint32_t sin6_flowinfo;
+    uint8_t sin6_addr[16];
+    uint32_t sin6_scope_id;
+};
+
 struct unix_sock;
 struct inet_sock;
 
@@ -78,13 +89,29 @@ void *socket_create(int domain, int type, int protocol, long *err);
 struct unix_sock *unix_sock_create(int domain, int type, int protocol,
                                    long *err);
 
-/* AF_INET socket operations. The protocol state lives in the TCP and
- * UDP PCBs; struct inet_sock is only what an fd points at. */
-struct inet_sock *inet_sock_create(int type, int protocol, long *err);
+/* AF_INET/AF_INET6 socket operations. The protocol state lives in the
+ * TCP(6)/UDP(6) PCBs; struct inet_sock is only what an fd points at,
+ * tagged by domain so the v4/v6 calls below know which PCB it holds. */
+struct inet_sock *inet_sock_create(int domain, int type, int protocol,
+                                   long *err);
 long inet_sock_bind(struct inet_sock *s, uint32_t ip, uint16_t port);
 long inet_sock_connect(struct inet_sock *s, uint32_t dst_ip, uint16_t dst_port);
 long inet_sock_listen(struct inet_sock *s, int backlog);
 struct inet_sock *inet_sock_accept(struct inet_sock *s, long *err);
+
+/* AF_INET6 counterparts: same semantics, 16-byte addresses. Calling a
+ * v4 function on a v6 socket (or vice versa) returns -EAFNOSUPPORT. */
+long inet_sock_bind6(struct inet_sock *s, const uint8_t ip[16], uint16_t port);
+long inet_sock_connect6(struct inet_sock *s, const uint8_t dst_ip[16],
+                        uint16_t dst_port);
+long inet_sock_sendto6(struct inet_sock *s, const void *buf, size_t len,
+                       const uint8_t dst_ip[16], uint16_t dst_port);
+long inet_sock_recvfrom6(struct inet_sock *s, void *buf, size_t len,
+                         uint8_t *src_ip, uint16_t *src_port,
+                         uint32_t timeout_ms);
+long inet_sock_getname6(struct inet_sock *s, uint8_t *ip, uint16_t *port,
+                        bool peer);
+int inet_sock_domain(struct inet_sock *s);
 
 /* read()/write() on a connected socket. */
 long inet_sock_read(struct inet_sock *s, void *buf, size_t len);

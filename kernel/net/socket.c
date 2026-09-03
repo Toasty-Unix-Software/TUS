@@ -440,9 +440,12 @@ short unix_sock_poll(struct unix_sock *s) {
  */
 
 #include "ip.h"
+#include "ipv6.h"
 #include "netif.h"
 #include "tcp.h"
+#include "tcp6.h"
 #include "udp.h"
+#include "udp6.h"
 
 struct inet_sock {
     int domain;
@@ -454,10 +457,15 @@ struct inet_sock {
     union {
         struct tcp_pcb *tcp;
         struct udp_pcb *udp;
+        struct tcp6_pcb *tcp6;
+        struct udp6_pcb *udp6;
     } pcb;
 };
 
-struct inet_sock *inet_sock_create(int type, int protocol, long *err) {
+int inet_sock_domain(struct inet_sock *s) { return s ? s->domain : 0; }
+
+struct inet_sock *inet_sock_create(int domain, int type, int protocol,
+                                   long *err) {
     int base_type = type & ~(SOCK_CLOEXEC | SOCK_NONBLOCK);
 
     if (base_type == SOCK_STREAM && protocol != 0 && protocol != IPPROTO_TCP) {
@@ -480,13 +488,24 @@ struct inet_sock *inet_sock_create(int type, int protocol, long *err) {
     }
     memset(s, 0, sizeof(*s));
 
-    s->domain = AF_INET;
+    s->domain = domain;
     s->type = base_type;
     s->protocol = protocol ? protocol
                            : (base_type == SOCK_STREAM ? IPPROTO_TCP
                                                        : IPPROTO_UDP);
     s->refs = 1;
     s->nonblock = (type & SOCK_NONBLOCK) != 0;
+
+    if (domain == AF_INET6) {
+        if (base_type == SOCK_STREAM) {
+            s->pcb.tcp6 = tcp6_pcb_new();
+            if (!s->pcb.tcp6) { kfree(s); *err = -ENOMEM; return NULL; }
+        } else {
+            s->pcb.udp6 = udp6_pcb_new();
+            if (!s->pcb.udp6) { kfree(s); *err = -ENOMEM; return NULL; }
+        }
+        return s;
+    }
 
     if (base_type == SOCK_STREAM) {
         s->pcb.tcp = tcp_pcb_new();
@@ -506,7 +525,7 @@ struct inet_sock *inet_sock_create(int type, int protocol, long *err) {
     return s;
 }
 
-/* Wrap a PCB that TCP handed back from accept(). */
+/* Wrap a PCB that TCP(6) handed back from accept(). */
 static struct inet_sock *inet_sock_from_pcb(struct tcp_pcb *pcb) {
     struct inet_sock *s = kmalloc(sizeof(*s));
     if (!s) return NULL;
@@ -520,20 +539,51 @@ static struct inet_sock *inet_sock_from_pcb(struct tcp_pcb *pcb) {
     return s;
 }
 
+static struct inet_sock *inet_sock_from_pcb6(struct tcp6_pcb *pcb) {
+    struct inet_sock *s = kmalloc(sizeof(*s));
+    if (!s) return NULL;
+
+    memset(s, 0, sizeof(*s));
+    s->domain = AF_INET6;
+    s->type = SOCK_STREAM;
+    s->protocol = IPPROTO_TCP;
+    s->refs = 1;
+    s->pcb.tcp6 = pcb;
+    return s;
+}
+
 long inet_sock_bind(struct inet_sock *s, uint32_t ip, uint16_t port) {
     if (!s) return -EINVAL;
+    if (s->domain != AF_INET) return -EAFNOSUPPORT;
     if (s->type == SOCK_STREAM) return tcp_bind(s->pcb.tcp, ip, port);
     return udp_bind(s->pcb.udp, ip, port);
 }
 
+long inet_sock_bind6(struct inet_sock *s, const uint8_t ip[16], uint16_t port) {
+    if (!s) return -EINVAL;
+    if (s->domain != AF_INET6) return -EAFNOSUPPORT;
+    if (s->type == SOCK_STREAM) return tcp6_bind(s->pcb.tcp6, ip, port);
+    return udp6_bind(s->pcb.udp6, ip, port);
+}
+
 long inet_sock_connect(struct inet_sock *s, uint32_t dst_ip, uint16_t dst_port) {
     if (!s) return -EINVAL;
+    if (s->domain != AF_INET) return -EAFNOSUPPORT;
     if (s->type == SOCK_STREAM) return tcp_connect(s->pcb.tcp, dst_ip, dst_port);
     return udp_connect(s->pcb.udp, dst_ip, dst_port);
 }
 
+long inet_sock_connect6(struct inet_sock *s, const uint8_t dst_ip[16],
+                        uint16_t dst_port) {
+    if (!s) return -EINVAL;
+    if (s->domain != AF_INET6) return -EAFNOSUPPORT;
+    if (s->type == SOCK_STREAM) return tcp6_connect(s->pcb.tcp6, dst_ip, dst_port);
+    return udp6_connect(s->pcb.udp6, dst_ip, dst_port);
+}
+
 long inet_sock_listen(struct inet_sock *s, int backlog) {
     if (!s || s->type != SOCK_STREAM) return -EOPNOTSUPP;
+    if (s->domain == AF_INET6) return tcp6_listen(s->pcb.tcp6, backlog);
     return tcp_listen(s->pcb.tcp, backlog);
 }
 
@@ -541,6 +591,15 @@ struct inet_sock *inet_sock_accept(struct inet_sock *s, long *err) {
     if (!s || s->type != SOCK_STREAM) {
         *err = -EOPNOTSUPP;
         return NULL;
+    }
+
+    if (s->domain == AF_INET6) {
+        struct tcp6_pcb *child = tcp6_accept(s->pcb.tcp6, err, !s->nonblock);
+        if (!child) return NULL;
+        struct inet_sock *ns = inet_sock_from_pcb6(child);
+        if (!ns) { tcp6_close(child); *err = -ENOMEM; return NULL; }
+        *err = 0;
+        return ns;
     }
 
     struct tcp_pcb *child = tcp_accept(s->pcb.tcp, err, !s->nonblock);
@@ -558,6 +617,13 @@ struct inet_sock *inet_sock_accept(struct inet_sock *s, long *err) {
 
 long inet_sock_read(struct inet_sock *s, void *buf, size_t len) {
     if (!s) return -ENOTSOCK;
+    if (s->domain == AF_INET6) {
+        if (s->type == SOCK_STREAM) {
+            return tcp6_recv(s->pcb.tcp6, buf, len, !s->nonblock);
+        }
+        return udp6_recvfrom(s->pcb.udp6, buf, len, NULL, NULL,
+                             s->nonblock ? 0 : 30000);
+    }
     if (s->type == SOCK_STREAM) {
         return tcp_recv(s->pcb.tcp, buf, len, !s->nonblock);
     }
@@ -567,6 +633,14 @@ long inet_sock_read(struct inet_sock *s, void *buf, size_t len) {
 
 long inet_sock_write(struct inet_sock *s, const void *buf, size_t len) {
     if (!s) return -ENOTSOCK;
+    if (s->domain == AF_INET6) {
+        if (s->type == SOCK_STREAM) {
+            return tcp6_send(s->pcb.tcp6, buf, len, !s->nonblock);
+        }
+        if (!s->pcb.udp6->has_remote) return -EDESTADDRREQ;
+        return udp6_sendto(s->pcb.udp6, buf, len, s->pcb.udp6->remote_addr,
+                           s->pcb.udp6->remote_port);
+    }
     if (s->type == SOCK_STREAM) {
         return tcp_send(s->pcb.tcp, buf, len, !s->nonblock);
     }
@@ -578,15 +652,26 @@ long inet_sock_write(struct inet_sock *s, const void *buf, size_t len) {
 long inet_sock_sendto(struct inet_sock *s, const void *buf, size_t len,
                       uint32_t dst_ip, uint16_t dst_port) {
     if (!s) return -ENOTSOCK;
+    if (s->domain != AF_INET) return -EAFNOSUPPORT;
     if (s->type != SOCK_DGRAM) return inet_sock_write(s, buf, len);
     if (dst_ip == 0) return inet_sock_write(s, buf, len);
     return udp_sendto(s->pcb.udp, buf, len, dst_ip, dst_port);
+}
+
+long inet_sock_sendto6(struct inet_sock *s, const void *buf, size_t len,
+                       const uint8_t dst_ip[16], uint16_t dst_port) {
+    if (!s) return -ENOTSOCK;
+    if (s->domain != AF_INET6) return -EAFNOSUPPORT;
+    if (s->type != SOCK_DGRAM) return inet_sock_write(s, buf, len);
+    if (!dst_ip) return inet_sock_write(s, buf, len);
+    return udp6_sendto(s->pcb.udp6, buf, len, dst_ip, dst_port);
 }
 
 long inet_sock_recvfrom(struct inet_sock *s, void *buf, size_t len,
                         uint32_t *src_ip, uint16_t *src_port,
                         uint32_t timeout_ms) {
     if (!s) return -ENOTSOCK;
+    if (s->domain != AF_INET) return -EAFNOSUPPORT;
     if (s->type != SOCK_DGRAM) {
         if (src_ip) *src_ip = 0;
         if (src_port) *src_port = 0;
@@ -596,10 +681,25 @@ long inet_sock_recvfrom(struct inet_sock *s, void *buf, size_t len,
                         s->nonblock ? 0 : timeout_ms);
 }
 
+long inet_sock_recvfrom6(struct inet_sock *s, void *buf, size_t len,
+                         uint8_t *src_ip, uint16_t *src_port,
+                         uint32_t timeout_ms) {
+    if (!s) return -ENOTSOCK;
+    if (s->domain != AF_INET6) return -EAFNOSUPPORT;
+    if (s->type != SOCK_DGRAM) {
+        if (src_ip) memset(src_ip, 0, 16);
+        if (src_port) *src_port = 0;
+        return inet_sock_read(s, buf, len);
+    }
+    return udp6_recvfrom(s->pcb.udp6, buf, len, src_ip, src_port,
+                         s->nonblock ? 0 : timeout_ms);
+}
+
 long inet_sock_shutdown(struct inet_sock *s, int how) {
     if (!s) return -ENOTSOCK;
     if (s->type != SOCK_STREAM) return 0;
     if (how == SHUT_WR || how == SHUT_RDWR) {
+        if (s->domain == AF_INET6) return tcp6_shutdown_write(s->pcb.tcp6);
         return tcp_shutdown_write(s->pcb.tcp);
     }
     return 0;
@@ -608,6 +708,7 @@ long inet_sock_shutdown(struct inet_sock *s, int how) {
 long inet_sock_getname(struct inet_sock *s, uint32_t *ip, uint16_t *port,
                        bool peer) {
     if (!s) return -ENOTSOCK;
+    if (s->domain != AF_INET) return -EAFNOSUPPORT;
 
     if (s->type == SOCK_STREAM) {
         struct tcp_pcb *pcb = s->pcb.tcp;
@@ -621,8 +722,45 @@ long inet_sock_getname(struct inet_sock *s, uint32_t *ip, uint16_t *port,
     return 0;
 }
 
+static bool addr16_is_zero(const uint8_t a[16]) {
+    for (int i = 0; i < 16; i++) if (a[i] != 0) return false;
+    return true;
+}
+
+long inet_sock_getname6(struct inet_sock *s, uint8_t *ip, uint16_t *port,
+                        bool peer) {
+    if (!s) return -ENOTSOCK;
+    if (s->domain != AF_INET6) return -EAFNOSUPPORT;
+
+    uint8_t local_fallback[16];
+    bool have_fallback = ipv6_pick_source(local_fallback);
+
+    if (s->type == SOCK_STREAM) {
+        struct tcp6_pcb *pcb = s->pcb.tcp6;
+        bool local_unset = addr16_is_zero(pcb->local_addr);
+        memcpy(ip, peer ? pcb->remote_addr
+                        : (local_unset && have_fallback ? local_fallback
+                                                        : pcb->local_addr),
+              16);
+        *port = peer ? pcb->remote_port : pcb->local_port;
+    } else {
+        struct udp6_pcb *pcb = s->pcb.udp6;
+        bool local_unset = addr16_is_zero(pcb->local_addr);
+        memcpy(ip, peer ? pcb->remote_addr
+                        : (local_unset && have_fallback ? local_fallback
+                                                        : pcb->local_addr),
+              16);
+        *port = peer ? pcb->remote_port : pcb->local_port;
+    }
+    return 0;
+}
+
 short inet_sock_poll(struct inet_sock *s) {
     if (!s) return POLLERR;
+    if (s->domain == AF_INET6) {
+        return s->type == SOCK_STREAM ? tcp6_poll(s->pcb.tcp6)
+                                      : udp6_poll(s->pcb.udp6);
+    }
     if (s->type == SOCK_STREAM) return tcp_poll(s->pcb.tcp);
     return udp_poll(s->pcb.udp);
 }
@@ -642,6 +780,13 @@ void inet_sock_ref(struct inet_sock *s) {
 void inet_sock_unref(struct inet_sock *s) {
     if (!s || --s->refs > 0) return;
 
+    if (s->domain == AF_INET6) {
+        if (s->type == SOCK_STREAM) tcp6_close(s->pcb.tcp6);
+        else udp6_pcb_free(s->pcb.udp6);
+        kfree(s);
+        return;
+    }
+
     if (s->type == SOCK_STREAM) {
         tcp_close(s->pcb.tcp);
     } else {
@@ -653,8 +798,8 @@ void inet_sock_unref(struct inet_sock *s) {
 void *socket_create(int domain, int type, int protocol, long *err) {
     if (domain == AF_UNIX) {
         return unix_sock_create(domain, type, protocol, err);
-    } else if (domain == AF_INET) {
-        return inet_sock_create(type, protocol, err);
+    } else if (domain == AF_INET || domain == AF_INET6) {
+        return inet_sock_create(domain, type, protocol, err);
     }
     *err = -EAFNOSUPPORT;
     return NULL;

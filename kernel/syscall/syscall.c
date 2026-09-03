@@ -675,8 +675,9 @@ static long sys_socket(long domain, long type, long protocol) {
             return err;
         }
         return vfs_sock_install(s);
-    } else if (domain == AF_INET) {
-        struct inet_sock *s = inet_sock_create((int)type, (int)protocol, &err);
+    } else if (domain == AF_INET || domain == AF_INET6) {
+        struct inet_sock *s = inet_sock_create((int)domain, (int)type,
+                                               (int)protocol, &err);
         if (s == NULL) {
             return err;
         }
@@ -738,9 +739,67 @@ static long sockaddr_in_store(bool from_user, void *uaddr, void *ulen,
     return 0;
 }
 
+/* ---- AF_INET6 addresses ----
+ *
+ * struct sockaddr_in6 is byte-identical to musl's; sin6_addr and
+ * sin6_port are already network byte order, same as sockaddr_in. */
+static long sockaddr_in6_get(bool from_user, const void *uaddr, long addrlen,
+                             uint8_t ip[16], uint16_t *port) {
+    if (uaddr == NULL) {
+        return -EFAULT;
+    }
+    if (addrlen < (long)sizeof(struct sockaddr_in6)) {
+        return -EINVAL;
+    }
+    if (!access_ok(from_user, uaddr, sizeof(struct sockaddr_in6))) {
+        return -EFAULT;
+    }
+
+    const struct sockaddr_in6 *sa = (const struct sockaddr_in6 *)uaddr;
+    if (sa->sin6_family != AF_INET6) {
+        return -EAFNOSUPPORT;
+    }
+    memcpy(ip, sa->sin6_addr, 16);
+    *port = ntohs(sa->sin6_port);
+    return 0;
+}
+
+static long sockaddr_in6_store(bool from_user, void *uaddr, void *ulen,
+                               const uint8_t ip[16], uint16_t port) {
+    if (uaddr == NULL || ulen == NULL) {
+        return 0;
+    }
+    if (!access_ok(from_user, ulen, sizeof(uint32_t))) {
+        return -EFAULT;
+    }
+    uint32_t cap = *(uint32_t *)ulen;
+
+    struct sockaddr_in6 sa;
+    memset(&sa, 0, sizeof(sa));
+    sa.sin6_family = AF_INET6;
+    memcpy(sa.sin6_addr, ip, 16);
+    sa.sin6_port = htons(port);
+
+    uint32_t full = (uint32_t)sizeof(sa);
+    uint32_t n = cap < full ? cap : full;
+    if (n > 0 && !access_ok(from_user, uaddr, n)) {
+        return -EFAULT;
+    }
+    memcpy(uaddr, &sa, n);
+    *(uint32_t *)ulen = full;
+    return 0;
+}
+
 static long sys_bind(long fd, const void *uaddr, long addrlen, bool from_user) {
     struct inet_sock *inet = vfs_fd_inet_sock(fd);
     if (inet != NULL) {
+        if (inet_sock_domain(inet) == AF_INET6) {
+            uint8_t ip[16] = {0};
+            uint16_t port = 0;
+            long ret = sockaddr_in6_get(from_user, uaddr, addrlen, ip, &port);
+            if (ret < 0) return ret;
+            return inet_sock_bind6(inet, ip, port);
+        }
         uint32_t ip = 0;
         uint16_t port = 0;
         long ret = sockaddr_in_get(from_user, uaddr, addrlen, &ip, &port);
@@ -766,6 +825,13 @@ static long sys_connect(long fd, const void *uaddr, long addrlen,
                         bool from_user) {
     struct inet_sock *inet = vfs_fd_inet_sock(fd);
     if (inet != NULL) {
+        if (inet_sock_domain(inet) == AF_INET6) {
+            uint8_t ip[16] = {0};
+            uint16_t port = 0;
+            long ret = sockaddr_in6_get(from_user, uaddr, addrlen, ip, &port);
+            if (ret < 0) return ret;
+            return inet_sock_connect6(inet, ip, port);
+        }
         uint32_t ip = 0;
         uint16_t port = 0;
         long ret = sockaddr_in_get(from_user, uaddr, addrlen, &ip, &port);
@@ -796,10 +862,18 @@ static long sys_accept(long fd, void *uaddr, void *ulen, bool from_user) {
             return err ? err : -EAGAIN;
         }
 
-        uint32_t ip = 0;
-        uint16_t port = 0;
-        inet_sock_getname(client, &ip, &port, true);
-        long ret = sockaddr_in_store(from_user, uaddr, ulen, ip, port);
+        long ret;
+        if (inet_sock_domain(client) == AF_INET6) {
+            uint8_t ip[16] = {0};
+            uint16_t port = 0;
+            inet_sock_getname6(client, ip, &port, true);
+            ret = sockaddr_in6_store(from_user, uaddr, ulen, ip, port);
+        } else {
+            uint32_t ip = 0;
+            uint16_t port = 0;
+            inet_sock_getname(client, &ip, &port, true);
+            ret = sockaddr_in_store(from_user, uaddr, ulen, ip, port);
+        }
         if (ret < 0) {
             inet_sock_unref(client);
             return ret;
@@ -872,6 +946,12 @@ static long sys_getname(long fd, void *uaddr, void *ulen, bool from_user,
                         bool peer) {
     struct inet_sock *inet = vfs_fd_inet_sock(fd);
     if (inet != NULL) {
+        if (inet_sock_domain(inet) == AF_INET6) {
+            uint8_t ip[16] = {0};
+            uint16_t port = 0;
+            inet_sock_getname6(inet, ip, &port, peer);
+            return sockaddr_in6_store(from_user, uaddr, ulen, ip, port);
+        }
         uint32_t ip = 0;
         uint16_t port = 0;
         inet_sock_getname(inet, &ip, &port, peer);
@@ -924,6 +1004,14 @@ static long sys_sendto(struct syscall_regs *r, bool from_user) {
         return inet_sock_write(inet, buf, len);
     }
 
+    if (inet_sock_domain(inet) == AF_INET6) {
+        uint8_t ip[16] = {0};
+        uint16_t port = 0;
+        long ret = sockaddr_in6_get(from_user, uaddr, addrlen, ip, &port);
+        if (ret < 0) return ret;
+        return inet_sock_sendto6(inet, buf, len, ip, port);
+    }
+
     uint32_t ip = 0;
     uint16_t port = 0;
     long ret = sockaddr_in_get(from_user, uaddr, addrlen, &ip, &port);
@@ -950,6 +1038,18 @@ static long sys_recvfrom(struct syscall_regs *r, bool from_user) {
             return -EOPNOTSUPP;
         }
         return vfs_read(fd, buf, len);
+    }
+
+    if (inet_sock_domain(inet) == AF_INET6) {
+        uint8_t ip[16] = {0};
+        uint16_t port = 0;
+        long n = inet_sock_recvfrom6(inet, buf, len, ip, &port, 30000);
+        if (n < 0) return n;
+        if (uaddr != NULL) {
+            long ret = sockaddr_in6_store(from_user, uaddr, ulen, ip, port);
+            if (ret < 0) return ret;
+        }
+        return n;
     }
 
     uint32_t ip = 0;

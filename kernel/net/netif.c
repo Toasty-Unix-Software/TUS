@@ -12,6 +12,7 @@
 
 #include "ip.h"
 #include "tcp.h"
+#include "tcp6.h"
 
 #include "../arch/x86_64/io.h"
 #include "../core/klib.h"
@@ -94,6 +95,7 @@ int net_poll(void) {
      * blocking network path goes through net_poll(), so a connection
      * anybody is waiting on gets its timers serviced. */
     tcp_timer();
+    tcp6_timer();
     return processed;
 }
 
