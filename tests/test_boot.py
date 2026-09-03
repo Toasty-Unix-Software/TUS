@@ -138,6 +138,8 @@ def type_text(sock, text):
             sendkey(sock, "shift-1")
         elif ch == "@":
             sendkey(sock, "shift-2")
+        elif ch == "&":
+            sendkey(sock, "shift-7")
         elif ch.isupper():
             sendkey(sock, f"shift-{ch.lower()}")
         elif ch.isalpha() or ch.isdigit():
