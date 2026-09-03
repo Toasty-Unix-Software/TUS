@@ -453,21 +453,18 @@ its virtual keyboard/QMP and checking real output - not a mock:
 
 ## Known issues
 
-- `make test` currently stops at a console-scrollback timing assertion
-  that's a pre-existing test flake, not a regression - unrelated to
-  whatever else you're testing; everything before it passes.
-- A kernel-wide 8-byte `memcpy`/`memset` speed-up is available but
-  **unsafe**: it reproducibly panics when a window manager spawns a
-  program, for a reason never fully root-caused. `fb_scroll_up()` has
-  its own local, verified-safe wide-move instead; nothing else in the
-  kernel uses the wide path.
 - Background jobs started in `ksh` (`sleep 60 &`) don't stay visible to
   `ps` afterward - a ksh-side job-control gap, not a bug in the new
   `ps`/`SYS_GETPROCS` path, which correctly reports what the task table
   actually contains.
-- `sshd` doesn't allocate a PTY per session yet even though the PTY
-  layer itself exists - an SSH shell session still has no job control
-  or window-resize forwarding.
+- `sshd` allocates a real per-session PTY (`/dev/ptmx`/`/dev/pts/N`)
+  when a client asks for one via pty-req, instead of the old plain
+  pipe pair - but a live shell session over it doesn't actually work
+  yet: a real `ssh -t` client authenticates fine but never receives
+  any shell output afterward, root cause not yet found (see the
+  `sshd:` commit history for what's already been ruled out - two real
+  bugs were found and fixed getting this far, and `tests/test_sshd_pty.py`
+  is the repro). The old pipe-based path (no pty-req) is unaffected.
 - `fan` reports "not found" under QEMU (which implements no ACPI EC at
   all) - expected there; unverified on real EC-equipped hardware.
 - The published `ksh` `tpm` package predates the fix for a crash in any
