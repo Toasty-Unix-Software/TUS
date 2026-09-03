@@ -400,6 +400,14 @@ int main(int argc, char **argv) {
         if (mkdir(home, 0700) != 0) {
             fprintf(stderr, "useradd: can't create home directory %s\n", home);
             rc = 12;
+        } else if (chown(home, (uid_t)uid, (gid_t)gid) != 0) {
+            /* mkdir() naturally creates the directory owned by
+             * useradd's own identity (root, since only root can
+             * useradd), not the new account - without this every
+             * `useradd -m` account is locked out of its own home
+             * the moment file permissions are actually enforced. */
+            fprintf(stderr, "useradd: can't chown home directory %s\n", home);
+            rc = 12;
         }
     }
 

@@ -1204,6 +1204,11 @@ static void exec_pipeline(struct pipeline_seg *segs, int nseg) {
                 g_session_uid = uid;
                 g_session_gid = gid;
                 g_session_caps = load_session_caps(uid);
+                /* So vfs_access_ok() can see who is really logged in
+                 * when the shell itself performs a file operation
+                 * (redirection) instead of spawning a task - see
+                 * sched_set_session_ids()'s comment. */
+                sched_set_session_ids(uid, gid);
             }
         }
     }

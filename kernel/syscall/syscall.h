@@ -226,6 +226,12 @@
 #define SYS_CAPSET      85 /* capset(pid, uint32_t caps) - root only;
                              * grants exactly `caps` (see kernel/sched/cap.h)
                              * to task `pid` (0 = self) */
+#define SYS_CHOWN       86 /* chown(path, uid, gid) - root only, like real
+                             * Unix (an owner can't give a file away). Lets
+                             * `useradd -m` hand a home directory to its new
+                             * owner: mkdir() naturally creates it owned by
+                             * whoever is asking, which for useradd running
+                             * as root is root, not the new account. */
 #define TUS_PANIC_BSOD   0
 #define TUS_PANIC_GSOD   1
 #define TUS_PANIC_RSOD   2

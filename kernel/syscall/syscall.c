@@ -1861,6 +1861,11 @@ long syscall_dispatch(struct syscall_regs *r, uint64_t cs, uint64_t frame_rsp) {
             return -EFAULT;
         }
         return vfs_chmod((const char *)r->rdi, (uint32_t)r->rsi);
+    case SYS_CHOWN:
+        if (!access_ok(from_user, (const void *)r->rdi, 1)) {
+            return -EFAULT;
+        }
+        return vfs_chown((const char *)r->rdi, (uint32_t)r->rsi, (uint32_t)r->rdx);
     case SYS_UNLINK:
         if (!access_ok(from_user, (const void *)r->rdi, 1)) {
             return -EFAULT;

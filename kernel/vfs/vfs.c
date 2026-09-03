@@ -275,6 +275,11 @@ struct vfs_node *vfs_lookup(const char *path) {
 
 /* ---- node creation ---- */
 
+/* Forward declaration: defined near vfs_access_ok() further down,
+ * used here so a freshly created node is owned by whoever actually
+ * created it. See its definition for the full comment. */
+static void vfs_caller_ids(uint32_t *euid, uint32_t *egid);
+
 struct vfs_node *vfs_create_dir(const char *path) {
     char dir_path[256];
     char name[VFS_NAME_MAX];
@@ -293,6 +298,14 @@ struct vfs_node *vfs_create_dir(const char *path) {
     memset(node, 0, sizeof(*node));
     node->type = VFS_DIR;
     node->mode = 0755;
+    /* Owned by whoever actually created it, not always root:root -
+     * see vfs_caller_ids()'s comment. Without this every directory a
+     * non-root user creates (mkdir, useradd's home dir, ...) is
+     * root-owned 0755, which the owner themselves then fails to
+     * write into a moment later - invisible as long as every session
+     * secretly ran as root, exposed the instant vfs_access_ok()
+     * started checking real identities. */
+    vfs_caller_ids(&node->uid, &node->gid);
     memcpy(node->name, name, strlen(name) + 1);
     dir_attach(parent, node);
     /* WRF (kernel/fs/wrf.c): a directory created under a WRF-backed
@@ -324,6 +337,7 @@ struct vfs_node *vfs_create_file(const char *path) {
     memset(node, 0, sizeof(*node));
     node->type = VFS_FILE;
     node->mode = 0644;
+    vfs_caller_ids(&node->uid, &node->gid); /* see vfs_create_dir() */
     memcpy(node->name, name, strlen(name) + 1);
     dir_attach(parent, node);
     /* See the matching comment in vfs_create_dir() just above. */
@@ -527,6 +541,28 @@ static struct vfs_file *fd_get(long fd) {
 #define VFS_R_OK 4
 #define VFS_W_OK 2
 
+/* Resolves who is really making this VFS call: the current task's
+ * own euid/egid, except for the kernel shell (pid 1), whose fields
+ * are permanently 0 (ring 0) regardless of who is logged into the
+ * session it is running - see kernel/sched/sched.h's
+ * sched_session_ids() comment for the full story. Shared by
+ * vfs_access_ok() (permission checks) and vfs_create_dir()/
+ * vfs_create_file() (so a new file/directory is actually owned by
+ * whoever created it, not always root:root - see those functions). */
+static void vfs_caller_ids(uint32_t *euid, uint32_t *egid) {
+    struct task *cur = sched_current();
+    if (cur == NULL) {
+        *euid = 0;
+        *egid = 0;
+        return;
+    }
+    *euid = cur->euid;
+    *egid = cur->egid;
+    if (cur->pid == 1) {
+        sched_session_ids(euid, egid);
+    }
+}
+
 /* Root (euid 0) and any call made directly by ring-0 kernel code (the
  * console shell's built-ins, the boot-time rootfs mount before the
  * scheduler exists yet) bypass every check - the same trust boundary
@@ -535,14 +571,20 @@ static struct vfs_file *fd_get(long fd) {
  * ones, so a setuid program (doas, passwd) gets the access its owner
  * bit grants rather than the caller's own. */
 static bool vfs_access_ok(const struct vfs_node *node, uint32_t want) {
-    struct task *cur = sched_current();
-    if (cur == NULL || cur->euid == 0) {
+    if (sched_current() == NULL) {
+        return true; /* boot-time mount, before the scheduler exists */
+    }
+
+    uint32_t euid, egid;
+    vfs_caller_ids(&euid, &egid);
+    if (euid == 0) {
         return true;
     }
+
     uint32_t bits;
-    if (cur->euid == node->uid) {
+    if (euid == node->uid) {
         bits = (node->mode >> 6) & 7;
-    } else if (cur->egid == node->gid) {
+    } else if (egid == node->gid) {
         bits = (node->mode >> 3) & 7;
     } else {
         bits = node->mode & 7;
@@ -613,11 +655,11 @@ long vfs_open_mode(const char *path, int flags, uint32_t mode) {
                 return -ENOENT;
             }
             node->mode = mode;
-            struct task *cur = sched_current();
-            if (cur != NULL) {
-                node->uid = cur->euid;
-                node->gid = cur->egid;
-            }
+            /* Ownership already set correctly by vfs_create_file()
+             * via vfs_caller_ids() - see the matching comment in
+             * vfs_mkdir() for why re-deriving it from cur->euid/egid
+             * directly here was wrong (silently root:root for
+             * anything the shell created via redirection). */
         } else {
             return -ENOENT;
         }
@@ -1570,11 +1612,12 @@ long vfs_mkdir(const char *path, uint32_t mode) {
     if (mode != 0) {
         dir->mode = mode;
     }
-    struct task *cur = sched_current();
-    if (cur != NULL) {
-        dir->uid = cur->euid;
-        dir->gid = cur->egid;
-    }
+    /* Ownership is already set correctly by vfs_create_dir() (via
+     * vfs_caller_ids(), which knows about the shell's session-vs-task
+     * identity split); this used to re-set it from cur->euid/egid
+     * directly, which for the shell (pid 1) is always 0 and silently
+     * reassigned every mkdir back to root:root regardless of who
+     * asked - undoing the real fix a moment after it ran. */
     return 0;
 }
 
@@ -1611,6 +1654,31 @@ long vfs_chmod(const char *path, uint32_t mode) {
     return 0;
 }
 
+/* chown(path, uid, gid): root only, matching real Unix - an owner
+ * can't give a file away to someone else (that would let a non-root
+ * user dodge quota/audit by handing files off). This exists so
+ * `useradd -m` can hand a freshly created home directory to its new
+ * owner: mkdir() naturally creates it owned by whoever is asking,
+ * which for useradd (a real root-owned task) is root, not the
+ * account being created. */
+long vfs_chown(const char *path, uint32_t uid, uint32_t gid) {
+    if (path == NULL) {
+        return -EINVAL;
+    }
+    struct vfs_node *node = vfs_lookup(path);
+    if (node == NULL) {
+        return -ENOENT;
+    }
+    uint32_t euid, egid;
+    vfs_caller_ids(&euid, &egid);
+    if (euid != 0) {
+        return -EPERM;
+    }
+    node->uid = uid;
+    node->gid = gid;
+    return 0;
+}
+
 /* ---- tree construction ---- */
 
 /* Ensure a base directory exists. This is the safety net for a boot
@@ -1631,6 +1699,16 @@ void vfs_init(void) {
     }
     memset(g_root, 0, sizeof(*g_root));
     g_root->type = VFS_DIR;
+    /* Traversing "/" needs execute (search) permission like any other
+     * directory - left at 0 (memset above) this node had NO
+     * permission bits at all, invisible as long as every session
+     * secretly ran as root (euid 0 bypasses vfs_access_ok entirely),
+     * but a real blocker for any non-root user the instant real
+     * per-session identity started being checked (e.g. `cd -`
+     * resolving back to "/"). Owned by root like every real Unix
+     * root directory; 0755 (not 01777 like /tmp) since "/" itself
+     * isn't a shared scratch area. */
+    g_root->mode = 0755;
     memcpy(g_root->name, "/", 2);
 }
 

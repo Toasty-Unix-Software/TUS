@@ -380,6 +380,23 @@ bool sched_task_was_signaled(uint32_t pid);
  * cross back to the shell. */
 bool sched_task_ids(uint32_t pid, uint32_t *uid, uint32_t *gid);
 
+/* The kernel shell's (pid 1 - the first task sched_init() creates,
+ * ring 0) adopted session identity - see sched_task_ids' comment
+ * above for how it gets there. The shell's own `euid`/`egid` fields
+ * are permanently 0 (it is ring 0, it never drops privilege), so any
+ * permission check keyed on those two fields alone is checking "is
+ * this the shell", not "who is actually logged in" - which is
+ * exactly the bug this pair of functions exists to close in
+ * kernel/vfs/vfs.c's vfs_access_ok(): a file operation the shell
+ * performs directly (`>`/`>>` redirection, which never spawns a
+ * task) must be checked against the real logged-in user, not against
+ * the shell's permanently-root euid, or any non-root
+ * session could write any file by using redirection instead of a
+ * command that execs. Set once at login (kernel/shell/commands.c),
+ * read by vfs_access_ok() only when the caller is task 0. */
+void sched_set_session_ids(uint32_t uid, uint32_t gid);
+void sched_session_ids(uint32_t *uid, uint32_t *gid);
+
 /* Mark the CURRENT task's eventual exit as signal-caused - called
  * from a ring-3 fault handler (kernel/arch/x86_64/idt.c) right before
  * task_exit(128 + signal), the one task_exit() call site that is NOT

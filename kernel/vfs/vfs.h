@@ -256,6 +256,7 @@ long vfs_stat_path(const char *path, size_t *out_size, uint32_t *out_mode, int *
 
 /* Change the permission bits of a node (chmod). */
 long vfs_chmod(const char *path, uint32_t mode);
+long vfs_chown(const char *path, uint32_t uid, uint32_t gid);
 
 /* Return the node for a path, or NULL. A path that does not start
  * with '/' is resolved against the calling task's cwd first (see

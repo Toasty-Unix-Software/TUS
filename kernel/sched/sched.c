@@ -178,6 +178,23 @@ bool sched_task_was_signaled(uint32_t pid) {
     return false;
 }
 
+static uint32_t g_shell_session_uid = 0;
+static uint32_t g_shell_session_gid = 0;
+
+void sched_set_session_ids(uint32_t uid, uint32_t gid) {
+    g_shell_session_uid = uid;
+    g_shell_session_gid = gid;
+}
+
+void sched_session_ids(uint32_t *uid, uint32_t *gid) {
+    if (uid != NULL) {
+        *uid = g_shell_session_uid;
+    }
+    if (gid != NULL) {
+        *gid = g_shell_session_gid;
+    }
+}
+
 bool sched_task_ids(uint32_t pid, uint32_t *uid, uint32_t *gid) {
     for (int i = 0; i < TASK_MAX; i++) {
         if (g_tasks[i].pid == pid && g_tasks[i].state == TASK_ZOMBIE) {

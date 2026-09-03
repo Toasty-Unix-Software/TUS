@@ -98,6 +98,7 @@
 #define TUS_SYS_SETITIMER   80
 #define TUS_SYS_UNAME        81
 #define TUS_SYS_SETHOSTNAME  82
+#define TUS_SYS_CHOWN        86
 
 #define TUS_ENOSYS (-38)
 #define TUS_EFAULT (-14)
@@ -409,6 +410,7 @@ long tus_syscall(long n, long a1, long a2, long a3,
     case 78:  return tus_getdents(a1, (char *)a2, a3);              /* getdents - see tus_getdents() above */
     case 217: return tus_getdents(a1, (char *)a2, a3);              /* getdents64: same layout on this arch */
     case 90:  return tus_raw(TUS_SYS_CHMOD, a1, a2, 0, 0, 0, 0);    /* chmod */
+    case 92:  return tus_raw(TUS_SYS_CHOWN, a1, a2, a3, 0, 0, 0);   /* chown(path, uid, gid) */
     case 102: return tus_raw(TUS_SYS_GETUID, 0, 0, 0, 0, 0, 0);     /* getuid */
     case 104: return tus_raw(TUS_SYS_GETGID, 0, 0, 0, 0, 0, 0);     /* getgid */
     case 105: return tus_raw(TUS_SYS_SETUID, a1, 0, 0, 0, 0, 0);    /* setuid */
