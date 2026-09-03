@@ -244,10 +244,10 @@ been tagged as a stable release yet.
   install time and baked into the image so it survives reboots (a key
   generated at runtime by `sshd` itself would not - or better, on
   `/home` now that WRF persistence exists). `sshd` falls back to
-  `/bin/tsh` if `ksh` isn't installed via `tpm`. The PTY layer above
-  exists, but `sshd` doesn't yet allocate one per session, so an SSH
-  shell session still has no job control or window-resize forwarding -
-  a documented limitation, not an oversight.
+  `/bin/tsh` if `ksh` isn't installed via `tpm`. `sshd` now allocates a
+  real per-session PTY when a client asks for one via pty-req, but a
+  live `ssh -t` shell session over it still doesn't produce visible
+  output end-to-end yet - see Known Issues below.
 
 ### USB
 
@@ -459,12 +459,18 @@ its virtual keyboard/QMP and checking real output - not a mock:
   actually contains.
 - `sshd` allocates a real per-session PTY (`/dev/ptmx`/`/dev/pts/N`)
   when a client asks for one via pty-req, instead of the old plain
-  pipe pair - but a live shell session over it doesn't actually work
-  yet: a real `ssh -t` client authenticates fine but never receives
-  any shell output afterward, root cause not yet found (see the
-  `sshd:` commit history for what's already been ruled out - two real
-  bugs were found and fixed getting this far, and `tests/test_sshd_pty.py`
-  is the repro). The old pipe-based path (no pty-req) is unaffected.
+  pipe pair - but a live shell session over it still doesn't actually
+  work yet: a real `ssh -t` client authenticates fine and the shell is
+  reported started, but no shell output ever reaches the client within
+  the test timeout. One real, confirmed root cause on this path has
+  already been found and fixed (`slave_open` on a `/dev/pts/N` node
+  was never actually set true, so the pty master's read a session's
+  own sshd hands to `ssh_chan_pump()` saw an instantly-EOF ring instead
+  of blocking for real shell output) - but that alone wasn't enough to
+  get a full session working, so a second issue remains, not yet
+  root-caused (candidates ruled in/out are in that commit's message
+  and the `sshd:` commit history; `tests/test_sshd_pty.py` is the
+  repro). The old pipe-based path (no pty-req) is unaffected.
 - `fan` reports "not found" under QEMU (which implements no ACPI EC at
   all) - expected there; unverified on real EC-equipped hardware.
 - The published `ksh` `tpm` package predates the fix for a crash in any
