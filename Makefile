@@ -84,7 +84,7 @@ DEPS        := $(KERNEL_OBJS:.o=.d)
 # parsed by kernel/vfs/rootfs.c). User programs are built straight
 # into rootfs/bin/ - no file extensions, like real UNIX: executability
 # comes from the x permission bit, and the image stores the modes
-# (doas/passwd ship setuid 4555). The empty base directories (dev,
+# (doas/passwd/login ship setuid 4555). The empty base directories (dev,
 # tmp) are created here - git does not track empty dirs - and end up
 # in the image, so the kernel does not hardcode the directory tree.
 ROOTFS_DIR   := rootfs
@@ -1869,7 +1869,8 @@ $(ROOTFS_IMG): $(USER_ELFS) $(USER_TOOLS) $(ROOTFS_FILES) limine.conf \
                   $(ROOTFS_DIR)/bin/mkfs.wrf $(ROOTFS_DIR)/bin/mkswap \
                   $(ROOTFS_DIR)/bin/tussm $(ROOTFS_DIR)/bin/errord \
                   $(ROOTFS_DIR)/bin/bootd
-	$(Q)chmod 4555 $(ROOTFS_DIR)/bin/doas $(ROOTFS_DIR)/bin/passwd
+	$(Q)chmod 4555 $(ROOTFS_DIR)/bin/doas $(ROOTFS_DIR)/bin/passwd \
+	               $(ROOTFS_DIR)/bin/login
 	# Password hashes are root-only on every real Unix; the VFS
 	# permission model actually enforces this now (see vfs_access_ok()
 	# in kernel/vfs/vfs.c), so a checkout's own umask can no longer be

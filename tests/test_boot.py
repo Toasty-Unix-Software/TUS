@@ -297,6 +297,35 @@ def count_nonblack_pixels(path):
     return count
 
 
+def wait_for_stable_screen(sock, name=None, settle_reads=2, interval=0.3,
+                            max_wait=6):
+    """Repeatedly screendump until the non-black pixel count is the same
+    on `settle_reads` consecutive reads, then return that count.
+
+    A single screendump taken shortly after a keypress can land mid-
+    repaint under TCG (verified reproducibly slow elsewhere in this
+    file: the 1.5s settle comment above the scrollback test), so a
+    fixed sleep-then-dump is a timing gamble. Polling until the count
+    stops changing is a real wait-for-condition instead of a guess at
+    "long enough"."""
+    path = name or SCREEN_PPM
+    deadline = time.time() + max_wait
+    last = None
+    stable = 0
+    while time.time() < deadline:
+        screendump(sock, path)
+        count = count_nonblack_pixels(path)
+        if count == last:
+            stable += 1
+            if stable >= settle_reads:
+                return count
+        else:
+            stable = 1
+        last = count
+        time.sleep(interval)
+    return last
+
+
 def count_white_pixels(path):
     """P6 PPM: count pixels that are pure white (255,255,255)."""
     with open(path, "rb") as f:
@@ -731,16 +760,13 @@ def main():
         for _ in range(3):
             type_text(sock, "help\r")
         time.sleep(1.5)  # let all output settle (TCG is slow)
-        screendump(sock, "/tmp/tus-live.ppm")
-        live_lit = count_nonblack_pixels("/tmp/tus-live.ppm")
+        live_lit = wait_for_stable_screen(sock, "/tmp/tus-live.ppm")
         sendkey(sock, "pgup")
         time.sleep(0.25)
         sendkey(sock, "pgup")
         time.sleep(0.25)
         sendkey(sock, "pgup")
-        time.sleep(0.3)
-        screendump(sock, "/tmp/tus-back.ppm")
-        back_lit = count_nonblack_pixels("/tmp/tus-back.ppm")
+        back_lit = wait_for_stable_screen(sock, "/tmp/tus-back.ppm")
         assert back_lit != live_lit, \
             f"PageUp did not change the screen ({live_lit} == {back_lit})"
         sendkey(sock, "pgdn")
@@ -748,15 +774,24 @@ def main():
         sendkey(sock, "pgdn")
         time.sleep(0.25)
         sendkey(sock, "pgdn")
-        time.sleep(0.3)
-        screendump(sock, "/tmp/tus-restored.ppm")
-        restored_lit = count_nonblack_pixels("/tmp/tus-restored.ppm")
+        restored_lit = wait_for_stable_screen(sock, "/tmp/tus-restored.ppm")
         assert restored_lit == live_lit, \
             f"PageDown did not restore the live view ({restored_lit} != {live_lit})"
         ok(f"scrollback: PageUp/PageDown navigate history "
            f"({live_lit} live, {back_lit} back, {restored_lit} restored)")
 
-        # 14. fbfill paints the whole framebuffer white (ioctl)
+        # 14. fbfill paints the whole framebuffer white (ioctl). /dev/fb0
+        #     is mode 0600 root:root, and the session is "ahmet" (non-
+        #     root, and not in :wheel either) since the login test
+        #     above - real session-identity enforcement (see the
+        #     vfs_access_ok fix) now actually applies here, and ahmet
+        #     has no doas.conf rule, so this logs back in as root
+        #     first (password "toast", same as the initial console
+        #     login) rather than trying doas.
+        type_text(sock, "login root\r")
+        offset = wait_for("Password:", offset=offset)
+        type_text(sock, "toast\r")
+        offset = wait_for("Welcome to TUS, root!", offset=offset)
         type_text(sock, "fbfill ffffff\r")
         offset = wait_for("filled with #ffffff", offset=offset)
         screendump(sock)
