@@ -128,19 +128,19 @@ def main():
             timeout=30, encoding="utf-8")
         client.expect("[Pp]assword:")
         client.sendline("toast")
-        client.expect(r"(tus:.*[>#]|^# )")
+        client.expect(r"[#$] $")
         ok("password auth succeeds over a real TCP connection to sshd")
 
         client.sendline("tty")
         client.expect("/dev/pts/")
-        client.expect(r"(tus:.*[>#]|^# )")
+        client.expect(r"[#$] $")
         ok("`tty` reports a real /dev/pts/N pty, not a pipe")
 
         client.sendline("sleep 30 &")
-        client.expect(r"(tus:.*[>#]|^# )")
+        client.expect(r"[#$] $")
         client.sendline("ps")
         idx = client.expect(["sleep", pexpect.TIMEOUT], timeout=5)
-        client.expect(r"(tus:.*[>#]|^# )")
+        client.expect(r"[#$] $")
         if idx == 0:
             ok("a backgrounded job in the SSH session is visible to ps")
         else:

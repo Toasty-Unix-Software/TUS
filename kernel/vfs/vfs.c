@@ -701,6 +701,10 @@ long vfs_open_mode(const char *path, int flags, uint32_t mode) {
         f->pos = node->size; /* append: start at the end */
     }
     node->open_refs++;
+    if (node->type == VFS_DEVICE && node->ops != NULL &&
+        node->ops->open != NULL) {
+        node->ops->open(node->priv);
+    }
 
     return fd_alloc(f);
 }

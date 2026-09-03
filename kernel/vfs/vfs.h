@@ -85,6 +85,11 @@ struct file_ops {
      * Only pty.c uses this today, to free a master/slave slot back to
      * the pool; every other device leaves it NULL. */
     void (*close)(void *priv);
+    /* Optional: a new fd was just opened on this device node (called
+     * once per vfs_open_mode(), after open_refs++). Only pty.c uses
+     * this, to flip slave_open true when /dev/pts/N is opened - every
+     * other device leaves it NULL. */
+    void (*open)(void *priv);
 };
 
 struct vfs_node {

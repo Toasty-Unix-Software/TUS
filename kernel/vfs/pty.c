@@ -233,6 +233,11 @@ static short pty_slave_poll(void *priv) {
     return bits;
 }
 
+static void pty_slave_open(void *priv) {
+    struct pty_slot *s = priv;
+    s->slave_open = true;
+}
+
 static void pty_master_close(void *priv) {
     struct pty_slot *s = priv;
     s->master_open = false;
@@ -251,11 +256,11 @@ static void pty_slave_close(void *priv) {
 
 static const struct file_ops g_master_ops = {
     pty_master_read, pty_master_write, pty_master_ioctl, pty_master_poll,
-    pty_master_close,
+    pty_master_close, NULL,
 };
 static const struct file_ops g_slave_ops = {
     pty_slave_read, pty_slave_write, pty_slave_ioctl, pty_slave_poll,
-    pty_slave_close,
+    pty_slave_close, pty_slave_open,
 };
 
 struct vfs_node *pty_alloc_master(void) {
