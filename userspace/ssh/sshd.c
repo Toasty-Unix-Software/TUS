@@ -30,19 +30,28 @@
  * server side of "publickey" needs authorized_keys support this pass
  * does not add).
  *
- * A session gets /bin/ksh with its stdio wired to a pair of pipes -
- * plain fork()+dup2()+execve(), the standard POSIX shape, now that
- * TUS has a real fork() (the dup2-then-SYS_SPAWN-then-restore idiom
- * older TUS code uses, e.g. tsh's exec_pipeline(), predates that and
- * is not needed here). What this does NOT do: real pty semantics
- * (job control, window resize, a controlling terminal) - TUS has no
- * pty driver, and building one from scratch just for this is out of
- * scope for a first working version (same spirit as Clint's own
- * documented "what it doesn't do" list). A pty-req is acknowledged
- * (real clients send one whether or not the session needs it) but
- * otherwise ignored; the shell simply reads/writes its pipes, which
- * is what makes both `ssh host command` and a basic interactive
- * session work without a pty. exit-status is not forwarded to the
+ * A session gets /bin/ksh with its stdio wired to a real PTY
+ * (/dev/ptmx + /dev/pts/N, kernel/vfs/pty.c) when the client asked
+ * for one via pty-req - openpty()'s own open/TIOCSPTLCK/TIOCGPTN
+ * dance, same as any POSIX program - and falls back to a plain pipe
+ * pair for a client that skips pty-req (e.g. `ssh host command`,
+ * which has no reason to want one). Either way it's plain
+ * fork()+dup2()+execve(), the standard POSIX shape, now that TUS has
+ * a real fork() (the dup2-then-SYS_SPAWN-then-restore idiom older TUS
+ * code uses, e.g. tsh's exec_pipeline(), predates that and is not
+ * needed here).
+ *
+ * What a PTY session gets: a real controlling terminal for job
+ * control (ksh's setpgid()-based job control now has something to
+ * actually attach to), and window-change requests are applied to the
+ * pty's winsize via TIOCSWINSZ, so a program that queries it (ksh's
+ * own `COLUMNS`/`LINES` handling, `stty size`) sees the real size.
+ * What it does NOT get: SIGWINCH delivery on resize (TUS's pty driver
+ * stores winsize but does not raise a signal on TIOCSWINSZ, so a
+ * program has to poll rather than be interrupted) or TIOCSCTTY-style
+ * controlling-terminal semantics (TUS's pty driver has no ioctl for
+ * it) - real, working improvements over the old pipe-only session,
+ * not a claim of full pty parity. exit-status is not forwarded to the
  * client either, for the same "not chasing this the first time
  * around" reason - ssh_chan_pump()'s own EOF/CLOSE handling ends the
  * session correctly either way, just without a meaningful exit code
@@ -51,14 +60,17 @@
 
 #include <errno.h>
 #include <fcntl.h>
+#include <pty.h>
 #include <signal.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <termios.h>
 #include <unistd.h>
 
 #include <netinet/in.h>
@@ -367,11 +379,17 @@ static int accept_session_channel(struct ssh *s, struct ssh_channel *c) {
 }
 
 /* Wait for the channel request that actually starts work: "shell" or
- * "exec". Anything else in between (pty-req, env, window-change) is
- * acknowledged if a reply was requested and otherwise ignored - see
- * the file comment for why a pty-req in particular is not acted on. */
+ * "exec". Anything else in between (env, signal) is acknowledged if a
+ * reply was requested and otherwise ignored. pty-req sets *want_pty
+ * and the requested initial size in *ws, applied once the pty exists.
+ * A window-change arriving here (before shell/exec starts) is parsed
+ * too, since a real client can send one right after pty-req; a
+ * window-change arriving later, mid-session, is not forwarded - that
+ * would need a hook into ssh_chan_pump()'s own loop, out of scope for
+ * this pass (see the file comment). */
 static int wait_for_start(struct ssh *s, struct ssh_channel *c, int *is_exec,
-                          char *command, size_t command_size) {
+                          char *command, size_t command_size,
+                          int *want_pty, struct winsize *ws) {
     for (;;) {
         uint8_t type;
         if (ssh_packet_recv(s, &type) != 0) return -1;
@@ -407,10 +425,49 @@ static int wait_for_start(struct ssh *s, struct ssh_channel *c, int *is_exec,
             command[n] = '\0';
             *is_exec = 1;
             starts = 1;
+        } else if (req_len == 7 && memcmp(req, "pty-req", 7) == 0) {
+            const char *term;
+            size_t term_len;
+            uint32_t cols = 0, rows = 0, xpix = 0, ypix = 0;
+            const uint8_t *modes;
+            size_t modes_len;
+            if (sshbuf_get_cstring(&s->pkt, &term, &term_len) != 0 ||
+                sshbuf_get_u32(&s->pkt, &cols) != 0 ||
+                sshbuf_get_u32(&s->pkt, &rows) != 0 ||
+                sshbuf_get_u32(&s->pkt, &xpix) != 0 ||
+                sshbuf_get_u32(&s->pkt, &ypix) != 0 ||
+                /* The encoded terminal modes are an opaque binary
+                 * blob (opcode/uint32-value pairs), not C text - a
+                 * real client's mode values routinely contain 0x00
+                 * bytes (e.g. ISIG=0), which sshbuf_get_cstring()
+                 * correctly rejects for actual string fields but
+                 * would wrongly reject here. sshbuf_get_string() is
+                 * the binary-safe read; the contents are unused
+                 * either way. */
+                sshbuf_get_string(&s->pkt, &modes, &modes_len) != 0) {
+                return ssh_fail(s, "malformed pty-req");
+            }
+            *want_pty = 1;
+            ws->ws_col = (unsigned short)cols;
+            ws->ws_row = (unsigned short)rows;
+            ws->ws_xpixel = (unsigned short)xpix;
+            ws->ws_ypixel = (unsigned short)ypix;
+        } else if (req_len == 13 && memcmp(req, "window-change", 13) == 0) {
+            uint32_t cols = 0, rows = 0, xpix = 0, ypix = 0;
+            if (sshbuf_get_u32(&s->pkt, &cols) != 0 ||
+                sshbuf_get_u32(&s->pkt, &rows) != 0 ||
+                sshbuf_get_u32(&s->pkt, &xpix) != 0 ||
+                sshbuf_get_u32(&s->pkt, &ypix) != 0) {
+                return ssh_fail(s, "malformed window-change");
+            }
+            ws->ws_col = (unsigned short)cols;
+            ws->ws_row = (unsigned short)rows;
+            ws->ws_xpixel = (unsigned short)xpix;
+            ws->ws_ypixel = (unsigned short)ypix;
         }
-        /* pty-req, env, shell without exec first, window-change,
-         * signal: none of these need any action beyond the reply
-         * every channel request gets when want_reply is set. */
+        /* env, shell without exec first, signal: none of these need
+         * any action beyond the reply every channel request gets when
+         * want_reply is set. */
 
         if (want_reply) {
             struct sshbuf p;
@@ -425,24 +482,40 @@ static int wait_for_start(struct ssh *s, struct ssh_channel *c, int *is_exec,
     }
 }
 
-/* fork()+dup2()+execve() /bin/ksh with its stdio wired to the two
- * pipes; returns the child's pid, or -1. */
-static int spawn_shell(int listen_fd, int client_fd, int to_shell_r,
-                       int from_shell_w, int is_exec, const char *command) {
+/* fork()+dup2()+execve() /bin/ksh, its stdio wired either to a real
+ * pty slave (pty_fd >= 0: same fd for 0/1/2, the normal shape of a
+ * terminal) or a plain pipe pair (pty_fd < 0: to_shell_r/from_shell_w
+ * as before). Returns the child's pid, or -1. */
+static int spawn_shell(int listen_fd, int client_fd, int master_fd,
+                       int pty_fd, int to_shell_r, int from_shell_w,
+                       int is_exec, const char *command) {
     int pid = fork();
     if (pid < 0) return -1;
     if (pid != 0) return pid;
 
-    dup2(to_shell_r, 0);
-    dup2(from_shell_w, 1);
-    dup2(from_shell_w, 2);
+    if (pty_fd >= 0) {
+        dup2(pty_fd, 0);
+        dup2(pty_fd, 1);
+        dup2(pty_fd, 2);
+        close(pty_fd);
+    } else {
+        dup2(to_shell_r, 0);
+        dup2(from_shell_w, 1);
+        dup2(from_shell_w, 2);
+    }
     /* Nothing past fd 2 belongs in the shell's table - the listening
      * socket least of all (a child holding it open would keep the
-     * port bound even after sshd itself exits). */
+     * port bound even after sshd itself exits). The pty master is
+     * the same story for a pty session: fork() duplicated it from
+     * the parent, and a shell that inherits it holds an extra,
+     * unused reference to its own controlling terminal's write end -
+     * every real openpty()-based program closes the master in the
+     * child for exactly this reason. */
     close(listen_fd);
     close(client_fd);
-    close(to_shell_r);
-    close(from_shell_w);
+    if (master_fd >= 0) close(master_fd);
+    if (to_shell_r >= 0) close(to_shell_r);
+    if (from_shell_w >= 0) close(from_shell_w);
 
     /* ksh is a tpm-installed package, not part of the base image;
      * fall back to the kernel's own tsh if it was never installed. */
@@ -504,34 +577,78 @@ static void handle_connection(int listen_fd, int client_fd,
         goto done;
     }
 
-    int is_exec = 0;
+    int is_exec = 0, want_pty = 0;
     char command[1024];
-    if (wait_for_start(&s, &c, &is_exec, command, sizeof(command)) != 0) {
+    struct winsize ws;
+    memset(&ws, 0, sizeof(ws));
+    if (wait_for_start(&s, &c, &is_exec, command, sizeof(command),
+                       &want_pty, &ws) != 0) {
         vsay("%s", s.err);
         goto done;
     }
 
-    int to_shell[2], from_shell[2];
-    if (pipe(to_shell) != 0 || pipe(from_shell) != 0) {
-        ssh_fail(&s, "pipe: %s", strerror(errno));
-        goto done;
+    int master = -1, slave = -1;
+    int to_shell[2] = {-1, -1}, from_shell[2] = {-1, -1};
+    if (want_pty) {
+        /* Same open/TIOCSPTLCK/TIOCGPTN/open-slave dance as musl's own
+         * openpty() (sources/musl-1.2.6/src/misc/openpty.c) - written
+         * out rather than called directly so the initial size from
+         * pty-req lands on the slave before the shell ever reads it,
+         * which openpty()'s own tcsetattr/TIOCSWINSZ-after-open order
+         * already does when given a ws argument, but doing it inline
+         * here keeps the fallback-to-pipe path next to the pty path
+         * instead of two different call shapes. */
+        master = open("/dev/ptmx", O_RDWR | O_NOCTTY);
+        if (master < 0) {
+            ssh_fail(&s, "openpty: %s", strerror(errno));
+            goto done;
+        }
+        int n = 0;
+        char slave_path[32];
+        if (ioctl(master, TIOCSPTLCK, &n) != 0 ||
+            ioctl(master, TIOCGPTN, &n) != 0) {
+            close(master);
+            ssh_fail(&s, "openpty: %s", strerror(errno));
+            goto done;
+        }
+        snprintf(slave_path, sizeof(slave_path), "/dev/pts/%d", n);
+        slave = open(slave_path, O_RDWR | O_NOCTTY);
+        if (slave < 0) {
+            close(master);
+            ssh_fail(&s, "openpty: %s", strerror(errno));
+            goto done;
+        }
+        if (ws.ws_col != 0 || ws.ws_row != 0) {
+            ioctl(slave, TIOCSWINSZ, &ws);
+        }
+    } else {
+        if (pipe(to_shell) != 0 || pipe(from_shell) != 0) {
+            ssh_fail(&s, "pipe: %s", strerror(errno));
+            goto done;
+        }
     }
 
-    int shell_pid = spawn_shell(listen_fd, client_fd, to_shell[0],
-                                from_shell[1], is_exec, command);
-    close(to_shell[0]);
-    close(from_shell[1]);
+    int shell_pid = spawn_shell(listen_fd, client_fd, master, slave,
+                                to_shell[0], from_shell[1], is_exec, command);
+    if (slave >= 0) close(slave);
+    if (to_shell[0] >= 0) close(to_shell[0]);
+    if (from_shell[1] >= 0) close(from_shell[1]);
     if (shell_pid < 0) {
-        close(to_shell[1]);
-        close(from_shell[0]);
+        if (master >= 0) close(master);
+        if (to_shell[1] >= 0) close(to_shell[1]);
+        if (from_shell[0] >= 0) close(from_shell[0]);
         ssh_fail(&s, "fork: %s", strerror(errno));
         goto done;
     }
 
-    ssh_chan_pump(&s, &c, from_shell[0], to_shell[1], -1);
-
-    close(to_shell[1]);
-    close(from_shell[0]);
+    if (want_pty) {
+        ssh_chan_pump(&s, &c, master, master, -1);
+        close(master);
+    } else {
+        ssh_chan_pump(&s, &c, from_shell[0], to_shell[1], -1);
+        close(to_shell[1]);
+        close(from_shell[0]);
+    }
     /* Reap the shell directly - it is this connection's own child,
      * not the listener's, so the listener's post-accept() reap loop
      * never sees it. */
