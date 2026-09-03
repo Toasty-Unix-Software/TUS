@@ -129,28 +129,112 @@ than relying on a checkout's umask happening to leave the file
 world-unreadable, which used to be the only thing standing between a
 non-root user and the hash file before this was tightened up.
 
-SUID binaries (`doas`, `passwd`) are the one deliberate escalation path,
-and it's narrow on purpose: the kernel stores the SUID bit on the inode
-the same way any real Unix does, `ls -l` shows the `s`, and the actual
+This check is now genuinely tied to *who is actually logged in*, which
+was not always true. The ring-0 console shell (tsh) never execs to become
+the logged-in user - it stays a permanently-euid-0 kernel task - so file
+operations it performs directly, like `>`/`>>` redirection, used to check
+nothing but that always-root identity, regardless of who was actually
+logged in. A non-root session could write any file on the system just by
+using redirection instead of a command that execs, including
+self-granting itself capabilities (see below) via
+`echo uid:caps >> /etc/capabilities`, or corrupting `/etc/passwd`
+directly. This was found and fixed by threading the same real
+session-identity plumbing the `doas` fix (below) introduced through to
+`vfs_access_ok()`'s callers (`sched_set_session_ids()` /
+`sched_session_ids()`, a shared `vfs_caller_ids()` helper), so shell
+built-ins are checked against who is actually logged in, not the shell's
+own ring-0 privilege level. Fixing this also surfaced two related bugs -
+new files were always created `root:root` regardless of the real caller,
+and the root `/` node had mode `0`, silently blocking non-root path
+traversal - both fixed alongside it.
+
+SUID binaries (`doas`, `passwd`) are the deliberate escalation path, and
+it's narrow on purpose: the kernel stores the SUID bit on the inode the
+same way any real Unix does, `ls -l` shows the `s`, and the actual
 privilege TUS-wide configuration questions (who can run `res_set`, who can
 change the keymap, and so on) live in one place, `/etc/doas.conf`, rather
 than being scattered across individual setuid binaries. `res_set` and
 `keymap` specifically are not setuid themselves, they go through a syscall
 (`SYS_VIDEO`, `SYS_INPUT`) that refuses the privileged operation outright
-unless the caller's effective uid is 0, and the only way a non-root user
-reaches uid 0 for that one command is through `doas`, whose rules are all
-in that one auditable file.
+unless the caller's effective uid is 0.
+
+This escalation path used to be narrower than it looked: `setuid()` did
+not enforce real POSIX rules (any task could call `setuid(0)` on itself),
+`login` authenticated a user but never actually dropped privileges
+afterward, and the kernel never acted on a binary's setuid bit at exec
+time at all - so `doas`'s "already root, skip the password" check was
+comparing against an effective uid that was *always* 0 no matter who was
+logged in, and silently never prompted. All of that is now real: `setuid`/
+`setgid` enforce POSIX semantics, `login` drops privileges via
+`setuid`/`setgid` after authenticating, setuid-on-exec is implemented for
+the first time (the `4555` mode bit on `/bin/doas`/`/bin/passwd` existed
+before this but the kernel never honored it), and `doas`'s password check
+uses the real invoking uid rather than its own (now genuinely
+setuid-root) effective uid. The only way a non-root user reaches uid 0 is
+through `doas`, whose rules are all in that one auditable file, and it now
+actually asks for a password to get there.
+
+## Capabilities
+
+Alongside the classic rwx/setuid model above, TUS has a small POSIX-style
+capabilities bitmask (`kernel/sched/cap.h`) for privileges that don't map
+cleanly onto "root or not" - `CAP_NET_ADMIN` (interface configuration via
+`netctl`), `CAP_NET_RAW`, `CAP_SETUID`, and `CAP_LINUX_EXEC` (see the
+Linux compatibility layer note below). `has_cap()` gates the relevant
+syscalls instead of a raw `euid == 0` check. Root implicitly has every
+capability; a non-root user only has what's explicitly granted.
+
+Capability grants are per-user, stored in `/etc/capabilities`
+(`uid:hexbits` per line, root-editable, read at login) and threaded
+through the same real session-identity mechanism as the `doas`/VFS fixes
+above, so a capability granted to a user persists across every command
+in their login session rather than resetting on each new task spawn. A
+`caps` shell command reports both the running shell's own (always-root)
+task capabilities and the real session's effective set, for inspecting
+what a given login actually has.
+
+## NX / W^X
+
+`EFER.NXE` is enabled and enforced: ELF data/rodata/bss segments, user
+stacks, and anonymous `mmap()` regions created without `PROT_EXEC` are
+genuinely non-executable, not just conventionally treated that way. A
+task that writes code into a non-executable page and jumps to it takes a
+page fault and is killed, the same as any other ring-3 fault (see above),
+rather than executing attacker-controlled memory.
+
+## The Linux binary compatibility layer
+
+TUS can run *some* real, unmodified Linux x86-64 ELF binaries -
+statically linked ones, with no dynamic linker support (`PT_INTERP`
+fails outright) and only a small, explicit subset of the Linux syscall
+table implemented (translated to TUS's own existing kernel functionality
+under the hood, everything else returns `-ENOSYS` rather than crashing).
+This is real new attack surface - a second syscall entry path
+(`SYSCALL`/`SYSRET`, via `EFER.SCE` and the `STAR`/`LSTAR`/`SFMASK` MSRs,
+alongside TUS's native `int $0x80` ABI) and a second binary format the
+kernel will exec - so it's deliberately gated behind `CAP_LINUX_EXEC`
+rather than available to every user by default. Root always has it
+implicitly; a non-root user needs an explicit grant in
+`/etc/capabilities`, wired through the same real session-identity
+mechanism described above rather than a per-task flag that would reset
+on every spawn.
 
 ## What TUS does not claim to defend against
 
 Being direct about the boundaries matters as much as documenting the
-mitigations themselves. TUS has no address space layout randomization.
-There is no stack canary in the kernel (`-fno-stack-protector` is a
-deliberate build flag, not an oversight, kernel mode code doesn't get the
-canary support most user space runtimes assume). There's no code signing,
-no secure boot chain past whatever the firmware itself does, and no
-sandboxing model beyond the one process, one address space, ring 3
-isolation described above. This is a project built to understand how an
-operating system works end to end, and the security work reflects specific,
-understood threats, like Spectre and like an untrusted syscall pointer,
-rather than a general claim of hardened-ness. Treat it accordingly.
+mitigations themselves. TUS has no kernel address space layout
+randomization - the kernel links at a fixed virtual base, and true KASLR
+would need it built relocatable with a boot-time relocation step, which
+hasn't been done. There is no userspace ASLR either (stack/heap/mmap
+addresses are not randomized). There is no stack canary in the kernel
+(`-fno-stack-protector` is a deliberate build flag, not an oversight,
+kernel mode code doesn't get the canary support most user space runtimes
+assume). There's no code signing, no secure boot chain past whatever the
+firmware itself does, and no sandboxing model beyond the one process, one
+address space, ring 3 isolation described above - plus, now, capability
+gating for the handful of things listed above. This is a project built to
+understand how an operating system works end to end, and the security
+work reflects specific, understood threats, like Spectre, like an
+untrusted syscall pointer, and like the real privilege-propagation bugs
+described above, rather than a general claim of hardened-ness. Treat it
+accordingly.

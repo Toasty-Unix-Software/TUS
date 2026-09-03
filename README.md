@@ -81,7 +81,30 @@ been tagged as a stable release yet.
   `ps`/`kill`/`pkill` exist both as ring-0 tsh built-ins and as real
   ring-3 `/bin` binaries backed by a dedicated `SYS_GETPROCS` syscall -
   the first way a ring-3 program could ever see the task table.
-  Currently BSP-only; Limine parks the other CPUs.
+  Currently BSP-only; Limine parks the other CPUs. **ACPI/MADT parses
+  the real CPU topology** (`cpuinfo` shows what's detected) and there's
+  a correct test-and-set spinlock primitive, but there is no AP
+  trampoline yet - every core but the boot CPU stays parked and every
+  task still runs on one core. Topology discovery, not multi-core
+  execution.
+- **NX/W^X**: `EFER.NXE` is enabled and enforced on ELF data/rodata/bss,
+  user stacks, and anonymous `mmap()` without `PROT_EXEC` - writing code
+  into a non-executable page and jumping to it faults and kills the
+  task, it doesn't run.
+- A small **POSIX-style capabilities bitmask** (`kernel/sched/cap.h`) -
+  `CAP_NET_ADMIN`, `CAP_NET_RAW`, `CAP_SETUID`, `CAP_LINUX_EXEC` - for
+  privileges that don't map onto plain "root or not". Grants live in
+  `/etc/capabilities` (root-editable, read at login) and persist for a
+  whole login session, not just one command; see `docs/security.md`.
+- A **Linux x86-64 binary compatibility layer**: TUS can run real,
+  unmodified, *statically linked* Linux ELF binaries - a second syscall
+  entry path (`SYSCALL`/`SYSRET`, alongside TUS's native `int $0x80`
+  ABI) and a small, explicit subset of the Linux syscall table
+  translated onto TUS's own kernel functionality. No dynamic linker
+  (`PT_INTERP` fails outright), no signals/threading for these
+  binaries, and it's gated behind `CAP_LINUX_EXEC` since it's new attack
+  surface - root has it implicitly, everyone else needs an explicit
+  grant.
 
 ### Filesystem and storage
 
@@ -106,10 +129,26 @@ been tagged as a stable release yet.
   `/etc/shadow` inside the image), and optionally bakes in an SSH host
   key and an `sshd`-at-boot flag. Verifies what it wrote and ends with
   `Exit to (S)hell, (H)alt or (R)eboot?`.
-- **Nothing persists across a normal reboot except what `tusinstall`
-  bakes into the image at install time** - every runtime
-  `vfs_create_file()` is RAM-only. This is the single biggest thing
-  missing for "real Unix" persistence; see Roadmap.
+- **A real, persistent disk filesystem: WRF** (`kernel/fs/wrf.c`),
+  mounted read-write at `/home` on every boot when `tusinstall` laid
+  down a WRF partition (or `mkfs.wrf` formatted a standalone disk) -
+  see `docs/INSTALL.md`. `/` itself is still `rootfs.img`, read fresh
+  into RAM every boot, so a file created outside `/home` (or a package
+  installed with `tpm` without redirecting it there) is still gone on
+  reboot exactly like running from the CD - but anything under `/home`
+  genuinely survives, which is what makes real user data, and
+  `tpm`-installed packages kept there, actually persistent now.
+  WRF is hardened ZFS-style, not just "a filesystem that happens to be
+  on disk": every data and index block carries an out-of-band CRC32
+  checksum (a `wrfscrub` command walks the volume and reports
+  mismatches), and the superblock is checksummed and duplicated
+  (primary + a backup copy at the end of the volume, uberblock-style),
+  so a dead or corrupted primary is recovered from the backup
+  automatically. Copy-on-write is not implemented (documented as a
+  known gap in `include/wrf.h`) - a torn write mid-block is not yet
+  survivable the way a corrupted superblock is.
+- **Disk-backed swap**: real page eviction to disk and page-fault-driven
+  swap-in, so usable memory isn't hard-capped at physical RAM.
 
 ### Shells and the command line
 
@@ -130,12 +169,18 @@ been tagged as a stable release yet.
   the kernel's own tsh - `SYS_TERM` starts a real tsh as its own ring-0
   task and hands the window two ring buffers, so a terminal window, the
   text console, and an SSH session all run literally the same shell.
-- **ksh (AST ksh93, a real port)** - now boots and runs as an ordinary
-  ring-3 program (`/bin/ksh`), with real builtins, job control
-  (`sleep 60 &` reports `[1] pid`, though a background job currently
-  doesn't stay visible to `ps` afterward - a known ksh-side gap, not a
-  bug in `ps` itself), and `whence -a` correctly telling a builtin from
-  a real binary.
+- **A real PTY layer**: `/dev/ptmx` + `/dev/pts/N` (an 8-slot pool of
+  ring-buffer pty pairs), so a program that actually needs a pseudo-
+  terminal (job control inside a terminal-in-a-window, `ksh`'s own
+  `pty` builtin) gets real POSIX PTY semantics rather than nothing.
+- **ksh (AST ksh93, a real port)** - boots and runs as an ordinary
+  ring-3 program, with real builtins, job control (`sleep 60 &` reports
+  `[1] pid`, though a background job currently doesn't stay visible to
+  `ps` afterward - a known ksh-side gap, not a bug in `ps` itself), and
+  `whence -a` correctly telling a builtin from a real binary. **Not part
+  of the base image any more** - like `pcc`, `nasm`, and `fastfetch`
+  (below), it ships as a `tpm` package (`tpm install ksh`) rather than
+  baked into `rootfs.img`, the same pattern used for `tree`.
 - **Coreutils as real `/bin` binaries**, not just tsh built-ins - the
   thing that makes ksh (or any other real shell) actually usable:
   `ls`, `cat`, `mkdir`, `touch`, `rm`, `mv`, `cp`, `head`, `tail`, `wc`,
@@ -145,22 +190,47 @@ been tagged as a stable release yet.
 - `grep` (a real BRE/ERE engine: `-i -v -n -c -l -w -x -E -F -e -f -m
   -A/-B/-C`) and `sed` (`s///`, addresses/ranges, `y d p q =`, `a i c`,
   hold space, `-n -e -f -i -E`) as real binaries too.
-- `doas` (OpenBSD-style privilege elevation via `/etc/doas.conf`),
-  `useradd`, `passwd`, `login`, `hostname` (real `gethostname()`/
-  `sethostname()`, `/etc/hostname` read at boot).
+- `doas` (OpenBSD-style privilege elevation via `/etc/doas.conf`) -
+  genuinely requires a password now: real per-session identity
+  propagation, `setuid`/`setgid` enforcing actual POSIX rules, and
+  setuid-on-exec implemented for the first time (see
+  `docs/security.md` for what was silently broken before this).
+  `useradd` (uid allocation actually increments now - it used to
+  hand every new user the same uid), `passwd`, `login`, `hostname`
+  (real `gethostname()`/`sethostname()`, `/etc/hostname` read at boot).
 
 ### Networking
 
-- Real Ethernet (RTL8139), ARP, IPv4, ICMP (`ping`).
+- Real Ethernet (RTL8139/e1000), ARP, IPv4, ICMP (`ping`).
 - **Real TCP** (`kernel/net/tcp.c`) and UDP - connect/listen/accept,
   a genuine 3-way handshake, retransmission, a real receive window;
   DNS resolution over UDP. `AF_UNIX` local sockets (`socket`/`bind`/
   `listen`/`accept`/`connect`/`socketpair`/`poll`/`select`) predate the
   network stack and still work exactly as before.
-- Userspace tools: `ifconfig`, `netstat`, `arp`, `route`, `nc`,
-  `host`, `ping`, `fetch`/`wget` (HTTP/1.1 client).
+- **A DHCPv4 client** - real DISCOVER/OFFER/REQUEST/ACK, boot-verified
+  against QEMU's own DHCP server. Static IP configuration still works
+  too.
+- **IPv6**: SLAAC link-local addressing (RFC 4291 EUI-64 from the MAC),
+  Neighbor Discovery (NS/NA, RS) and ICMPv6 echo (`ping6`), plus real
+  **TCP6 and UDP6 transport** (`AF_INET6`, `SOCK_STREAM`/`SOCK_DGRAM`)
+  built on the same TCP state machine and UDP logic as the IPv4 stack,
+  with the IPv6 pseudo-header checksum. SLAAC global-address
+  autoconfiguration exists in code but is unexercised - QEMU's slirp
+  gateway doesn't answer Router Solicitations in testing. No AF_INET6
+  path for anything beyond TCP/UDP (no raw sockets, etc.).
+- Userspace tools: `ifconfig` (real RX/TX byte counters and MTU, IPv4
+  and IPv6 addresses), `netstat`, `arp`, `route`, `nc`/`nc6`, `host`,
+  `ping`/`ping6`, `fetch`/`wget` (HTTP/1.1 client).
 - **ath9k-htc** USB Wi-Fi driver infrastructure (firmware for the
-  AR7010/AR9271 chipset ships in `/lib/firmware/`).
+  AR7010/AR9271 chipset ships in `/lib/firmware/`), plus a **WPA2-PSK
+  crypto core** (PBKDF2, PTK derivation, EAPOL MIC - verified against
+  published FIPS/RFC test vectors) and an **IEEE 802.11 management
+  frame layer** (probe/auth/assoc construction and parsing, RSN IE for
+  CCMP/PSK). Honest gap: this has never associated with a real access
+  point - `ath9k-htc` has no USB command/data path implemented yet, and
+  QEMU emulates no 802.11 hardware or AP to test against, so the crypto
+  and frame-format correctness are proven standalone, not the actual
+  over-the-air handshake.
 - **SSH, both directions, for real**: `userspace/ssh/` implements the
   transport and channel layers from scratch (`sshtrans.c`, `sshchan.c`,
   `sshbuf.c`, `sshkey.c`) and both ends use them - `ssh`/`ssh-keygen`
@@ -172,10 +242,12 @@ been tagged as a stable release yet.
   `sshd` starts at boot only if `/etc/sshd.enable` exists, which
   `tusinstall` writes when asked; its host key is generated once at
   install time and baked into the image so it survives reboots (a key
-  generated at runtime by `sshd` itself would not - see the
-  filesystem-persistence note above). No pty driver yet, so an SSH
-  shell session has no job control or window-resize forwarding - a
-  documented limitation, not an oversight.
+  generated at runtime by `sshd` itself would not - or better, on
+  `/home` now that WRF persistence exists). `sshd` falls back to
+  `/bin/tsh` if `ksh` isn't installed via `tpm`. The PTY layer above
+  exists, but `sshd` doesn't yet allocate one per session, so an SSH
+  shell session still has no job control or window-resize forwarding -
+  a documented limitation, not an oversight.
 
 ### USB
 
@@ -337,18 +409,22 @@ Once booted, log in (`root` / `toast` on a fresh image) and try:
 help
 ls -l /bin
 cat /etc/motd
+tpm install ksh           # ksh (and pcc/nasm/fastfetch) aren't in the base image
 ksh                       # a real POSIX-ish shell, not just tsh
+cpuinfo                   # detected CPU topology (ACPI/MADT)
 timers                    # PIT / LAPIC timer / ACPI PM timer / HPET
 apic                      # Local/IO APIC routing status
 useradd -m -s /bin/tsh john
-doas useradd -m jane      # privilege elevation via /etc/doas.conf
+doas useradd -m jane      # privilege elevation via /etc/doas.conf, real password prompt
 ifconfig
 ping -c 3 10.0.2.2
+ping6 fec0::2
 ssh-keygen -f /tmp/id
 sshd &                    # then, from the host: ssh -p 22 root@<guest-ip>
 highx --wm                # or --de for the mouse-driven desktop
 clint http://example.com  # from inside a highx session
 hxvideo /video/clip.mp4
+hxcube                    # a rotating 3D cube via HighGL's fixed-function pipeline
 ```
 
 ## Test suite
@@ -377,9 +453,9 @@ its virtual keyboard/QMP and checking real output - not a mock:
 
 ## Known issues
 
-- `make test` currently stops at a `passwd: user 'ahmet' does not
-  exist` step - pre-existing, unrelated to whatever else you're
-  testing; everything before and after that specific step passes.
+- `make test` currently stops at a console-scrollback timing assertion
+  that's a pre-existing test flake, not a regression - unrelated to
+  whatever else you're testing; everything before it passes.
 - A kernel-wide 8-byte `memcpy`/`memset` speed-up is available but
   **unsafe**: it reproducibly panics when a window manager spawns a
   program, for a reason never fully root-caused. `fb_scroll_up()` has
@@ -389,21 +465,41 @@ its virtual keyboard/QMP and checking real output - not a mock:
   `ps` afterward - a ksh-side job-control gap, not a bug in the new
   `ps`/`SYS_GETPROCS` path, which correctly reports what the task table
   actually contains.
-- No pty driver - an SSH shell session (or anything else without a
-  real terminal) has no job control or window-resize forwarding.
+- `sshd` doesn't allocate a PTY per session yet even though the PTY
+  layer itself exists - an SSH shell session still has no job control
+  or window-resize forwarding.
 - `fan` reports "not found" under QEMU (which implements no ACPI EC at
   all) - expected there; unverified on real EC-equipped hardware.
+- The published `ksh` `tpm` package predates the fix for a crash in any
+  ksh command that spawns a child process (`clear`, external commands,
+  etc. - musl's raw `syscall`-instruction `clone`/`vfork` paths, invalid
+  on TUS's `int $0x80` ABI, now fixed in libc). Rebuilding and
+  republishing that package needs a genuine x86-64 cross-build
+  environment (ksh93's own build system executes target-architecture
+  probe binaries during configuration, which qemu-user can't do for
+  TUS's non-Linux syscall ABI) - not yet done.
 
 ## Roadmap
 
-- **A real, persistent filesystem.** This is the big one: every
-  runtime file write is RAM-only right now, and only `tusinstall`'s
-  one-time tar rewrite survives a reboot.
+- **Bringing up the parked application processors for real.** ACPI/MADT
+  topology discovery and a spinlock primitive exist; the AP trampoline,
+  per-CPU state, and fine-grained locking across the scheduler/VFS/page
+  tables that real concurrent execution needs do not yet.
 - Threads (`clone`, futexes) - TUS has real processes now, not yet
   real threads.
-- Bringing up the parked application processors and using more than
-  the boot CPU.
-- A pty driver, to give SSH/terminal sessions real job control.
+- **ext4/ext2** as a second, standard-format filesystem alongside WRF
+  (which already handles `/home` persistence) - not started.
+- Copy-on-write for WRF, so a crash mid-write can't leave a block torn
+  (checksumming and dual-superblock recovery exist; COW doesn't yet).
+- A real 802.11 association (ath9k-htc's USB command/data path, tested
+  against an actual or virtual AP) to go with the WPA2 crypto core and
+  management-frame layer that already exist.
+- A dynamic linker for the Linux binary compatibility layer - only
+  statically linked Linux binaries run today.
+- Kernel KASLR (the kernel links at a fixed base) and userspace ASLR -
+  neither implemented yet.
+- `sshd` allocating a real PTY per session, to give SSH shells actual
+  job control and window-resize forwarding.
 - Moving the display server out of the kernel and into a userspace
   daemon, once job control makes that practical (the protocol is
   already transport-independent).
