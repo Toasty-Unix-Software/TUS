@@ -508,3 +508,5 @@ its virtual keyboard/QMP and checking real output - not a mock:
   already transport-independent).
 - Wiring MSI into an actual in-tree driver (it's implemented and
   tested standalone, but nothing uses it yet).
+
+# TUS was written by 40% AI and 60% me
